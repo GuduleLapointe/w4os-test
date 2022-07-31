@@ -71,6 +71,7 @@ add_action( 'init', 'w4os_load_textdomain' );
 
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/w4os3-loader.php';
 
 define('W4OS_GRID_LOGIN_URI', w4os_grid_login_uri());
 if(empty(get_option('w4os_assets_slug'))) update_option('w4os_assets_slug', 'assets');

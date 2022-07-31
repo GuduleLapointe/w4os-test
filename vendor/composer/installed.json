@@ -170,6 +170,21 @@
             "install-path": "../meta-box/mb-settings-page"
         },
         {
+            "name": "meta-box/meta-box-columns",
+            "version": "master",
+            "version_normalized": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://metabox.io/?action=download&product=meta-box-columns&api_key=42ecdf32b0e76fe7766bc340ad82046b"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "install-path": "../meta-box/meta-box-columns"
+        },
+        {
             "name": "meta-box/meta-box-conditional-logic",
             "version": "master",
             "version_normalized": "dev-master",

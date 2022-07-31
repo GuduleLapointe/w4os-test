@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb4211feb57b1472d9415bae028bf624",
+    "content-hash": "c040a248fe23fa96710ee3c06113d33f",
     "packages": [
         {
             "name": "composer/installers",
@@ -170,6 +170,18 @@
             "type": "wordpress-plugin"
         },
         {
+            "name": "meta-box/meta-box-columns",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://metabox.io/?action=download&product=meta-box-columns&api_key=42ecdf32b0e76fe7766bc340ad82046b"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
             "name": "meta-box/meta-box-conditional-logic",
             "version": "master",
             "dist": {
@@ -271,7 +283,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "meta-box/mb-settings-page": 20,
-        "meta-box/meta-box-conditional-logic": 20
+        "meta-box/meta-box-conditional-logic": 20,
+        "meta-box/meta-box-columns": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
