@@ -105,7 +105,6 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
         'id'       => $prefix . 'first_name',
         'type'     => 'text',
         'required' => true,
-        'disabled' => (!w4os_is_new_post()),
         'readonly' => (!w4os_is_new_post()),
         'columns'  => 6,
         'std' => $default_first_name,
@@ -116,7 +115,6 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
         'id'       => $prefix . 'last_name',
         'type'     => 'text',
         'required' => true,
-        'disabled' => (!w4os_is_new_post()),
         'readonly' => (!w4os_is_new_post()),
         'columns'  => 6,
         'std' => $default_last_name,
@@ -140,7 +138,6 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
           'searchable' => true,
         ],
         'columns'       => 4,
-        'disabled' => (!w4os_is_new_post()),
         'readonly' => (!w4os_is_new_post()),
         'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.'),
         'hidden'        => [
@@ -160,7 +157,7 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
           ],
       ],
       [
-          'name'    => (w4os_is_new_post()) ? __( 'Password', 'w4os' ) : __('Modify password'),
+          'name'    => (w4os_is_new_post()) ? __( 'Password', 'w4os' ) : __('Change password'),
           'id'      => $prefix . 'password',
           'type'    => 'password',
           'columns' => 4,
@@ -190,13 +187,11 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
   ];
   if(w4os_is_new_post()) {
     $meta_boxes['avatar']['fields'] = array_merge( $meta_boxes['avatar']['fields'], [
-      [
+      'model' => [
         'name'    => __( 'Model', 'w4os' ),
         'id'      => $prefix . 'model',
         'type'    => 'image_select',
         'options' => w4os_get_models_options(),
-        'disabled'    => true,
-        'readonly'    => true,
       ],
     ]);
   } else {
@@ -224,11 +219,24 @@ function w4os3_register_fields_avatar_profile( $meta_boxes ) {
         'id'      => $prefix . 'profile_picture',
         'type'    => 'image_select',
         'options' => w4os_get_profile_picture(),
-        'disabled'    => true,
         'readonly'    => true,
       ],
     ]);
   }
 
   return $meta_boxes;
+}
+
+add_filter( 'wp_insert_post_data', 'w4os_filter_insert_post_data', 10, 4 );
+function w4os_filter_insert_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
+  if(!$update) return $data;
+  if('avatar' !== $data['post_type']) return $data;
+
+  $avatar_name = trim($postarr['avatar_first_name'] . " " . $postarr['avatar_last_name']);
+  if(empty($avatar_name)) {
+    $avatar_name = trim(get_post_meta($postarr['ID'], 'avatar_first_name', true) . " " . get_post_meta($postarr['ID'], 'avatar_last_name', true));
+  }
+  if(!empty($avatar_name)) $data['post_title'] = $avatar_name;
+
+  return $data;
 }
