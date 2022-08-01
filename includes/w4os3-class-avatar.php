@@ -240,3 +240,18 @@ function w4os_filter_insert_post_data( $data, $postarr, $unsanitized_postarr, $u
 
   return $data;
 }
+
+/**
+ * example row action link for avatar post type
+ */
+// add_filter('post_row_actions', 'w4os_post_row_actions_avatar', 10, 2);
+// function w4os_post_row_actions_avatar($actions, $post) {
+//   if( 'avatar' == $post->post_type )
+//   $actions['google_link'] = sprintf(
+//     '<a href="%s" class="google_link" target="_blank">%s</a>',
+//     'http://google.com/search?q=' . $post->post_title,
+//     sprintf(__('Search %s on Google', 'w4os'), $post->post_title),
+//   );
+//
+//   return $actions;
+// }
