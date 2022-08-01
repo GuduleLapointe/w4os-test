@@ -154,6 +154,7 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 == Changelog ==
 
 = Unreleased =
+* added avatar creation form
 
 = 2.3.7 =
 * fix offline messages not forwarded by mail (opensim db not properly loaded by helpers)

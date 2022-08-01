@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       w4os - OpenSimulator Web Interface
+ * Plugin Name:       w4os - OpenSimulator Web Interface (dev)
  * Description:       WordPress interface for OpenSimulator (w4os).
- * Version:           2.3.7
+ * Version:           2.3.7.x-dev
  * Author:            Speculoos World
  * Author URI:        https://speculoos.world
  * Plugin URI:        https://w4os.org/
@@ -28,39 +28,108 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
 /**
- * Plugin conflict checker. As the plugin slug changed when published on the
- * WordPress Directory, we want to make sure only one version of the plugin is
- * activated.
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
  */
-$plugin_dir_check = basename(dirname(__FILE__));
-// First web check if official plugin release is active, even if not yet loaded, as it has priority
-if ( $plugin_dir_check != 'w4os-opensimulator-web-interface' && in_array( 'w4os-opensimulator-web-interface/w4os.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-	add_action( 'admin_notices', function() {
-		echo sprintf (
-			"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
-			__("You already installed the official release of <strong>W4OS - OpenSimulator Web Interface</strong> from WordPress plugins directory. The developer version has been deactivated and should be uninstalled.", 'w4os'),
-		);
-	} );
-	deactivate_plugins($plugin_dir_check . "/" . basename(__FILE__));
-// Then we check for any other plugin conflict, first loaded is kept
-} else if ( defined( 'W4OS_SLUG' ) ) {
-	add_action( 'admin_notices', function() {
-		echo sprintf (
-			"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
-			__("Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is installed and active. Duplicate disabled.", 'w4os'),
-		);
-	} );
-	deactivate_plugins($plugin_dir_check . "/" . basename(__FILE__));
-// Finally, actually load if no conflict
-} else {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/init.php';
+if(!defined('W4OS_VERSION')) {
+	define( 'W4OS_VERSION', '2.3.7.x-dev');
+
+	/**
+	 * The code that runs during plugin activation.
+	 * This action is documented in includes/class-activator.php
+	 */
+	function activate_w4os() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
+		W4OS_Activator::activate();
+	}
+
+	/**
+	 * The code that runs during plugin deactivation.
+	 * This action is documented in includes/class-deactivator.php
+	 */
+	function deactivate_w4os() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
+		W4OS_Deactivator::deactivate();
+	}
+
+	register_activation_hook( __FILE__, 'activate_w4os' );
+	register_deactivation_hook( __FILE__, 'deactivate_w4os' );
+
+	/**
+	 * The core plugin class that is used to define internationalization,
+	 * admin-specific hooks, and public-facing site hooks.
+	 */
+	require plugin_dir_path( __FILE__ ) . 'includes/class.php';
+
+	/**
+	 * Begins execution of the plugin.
+	 *
+	 * Since everything within the plugin is registered via hooks,
+	 * then kicking off the plugin from this point in the file does
+	 * not affect the page life cycle.
+	 *
+	 * @since    1.0.0
+	 */
+	function run_w4os() {
+
+		$plugin = new W4os();
+		$plugin->run();
+
+	}
+	run_w4os();
+
+	// error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+	/**
+	 * Load legacy structure untill it's rewritten
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'legacy/init.php';
 	if(file_exists(plugin_dir_path( __FILE__ ) . 'lib/package-updater.php'))
 	include_once plugin_dir_path( __FILE__ ) . 'lib/package-updater.php';
 
 	if(is_admin()) {
-		require_once (plugin_dir_path(__FILE__) . 'admin/admin-init.php');
+		require_once (plugin_dir_path(__FILE__) . 'legacy/admin/admin-init.php');
+	}
+
+} else {
+	/**
+	 * Another version of the plugin is active and already loaded, so we just
+	 * behave and deactivate ourself
+	 */
+	add_action( 'admin_notices', function() {
+		printf (
+			"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
+			sprintf(
+				__("%s %s is installed and active. Deactivate it before activating another version.", 'w4os'),
+				'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('W4OS - OpenSimulator Web Interface', 'w4os') )) . '<strong>',
+				W4OS_VERSION,
+			),
+		);
+	} );
+	deactivate_plugins(plugin_basename( __FILE__ ));
+}
+
+/**
+ * Just a last check to give stable release priority if it is about to load
+ */
+$w4os_release = "w4os-opensimulator-web-interface/w4os.php";
+$w4os_current = plugin_basename( __FILE__ );
+if ( $w4os_current != $w4os_release ) {
+	$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
+	if (in_array($w4os_release, apply_filters( 'active_plugins', get_option( 'active_plugins' )))) {
+		add_action( 'admin_notices', function() use ($w4os_release, $w4os_current) {
+			printf (
+				"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
+				sprintf(
+					__("A stable release of %s is active. You should use %s and uninstall %s.", 'w4os'),
+					'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('w4os - OpenSimulator Web Interface', 'w4os') )) . '</strong>',
+					(empty($w4os_release)) ? 'it' : '<code>' . $w4os_release . '</code>',
+					(empty($w4os_current)) ? 'any other versions' : '<code>' . $w4os_current . '</code>',
+				),
+			);
+		} );
+		// deactivate_plugins($w4os_current);
 	}
 }
