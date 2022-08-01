@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  */
 
 /**
@@ -20,8 +20,8 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  * @author     Your Name <email@example.com>
  */
 class W4OS_i18n {

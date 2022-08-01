@@ -5,8 +5,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  */
 
 /**
@@ -16,8 +16,8 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  * @author     Your Name <email@example.com>
  */
 class W4OS_Loader_Avatar extends W4OS_Loader {
@@ -69,62 +69,6 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 			// 	'accepted_args' => 2,
 			// ),
 		);
-
-	}
-
-	/**
-	 * Add a new action to the collection to be registered with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @param    string               $hook             The name of the WordPress action that is being registered.
-	 * @param    object               $component        A reference to the instance of the object on which the action is defined.
-	 * @param    string               $callback         The name of the function definition on the $component.
-	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
-	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
-	 */
-	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
-	}
-
-	/**
-	 * Add a new filter to the collection to be registered with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @param    string               $hook             The name of the WordPress filter that is being registered.
-	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
-	 * @param    string               $callback         The name of the function definition on the $component.
-	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
-	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
-	 */
-	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
-	}
-
-	/**
-	 * A utility function that is used to register the actions and hooks into a single
-	 * collection.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @param    array                $hooks            The collection of hooks that is being registered (that is, actions or filters).
-	 * @param    string               $hook             The name of the WordPress filter that is being registered.
-	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
-	 * @param    string               $callback         The name of the function definition on the $component.
-	 * @param    int                  $priority         The priority at which the function should be fired.
-	 * @param    int                  $accepted_args    The number of arguments that should be passed to the $callback.
-	 * @return   array                                  The collection of actions and filters registered with WordPress.
-	 */
-	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
-
-		$hooks[] = array(
-			'hook'          => $hook,
-			'component'     => $component,
-			'callback'      => $callback,
-			'priority'      => $priority,
-			'accepted_args' => $accepted_args
-		);
-
-		return $hooks;
 
 	}
 
@@ -220,13 +164,20 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	  $prefix = 'avatar_';
 	  $user = wp_get_current_user();
 	  if($user) {
-	    if(!empty($user->display_name)) {
-	      $default_first_name = w4os3_sanitize_avatar_name(preg_replace('/ .*/', '', $user->display_name));
-	      $default_last_name = w4os3_sanitize_avatar_name(preg_replace('/[^ ]* /', '', $user->display_name));
-	    } else {
-	      $default_first_name = w4os3_sanitize_avatar_name($user->first_name);
-	      $default_last_name = w4os3_sanitize_avatar_name($user->last_name);
-	    }
+	    // if(!empty($user->display_name)) {
+	    //   $default_first_name = W4OS_Loader_Avatar::sanitize_name(preg_replace('/ .*/', '', $user->display_name));
+	    //   $default_last_name = W4OS_Loader_Avatar::sanitize_name(preg_replace('/[^ ]* /', '', $user->display_name));
+	    // } else {
+	    //   $default_first_name = W4OS_Loader_Avatar::sanitize_name($user->first_name);
+	    //   $default_last_name = W4OS_Loader_Avatar::sanitize_name($user->last_name);
+	    // }
+			$default_first_name = W4OS_Loader_Avatar::sanitize_name(
+				(empty($user->display_name)) ? $user->first_name : preg_replace('/ .*/', '', $user->display_name)
+			);
+			$default_last_name = W4OS_Loader_Avatar::sanitize_name(
+				(empty($user->display_name)) ? $user->last_name : preg_replace('/[^ ]* /', '', $user->display_name)
+			);
+
 	  }
 	  $meta_boxes['avatar'] = [
 	    'title'      => __( 'Profile', 'w4os' ),
@@ -254,20 +205,20 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'id'       => $prefix . 'first_name',
 	        'type'     => 'text',
 	        'required' => true,
-	        'readonly' => (!w4os_is_new_post()),
+	        'readonly' => (!W4OS::is_new_post()),
 	        'columns'  => 6,
 	        'std' => $default_first_name,
-	        'sanitize_callback' => 'w4os3_sanitize_avatar_name',
+	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
 	      ],
 	      'last_name' => [
 	        'name'     => __( 'Last Name', 'w4os' ),
 	        'id'       => $prefix . 'last_name',
 	        'type'     => 'text',
 	        'required' => true,
-	        'readonly' => (!w4os_is_new_post()),
+	        'readonly' => (!W4OS::is_new_post()),
 	        'columns'  => 6,
 	        'std' => $default_last_name,
-	        'sanitize_callback' => 'w4os3_sanitize_avatar_name',
+	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
 	      ],
 	      [
 	          'name'       => __( 'Owner', 'w4os' ),
@@ -280,14 +231,14 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'name'          => __( 'E-mail', 'w4os' ),
 	        'id'            => $prefix . 'email',
 	        'type'          => 'email',
-	        'std'           => w4os_current_user_email(),
+	        'std'           => W4OS::current_user_email(),
 	        'admin_columns' => [
 	          'position'   => 'after author',
 	          'sort'       => true,
 	          'searchable' => true,
 	        ],
 	        'columns'       => 4,
-	        'readonly' => (!w4os_is_new_post()),
+	        'readonly' => (!W4OS::is_new_post()),
 	        'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.'),
 	        'hidden'        => [
 	            'when'     => [['avatar_owner', '!=', '']],
@@ -306,7 +257,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	          ],
 	      ],
 	      [
-	          'name'    => (w4os_is_new_post()) ? __( 'Password', 'w4os' ) : __('Change password'),
+	          'name'    => (W4OS::is_new_post()) ? __( 'Password', 'w4os' ) : __('Change password'),
 	          'id'      => $prefix . 'password',
 	          'type'    => 'password',
 	          'columns' => 4,
@@ -334,13 +285,13 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	      ],
 	    ],
 	  ];
-	  if(w4os_is_new_post()) {
+	  if(W4OS::is_new_post()) {
 	    $meta_boxes['avatar']['fields'] = array_merge( $meta_boxes['avatar']['fields'], [
 	      'model' => [
 	        'name'    => __( 'Model', 'w4os' ),
 	        'id'      => $prefix . 'model',
 	        'type'    => 'image_select',
-	        'options' => w4os_get_models_options(),
+	        'options' => W4OS_Loader_Avatar::w4os_get_models_options(),
 	      ],
 	    ]);
 	  } else {
@@ -367,7 +318,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'name'    => __( 'Profile Picture', 'w4os' ),
 	        'id'      => $prefix . 'profile_picture',
 	        'type'    => 'image_select',
-	        'options' => w4os_get_profile_picture(),
+	        'options' => W4OS_Loader_Avatar::w4os_get_profile_picture(),
 	        'readonly'    => true,
 	      ],
 	    ]);
@@ -402,5 +353,52 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	//
 	//   return $actions;
 	// }
+
+	static function sanitize_name($value, $field = [], $old_value = NULL, $object_id = NULL) {
+	  // return $value;
+	  $return = sanitize_text_field($value);
+	  // $return = strtr(utf8_decode($return), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+	  $return = remove_accents($return);
+
+	  $return = substr(preg_replace('/[^[:alnum:]]/', '', $return), 0, 64);
+	  if($value != $return) {
+	    w4os_notice(sprintf(
+	      __('%s contains invalid characters, replaced "%s" by "%s"', 'w4os'),
+	      $field['name'],
+	      wp_specialchars_decode(strip_tags(stripslashes($value))),
+	      esc_attr($return),
+	    ), 'warning');
+	  }
+	  return $return;
+	}
+
+	static function w4os_get_profile_picture() {
+	  $options = array(
+	    w4os_get_asset_url(),
+	  );
+	  return $options;
+	}
+
+	static function w4os_get_models_options() {
+	  global $w4osdb;
+	  $results = [];
+
+	  $models=$w4osdb->get_results("SELECT FirstName, LastName, profileImage, profileAboutText
+	    FROM UserAccounts LEFT JOIN userprofile ON PrincipalID = userUUID
+	    WHERE active = true
+	    AND (FirstName = '" . get_option('w4os_model_firstname') . "'
+	    OR LastName = '" . get_option('w4os_model_lastname') . "')
+	    ORDER BY FirstName, LastName"
+	  );
+	  if($models) {
+	    foreach($models as $model) {
+	      $model_name = $model->FirstName . " " . $model->LastName;
+	      $model_imgid = (w4os_empty($model->profileImage)) ? W4OS_NOTFOUND_PROFILEPIC : $model->profileImage;
+	      $model_img_url = w4os_get_asset_url($model_imgid);
+	      $results[$model_name] = $model_img_url;
+	    }
+	  }
+	  return $results;
+	}
 
 }

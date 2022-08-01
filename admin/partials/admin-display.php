@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/admin/partials
+ * @package    W4OS
+ * @subpackage W4OS/admin/partials
  */
 ?>
 

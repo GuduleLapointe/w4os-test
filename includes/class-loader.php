@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  */
 
 /**
@@ -17,8 +17,8 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  * @author     Your Name <email@example.com>
  */
 class W4OS_Loader {

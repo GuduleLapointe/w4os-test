@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/admin
+ * @package    W4OS
+ * @subpackage W4OS/admin
  */
 
 /**
@@ -16,8 +16,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    W4os
- * @subpackage W4os/admin
+ * @package    W4OS
+ * @subpackage W4OS/admin
  * @author     Your Name <email@example.com>
  */
 class W4OS_Admin {

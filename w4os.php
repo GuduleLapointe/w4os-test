@@ -74,7 +74,7 @@ if(!defined('W4OS_VERSION')) {
 	 */
 	function run_w4os() {
 
-		$plugin = new W4os();
+		$plugin = new W4OS();
 		$plugin->run();
 
 	}

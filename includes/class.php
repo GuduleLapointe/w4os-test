@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    W4os
- * @subpackage W4os/includes
+ * @package    W4OS
+ * @subpackage W4OS/includes
  * @author     Your Name <email@example.com>
  */
-class W4os {
+class W4OS {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -219,6 +219,27 @@ class W4os {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	static function sanitize_login_uri($value, $field, $old_value, $object_id) {
+		// TODO: actual sanitization
+	  if($value != $old_value) {
+			// TODO: fetch grid info again
+		}
+	  return $value;
+	}
+
+	static function current_user_email() {
+	  $current_user = wp_get_current_user();
+	  return $current_user->user_email;
+	}
+
+	static function is_new_post($args = null){
+	    global $pagenow;
+	    //make sure we are on the backend
+	    if (!is_admin()) return false;
+	    return in_array( $pagenow, array( 'post-new.php' ) );
+	    //   return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
 	}
 
 }
