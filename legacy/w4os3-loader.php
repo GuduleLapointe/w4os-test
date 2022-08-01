@@ -1,6 +1,6 @@
 <?php if ( ! defined( 'W4OS_PLUGIN' ) ) die;
 
-require_once __DIR__ . '/w4os3-class-avatar.php';
+// require_once __DIR__ . '/w4os3-class-avatar.php';
 
 function w4os3_sanitize_login_uri($value, $field, $old_value, $object_id) {
   if($value != $old_value)

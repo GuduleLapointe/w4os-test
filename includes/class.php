@@ -38,6 +38,7 @@ class W4os {
 	 * @var      W4OS_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
+	protected $loader_avatar;
 
 	/**
 	 * The unique identifier of this plugin.
@@ -126,6 +127,7 @@ class W4os {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-public.php';
 
 		$this->loader = new W4OS_Loader();
+		$this->loader_avatar = new W4OS_Loader_Avatar();
 
 	}
 
@@ -185,6 +187,7 @@ class W4os {
 	 */
 	public function run() {
 		$this->loader->run();
+		$this->loader_avatar->run();
 	}
 
 	/**
