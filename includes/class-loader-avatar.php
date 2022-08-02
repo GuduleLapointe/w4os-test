@@ -220,23 +220,28 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'std' => $default_last_name,
 	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
 	      ],
-	      [
-	          'name'       => __( 'Owner', 'w4os' ),
-	          'id'         => $prefix . 'owner',
-	          'type'       => 'user',
-	          'field_type' => 'select_advanced',
-	          'columns'    => 4,
-	      ],
+				[
+					'name'       => __( 'Owner', 'w4os' ),
+					'id'         => $prefix . 'owner',
+					'type'       => 'user',
+					'field_type' => 'select_advanced',
+					'columns'    => 4,
+					'admin_columns' => [
+						'position'   => 'after title',
+						'sort'       => true,
+						'searchable' => true,
+					],
+				],
 	      'email' => [
 	        'name'          => __( 'E-mail', 'w4os' ),
 	        'id'            => $prefix . 'email',
 	        'type'          => 'email',
 	        'std'           => W4OS::current_user_email(),
-	        'admin_columns' => [
-	          'position'   => 'after author',
-	          'sort'       => true,
-	          'searchable' => true,
-	        ],
+					'admin_columns' => [
+						'position'   => 'after avatar_owner',
+						'sort'       => true,
+						'searchable' => true,
+					],
 	        'columns'       => 4,
 	        'readonly' => (!W4OS::is_new_post()),
 	        'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.'),
@@ -314,6 +319,15 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	          'relation' => 'or',
 	        ],
 	      ],
+				[
+						'name'          => __( 'Born', 'w4os' ),
+						'id'            => $prefix . 'born',
+						'type'          => 'datetime',
+						'admin_columns' => [
+								'position' => 'before date',
+								'sort'     => true,
+						],
+				],
 	      [
 	        'name'    => __( 'Profile Picture', 'w4os' ),
 	        'id'      => $prefix . 'profile_picture',
