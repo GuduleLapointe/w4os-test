@@ -38,7 +38,7 @@ class W4OS {
 	 * @var      W4OS_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
-	protected $loader_avatar;
+	protected $loaders;
 
 	/**
 	 * The unique identifier of this plugin.
@@ -100,13 +100,11 @@ class W4OS {
 	 */
 	private function load_dependencies() {
 
-		// include_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt-avatar.php';
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-loader.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-loader-avatar.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
@@ -127,8 +125,9 @@ class W4OS {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-public.php';
 
 		$this->loader = new W4OS_Loader();
-		$this->loader_avatar = new W4OS_Loader_Avatar();
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-avatar.php';
+		$this->loaders[] = new W4OS3_Avatar();
 	}
 
 	/**
@@ -187,7 +186,11 @@ class W4OS {
 	 */
 	public function run() {
 		$this->loader->run();
-		$this->loader_avatar->run();
+		if(!empty($this->loaders) && is_array($this->loaders)) {
+			foreach($this->loaders as $key => $loader) {
+				$this->loaders[$key]->run();
+			}
+		}
 	}
 
 	/**

@@ -20,7 +20,7 @@
  * @subpackage W4OS/includes
  * @author     Your Name <email@example.com>
  */
-class W4OS_Loader_Avatar extends W4OS_Loader {
+class W4OS3_Avatar {
 
 	/**
 	 * The array of actions registered with WordPress.
@@ -45,31 +45,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
-
-		$this->actions = array(
-			array (
-				'hook' => 'init',
-				'callback' => 'register_post_types',
-			),
-		);
-		$this->filters = array(
-			array (
-				'hook' => 'rwmb_meta_boxes',
-				'callback' => 'add_fields',
-			),
-			array (
-				'hook' => 'wp_insert_post_data',
-				'callback' => 'automatic_title',
-				'accepted_args' => 4,
-			),
-			// array (
-			// 	'hook' => 'post_row_actions',
-			// 	'add_row_action_links',
-			// 	'accepted_args' => 2,
-			// ),
-		);
-
+	public function __construct($post = NULL) {
 	}
 
 	/**
@@ -79,14 +55,37 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	 */
 	public function run() {
 
-		foreach ( $this->filters as $hook ) {
+		$actions = array(
+			array (
+				'hook' => 'init',
+				'callback' => 'register_post_types',
+			),
+		);
+		$filters = array(
+			array (
+				'hook' => 'rwmb_meta_boxes',
+				'callback' => 'add_fields',
+			),
+			array (
+				'hook' => 'wp_insert_post_data',
+				'callback' => 'insert_post_data',
+				'accepted_args' => 4,
+			),
+			// array (
+			// 	'hook' => 'post_row_actions',
+			// 	'add_row_action_links',
+			// 	'accepted_args' => 2,
+			// ),
+		);
+
+		foreach ( $filters as $hook ) {
 			(empty($hook['component'])) && $hook['component'] = __CLASS__;
 			(empty($hook['priority'])) && $hook['priority'] = 10;
 			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
 			add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
 
-		foreach ( $this->actions as $hook ) {
+		foreach ( $actions as $hook ) {
 			(empty($hook['component'])) && $hook['component'] = __CLASS__;
 			(empty($hook['priority'])) && $hook['priority'] = 10;
 			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
@@ -165,16 +164,16 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	  $user = wp_get_current_user();
 	  if($user) {
 	    // if(!empty($user->display_name)) {
-	    //   $default_first_name = W4OS_Loader_Avatar::sanitize_name(preg_replace('/ .*/', '', $user->display_name));
-	    //   $default_last_name = W4OS_Loader_Avatar::sanitize_name(preg_replace('/[^ ]* /', '', $user->display_name));
+	    //   $default_first_name = self::sanitize_name(preg_replace('/ .*/', '', $user->display_name));
+	    //   $default_last_name = self::sanitize_name(preg_replace('/[^ ]* /', '', $user->display_name));
 	    // } else {
-	    //   $default_first_name = W4OS_Loader_Avatar::sanitize_name($user->first_name);
-	    //   $default_last_name = W4OS_Loader_Avatar::sanitize_name($user->last_name);
+	    //   $default_first_name = self::sanitize_name($user->first_name);
+	    //   $default_last_name = self::sanitize_name($user->last_name);
 	    // }
-			$default_first_name = W4OS_Loader_Avatar::sanitize_name(
+			$default_first_name = self::sanitize_name(
 				(empty($user->display_name)) ? $user->first_name : preg_replace('/ .*/', '', $user->display_name)
 			);
-			$default_last_name = W4OS_Loader_Avatar::sanitize_name(
+			$default_last_name = self::sanitize_name(
 				(empty($user->display_name)) ? $user->last_name : preg_replace('/[^ ]* /', '', $user->display_name)
 			);
 
@@ -296,7 +295,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'name'    => __( 'Model', 'w4os' ),
 	        'id'      => $prefix . 'model',
 	        'type'    => 'image_select',
-	        'options' => W4OS_Loader_Avatar::w4os_get_models_options(),
+	        'options' => self::w4os_get_models_options(),
 	      ],
 	    ]);
 	  } else {
@@ -332,7 +331,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	        'name'    => __( 'Profile Picture', 'w4os' ),
 	        'id'      => $prefix . 'profile_picture',
 	        'type'    => 'image_select',
-	        'options' => W4OS_Loader_Avatar::w4os_get_profile_picture(),
+	        'options' => self::w4os_get_profile_picture(),
 	        'readonly'    => true,
 	      ],
 	    ]);
@@ -341,15 +340,26 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	  return $meta_boxes;
 	}
 
-	static function automatic_title( $data, $postarr, $unsanitized_postarr, $update ) {
+	static function insert_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
 	  if(!$update) return $data;
 	  if('avatar' !== $data['post_type']) return $data;
 
+		/**
+		 * Rewrite post title
+		 */
 	  $avatar_name = trim(@$postarr['avatar_first_name'] . " " . @$postarr['avatar_last_name']);
 	  if(empty($avatar_name)) {
 	    $avatar_name = trim(get_post_meta($postarr['ID'], 'avatar_first_name', true) . " " . get_post_meta($postarr['ID'], 'avatar_last_name', true));
 	  }
 	  if(!empty($avatar_name)) $data['post_title'] = $avatar_name;
+
+		/**
+		 * If new, eheck if name is valid and create on simulator
+		 */
+
+		/**
+		 * Update WP post with simulator info (UUID, About, Created, Partner, Watns, Skills, Languages, Real Life)
+		 */
 
 	  return $data;
 	}
