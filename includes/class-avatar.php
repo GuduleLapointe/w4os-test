@@ -208,6 +208,7 @@ class W4OS3_Avatar {
 	        'columns'  => 6,
 	        'std' => $default_first_name,
 	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
+					'pattern'  => '[A-Za-z][A-Za-z0-9]*', // Must have 9 digits
 	      ],
 	      'last_name' => [
 	        'name'     => __( 'Last Name', 'w4os' ),
@@ -218,6 +219,7 @@ class W4OS3_Avatar {
 	        'columns'  => 6,
 	        'std' => $default_last_name,
 	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
+					'pattern'  => '[A-Za-z][A-Za-z0-9]*', // Must have 9 digits
 	      ],
 				[
 					'name'       => __( 'Owner', 'w4os' ),
