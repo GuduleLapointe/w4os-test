@@ -1,1209 +1,1345 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: w4os\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w4os-dev\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: w4os\n"
+"POT-Creation-Date: 2022-08-02T07:59:51-04:00\n"
+"PO-Revision-Date: \n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#. wpml-name: 89e15c20b6fff50f9caa1f171381251d
 #. Plugin Name of the plugin
-#: 
 msgid "w4os - OpenSimulator Web Interface (dev)"
 msgstr "w4os - OpenSimulator Web Interface"
 
-#. #-#-#-#-#  catalog.po (w4os)  #-#-#-#-#
-#. wpml-name: 8a556ddad981269d9764cbf640cfd337
-#. wpml-name: f279731266ee1b5ff0b7bd85e585dfef
 #. Plugin URI of the plugin
-#: 
 msgid "https://w4os.org/"
 msgstr "https://w4os.org/"
 
-#. wpml-name: 374124f21084c34d958491bf98d72af4
 #. Description of the plugin
-#: 
 msgid "WordPress interface for OpenSimulator (w4os)."
 msgstr "WordPress-interface voor OpenSimulator (w4os)."
 
-#. wpml-name: 6dfd7d212f1bf0f6121142f105f7c704
 #. Author of the plugin
-#: 
 msgid "Speculoos World"
 msgstr "Speculoos World"
 
-#. #-#-#-#-#  catalog.po (w4os)  #-#-#-#-#
-#. wpml-name: 8a556ddad981269d9764cbf640cfd337
-#. wpml-name: f279731266ee1b5ff0b7bd85e585dfef
 #. Author URI of the plugin
-#: 
 msgid "https://speculoos.world"
 msgstr "https://speculoos.world/nl"
 
-#. wpml-name: 2e7502f81f2bff60e1170982af2e5ede
-#: admin/admin-init.php:26
+#: blocks/popular-places.php:128
+msgid "Popular places"
+msgstr "Populaire plaatsen"
+
+#: blocks/popular-places.php:134
+#: legacy/shortcodes.php:162
+msgid "No result"
+msgstr "Geen resultaat"
+
+#: includes/class-loader-avatar.php:100
+#: includes/class-loader-avatar.php:121
+#: includes/class-loader-avatar.php:134
+#, fuzzy
+msgid "Avatars"
+msgstr "Mijn Avatar"
+
+#: includes/class-loader-avatar.php:101
+#, fuzzy
+msgid "Avatar"
+msgstr "Mijn Avatar"
+
+#: includes/class-loader-avatar.php:102
+msgid "Add New"
+msgstr ""
+
+#: includes/class-loader-avatar.php:103
+#, fuzzy
+msgid "Add new avatar"
+msgstr "Maak een avatar"
+
+#: includes/class-loader-avatar.php:104
+#, fuzzy
+msgid "Edit Avatar"
+msgstr "Met avatar"
+
+#: includes/class-loader-avatar.php:105
+#, fuzzy
+msgid "New Avatar"
+msgstr "Mijn Avatar"
+
+#: includes/class-loader-avatar.php:106
+#, fuzzy
+msgid "View Avatar"
+msgstr "Met avatar"
+
+#: includes/class-loader-avatar.php:107
+#, fuzzy
+msgid "View Avatars"
+msgstr "Met avatar"
+
+#: includes/class-loader-avatar.php:108
+#, fuzzy
+msgid "Search Avatars"
+msgstr "Zoeken in databank"
+
+#: includes/class-loader-avatar.php:109
+#, fuzzy
+msgid "No avatars found"
+msgstr "Avatar niet gevonden"
+
+#: includes/class-loader-avatar.php:110
+msgid "No avatars found in Trash"
+msgstr ""
+
+#: includes/class-loader-avatar.php:111
+#, fuzzy
+msgid "Parent Avatar:"
+msgstr "Mijn Avatar aanmaken"
+
+#: includes/class-loader-avatar.php:112
+#, fuzzy
+msgid "All Avatars"
+msgstr "Mijn Avatar"
+
+#: includes/class-loader-avatar.php:113
+#, fuzzy
+msgid "Avatar Archives"
+msgstr "Avatar profiel"
+
+#: includes/class-loader-avatar.php:114
+#, fuzzy
+msgid "Avatar Attributes"
+msgstr "Avatar profiel"
+
+#: includes/class-loader-avatar.php:115
+#, fuzzy
+msgid "Insert into avatar"
+msgstr "Maak een avatar"
+
+#: includes/class-loader-avatar.php:116
+msgid "Uploaded to this avatar"
+msgstr ""
+
+#: includes/class-loader-avatar.php:117
+msgid "Featured image"
+msgstr ""
+
+#: includes/class-loader-avatar.php:118
+msgid "Set featured image"
+msgstr ""
+
+#: includes/class-loader-avatar.php:119
+msgid "Remove featured image"
+msgstr ""
+
+#: includes/class-loader-avatar.php:120
+msgid "Use as featured image"
+msgstr ""
+
+#: includes/class-loader-avatar.php:122
+msgid "Filter avatars list"
+msgstr ""
+
+#: includes/class-loader-avatar.php:123
+#, fuzzy
+msgid "Filter by date"
+msgstr "Filter"
+
+#: includes/class-loader-avatar.php:124
+#, fuzzy
+msgid "Avatars list navigation"
+msgstr "Avatar achternaam"
+
+#: includes/class-loader-avatar.php:125
+#, fuzzy
+msgid "Avatars list"
+msgstr "Avatar modellen"
+
+#: includes/class-loader-avatar.php:126
+#, fuzzy
+msgid "Avatar published"
+msgstr "Avatar profiel"
+
+#: includes/class-loader-avatar.php:127
+msgid "Avatar published privately"
+msgstr ""
+
+#: includes/class-loader-avatar.php:128
+msgid "Avatar reverted to draft"
+msgstr ""
+
+#: includes/class-loader-avatar.php:129
+#, fuzzy
+msgid "Avatar scheduled"
+msgstr "Avatar modellen"
+
+#: includes/class-loader-avatar.php:130
+#, fuzzy
+msgid "Avatar updated"
+msgstr "Avatar naam"
+
+#: includes/class-loader-avatar.php:183
+#, fuzzy
+msgid "Profile"
+msgstr "Mijn Profiel"
+
+#: includes/class-loader-avatar.php:204
+#, fuzzy
+msgid "First Name"
+msgstr "Voornaam = "
+
+#: includes/class-loader-avatar.php:214
+#, fuzzy
+msgid "Last Name"
+msgstr "OF Achternaam = "
+
+#: includes/class-loader-avatar.php:224
+msgid "Owner"
+msgstr ""
+
+#: includes/class-loader-avatar.php:231
+#, fuzzy
+msgid "E-mail"
+msgstr "E-mail"
+
+#: includes/class-loader-avatar.php:242
+msgid "Optional. If set, the avatar will be linked to any matching WP user account."
+msgstr ""
+
+#: includes/class-loader-avatar.php:249
+#, fuzzy
+msgid "Create WP user"
+msgstr "Mijn Avatar aanmaken"
+
+#: includes/class-loader-avatar.php:260
+#: legacy/admin/settings.php:76
+#: legacy/admin/settings.php:234
+#: legacy/admin/settings.php:391
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: includes/class-loader-avatar.php:260
+#: legacy/profile.php:132
+#, fuzzy
+msgid "Change password"
+msgstr "Reset Wachtwoord"
+
+#: includes/class-loader-avatar.php:266
+#, fuzzy
+msgid "Confirm password"
+msgstr "Bevestig uw wachtwoord"
+
+#: includes/class-loader-avatar.php:272
+msgid "Same password as WP user"
+msgstr ""
+
+#: includes/class-loader-avatar.php:291
+#, fuzzy
+msgid "Model"
+msgstr "Modellen"
+
+#: includes/class-loader-avatar.php:306
+msgid "UUID"
+msgstr ""
+
+#: includes/class-loader-avatar.php:309
+#, fuzzy
+msgid "Wil be set by the server"
+msgstr "Web asset-server"
+
+#: includes/class-loader-avatar.php:318
+#: legacy/profile.php:999
+msgid "Profile Picture"
+msgstr "Profiel foto"
+
+#: includes/class-loader-avatar.php:366
+msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
+msgstr ""
+
+#: legacy/admin/admin-init.php:26
 msgid "OpenSimulator Status"
 msgstr "OpenSimulator-status"
 
-#: admin/admin-init.php:26
-#: includes/functions.php:227
+#: legacy/admin/admin-init.php:26
+#: legacy/functions.php:227
 msgid "Status"
 msgstr "Status"
 
-#. wpml-name: 9c9ee66a189f06fb9e3cc58c0c352db8
-#: admin/admin-init.php:29
+#: legacy/admin/admin-init.php:29
 msgid "OpenSimulator Settings"
 msgstr "OpenSimulator-instellingen"
 
-#: admin/admin-init.php:30
-#: admin/settings.php:603
+#: legacy/admin/admin-init.php:30
+#: legacy/admin/settings.php:603
 msgid "Settings"
 msgstr "Instellingen"
 
-#. wpml-name: d0f651f1495d346088ae49450c620e9b
-#: admin/admin-init.php:37
-#: admin/admin-init.php:83
+#: legacy/admin/admin-init.php:38
+#: legacy/admin/admin-init.php:85
 msgid "OpenSimulator Helpers"
 msgstr "OpenSimulator Helpers"
 
-#: admin/admin-init.php:38
+#: legacy/admin/admin-init.php:39
 msgid "Helpers"
 msgstr "Helpers"
 
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: admin/admin-init.php:103
-#: includes/profile.php:118
+#: legacy/admin/admin-init.php:105
+#: legacy/profile.php:118
 msgid "Avatar Name"
 msgstr "Avatar naam"
 
-#: admin/admin-init.php:109
-#: admin/admin-init.php:115
-#: includes/profile.php:124
+#: legacy/admin/admin-init.php:111
+#: legacy/admin/admin-init.php:117
+#: legacy/profile.php:124
 msgid "Born"
 msgstr "Geboren"
 
-#: admin/admin-init.php:110
-#: admin/admin-init.php:116
+#: legacy/admin/admin-init.php:112
+#: legacy/admin/admin-init.php:118
 msgid "Last Seen"
 msgstr "Laatst gezien"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: admin/admin-init.php:131
-#: includes/shortcodes.php:104
+#: legacy/admin/admin-init.php:133
+#: legacy/shortcodes.php:104
 msgid "View profile"
 msgstr "Bekijk profiel"
 
-#: admin/admin-init.php:188
+#: legacy/admin/admin-init.php:190
 msgid "With Avatar"
 msgstr "Met avatar"
 
-#. wpml-name: 847fcf17b5e3d8a6625d71c4dedd34a1
-#: admin/admin-init.php:189
+#: legacy/admin/admin-init.php:191
 msgid "Without Avatar"
 msgstr "Zonder avatar"
 
-#: admin/admin-init.php:206
+#: legacy/admin/admin-init.php:208
 msgid "Filter users..."
 msgstr "Filter gebruikers..."
 
-#: admin/admin-init.php:212
+#: legacy/admin/admin-init.php:214
 msgid "Filter"
 msgstr "Filter"
 
-#. wpml-name: d0f651f1495d346088ae49450c620e9b
-#: admin/admin-init.php:258
+#: legacy/admin/admin-init.php:260
 msgid "OpenSimulator Profile"
 msgstr "OpenSimulator profiel"
 
-#. wpml-name: 2e7502f81f2bff60e1170982af2e5ede
-#: admin/admin-init.php:260
+#: legacy/admin/admin-init.php:262
 msgid "OpenSimulator Splash"
 msgstr "OpenSimulator Splash"
 
-#. wpml-name: 2e7502f81f2bff60e1170982af2e5ede
-#: admin/admin-init.php:262
+#: legacy/admin/admin-init.php:264
 msgid "OpenSimulator Search"
 msgstr "OpenSimulator Zoeken"
 
-#. wpml-name: d0f651f1495d346088ae49450c620e9b
-#: admin/admin-init.php:264
+#: legacy/admin/admin-init.php:266
 msgid "OpenSimulator Economy"
 msgstr "OpenSimulator economie"
 
-#. wpml-name: d0f651f1495d346088ae49450c620e9b
-#: admin/admin-init.php:266
+#: legacy/admin/admin-init.php:268
 msgid "OpenSimulator About"
 msgstr "OpenSimulator"
 
-#. wpml-name: 9c9ee66a189f06fb9e3cc58c0c352db8
-#: admin/admin-init.php:268
+#: legacy/admin/admin-init.php:270
 msgid "OpenSimulator Register"
 msgstr "OpenSimulator Register"
 
-#. wpml-name: 2e7502f81f2bff60e1170982af2e5ede
-#: admin/admin-init.php:270
+#: legacy/admin/admin-init.php:272
 msgid "OpenSimulator Password"
 msgstr "OpenSimulator wachtwoord"
 
-#. wpml-name: 9c9ee66a189f06fb9e3cc58c0c352db8
-#: admin/admin-init.php:272
+#: legacy/admin/admin-init.php:274
 msgid "OpenSimulator Offline Messages"
 msgstr "OpenSimulator Offline Berichten"
 
-#: admin/admin-init.php:284
-#: admin/admin-init.php:298
+#: legacy/admin/admin-init.php:286
+#: legacy/admin/admin-init.php:300
 msgid "The followed link has expired, please try again"
 msgstr "De gevolgde link is verlopen, probeer het opnieuw"
 
-#: admin/admin-init.php:305
+#: legacy/admin/admin-init.php:307
 msgid "Page %s already exists."
 msgstr "Pagina %s bestaat al."
 
-#: admin/admin-init.php:322
+#: legacy/admin/admin-init.php:324
 msgid "New page %s created."
 msgstr "Nieuwe pagina %s aangemaakt."
 
-#: admin/admin-init.php:326
+#: legacy/admin/admin-init.php:328
 msgid "Error while creating page %s."
 msgstr "Fout bij het aanmaken van pagina %s."
 
-#. wpml-name: 317e8940a1b9f03b83ef85393bd49552
-#: admin/admin-init.php:338
+#: legacy/admin/admin-init.php:340
 msgid "Avatar profile"
 msgstr "Avatar profiel"
 
-#: admin/admin-init.php:339
+#: legacy/admin/admin-init.php:341
 msgid "The base URL for avatar web profiles."
 msgstr "De basis URL voor avatar web profielen."
 
-#: admin/admin-init.php:342
+#: legacy/admin/admin-init.php:344
 msgid "Search Service"
 msgstr "Zoekdienst"
 
-#: admin/admin-init.php:343
+#: legacy/admin/admin-init.php:345
 msgid "Search service used by the viewer. Search can be provided by the simulator core (limited), or by an external service for additional functionalities (like events). Requires OpenSimSearch.Modules.dll."
 msgstr "Zoekdienst gebruikt door de viewer. Zoeken kan worden geleverd door de simulator kern (beperkt), of door een externe service voor extra functionaliteiten (zoals gebeurtenissen). Vereist OpenSimSearch.Modules.dll."
 
-#: admin/admin-init.php:353
+#: legacy/admin/admin-init.php:355
 msgid "Web Search"
 msgstr "Zoeken op het web"
 
-#: admin/admin-init.php:354
+#: legacy/admin/admin-init.php:356
 msgid "Web tab of viewer search windows. Relevant if you have a search page providing content from the grid."
 msgstr "Web tabblad van viewer zoekvensters. Relevant als u een zoekpagina hebt met inhoud uit het raster."
 
-#: admin/admin-init.php:364
-#: admin/settings.php:290
+#: legacy/admin/admin-init.php:366
+#: legacy/admin/settings.php:290
 msgid "Offline messages"
 msgstr "Offline berichten"
 
-#: admin/admin-init.php:365
+#: legacy/admin/admin-init.php:367
 msgid "Needed by viewers to keep messages while user is offline and deliver them when they come back online. Internal service, not accessed directly by the user."
 msgstr "Nodig voor viewers om berichten te bewaren terwijl de gebruiker offline is en ze af te leveren wanneer hij weer online komt. Interne dienst, niet rechtstreeks toegankelijk voor de gebruiker."
 
-#: admin/admin-init.php:370
+#: legacy/admin/admin-init.php:372
 msgid "Splash"
 msgstr "Splash"
 
-#: admin/admin-init.php:371
+#: legacy/admin/admin-init.php:373
 msgid "The welcome page displayed in the viewer with the login form. A short, no-scroll page, with only essential info. It is required, or at least highly recommended."
 msgstr "De welkomstpagina die in de viewer wordt getoond met het inlogformulier. Een korte, niet scrollende pagina, met alleen essentiële info. Het is verplicht, of op zijn minst sterk aanbevolen."
 
-#: admin/admin-init.php:396
+#: legacy/admin/admin-init.php:398
 msgid "Registration page"
 msgstr "Registratie pagina"
 
-#: admin/admin-init.php:397
+#: legacy/admin/admin-init.php:399
 msgid "Link to the user registration."
 msgstr "Link naar de gebruikersregistratie."
 
-#. wpml-name: 8ffca1456a2308a5556a750be1ecbac0
-#: admin/admin-init.php:402
+#: legacy/admin/admin-init.php:404
 msgid "Password revovery"
 msgstr "Wachtwoord herontdekking"
 
-#: admin/admin-init.php:403
+#: legacy/admin/admin-init.php:405
 msgid "Link to lost password page."
 msgstr "Link naar de verloren wachtwoord pagina."
 
-#: admin/admin-init.php:408
+#: legacy/admin/admin-init.php:410
 msgid "Economy"
 msgstr "Economie"
 
-#: admin/admin-init.php:409
+#: legacy/admin/admin-init.php:411
 msgid "Currencies and some other services queried by the viewer. They are not accessed directly by the user."
 msgstr "Valuta's en enkele andere diensten die door de kijker worden opgevraagd. Zij zijn niet rechtstreeks toegankelijk voor de gebruiker."
 
-#: admin/admin-init.php:415
+#: legacy/admin/admin-init.php:417
 msgid "About this grid"
 msgstr "Over dit rooster"
 
-#: admin/admin-init.php:416
+#: legacy/admin/admin-init.php:418
 msgid "Detailed info page on your website, via a link displayed on the viewer login page."
 msgstr "Gedetailleerde informatiepagina op uw website, via een link op de inlogpagina van de kijker."
 
-#: admin/admin-init.php:420
+#: legacy/admin/admin-init.php:422
 msgid "Help"
 msgstr "Help"
 
-#: admin/admin-init.php:421
+#: legacy/admin/admin-init.php:423
 msgid "Link to a help page on your website."
 msgstr "Link naar een hulppagina op uw website."
 
-#. wpml-name: 6b8467e13ae11c479efa8843f1b95826
-#: admin/dashboard.php:13
-#: admin/settings.php:43
-#: includes/shortcodes.php:125
-#: includes/widgets.php:47
+#: legacy/admin/dashboard.php:13
+#: legacy/admin/settings.php:43
+#: legacy/shortcodes.php:125
+#: legacy/widgets.php:47
 #: blocks/w4os-gridinfo-block/index.js:27
 #: blocks/w4os-gridinfo-block/index.js:74
 msgid "Grid info"
 msgstr "Grid info"
 
-#. wpml-name: 17db1cfe008f83e7d0181762eda3daab
-#: admin/dashboard.php:20
-#: includes/shortcodes.php:152
-#: includes/widgets.php:79
-#: includes/widgets.php:115
+#: legacy/admin/dashboard.php:20
+#: legacy/shortcodes.php:154
+#: legacy/widgets.php:79
+#: legacy/widgets.php:115
 #: blocks/w4os-gridstatus-block/index.js:27
 #: blocks/w4os-gridstatus-block/index.js:74
 msgid "Grid status"
 msgstr "Grid status"
 
-#: admin/dashboard.php:28
+#: legacy/admin/dashboard.php:28
 msgid "Recent users"
 msgstr "Recente gebruikers"
 
-#. wpml-name: 46eb01f349dc6c317e78cd1830545358
-#: admin/settings.php:56
-#: includes/shortcodes.php:128
+#: legacy/admin/settings.php:56
+#: legacy/shortcodes.php:130
 msgid "Grid name"
 msgstr "Grid naam"
 
-#. wpml-name: 193fe27dd7fcd662652841a7b7e6c912
-#: admin/settings.php:63
+#: legacy/admin/settings.php:63
 msgid "Robust server database"
 msgstr "Robust server database"
 
-#: admin/settings.php:66
-#: admin/settings.php:221
-#: admin/settings.php:378
+#: legacy/admin/settings.php:66
+#: legacy/admin/settings.php:221
+#: legacy/admin/settings.php:378
 msgid "Hostname"
 msgstr "Hostnaam"
 
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: admin/settings.php:69
-#: admin/settings.php:225
-#: admin/settings.php:382
+#: legacy/admin/settings.php:69
+#: legacy/admin/settings.php:225
+#: legacy/admin/settings.php:382
 msgid "Database name"
 msgstr "Database naam"
 
-#: admin/settings.php:72
-#: admin/settings.php:229
-#: admin/settings.php:386
+#: legacy/admin/settings.php:72
+#: legacy/admin/settings.php:229
+#: legacy/admin/settings.php:386
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#. wpml-name: 8ffca1456a2308a5556a750be1ecbac0
-#: admin/settings.php:76
-#: admin/settings.php:234
-#: admin/settings.php:391
-msgid "Password"
-msgstr "Wachtwoord"
-
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: admin/settings.php:83
-#: admin/status-page.php:67
+#: legacy/admin/settings.php:83
+#: legacy/admin/status-page.php:74
 msgid "Avatar models"
 msgstr "Avatar modellen"
 
-#. wpml-name: b2d0fb30e09bf39693f6183c33455748
-#: admin/settings.php:87
+#: legacy/admin/settings.php:87
 msgid "First Name = "
 msgstr "Voornaam = "
 
-#. wpml-name: 14bcd8bac9d052de9f9aa0f685a6da73
-#: admin/settings.php:91
+#: legacy/admin/settings.php:91
 msgid "OR Last Name = "
 msgstr "OF Achternaam = "
 
-#. wpml-name: 17db1cfe008f83e7d0181762eda3daab
-#: admin/settings.php:97
+#: legacy/admin/settings.php:97
 msgid "Grid users"
 msgstr "Grid gebruikers"
 
-#: admin/settings.php:101
-#: admin/settings.php:116
+#: legacy/admin/settings.php:101
+#: legacy/admin/settings.php:116
 msgid "Profile page"
 msgstr "Profiel pagina"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: admin/settings.php:103
-#: admin/settings.php:118
+#: legacy/admin/settings.php:103
+#: legacy/admin/settings.php:118
 msgid "Provide web profile page for avatars"
 msgstr "Maak een webprofielpagina voor avatars"
 
-#: admin/settings.php:105
-#: admin/settings.php:120
+#: legacy/admin/settings.php:105
+#: legacy/admin/settings.php:120
 msgid "Defaults"
 msgstr "Standaards"
 
-#: admin/settings.php:109
-#: admin/settings.php:124
+#: legacy/admin/settings.php:109
+#: legacy/admin/settings.php:124
 msgid "The page %s must exist, as defined in %spermalinks settings%s."
 msgstr "De pagina %s moet bestaan, zoals gedefinieerd in %spermalinks settings%s."
 
-#: admin/settings.php:132
+#: legacy/admin/settings.php:132
 msgid "Show configuration instructions to new users."
 msgstr "Toon configuratie-instructies aan nieuwe gebruikers."
 
-#. wpml-name: 751cfef8ad45902372601aeac58bdad7
-#: admin/settings.php:137
+#: legacy/admin/settings.php:137
 msgid "Login page"
 msgstr "Inlogpagina"
 
-#: admin/settings.php:139
+#: legacy/admin/settings.php:139
 msgid "Use profile page as login page"
 msgstr "Gebruik profielpagina als login pagina"
 
-#: admin/settings.php:141
+#: legacy/admin/settings.php:141
 msgid "Default"
 msgstr "Standaard"
 
-#: admin/settings.php:148
+#: legacy/admin/settings.php:148
 msgid "Replace user name"
 msgstr "Vervang gebruikersnaam"
 
-#: admin/settings.php:149
+#: legacy/admin/settings.php:149
 msgid "Show avatar name instead of user name in users list."
 msgstr "Toon avatarnaam in plaats van gebruikersnaam in gebruikerslijst."
 
-#: admin/settings.php:153
+#: legacy/admin/settings.php:153
 msgid "Exclude from stats"
 msgstr "Uitsluiten van statistieken"
 
-#: admin/settings.php:155
+#: legacy/admin/settings.php:155
 msgid "Models"
 msgstr "Modellen"
 
-#: admin/settings.php:156
+#: legacy/admin/settings.php:156
 msgid "Accounts without mail address"
 msgstr "Accounts zonder e-mailadres"
 
-#: admin/settings.php:157
+#: legacy/admin/settings.php:157
 msgid "Hypergrid visitors"
 msgstr "Hypergrid bezoekers"
 
-#: admin/settings.php:159
+#: legacy/admin/settings.php:159
 msgid "Accounts without email address are usually test accounts created from the console. Uncheck only if you have real avatars without email address."
 msgstr "Accounts zonder e-mailadres zijn meestal testaccounts die vanaf de console zijn gemaakt. Schakel het vinkje alleen uit als je echte avatars hebt zonder e-mailadres."
 
-#: admin/settings.php:178
+#: legacy/admin/settings.php:178
 msgid "Web Assets Server"
 msgstr "Web assets-server"
 
-#: admin/settings.php:183
+#: legacy/admin/settings.php:183
 msgid "Provide web assets server"
 msgstr "Bied webassets-server"
 
-#: admin/settings.php:186
+#: legacy/admin/settings.php:186
 msgid "A web assets server is required to display in-world assets (from the grid) on the website (e.g. profile pictures)."
 msgstr "Een web assets server is nodig om in-world assets (uit het grid) op de website te tonen (b.v. profielfoto's)."
 
-#: admin/settings.php:189
+#: legacy/admin/settings.php:189
 msgid "Web asset server"
 msgstr "Web asset-server"
 
-#: admin/settings.php:193
+#: legacy/admin/settings.php:193
 msgid "You can set the asset slug in %spermalinks settings%s."
 msgstr "U kunt de asset slug instellen in %spermalinks settings%s."
 
-#: admin/settings.php:198
+#: legacy/admin/settings.php:198
 msgid "External assets server URI"
 msgstr "Externe activa server URI"
 
-#: admin/settings.php:199
+#: legacy/admin/settings.php:199
 msgid "If W4OS web assets service is disabled, you need a third-party web application."
 msgstr "Als W4OS web assets service is uitgeschakeld, heeft u een webapplicatie van derden nodig."
 
-#: admin/settings.php:205
+#: legacy/admin/settings.php:205
 msgid "Search"
 msgstr "Zoeken op"
 
-#: admin/settings.php:209
+#: legacy/admin/settings.php:209
 msgid "Provide in-world search"
 msgstr "Zorg voor zoeken in de wereld"
 
-#: admin/settings.php:215
+#: legacy/admin/settings.php:215
 msgid "Search database"
 msgstr "Zoeken in databank"
 
-#: admin/settings.php:218
-#: admin/settings.php:365
+#: legacy/admin/settings.php:218
+#: legacy/admin/settings.php:365
 msgid "Use the same database as Robust"
 msgstr "Gebruik dezelfde database als Robuust"
 
-#: admin/settings.php:240
+#: legacy/admin/settings.php:240
 msgid "Search engine URL"
 msgstr "Zoekmachine URL"
 
-#: admin/settings.php:243
+#: legacy/admin/settings.php:243
 msgid "URL of the search engine used internally by the viewer (without arguments)."
 msgstr "URL van de zoekmachine die intern door de viewer wordt gebruikt (zonder argumenten)."
 
-#: admin/settings.php:252
+#: legacy/admin/settings.php:252
 msgid "Please note that Search URL is different from Web search URL, which is not handled by W4OS currently. Web search is relevant if you have a web search page dedicated to grid content, providing results with in-world URLs (hop:// or secondlife://). It is optional and is referenced here only to disambiguate settings which unfortunately have similar names."
 msgstr "Merk op dat Zoek URL verschillend is van Web-zoek URL, welke momenteel niet door W4OS wordt behandeld. Zoeken op het web is relevant als je een zoekpagina op het web hebt die gewijd is aan raster-inhoud en die resultaten geeft met in-wereld URLs (hop:// of secondlife://). Het is optioneel en wordt hier alleen genoemd om instellingen uit elkaar te houden die helaas vergelijkbare namen hebben."
 
-#: admin/settings.php:265
+#: legacy/admin/settings.php:265
 msgid "Search register"
 msgstr "Zoekregister"
 
-#: admin/settings.php:268
+#: legacy/admin/settings.php:268
 msgid "Data service, used to register regions, objects or land for sale."
 msgstr "Gegevensdienst, gebruikt om regio's, objecten of grond te koop aan te melden."
 
-#: admin/settings.php:281
+#: legacy/admin/settings.php:281
 msgid "Events server URL"
 msgstr "URL van de voorvallen server"
 
-#: admin/settings.php:283
+#: legacy/admin/settings.php:283
 msgid "HYPEvents server URL, used to fetch upcoming events and make them available in search."
 msgstr "HYPEvents server URL, gebruikt om komende evenementen op te halen en ze beschikbaar te maken bij het zoeken."
 
-#: admin/settings.php:284
+#: legacy/admin/settings.php:284
 msgid "Leave blank to ignore events or if you have an other events implementation."
 msgstr "Laat leeg om gebeurtenissen te negeren of als u een andere gebeurtenissen implementatie hebt."
 
-#: admin/settings.php:294
+#: legacy/admin/settings.php:294
 msgid "Provide offline helper"
 msgstr "Zorg voor offline helper"
 
-#: admin/settings.php:300
+#: legacy/admin/settings.php:300
 msgid "Offline helper URI"
 msgstr "Offline helper URI"
 
-#: admin/settings.php:304
+#: legacy/admin/settings.php:304
 msgid "Set the URL in Robust and OpenSimulator configurations."
 msgstr "Stel de URL in Robust en OpenSimulator configuraties in."
 
-#: admin/settings.php:320
+#: legacy/admin/settings.php:320
 msgid "Sender e-mail address"
 msgstr "E-mailadres afzender"
 
-#: admin/settings.php:324
+#: legacy/admin/settings.php:324
 msgid "A no-reply e-mail address used to forward messages for users enabling \"Email me IMs when I'm offline\" option."
 msgstr "Een e-mailadres zonder antwoord dat wordt gebruikt om berichten door te sturen voor gebruikers die de optie \"E-mail mij IM's wanneer ik offline ben\" inschakelen."
 
-#: admin/settings.php:333
+#: legacy/admin/settings.php:333
 msgid "Provide economy helpers"
 msgstr "Zorg voor economische helpers"
 
-#: admin/settings.php:336
+#: legacy/admin/settings.php:336
 msgid "Economy helpers are additional scripts needed if you implement economy on your grid (with real or fake currency)."
 msgstr "Economie helpers zijn extra scripts die nodig zijn als je economie op je grid implementeert (met echte of valse valuta)."
 
-#: admin/settings.php:337
+#: legacy/admin/settings.php:337
 msgid "Helper scripts allow communication between the money server and the grid: current balance update, currency cost estimation, land and object sales, payments..."
 msgstr "Helperscripts maken communicatie mogelijk tussen de geldserver en het raster: bijwerken van de huidige balans, schatting van de muntkosten, verkoop van land en objecten, betalingen..."
 
-#: admin/settings.php:339
+#: legacy/admin/settings.php:339
 msgid "Money server is not included in OpenSimulator distribution and require a separate installation, e.g. from %s."
 msgstr "Geldserver is niet inbegrepen in de OpenSimulator distributie en vereist een aparte installatie, b.v. van %s."
 
-#: admin/settings.php:347
+#: legacy/admin/settings.php:347
 msgid "Economy base URI"
 msgstr "Economie basis URI"
 
-#: admin/settings.php:351
+#: legacy/admin/settings.php:351
 msgid "The URL must be set in Robust configuration."
 msgstr "De URL moet worden ingesteld in Robuuste configuratie."
 
-#: admin/settings.php:362
+#: legacy/admin/settings.php:362
 msgid "Economy database"
 msgstr "Gegevensbank economie"
 
-#: admin/settings.php:397
+#: legacy/admin/settings.php:397
 msgid "Currency Provider"
 msgstr "Valuta Aanbieder"
 
-#: admin/settings.php:401
+#: legacy/admin/settings.php:401
 msgid "No provider, use fake money."
 msgstr "Geen provider, gebruik vals geld."
 
-#: admin/settings.php:408
+#: legacy/admin/settings.php:408
 msgid "Currency conversion rate"
 msgstr "Omrekeningskoers valuta"
 
-#: admin/settings.php:409
+#: legacy/admin/settings.php:409
 msgid "Amount to pay in US$ for 1000 in-world money units. Used for cost estimation. If not set, the rate will be 10/1000 (1 cent per money unit)"
 msgstr "Bedrag te betalen in US$ voor 1000 inwereldse geldeenheden. Wordt gebruikt om de kosten te schatten. Indien niet ingesteld, zal de koers 10/1000 zijn (1 cent per geldeenheid)"
 
-#: admin/settings.php:412
+#: legacy/admin/settings.php:412
 msgid "Podex redirect message"
 msgstr "Podex omleiding bericht"
 
-#: admin/settings.php:413
+#: legacy/admin/settings.php:413
 msgid "Please use our terminals in-world to proceed. Click OK to teleport to terminals region."
 msgstr "Gebruik onze terminals in de wereld om verder te gaan. Klik op OK om naar het terminalgebied te teleporteren."
 
-#: admin/settings.php:416
+#: legacy/admin/settings.php:416
 msgid "Podex redirect URL"
 msgstr "Podex omleiding URL"
 
-#: admin/settings.php:420
+#: legacy/admin/settings.php:420
 msgid "Money Script Access Key"
 msgstr "Geld Script Toegangssleutel"
 
-#: admin/settings.php:581
+#: legacy/admin/settings.php:581
 msgid "Values must match Robust.HG.ini (or Robust.HG.ini) config file."
 msgstr "De waarden moeten overeenkomen met het Robust.HG.ini (of Robust.HG.ini) configuratiebestand."
 
-#: admin/settings.php:582
+#: legacy/admin/settings.php:582
 msgid "Robust server must be running. Values entered here will be checked against your Robust server and updated if needed."
 msgstr "Robust server moet draaien. De hier ingevoerde waarden zullen worden gecontroleerd met uw Robust server en indien nodig worden bijgewerkt."
 
-#: admin/settings.php:587
+#: legacy/admin/settings.php:587
 msgid "Grid accounts matching first name or last name set below are considered as avatar models. They will appear on the avatar registration form, with their in-world profile picture."
 msgstr "Grid-accounts die overeenkomen met de hieronder ingestelde voornaam of achternaam, verschijnen als avatar-modellen, met hun profielfoto, indien ingesteld, op het avatar-registratieformulier."
 
-#. wpml-name: 6bdda8124d6ca549428567dfc1c0532d
-#: admin/status-page.php:15
+#: legacy/admin/status-page.php:15
+msgid "PHP xml-rpc is required but is not installed."
+msgstr ""
+
+#: legacy/admin/status-page.php:22
 msgid "Available shortcodes"
 msgstr "Beschikbare shortcodes"
 
-#. wpml-name: 119154a6f7028c6f8ebe3e470e626296
-#: admin/status-page.php:20
+#: legacy/admin/status-page.php:27
 msgid "General information (grid name and login uri)"
 msgstr "Algemene informatie (gridnaam en login-uri)"
 
-#. wpml-name: 9dd1ee1a9ac16e90a05dc54134ea1796
-#: admin/status-page.php:26
+#: legacy/admin/status-page.php:33
 msgid "Online users, regions, etc."
 msgstr "Online gebruikers, regio's, enz."
 
-#: admin/status-page.php:32
+#: legacy/admin/status-page.php:39
 msgid "Grid profile if user is connected and has an avatar, avatar registration form otherwise"
 msgstr "Grid-profiel als de gebruiker is verbonden en heeft een avatar, anders avatarregistratieformulier"
 
-#: admin/status-page.php:33
+#: legacy/admin/status-page.php:40
 msgid "(formerly %s)"
 msgstr "(voorheen %s)"
 
-#: admin/status-page.php:43
+#: legacy/admin/status-page.php:50
 msgid "Users"
 msgstr "Gebruikersnaam"
 
-#. wpml-name: 6834699b2d08455d0475c76d54356191
-#: admin/status-page.php:48
+#: legacy/admin/status-page.php:55
 msgid "Total"
 msgstr "Totaal"
 
-#: admin/status-page.php:49
+#: legacy/admin/status-page.php:56
 msgid "WP only"
 msgstr "Alleen WP"
 
-#: admin/status-page.php:50
+#: legacy/admin/status-page.php:57
 msgid "Sync"
 msgstr "Sync"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: admin/status-page.php:51
+#: legacy/admin/status-page.php:58
 msgid "Grid only"
 msgstr "Alleen rooster"
 
-#. wpml-name: 17db1cfe008f83e7d0181762eda3daab
-#: admin/status-page.php:55
+#: legacy/admin/status-page.php:62
 msgid "Grid accounts"
 msgstr "Grid status"
 
-#: admin/status-page.php:62
+#: legacy/admin/status-page.php:69
 msgid "Linked WordPress accounts"
 msgstr "Gekoppelde WordPress accounts"
 
-#: admin/status-page.php:74
+#: legacy/admin/status-page.php:81
 msgid "Other service accounts"
 msgstr "Andere dienstenrekeningen"
 
-#: admin/status-page.php:88
+#: legacy/admin/status-page.php:95
 msgid "%d grid account has no linked WP account. Syncing will create a new WP account."
 msgid_plural "%d grid accounts have no linked WP account. Syncing will create new WP accounts."
 msgstr[0] "%d grid account heeft geen gekoppelde WP account. Synchronisatie zal een nieuw WP account aanmaken."
 msgstr[1] "%d grid accounts hebben geen gekoppelde WP account. Synchronisatie zal nieuwe WP accounten aanmaken."
 
-#: admin/status-page.php:96
+#: legacy/admin/status-page.php:103
 msgid "%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference."
 msgid_plural "%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference."
 msgstr[0] "%d WordPress account is gekoppeld aan een niet bestaande avatar (verkeerde UUID). Het synchroniseren van accounts zal deze WP account behouden maar de gebroken referentie verwijderen."
 msgstr[1] "%d WordPress accounts zijn gekoppeld aan niet bestaande avatars (verkeerde UUID). Het synchroniseren van accounts zal deze WP accounten behouden maar de gebroken referentie verwijderen."
 
-#: admin/status-page.php:104
+#: legacy/admin/status-page.php:111
 msgid "%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks."
 msgid_plural "%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks."
 msgstr[0] "%d grid account (anders dan modellen) heeft geen email adres, wat prima is zolang het alleen gebruikt wordt voor onderhoud of service taken."
 msgstr[1] "%d grid accounts (anders dan modellen) hebben geen email adres, wat prima is zolang ze alleen gebruikt wordt voor onderhoud of service taken."
 
-#: admin/status-page.php:109
+#: legacy/admin/status-page.php:116
 msgid "Real accounts need a unique email address for W4OS to function properly."
 msgstr "Echte accounts hebben een uniek emailadres nodig om W4OS goed te laten functioneren."
 
-#: admin/status-page.php:117
+#: legacy/admin/status-page.php:124
 msgid "Synchronize users now"
 msgstr "Synchroniseer gebruikers nu"
 
-#: admin/status-page.php:119
+#: legacy/admin/status-page.php:126
 msgid "Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console."
 msgstr "Synchronisatie vindt plaats bij het activeren van de plugin en wordt daarna automatisch afgehandeld, maar in bepaalde omstandigheden kan het nodig zijn om het handmatig te starten om een direct resultaat te krijgen, vooral als gebruikers direct vanuit de netbeheerconsole zijn toegevoegd of verwijderd."
 
-#: admin/status-page.php:137
+#: legacy/admin/status-page.php:144
 msgid "Missing PHP modules"
 msgstr "Ontbrekende PHP modules"
 
-#: admin/status-page.php:139
+#: legacy/admin/status-page.php:146
 msgid "These modules were not found: %s. Install them to get the most of this plugin."
 msgstr "Deze modules zijn niet gevonden: %s. Installeer ze om het meeste uit deze plugin te halen."
 
-#. wpml-name: 2e7502f81f2bff60e1170982af2e5ede
-#: admin/status-page.php:147
+#: legacy/admin/status-page.php:154
 msgid "OpenSimulator pages"
 msgstr "OpenSimulator pagina's"
 
-#: admin/status-page.php:149
+#: legacy/admin/status-page.php:156
 msgid "The following page are needed by OpenSimulator and/or by W4OS plugin. Make sure they exist or adjust your simulator .ini file."
 msgstr "De volgende pagina's zijn nodig voor OpenSimulator en/of de W4OS plugin. Zorg ervoor dat ze bestaan of pas uw simulator .ini bestand aan."
 
-#: admin/status-page.php:159
+#: legacy/admin/status-page.php:166
 msgid "Grid not running, start Robust server or %scheck OpenSimulator settings%s."
 msgstr "Grid draait niet, start Robust server of %scheck OpenSimulator settings%s."
 
-#: admin/status-page.php:179
+#: legacy/admin/status-page.php:186
 msgid "Check pages now"
 msgstr "Controleer de pagina's nu"
 
-#: admin/status-page.php:183
+#: legacy/admin/status-page.php:190
 msgid "Last checked %s ago."
 msgstr "Laatst gecontroleerd %s geleden."
 
-#: admin/status-page.php:184
+#: legacy/admin/status-page.php:191
 msgid "OpenSimulator pages are checked regularly in the background. Synchronize now only if you made changes and want an immediate status."
 msgstr "OpenSimulator pagina's worden regelmatig op de achtergrond gecontroleerd. Synchroniseer nu alleen als u wijzigingen hebt aangebracht en een onmiddellijke status wilt."
 
-#: admin/status-page.php:205
+#: legacy/admin/status-page.php:212
 msgid "Should be %s"
 msgstr "Moet zijn %s"
 
-#: admin/status-page.php:211
+#: legacy/admin/status-page.php:218
 msgid "This service requires a separate web application.<br>Try <a href=\"%1$s\" target=_blank>%1$s</a>."
 msgstr "Deze dienst vereist een aparte webapplicatie.<br>Probeer <a href=\"%1$s\" target=_blank>%1$s</a>."
 
-#: blocks/popular-places.php:126
-msgid "Popular places"
-msgstr "Populaire plaatsen"
-
-#: blocks/popular-places.php:132
-#: includes/shortcodes.php:159
-msgid "No result"
-msgstr "Geen resultaat"
-
-#: includes/assets.php:37
+#: legacy/assets.php:37
 msgid "Assets base"
 msgstr "Activa"
 
-#: includes/cron.php:20
+#: legacy/cron.php:20
 msgid "every_five_minutes"
 msgstr "elke_vijf_minuten"
 
-#: includes/functions.php:149
+#: legacy/functions.php:149
 msgid "A local Robust server has been found. Please check Login URI and Grid name configuration."
 msgstr "Er is een lokale Robuuste server gevonden. Controleer de configuratie van de login URI en de Grid naam."
 
-#. wpml-name: 9c9ee66a189f06fb9e3cc58c0c352db8
-#: includes/functions.php:168
+#: legacy/functions.php:168
 msgid "OpenSimulator settings page"
 msgstr "OpenSimulator-instellingen"
 
-#: includes/functions.php:210
+#: legacy/functions.php:210
 msgid "Online"
 msgstr "Online"
 
-#: includes/functions.php:210
+#: legacy/functions.php:210
 msgid "Offline"
 msgstr "Offline"
 
-#. wpml-name: ef53538ae41a651c7f72ab6cb1135d8c
-#: includes/functions.php:228
+#: legacy/functions.php:228
 msgid "Members"
 msgstr "Leden"
 
-#. wpml-name: fd9754e08c4e5151b83bc2abbf21ffb0
-#: includes/functions.php:230
+#: legacy/functions.php:230
 msgid "Active members (30 days)"
 msgstr "Actieve leden (30 dagen)"
 
-#. wpml-name: 67ea4b3432b974a20b2c8ee6609e363c
-#: includes/functions.php:233
+#: legacy/functions.php:233
 msgid "Members in world"
 msgstr "Leden op grid"
 
-#. wpml-name: fd9754e08c4e5151b83bc2abbf21ffb0
-#: includes/functions.php:240
+#: legacy/functions.php:240
 msgid "Active users (30 days)"
 msgstr "Actieve gebruikers (30 dagen)"
 
-#. wpml-name: 9143e8053fefd25ce03ae81136931586
-#: includes/functions.php:242
+#: legacy/functions.php:242
 msgid "Total users in world"
 msgstr "Gebruikers op grid"
 
-#. wpml-name: 5948f3347ebc02ebc690227c059661e1
-#: includes/functions.php:246
+#: legacy/functions.php:246
 msgid "Regions"
 msgstr "Regio's"
 
-#. wpml-name: 6834699b2d08455d0475c76d54356191
-#: includes/functions.php:248
+#: legacy/functions.php:248
 msgid "Total area"
 msgstr "Totale oppervlakte"
 
-#: includes/functions.php:356
+#: legacy/functions.php:356
 msgid "%s"
 msgstr "%s"
 
-#: includes/functions.php:395
+#: legacy/functions.php:395
 msgid "Joined today"
 msgstr "Vandaag lid geworden"
 
-#: includes/functions.php:396
+#: legacy/functions.php:396
 msgid "%s days old"
 msgstr "%s dagen oud"
 
-#. wpml-name: 8ffca1456a2308a5556a750be1ecbac0
-#: includes/profile-page.php:51
+#: legacy/profile-page.php:51
 msgid "Lost Password"
 msgstr "Wachtwoord vergeten"
 
-#. wpml-name: 5948f3347ebc02ebc690227c059661e1
-#: includes/profile-page.php:56
+#: legacy/profile-page.php:56
 msgid "Register"
 msgstr "Registreren"
 
-#: includes/profile-page.php:87
+#: legacy/profile-page.php:87
 msgid "Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
 msgstr "Wachtwoord vergeten? Voer uw gebruikersnaam of e-mailadres in. U ontvangt per e-mail een link om een nieuw wachtwoord aan te maken."
 
-#: includes/profile-page.php:89
+#: legacy/profile-page.php:89
 msgid "Email"
 msgstr "E-mail"
 
-#. wpml-name: 8ffca1456a2308a5556a750be1ecbac0
-#: includes/profile-page.php:90
+#: legacy/profile-page.php:90
 msgid "Reset Password"
 msgstr "Reset Wachtwoord"
 
-#: includes/profile-page.php:91
-#: includes/profile-page.php:152
+#: legacy/profile-page.php:91
+#: legacy/profile-page.php:152
 #: templates/content-configuration.php:40
 #: templates/content-page-profile.php:26
 msgid "Log in"
 msgstr "Log in"
 
-#: includes/profile-page.php:96
+#: legacy/profile-page.php:96
 msgid "Log in to create your avatar, view your profile or set your options."
 msgstr "Log in om uw avatar aan te maken, uw profiel te bekijken of uw opties in te stellen."
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: includes/profile-page.php:147
+#: legacy/profile-page.php:147
 msgid "My Profile"
 msgstr "Mijn Profiel"
 
-#: includes/profile-page.php:149
+#: legacy/profile-page.php:149
 msgid "Create My Avatar"
 msgstr "Mijn Avatar aanmaken"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: includes/profile-page.php:165
+#: legacy/profile-page.php:165
 #: templates/content-page-profile.php:54
 msgid "%s's profile"
 msgstr "%s's profiel"
 
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: includes/profile-page.php:168
+#: legacy/profile-page.php:168
 msgid "Avatar not found"
 msgstr "Avatar niet gevonden"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: includes/profile-page.php:220
+#: legacy/profile-page.php:220
 msgid "Profile base"
 msgstr "Profiel basis"
 
-#: includes/profile.php:66
+#: legacy/profile.php:66
 msgid "Profiles are not available at the moment."
 msgstr "Profielen zijn op dit moment niet beschikbaar."
 
-#: includes/profile.php:93
+#: legacy/profile.php:93
 msgid "Build"
 msgstr "Bouw"
 
-#: includes/profile.php:94
+#: legacy/profile.php:94
 msgid "Explore"
 msgstr "Verken"
 
-#: includes/profile.php:95
+#: legacy/profile.php:95
 msgid "Meet"
 msgstr "Ontmoet"
 
-#: includes/profile.php:96
+#: legacy/profile.php:96
 msgid "Group"
 msgstr "Groep"
 
-#: includes/profile.php:97
+#: legacy/profile.php:97
 msgid "Buy"
 msgstr "Kopen"
 
-#: includes/profile.php:98
+#: legacy/profile.php:98
 msgid "Sell"
 msgstr "Verkopen"
 
-#: includes/profile.php:99
+#: legacy/profile.php:99
 msgid "Be Hired"
 msgstr "Word aangenomen"
 
-#: includes/profile.php:100
+#: legacy/profile.php:100
 msgid "Hire"
 msgstr "Huur"
 
-#: includes/profile.php:103
+#: legacy/profile.php:103
 msgid "Textures"
 msgstr "Texturen"
 
-#: includes/profile.php:104
+#: legacy/profile.php:104
 msgid "Architecture"
 msgstr "Architectuur"
 
-#: includes/profile.php:105
+#: legacy/profile.php:105
 msgid "Event Planning"
 msgstr "Evenement planning"
 
-#: includes/profile.php:106
+#: legacy/profile.php:106
 msgid "Modeling"
 msgstr "Modelleren"
 
-#: includes/profile.php:107
+#: legacy/profile.php:107
 msgid "Scripting"
 msgstr "Scripting"
 
-#: includes/profile.php:108
+#: legacy/profile.php:108
 msgid "Custom Characters"
 msgstr "Aangepaste tekens"
 
-#: includes/profile.php:122
+#: legacy/profile.php:122
 msgid "About"
 msgstr "Over"
 
-#: includes/profile.php:125
+#: legacy/profile.php:125
 msgid "Partner"
 msgstr "Partner"
 
-#: includes/profile.php:126
+#: legacy/profile.php:126
 msgid "Wants to"
 msgstr "Wil je"
 
-#: includes/profile.php:127
+#: legacy/profile.php:127
 msgid "Skills"
 msgstr "Vaardigheden"
 
-#: includes/profile.php:128
+#: legacy/profile.php:128
 msgid "Languages"
 msgstr "Talen"
 
-#: includes/profile.php:129
+#: legacy/profile.php:129
 msgid "Real Life"
 msgstr "Het echte leven"
 
-#: includes/profile.php:241
+#: legacy/profile.php:132
+#, fuzzy
+msgid "Password reset link"
+msgstr "Wachtwoord herontdekking"
+
+#: legacy/profile.php:244
 msgid "%s local users updated with avatar data"
 msgstr "%s lokale gebruikers bijgewerkt met avatar data"
 
-#. wpml-name: d0f651f1495d346088ae49450c620e9b
-#: includes/profile.php:255
-#: includes/profile.php:967
+#: legacy/profile.php:258
+#: legacy/profile.php:977
 msgid "OpenSimulator"
 msgstr "OpenSimulator"
 
-#. wpml-name: 0d3e39fb622d9e6d7b389757aa651fff
-#: includes/profile.php:404
+#: legacy/profile.php:414
 msgid "This user already has an avatar."
 msgstr "Deze gebruiker heeft al een avatar."
 
-#. wpml-name: b2d0fb30e09bf39693f6183c33455748
-#: includes/profile.php:415
+#: legacy/profile.php:425
 msgid "First name required"
 msgstr "Voornaam vereist"
 
-#. wpml-name: 14bcd8bac9d052de9f9aa0f685a6da73
-#: includes/profile.php:416
+#: legacy/profile.php:426
 msgid "Last name required"
 msgstr "Achternaam vereist"
 
-#. wpml-name: 8ffca1456a2308a5556a750be1ecbac0
-#: includes/profile.php:418
+#: legacy/profile.php:428
 msgid "Password required"
 msgstr "Wachtwoord vereist"
 
-#: includes/profile.php:419
+#: legacy/profile.php:429
 msgid "The password does not match."
 msgstr "Het wachtwoord komt niet overeen."
 
-#. wpml-name: 4eb86d524f30b9885871ed68c24b0f29
-#: includes/profile.php:428
-#: includes/profile.php:432
+#: legacy/profile.php:438
+#: legacy/profile.php:442
 msgid "The name %s is not allowed"
 msgstr "Naam% s is niet toegestaan"
 
-#: includes/profile.php:436
+#: legacy/profile.php:446
 msgid "Names can only contain alphanumeric characters"
 msgstr "Namen mogen alleen alfanumerieke tekens bevatten"
 
-#: includes/profile.php:442
+#: legacy/profile.php:452
 msgid "There is already a grid user named %s"
 msgstr "Er is al een netgebruiker met de naam %s"
 
-#: includes/profile.php:448
+#: legacy/profile.php:458
 msgid "This should never happen! Generated a random UUID that already existed. Sorry. Try again."
 msgstr "Dit mag nooit gebeuren! Een willekeurige UUID gegenereerd die al bestond. Sorry. Probeer het opnieuw."
 
-#: includes/profile.php:470
+#: legacy/profile.php:480
 msgid "Error while creating user"
 msgstr "Fout bij gebruiker aanmaken"
 
-#. wpml-name: d9c2d86a66aa5a45326c3757f3a272cc
-#: includes/profile.php:479
+#: legacy/profile.php:489
 msgid "Error while setting password"
 msgstr "Fout bij het instellen van het wachtwoord"
 
-#: includes/profile.php:490
+#: legacy/profile.php:500
 msgid "Error while setting home region"
 msgstr "Fout bij instellen thuisregio"
 
-#: includes/profile.php:507
+#: legacy/profile.php:517
 msgid "Error while creating user inventory"
 msgstr "Fout bij het maken van gebruikersinventaris"
 
-#: includes/profile.php:629
+#: legacy/profile.php:639
 msgid "Error while adding inventory item"
 msgstr "Fout bij het toevoegen van voorraaditem"
 
-#: includes/profile.php:640
+#: legacy/profile.php:650
 msgid "Error while adding inventory outfit link"
 msgstr "Fout bij het toevoegen van inventaris-outfit-link"
 
-#: includes/profile.php:652
+#: legacy/profile.php:662
 msgid "Error while adding avatar"
 msgstr "Fout bij het toevoegen van avatar"
 
-#: includes/profile.php:658
+#: legacy/profile.php:668
 msgid "Errors occurred while creating the user"
 msgstr "Fout bij gebruiker aanmaken"
 
-#. wpml-name: 02cb97a68e5137af44e882dbe2180485
-#: includes/profile.php:663
+#: legacy/profile.php:673
 msgid "Avatar %s created successfully."
 msgstr "De avatar %s is succesvol aangemaakt."
 
-#: includes/profile.php:676
+#: legacy/profile.php:686
 msgid "You need an avatar to explore our virtual world."
 msgstr "Je hebt een avatar nodig om onze virtuele wereld te verkennen."
 
-#. wpml-name: 1a87f41bc2db648685564cf6fa5b2903
-#: includes/profile.php:677
+#: legacy/profile.php:687
 msgid "Choose a name below. This is how people will see you in-world. Once set, your avatar name cannot be changed."
 msgstr "Kies hieronder uw avatar-naam. Dit is hoe mensen je in de wereld zullen zien. Zodra de avatar is gemaakt, kan deze niet meer worden gewijzigd."
 
-#. wpml-name: bfc045552fb736eb0e776baee784de42
-#: includes/profile.php:700
+#: legacy/profile.php:710
 msgid "Avatar first name"
 msgstr "Avatar voornaam"
 
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: includes/profile.php:704
+#: legacy/profile.php:714
 msgid "Avatar last name"
 msgstr "Avatar achternaam"
 
-#. wpml-name: d9c2d86a66aa5a45326c3757f3a272cc
-#: includes/profile.php:709
+#: legacy/profile.php:719
 msgid "Confirm your password"
 msgstr "Bevestig uw wachtwoord"
 
-#: includes/profile.php:711
+#: legacy/profile.php:721
 msgid "Your in-world Avatar password is the same as your password on this website."
 msgstr "Uw in-world Avatar-wachtwoord is hetzelfde als uw wachtwoord op deze website."
 
-#: includes/profile.php:725
+#: legacy/profile.php:735
 msgid "Your initial appearance"
 msgstr "Uw eerste verschijning"
 
-#. wpml-name: 90efd059f58183a99038e138b8fe17f0
-#: includes/profile.php:726
+#: legacy/profile.php:736
 msgid "You can change it as often as you want in the virtual world."
 msgstr "Je kunt het wijzigen en aanpassen in de wereld, zo vaak als je wilt."
 
-#: includes/profile.php:762
+#: legacy/profile.php:772
 msgid "Save"
 msgstr "Opslaan"
 
-#. wpml-name: 877a81d559efa8e5dac0cccac9f80a09
-#: includes/profile.php:795
+#: legacy/profile.php:805
 msgid "leave blank to leave unchanged"
 msgstr "laat leeg om geen wijzigingen aan te brengen"
 
-#: includes/profile.php:803
+#: legacy/profile.php:813
 msgid "Create an avatar"
 msgstr "Maak een avatar"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: includes/profile.php:889
+#: legacy/profile.php:899
 #: blocks/w4os-gridprofile-block/index.js:27
 #: blocks/w4os-gridprofile-block/index.js:74
 msgid "Grid profile"
 msgstr "Rooster profiel"
 
-#. wpml-name: bfc045552fb736eb0e776baee784de42
-#: includes/profile.php:977
+#: legacy/profile.php:987
 msgid "Avatar First Name"
 msgstr "Avatar voornaam"
 
-#. wpml-name: a2ac9ef42c9ebc25f8dbab799ac23565
-#: includes/profile.php:983
+#: legacy/profile.php:993
 msgid "Avatar Last Name"
 msgstr "Avatar achternaam"
 
-#. wpml-name: 69675902f4d4a3da44638540557562af
-#: includes/profile.php:989
-msgid "Profile Picture"
-msgstr "Profiel foto"
-
-#: includes/profile.php:991
+#: legacy/profile.php:1001
 msgid "Must be set in the viewer."
 msgstr "Moet worden ingesteld in de viewer."
 
-#: includes/profile.php:996
+#: legacy/profile.php:1006
 msgid "Web Profile URL"
 msgstr "Web profiel URL"
 
-#: includes/shortcodes.php:70
+#: legacy/shortcodes.php:70
 msgid "Configure W4OS database "
 msgstr "Configureer W4OS database "
 
-#. wpml-name: 17db1cfe008f83e7d0181762eda3daab
-#: includes/shortcodes.php:103
+#: legacy/shortcodes.php:103
 msgid "Edit user"
 msgstr "Gebruiker bewerken"
 
-#: includes/shortcodes.php:119
+#: legacy/shortcodes.php:119
 msgid "Configure W4OS: "
 msgstr "Configureer W4OS: "
 
-#. wpml-name: 751cfef8ad45902372601aeac58bdad7
-#: includes/shortcodes.php:129
+#: legacy/shortcodes.php:131
 msgid "Login URI"
 msgstr "Inloggen URI"
 
-#. wpml-name: 9c9ee66a189f06fb9e3cc58c0c352db8
-#: includes/shortcodes.php:134
+#: legacy/shortcodes.php:136
 msgid "OpenSimulator not configured"
 msgstr "OpenSimulator niet geconfigureerd"
 
-#: includes/shortcodes.php:143
+#: legacy/shortcodes.php:145
 msgid "Configure W4OS database: "
 msgstr "Configureer W4OS database: "
 
-#: includes/updates.php:25
+#: legacy/updates.php:25
 msgid "Update %s applied"
 msgstr "Update %s toegepast"
 
-#. wpml-name: 02cb97a68e5137af44e882dbe2180485
-#: includes/updates.php:36
+#: legacy/updates.php:36
 msgid "Update %s applied sucessfully"
 msgid_plural "Updates %s applied sucessfully"
 msgstr[0] "Update %s succesvol toegepast"
 msgstr[1] "Updates %s succesvol toegepast"
 
-#: includes/updates.php:42
+#: legacy/updates.php:42
 msgid "Error processing update %s"
 msgstr "Fout bij het verwerken van update %s"
 
-#: includes/updates.php:47
+#: legacy/updates.php:47
 msgid "W4OS updated"
 msgstr "W4OS bijgewerkt"
 
-#. wpml-name: 17db1cfe008f83e7d0181762eda3daab
-#: includes/updates.php:71
+#: legacy/updates.php:71
 msgid "Grid user"
 msgstr "Netgebruiker"
 
-#: includes/updates.php:92
+#: legacy/updates.php:92
 msgid "Profiles service is not configured on your Robust server. It is required for full functionalities."
 msgstr "Profiles service is niet geconfigureerd op uw Robust server. Het is vereist voor volledige functionaliteiten."
 
-#: includes/updates.php:111
+#: legacy/updates.php:111
 msgid "Grid and WordPress users synchronized."
 msgstr "Rooster en WordPress gebruikers gesynchroniseerd."
 
-#: includes/updates.php:129
+#: legacy/updates.php:129
 msgid "OpenSim Search tables updated."
 msgstr "OpenSim Zoek tabellen bijgewerkt."
 
-#: includes/users.php:138
+#: legacy/users.php:138
 msgid "Error while updating %s %s (%s) %s"
 msgstr "Fout bij het bijwerken van %s %s (%s) %s"
 
-#: includes/users.php:155
+#: legacy/users.php:155
 msgid "Error while updating newly created user %s for %s %s (%s) %s"
 msgstr "Fout bij het bijwerken van nieuw aangemaakte gebruiker %s voor %s %s (%s) %s"
 
-#: includes/users.php:167
+#: legacy/users.php:167
 msgid "%d reference updated"
 msgid_plural "%d references updated"
 msgstr[0] "%d referentie bijgewerkt"
 msgstr[1] "%d referenties bijgewerkt"
 
-#: includes/users.php:173
+#: legacy/users.php:173
 msgid "%d new WordPress account created"
 msgid_plural "%d new WordPress accounts created"
 msgstr[0] "%d nieuwe WordPress account aangemaakt"
 msgstr[1] "%d nieuwe WordPress accounts aangemaakt"
 
-#: includes/users.php:179
+#: legacy/users.php:179
 msgid "%d broken reference removed"
 msgid_plural "%d broken references removed"
 msgstr[0] "%d gebroken referentie verwijderd"
 msgstr[1] "%d gebroken referenties verwijderd"
 
-#: includes/w4osdb.php:12
+#: legacy/w4osdb.php:12
 msgid "ROBUST database is not configured. To finish configuration, go to "
 msgstr "ROBUST database is niet geconfigureerd. Om de configuratie te voltooien, ga naar "
 
-#: includes/w4osdb.php:23
+#: legacy/w4osdb.php:23
 msgid "Could not connect to the database server, please verify your credentials on "
 msgstr "Kon geen verbinding maken met de database server, controleer uw inloggegevens op "
 
-#: includes/w4osdb.php:30
+#: legacy/w4osdb.php:30
 msgid "Could not connect to the ROBUST database, please verify database name and/or credentials on "
 msgstr "Kon geen verbinding maken met de ROBUST database, controleer de databasenaam en/of de inloggegevens op "
 
-#: includes/w4osdb.php:69
+#: legacy/w4osdb.php:69
 msgid "Missing tables: %s. The ROBUST database is connected, but it does not seem valid. "
 msgstr "Ontbrekende tabellen: %s. De ROBUST database is verbonden, maar hij lijkt niet geldig. "
 
-#. wpml-name: 6b8467e13ae11c479efa8843f1b95826
-#: includes/widgets.php:10
+#: legacy/widgets.php:10
 msgid "Grid info Widget"
 msgstr "Rooster info Widget"
 
-#: includes/widgets.php:51
-#: includes/widgets.php:119
+#: legacy/widgets.php:51
+#: legacy/widgets.php:119
 msgid "Title:"
 msgstr "Titel:"
 
@@ -1263,16 +1399,25 @@ msgstr "Klik \"Inloggen\""
 msgid "My Avatar"
 msgstr "Mijn Avatar"
 
-#: w4os.php:44
-msgid "You already installed the official release of <strong>W4OS - OpenSimulator Web Interface</strong> from WordPress plugins directory. The developer version has been deactivated and should be uninstalled."
-msgstr "U heeft reeds de officiële versie van <strong>W4OS - OpenSimulator Web Interface</strong> geïnstalleerd vanuit de WordPress plugins directory. De ontwikkelaarsversie is gedeactiveerd en moet worden verwijderd."
+#: w4os.php:105
+msgid "%s %s is installed and active. Deactivate it before activating another version."
+msgstr ""
 
-#: w4os.php:53
-msgid "Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is installed and active. Duplicate disabled."
-msgstr "Een andere versie van <strong>W4OS - OpenSimulator Web Interface</strong> is geïnstalleerd en actief. Duplicaat uitgeschakeld."
+#: w4os.php:106
+#, fuzzy
+msgid "W4OS - OpenSimulator Web Interface"
+msgstr "w4os - OpenSimulator Web Interface"
 
-#. Plugin Name of the plugin
-#: 
+#: w4os.php:126
+msgid "A stable release of %s is active. You should use %s and uninstall %s."
+msgstr ""
+
+#: w4os.php:127
 msgid "w4os - OpenSimulator Web Interface"
 msgstr "w4os - OpenSimulator Web Interface"
 
+#~ msgid "You already installed the official release of <strong>W4OS - OpenSimulator Web Interface</strong> from WordPress plugins directory. The developer version has been deactivated and should be uninstalled."
+#~ msgstr "U heeft reeds de officiële versie van <strong>W4OS - OpenSimulator Web Interface</strong> geïnstalleerd vanuit de WordPress plugins directory. De ontwikkelaarsversie is gedeactiveerd en moet worden verwijderd."
+
+#~ msgid "Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is installed and active. Duplicate disabled."
+#~ msgstr "Een andere versie van <strong>W4OS - OpenSimulator Web Interface</strong> is geïnstalleerd en actief. Duplicaat uitgeschakeld."
