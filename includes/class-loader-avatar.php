@@ -404,6 +404,7 @@ class W4OS_Loader_Avatar extends W4OS_Loader {
 	    OR LastName = '" . get_option('w4os_model_lastname') . "')
 	    ORDER BY FirstName, LastName"
 	  );
+		$results[] = w4os_get_asset_url(W4OS_NOTFOUND_PROFILEPIC);
 	  if($models) {
 	    foreach($models as $model) {
 	      $model_name = $model->FirstName . " " . $model->LastName;
