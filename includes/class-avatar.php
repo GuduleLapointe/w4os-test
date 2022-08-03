@@ -207,34 +207,13 @@ class W4OS3_Avatar {
 	    'post_types' => ['avatar'],
 	    'context'    => 'after_title',
 	    'style'      => 'seamless',
-			'validation' => [
-				'rules' => [
-					$prefix . 'name' => [
-						// 'maxlength' => 64,
-						'pattern'  => W4OS_PATTERN_NAME, // Must have 9 digits
-						'remote' => admin_url( 'admin-ajax.php?action=check_name_availability' ), // remote ajax validation
-					],
-				],
-				'messages' => [
-					$prefix . 'name' => [
-						'remote'  => 'This name is not available.',
-						'pattern'  => __('Please provide first and last name, only letters and numbers, separated by a space.', 'w4os'),
-					],
-				],
-			],
 			'fields'     => [
 				'name' => [
-					'name'   => __( 'Avatar Name', 'w4os' ),
-					'id'     => $prefix . 'name',
-					'type'        => 'text',
-					'readonly' => (!W4OS::is_new_post()),
-					'required'    => true,
-					// Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-					'placeholder' => __( 'Firstname', 'w4os' ) . ' ' . __('Lastname', 'w4os' ),
-					'required'    => true,
-					// 'columns'     => 6,
-					'std' => $default_name,
-					'desc' => (W4OS::is_new_post()) ? __('The avatar name is permanent, it can\'t be changed later.', 'w4os') : '',
+						// 'name'     => __( 'Avatar Name', 'w4os' ),
+						'id'       => $prefix . 'name',
+						'type'     => 'custom_html',
+						'std' => '<h1>' . self::current_avatar_name() . '</h1>',
+						// 'callback' => __CLASS__ . '::current_avatar_name',
 				],
 				[
 					'name'       => __( 'WordPress User', 'w4os' ),
@@ -317,6 +296,30 @@ class W4OS3_Avatar {
 	        'options' => self::w4os_get_models_options(),
 	      ],
 	    ]);
+			$meta_boxes['avatar']['fields']['name'] = [
+				'name'   => __( 'Avatar Name', 'w4os' ),
+				'id'     => $prefix . 'name',
+				'type'        => 'text',
+				// 'disabled' => (!W4OS::is_new_post()),
+				'readonly' => (!W4OS::is_new_post()),
+				'required'    => true,
+				// Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
+				'placeholder' => __( 'Firstname', 'w4os' ) . ' ' . __('Lastname', 'w4os' ),
+				'required'    => true,
+				// 'columns'     => 6,
+				'std' => $default_name,
+				'desc' => (W4OS::is_new_post()) ? __('The avatar name is permanent, it can\'t be changed later.', 'w4os') : '',
+			];
+			$meta_boxes['avatar']['validation']['rules'][$prefix . 'name'] = [
+					// 'maxlength' => 64,
+					'pattern'  => W4OS_PATTERN_NAME, // Must have 9 digits
+					'remote' => admin_url( 'admin-ajax.php?action=check_name_availability' ), // remote ajax validation
+			];
+			$meta_boxes['avatar']['validation']['messages'][$prefix . 'name'] = [
+					'remote'  => 'This name is not available.',
+					'pattern'  => __('Please provide first and last name, only letters and numbers, separated by a space.', 'w4os'),
+			];
+
 	  } else {
 	    // $meta_boxes['avatar']['fields']['first_name']['disabled'] = true;
 	    // $meta_boxes['avatar']['fields']['first_name']['readonly'] = true;
@@ -467,6 +470,7 @@ class W4OS3_Avatar {
 		/**
 		 * TODO: check if there is another avatar with this name
 		 */
+		error_log(print_r($_REQUEST, true));
 		$wp_avatar = self::get_wpavatar_by_name($avatar_name);
 		if($wp_avatar) {
 			error_log("$avatar_name is already defined in WordPress");
