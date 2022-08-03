@@ -240,7 +240,7 @@ class W4OS3_Avatar {
 						'searchable' => true,
 					],
 	        'columns'       => 4,
-	        'readonly' => (!W4OS::is_new_post()),
+	        // 'readonly' => (!W4OS::is_new_post()),
 	        'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.', 'w4os'),
 	        'hidden'        => [
 	            'when'     => [['avatar_owner', '!=', '']],
@@ -327,38 +327,20 @@ class W4OS3_Avatar {
 	    // $meta_boxes['avatar']['fields']['last_name']['readonly'] = true;
 	    // $meta_boxes['avatar']['fields']['email']['disabled'] = true;
 	    // $meta_boxes['avatar']['fields']['email']['readonly'] = true;
-	    $meta_boxes['avatar']['fields'] = array_merge( $meta_boxes['avatar']['fields'], [
-	      [
-	        'name'        => __( 'UUID', 'w4os' ),
-	        'id'          => $prefix . 'uuid',
-	        'type'        => 'text',
-	        'placeholder' => __( 'Wil be set by the server', 'w4os' ),
-	        'disabled'    => true,
-	        'readonly'    => true,
-	        'visible'     => [
-	          'when'     => [['avatar_uuid', '!=', '']],
-	          'relation' => 'or',
-	        ],
-	      ],
-				[
-						'name'          => __( 'Born', 'w4os' ),
-						'id'            => $prefix . 'born',
-						'type'          => 'datetime',
-						'disabled'    => true,
-						'readonly'	=> true,
-						'admin_columns' => [
-								'position' => 'before date',
-								'sort'     => true,
-						],
-				],
-	      [
-	        'name'    => __( 'Profile Picture', 'w4os' ),
-	        'id'      => $prefix . 'profile_picture',
-	        'type'    => 'image_select',
-	        'options' => self::w4os_get_profile_picture(),
-	        'readonly'    => true,
-	      ],
-	    ]);
+	    // $meta_boxes['avatar']['fields'] = array_merge( $meta_boxes['avatar']['fields'], [
+	    //   [
+	    //     'name'        => __( 'UUID', 'w4os' ),
+	    //     'id'          => $prefix . 'uuid',
+	    //     'type'        => 'text',
+	    //     'placeholder' => __( 'Wil be set by the server', 'w4os' ),
+	    //     'disabled'    => true,
+	    //     'readonly'    => true,
+	    //     'visible'     => [
+	    //       'when'     => [['avatar_uuid', '!=', '']],
+	    //       'relation' => 'or',
+	    //     ],
+	    //   ],
+	    // ]);
 	  }
 
 	  return $meta_boxes;
@@ -451,40 +433,23 @@ class W4OS3_Avatar {
 	}
 
 	static function check_name_availability($avatar_name) {
-		error_log("checking $avatar_name");
-		if(!preg_match('/^' . W4OS_PATTERN_NAME . '$/', $avatar_name)) {
-			error_log("   not matching pattern");
+		if(!preg_match('/^' . W4OS_PATTERN_NAME . '$/', $avatar_name))
+		return false;
+
+		// Check if name restricted
+		$parts = explode(' ', $avatar_name);
+		foreach ($parts as $part) {
+			if (in_array(strtolower($part), array_map('strtolower', W4OS_DEFAULT_RESTRICTED_NAMES)))
 			return false;
 		}
 
-		/**
-		 * Check if name restricted
-		 */
-		$parts = explode(' ', $avatar_name);
-		foreach ($parts as $part) {
-			if (in_array(strtolower($part), array_map('strtolower', W4OS_DEFAULT_RESTRICTED_NAMES))) {
-				return false;
-			}
-		}
-
-		/**
-		 * TODO: check if there is another avatar with this name
-		 */
-		error_log(print_r($_REQUEST, true));
+		// Check if there is another avatar with this name in WordPress
 		$wp_avatar = self::get_wpavatar_by_name($avatar_name);
-		if($wp_avatar) {
-			error_log("$avatar_name is already defined in WordPress");
-			return false; //
-		}
+		if($wp_avatar) return false;
 
-		/**
-		 * check if there avatar exist in simulator
-		 */
+		// check if there avatar exist in simulator
 		$uuid = self::get_uuid_by_name($avatar_name);
-		if($uuid) {
-			error_log("$avatar_name has uuid $uuid");
-			return false; //
-		}
+		if($uuid) return false; //
 
 		return true;
 	}
