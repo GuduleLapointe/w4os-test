@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-02T07:59:51-04:00\n"
+"POT-Creation-Date: 2022-08-03T12:28:36-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 
@@ -42,194 +42,221 @@ msgstr ""
 msgid "No result"
 msgstr ""
 
-#: includes/class-loader-avatar.php:100
-#: includes/class-loader-avatar.php:121
-#: includes/class-loader-avatar.php:134
+#: includes/class-avatar.php:130
+#: includes/class-avatar.php:151
+#: includes/class-avatar.php:164
 msgid "Avatars"
 msgstr ""
 
-#: includes/class-loader-avatar.php:101
+#: includes/class-avatar.php:131
 msgid "Avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:102
+#: includes/class-avatar.php:132
 msgid "Add New"
 msgstr ""
 
-#: includes/class-loader-avatar.php:103
+#: includes/class-avatar.php:133
 msgid "Add new avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:104
+#: includes/class-avatar.php:134
 msgid "Edit Avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:105
+#: includes/class-avatar.php:135
 msgid "New Avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:106
+#: includes/class-avatar.php:136
 msgid "View Avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:107
+#: includes/class-avatar.php:137
 msgid "View Avatars"
 msgstr ""
 
-#: includes/class-loader-avatar.php:108
+#: includes/class-avatar.php:138
 msgid "Search Avatars"
 msgstr ""
 
-#: includes/class-loader-avatar.php:109
+#: includes/class-avatar.php:139
 msgid "No avatars found"
 msgstr ""
 
-#: includes/class-loader-avatar.php:110
+#: includes/class-avatar.php:140
 msgid "No avatars found in Trash"
 msgstr ""
 
-#: includes/class-loader-avatar.php:111
+#: includes/class-avatar.php:141
 msgid "Parent Avatar:"
 msgstr ""
 
-#: includes/class-loader-avatar.php:112
+#: includes/class-avatar.php:142
 msgid "All Avatars"
 msgstr ""
 
-#: includes/class-loader-avatar.php:113
+#: includes/class-avatar.php:143
 msgid "Avatar Archives"
 msgstr ""
 
-#: includes/class-loader-avatar.php:114
+#: includes/class-avatar.php:144
 msgid "Avatar Attributes"
 msgstr ""
 
-#: includes/class-loader-avatar.php:115
+#: includes/class-avatar.php:145
 msgid "Insert into avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:116
+#: includes/class-avatar.php:146
 msgid "Uploaded to this avatar"
 msgstr ""
 
-#: includes/class-loader-avatar.php:117
+#: includes/class-avatar.php:147
 msgid "Featured image"
 msgstr ""
 
-#: includes/class-loader-avatar.php:118
+#: includes/class-avatar.php:148
 msgid "Set featured image"
 msgstr ""
 
-#: includes/class-loader-avatar.php:119
+#: includes/class-avatar.php:149
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/class-loader-avatar.php:120
+#: includes/class-avatar.php:150
 msgid "Use as featured image"
 msgstr ""
 
-#: includes/class-loader-avatar.php:122
+#: includes/class-avatar.php:152
 msgid "Filter avatars list"
 msgstr ""
 
-#: includes/class-loader-avatar.php:123
+#: includes/class-avatar.php:153
 msgid "Filter by date"
 msgstr ""
 
-#: includes/class-loader-avatar.php:124
+#: includes/class-avatar.php:154
 msgid "Avatars list navigation"
 msgstr ""
 
-#: includes/class-loader-avatar.php:125
+#: includes/class-avatar.php:155
 msgid "Avatars list"
 msgstr ""
 
-#: includes/class-loader-avatar.php:126
+#: includes/class-avatar.php:156
 msgid "Avatar published"
 msgstr ""
 
-#: includes/class-loader-avatar.php:127
+#: includes/class-avatar.php:157
 msgid "Avatar published privately"
 msgstr ""
 
-#: includes/class-loader-avatar.php:128
+#: includes/class-avatar.php:158
 msgid "Avatar reverted to draft"
 msgstr ""
 
-#: includes/class-loader-avatar.php:129
+#: includes/class-avatar.php:159
 msgid "Avatar scheduled"
 msgstr ""
 
-#: includes/class-loader-avatar.php:130
+#: includes/class-avatar.php:160
 msgid "Avatar updated"
 msgstr ""
 
-#: includes/class-loader-avatar.php:183
+#: includes/class-avatar.php:205
 msgid "Profile"
 msgstr ""
 
-#: includes/class-loader-avatar.php:204
-msgid "First Name"
+#: includes/class-avatar.php:221
+msgid "Please provide first and last name, only letters and numbers, separated by a space."
 msgstr ""
 
-#: includes/class-loader-avatar.php:214
-msgid "Last Name"
+#: includes/class-avatar.php:227
+#: legacy/admin/admin-init.php:105
+#: legacy/profile.php:118
+msgid "Avatar Name"
 msgstr ""
 
-#: includes/class-loader-avatar.php:224
-msgid "Owner"
+#. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
+#: includes/class-avatar.php:233
+msgid "Firstname"
 msgstr ""
 
-#: includes/class-loader-avatar.php:231
+#. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
+#: includes/class-avatar.php:233
+msgid "Lastname"
+msgstr ""
+
+#: includes/class-avatar.php:237
+msgid "The avatar name is permanent, it can't be changed later."
+msgstr ""
+
+#: includes/class-avatar.php:240
+msgid "WordPress User"
+msgstr ""
+
+#: includes/class-avatar.php:246
+msgid "Select a user"
+msgstr ""
+
+#: includes/class-avatar.php:254
 msgid "E-mail"
 msgstr ""
 
-#: includes/class-loader-avatar.php:242
+#: includes/class-avatar.php:265
 msgid "Optional. If set, the avatar will be linked to any matching WP user account."
 msgstr ""
 
-#: includes/class-loader-avatar.php:249
+#: includes/class-avatar.php:272
 msgid "Create WP user"
 msgstr ""
 
-#: includes/class-loader-avatar.php:260
+#: includes/class-avatar.php:283
 #: legacy/admin/settings.php:76
 #: legacy/admin/settings.php:234
 #: legacy/admin/settings.php:391
 msgid "Password"
 msgstr ""
 
-#: includes/class-loader-avatar.php:260
+#: includes/class-avatar.php:283
 #: legacy/profile.php:132
 msgid "Change password"
 msgstr ""
 
-#: includes/class-loader-avatar.php:266
+#: includes/class-avatar.php:289
 msgid "Confirm password"
 msgstr ""
 
-#: includes/class-loader-avatar.php:272
+#: includes/class-avatar.php:295
 msgid "Same password as WP user"
 msgstr ""
 
-#: includes/class-loader-avatar.php:291
+#: includes/class-avatar.php:314
 msgid "Model"
 msgstr ""
 
-#: includes/class-loader-avatar.php:306
+#: includes/class-avatar.php:329
 msgid "UUID"
 msgstr ""
 
-#: includes/class-loader-avatar.php:309
+#: includes/class-avatar.php:332
 msgid "Wil be set by the server"
 msgstr ""
 
-#: includes/class-loader-avatar.php:318
+#: includes/class-avatar.php:341
+#: legacy/admin/admin-init.php:111
+#: legacy/admin/admin-init.php:117
+#: legacy/profile.php:124
+msgid "Born"
+msgstr ""
+
+#: includes/class-avatar.php:352
 #: legacy/profile.php:999
 msgid "Profile Picture"
 msgstr ""
 
-#: includes/class-loader-avatar.php:366
+#: includes/class-avatar.php:411
 msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
 msgstr ""
 
@@ -258,17 +285,6 @@ msgstr ""
 
 #: legacy/admin/admin-init.php:39
 msgid "Helpers"
-msgstr ""
-
-#: legacy/admin/admin-init.php:105
-#: legacy/profile.php:118
-msgid "Avatar Name"
-msgstr ""
-
-#: legacy/admin/admin-init.php:111
-#: legacy/admin/admin-init.php:117
-#: legacy/profile.php:124
-msgid "Born"
 msgstr ""
 
 #: legacy/admin/admin-init.php:112
