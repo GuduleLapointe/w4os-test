@@ -263,12 +263,14 @@ class W4OS3_Avatar {
 	          'id'      => $prefix . 'password',
 	          'type'    => 'password',
 	          'columns' => 4,
+						'required' => W4OS::is_new_post(),
 	      ],
 	      [
 	          'name'    => __( 'Confirm password', 'w4os' ),
 	          'id'      => $prefix . 'password_2',
 	          'type'    => 'password',
 	          'columns' => 4,
+						'required' => W4OS::is_new_post(),
 	      ],
 	      [
 	          'name'    => __( 'Same password as WP user', 'w4os' ),
