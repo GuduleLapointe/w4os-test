@@ -40,12 +40,26 @@ class W4OS3_Avatar {
 	 */
 	protected $filters;
 
+	protected $post;
 	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *
 	 * @since    1.0.0
 	 */
 	public function __construct($post = NULL) {
+		if(is_numeric($post)) {
+			$post_id = $post;
+			$post = get_post($post_id);
+		}
+		if(!empty($post) &! is_wp_error($post)) {
+			$this->post = $post;
+		}
+	}
+
+	function update($data = []) {
+	}
+
+	function create() {
 	}
 
 	/**
@@ -60,7 +74,12 @@ class W4OS3_Avatar {
 				'hook' => 'init',
 				'callback' => 'register_post_types',
 			),
+			array (
+				'hook' => 'wp_ajax_check_name_availability',
+				'callback' => 'ajax_check_name_availability',
+			),
 		);
+
 		$filters = array(
 			array (
 				'hook' => 'rwmb_meta_boxes',
@@ -93,6 +112,18 @@ class W4OS3_Avatar {
 		}
 
 	}
+
+	// function ajax_check_name_availability() {
+	// 	error_reporting(E_ALL);
+	// 	error_log(print_r($_REQUEST, true));
+	// 	// Get the field value via the global variable $_GET
+	// 	if ( $_GET['avatar_name_firstname'] === 'Wrong' ) {
+	// 		echo 'false'; // Invalid
+	// 	} else {
+	// 		echo 'true'; // Valid
+	// 	}
+	// 	die;
+	// }
 
 	static function register_post_types() {
 	  $labels = [
@@ -163,70 +194,56 @@ class W4OS3_Avatar {
 	  $prefix = 'avatar_';
 	  $user = wp_get_current_user();
 	  if($user) {
-	    // if(!empty($user->display_name)) {
-	    //   $default_first_name = self::sanitize_name(preg_replace('/ .*/', '', $user->display_name));
-	    //   $default_last_name = self::sanitize_name(preg_replace('/[^ ]* /', '', $user->display_name));
-	    // } else {
-	    //   $default_first_name = self::sanitize_name($user->first_name);
-	    //   $default_last_name = self::sanitize_name($user->last_name);
-	    // }
-			$default_first_name = self::sanitize_name(
-				(empty($user->display_name)) ? $user->first_name : preg_replace('/ .*/', '', $user->display_name)
+			$default_name = self::sanitize_name(
+				(empty($user->display_name))
+				? "$user->first_name $user->last_name"
+				: $user->display_name
 			);
-			$default_last_name = self::sanitize_name(
-				(empty($user->display_name)) ? $user->last_name : preg_replace('/[^ ]* /', '', $user->display_name)
-			);
-
 	  }
+
 	  $meta_boxes['avatar'] = [
 	    'title'      => __( 'Profile', 'w4os' ),
 	    'id'         => 'avatar-profile-fields',
 	    'post_types' => ['avatar'],
 	    'context'    => 'after_title',
 	    'style'      => 'seamless',
-	    'validation' => [
-	        'rules' => [
-	            $prefix . 'first_name' => [
-	                'maxlength' => 64,
-	            ],
-	        ],
-	    ],
-	    'validation' => [
-	        'rules' => [
-	            $prefix . 'last_name' => [
-	                'maxlength' => 64,
-	            ],
-	        ],
-	    ],
-	    'fields'     => [
-	      'first_name' => [
-	        'name'     => __( 'First Name', 'w4os' ),
-	        'id'       => $prefix . 'first_name',
-	        'type'     => 'text',
-	        'required' => true,
-	        'readonly' => (!W4OS::is_new_post()),
-	        'columns'  => 6,
-	        'std' => $default_first_name,
-	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
-					'pattern'  => '[A-Za-z][A-Za-z0-9]*', // Must have 9 digits
-	      ],
-	      'last_name' => [
-	        'name'     => __( 'Last Name', 'w4os' ),
-	        'id'       => $prefix . 'last_name',
-	        'type'     => 'text',
-	        'required' => true,
-	        'readonly' => (!W4OS::is_new_post()),
-	        'columns'  => 6,
-	        'std' => $default_last_name,
-	        'sanitize_callback' => __CLASS__ . '::sanitize_name',
-					'pattern'  => '[A-Za-z][A-Za-z0-9]*', // Must have 9 digits
-	      ],
+			'validation' => [
+				'rules' => [
+					$prefix . 'name' => [
+						// 'maxlength' => 64,
+						'pattern'  => W4OS_PATTERN_NAME, // Must have 9 digits
+						'remote' => admin_url( 'admin-ajax.php?action=check_name_availability' ), // remote ajax validation
+					],
+				],
+				'messages' => [
+					$prefix . 'name' => [
+						'remote'  => 'This name is not available.',
+						'pattern'  => __('Please provide first and last name, only letters and numbers, separated by a space.', 'w4os'),
+					],
+				],
+			],
+			'fields'     => [
+				'name' => [
+					'name'   => __( 'Avatar Name', 'w4os' ),
+					'id'     => $prefix . 'name',
+					'type'        => 'text',
+					'readonly' => (!W4OS::is_new_post()),
+					'required'    => true,
+					// Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
+					'placeholder' => __( 'Firstname', 'w4os' ) . ' ' . __('Lastname', 'w4os' ),
+					'required'    => true,
+					// 'columns'     => 6,
+					'std' => $default_name,
+					'desc' => (W4OS::is_new_post()) ? __('The avatar name is permanent, it can\'t be changed later.', 'w4os') : '',
+				],
 				[
-					'name'       => __( 'Owner', 'w4os' ),
+					'name'       => __( 'WordPress User', 'w4os' ),
 					'id'         => $prefix . 'owner',
 					'type'       => 'user',
 					'field_type' => 'select_advanced',
-					'columns'    => 4,
+					'columns'     => 4,
+					'std' => wp_get_current_user()->ID,
+					'placeholder' => __('Select a user', 'w4os'),
 					'admin_columns' => [
 						'position'   => 'after title',
 						'sort'       => true,
@@ -237,7 +254,7 @@ class W4OS3_Avatar {
 	        'name'          => __( 'E-mail', 'w4os' ),
 	        'id'            => $prefix . 'email',
 	        'type'          => 'email',
-	        'std'           => W4OS::current_user_email(),
+	        'std'           => wp_get_current_user()->user_email,
 					'admin_columns' => [
 						'position'   => 'after avatar_owner',
 						'sort'       => true,
@@ -245,7 +262,7 @@ class W4OS3_Avatar {
 					],
 	        'columns'       => 4,
 	        'readonly' => (!W4OS::is_new_post()),
-	        'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.'),
+	        'desc' => __('Optional. If set, the avatar will be linked to any matching WP user account.', 'w4os'),
 	        'hidden'        => [
 	            'when'     => [['avatar_owner', '!=', '']],
 	            'relation' => 'or',
@@ -263,7 +280,7 @@ class W4OS3_Avatar {
 	          ],
 	      ],
 	      [
-	          'name'    => (W4OS::is_new_post()) ? __( 'Password', 'w4os' ) : __('Change password'),
+	          'name'    => (W4OS::is_new_post()) ? __( 'Password', 'w4os' ) : __('Change password', 'w4os'),
 	          'id'      => $prefix . 'password',
 	          'type'    => 'password',
 	          'columns' => 4,
@@ -324,6 +341,8 @@ class W4OS3_Avatar {
 						'name'          => __( 'Born', 'w4os' ),
 						'id'            => $prefix . 'born',
 						'type'          => 'datetime',
+						'disabled'    => true,
+						'readonly'	=> true,
 						'admin_columns' => [
 								'position' => 'before date',
 								'sort'     => true,
@@ -349,9 +368,9 @@ class W4OS3_Avatar {
 		/**
 		 * Rewrite post title
 		 */
-	  $avatar_name = trim(@$postarr['avatar_first_name'] . " " . @$postarr['avatar_last_name']);
+	  $avatar_name = trim(@$postarr['avatar_name']);
 	  if(empty($avatar_name)) {
-	    $avatar_name = trim(get_post_meta($postarr['ID'], 'avatar_first_name', true) . " " . get_post_meta($postarr['ID'], 'avatar_last_name', true));
+	    $avatar_name = trim(get_post_meta($postarr['ID'], 'avatar_name', true));
 	  }
 	  if(!empty($avatar_name)) $data['post_title'] = $avatar_name;
 
@@ -386,8 +405,8 @@ class W4OS3_Avatar {
 	  // $return = strtr(utf8_decode($return), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 	  $return = remove_accents($return);
 
-	  $return = substr(preg_replace('/[^[:alnum:]]/', '', $return), 0, 64);
-	  if($value != $return) {
+	  $return = substr(preg_replace('/(' . W4OS_PATTERN_NAME . ')[^[:alnum:]]*/', '$1', $return), 0, 64);
+	  if($value != $return &! empty($field['name'])) {
 	    w4os_notice(sprintf(
 	      __('%s contains invalid characters, replaced "%s" by "%s"', 'w4os'),
 	      $field['name'],
@@ -428,4 +447,92 @@ class W4OS3_Avatar {
 	  return $results;
 	}
 
+	static function check_name_availability($avatar_name) {
+		error_log("checking $avatar_name");
+		if(!preg_match('/^' . W4OS_PATTERN_NAME . '$/', $avatar_name)) {
+			error_log("   not matching pattern");
+			return false;
+		}
+
+		/**
+		 * Check if name restricted
+		 */
+		$parts = explode(' ', $avatar_name);
+		foreach ($parts as $part) {
+			if (in_array(strtolower($part), array_map('strtolower', W4OS_DEFAULT_RESTRICTED_NAMES))) {
+				return false;
+			}
+		}
+
+		/**
+		 * TODO: check if there is another avatar with this name
+		 */
+		$wp_avatar = self::get_wpavatar_by_name($avatar_name);
+		if($wp_avatar) {
+			error_log("$avatar_name is already defined in WordPress");
+			return false; //
+		}
+
+		/**
+		 * check if there avatar exist in simulator
+		 */
+		$uuid = self::get_uuid_by_name($avatar_name);
+		if($uuid) {
+			error_log("$avatar_name has uuid $uuid");
+			return false; //
+		}
+
+		return true;
+	}
+
+	static function get_wpavatar_by_name($avatar_name) {
+		$post_id = false;
+		error_log("searching posts for $avatar_name");
+		$args = array(
+			'post_type'		=>	'avatar',
+			'order_by' => 'ID',
+			'meta_query'	=>	array(
+				array(
+					'key' => 'avatar_name',
+					'value'	=>	esc_sql($avatar_name),
+				)
+			)
+		);
+		$my_query = new WP_Query( $args );
+		if( $my_query->have_posts() )
+		$post_id = $my_query->post->ID;
+		wp_reset_postdata();
+
+		return $post_id;
+	}
+
+	static function get_uuid_by_name($avatar_name) {
+		if(!W4OS_DB_CONNECTED) return false;
+		if(empty($avatar_name)) return false;
+		if(!preg_match('/^' . W4OS_PATTERN_NAME . '$/', $avatar_name)) return false;
+
+		global $w4osdb;
+		$parts = explode(' ', $avatar_name);
+		$FirstName=$parts[0];
+		$LastName=$parts[1];
+
+		$check_uuid = $w4osdb->get_var(sprintf(
+			"SELECT PrincipalID FROM UserAccounts
+			WHERE (FirstName = '%s' AND LastName = '%s')
+			",
+			$FirstName,
+			$LastName,
+		));
+
+		if($check_uuid) return $check_uuid;
+		else return false;
+	}
+
+	static function ajax_check_name_availability() {
+		$avatar_name = esc_attr($_GET['avatar_name']);
+
+		if (self::check_name_availability($avatar_name)) echo 'true';
+		else echo 'false';
+		die;
+	}
 }

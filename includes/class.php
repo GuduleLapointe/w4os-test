@@ -75,6 +75,8 @@ class W4OS {
 		}
 		$this->w4os = 'w4os';
 
+		define('W4OS_PATTERN_NAME', '[A-Za-z][A-Za-z0-9]* [A-Za-z][A-Za-z0-9]*');
+
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
@@ -230,11 +232,6 @@ class W4OS {
 			// TODO: fetch grid info again
 		}
 	  return $value;
-	}
-
-	static function current_user_email() {
-	  $current_user = wp_get_current_user();
-	  return $current_user->user_email;
 	}
 
 	static function is_new_post($args = null){
