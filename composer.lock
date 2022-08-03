@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c040a248fe23fa96710ee3c06113d33f",
+    "content-hash": "1975e0326cee64bd2ae456410c5bd738",
     "packages": [
         {
             "name": "composer/installers",
@@ -192,6 +192,46 @@
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin"
+        },
+        {
+            "name": "node83/name-generator",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/node83/name-generator.git",
+                "reference": "91b15bb5d049d58c07904b44ec1f84318375af59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/node83/name-generator/zipball/91b15bb5d049d58c07904b44ec1f84318375af59",
+                "reference": "91b15bb5d049d58c07904b44ec1f84318375af59",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeNameGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alan",
+                    "email": "alan.mcfarlane@gmail.com"
+                }
+            ],
+            "description": "Code name generator",
+            "support": {
+                "issues": "https://github.com/node83/name-generator/issues",
+                "source": "https://github.com/node83/name-generator/tree/1.0"
+            },
+            "time": "2021-09-25T13:35:09+00:00"
         },
         {
             "name": "woocommerce/action-scheduler",

@@ -113,18 +113,6 @@ class W4OS3_Avatar {
 
 	}
 
-	// function ajax_check_name_availability() {
-	// 	error_reporting(E_ALL);
-	// 	error_log(print_r($_REQUEST, true));
-	// 	// Get the field value via the global variable $_GET
-	// 	if ( $_GET['avatar_name_firstname'] === 'Wrong' ) {
-	// 		echo 'false'; // Invalid
-	// 	} else {
-	// 		echo 'true'; // Valid
-	// 	}
-	// 	die;
-	// }
-
 	static function register_post_types() {
 	  $labels = [
 	    'name'                     => esc_html__( 'Avatars', 'w4os' ),
@@ -192,14 +180,6 @@ class W4OS3_Avatar {
 
 	static function add_fields( $meta_boxes ) {
 	  $prefix = 'avatar_';
-	  $user = wp_get_current_user();
-	  if($user) {
-			$default_name = self::sanitize_name(
-				(empty($user->display_name))
-				? "$user->first_name $user->last_name"
-				: $user->display_name
-			);
-	  }
 
 	  $meta_boxes['avatar'] = [
 	    'title'      => __( 'Profile', 'w4os' ),
@@ -309,7 +289,7 @@ class W4OS3_Avatar {
 				'placeholder' => __( 'Firstname', 'w4os' ) . ' ' . __('Lastname', 'w4os' ),
 				'required'    => true,
 				// 'columns'     => 6,
-				'std' => $default_name,
+				'std' => self::generate_name(),
 				'desc' => (W4OS::is_new_post()) ? __('The avatar name is permanent, it can\'t be changed later.', 'w4os') : '',
 			];
 			$meta_boxes['avatar']['validation']['rules'][$prefix . 'name'] = [
@@ -458,7 +438,6 @@ class W4OS3_Avatar {
 
 	static function get_wpavatar_by_name($avatar_name) {
 		$post_id = false;
-		error_log("searching posts for $avatar_name");
 		$args = array(
 			'post_type'		=>	'avatar',
 			'order_by' => 'ID',
@@ -516,4 +495,28 @@ class W4OS3_Avatar {
 		if($post)	return $post->post_title;
 	}
 
+	static function generate_name() {
+
+		// Try WP User name first
+		$user = wp_get_current_user();
+		if($user) {
+			$name = self::sanitize_name(
+				(empty($user->display_name))
+				? "$user->first_name $user->last_name"
+				: $user->display_name
+			);
+			if(self::check_name_availability($name)) return $name;
+	  }
+
+		// Fallback to random name
+		$generator = new \CodeNameGenerator\CodeNameGenerator();
+		for ($i = 0; $i < 10; $i++) {
+			// We don't want to run forever, even if it's unlikely
+			$name = $generator->generate();
+			$name = self::sanitize_name(ucwords(preg_replace("/([^-]+)-([^-]+)(-.*)?/", '$1 $2', $name)));
+			if(self::check_name_availability($name)) return $name;
+		}
+
+		return $name;
+	}
 }

@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '8d6df5071e22265e41fd847e1044108122567d86',
+        'reference' => '5434a2b716e8199165539841c02e44321d9f03d6',
         'name' => 'speculoos/w4os',
         'dev' => true,
     ),
@@ -46,6 +46,15 @@
             'reference' => NULL,
             'dev_requirement' => false,
         ),
+        'node83/name-generator' => array(
+            'pretty_version' => '1.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../node83/name-generator',
+            'aliases' => array(),
+            'reference' => '91b15bb5d049d58c07904b44ec1f84318375af59',
+            'dev_requirement' => false,
+        ),
         'roundcube/plugin-installer' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -64,7 +73,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '8d6df5071e22265e41fd847e1044108122567d86',
+            'reference' => '5434a2b716e8199165539841c02e44321d9f03d6',
             'dev_requirement' => false,
         ),
         'woocommerce/action-scheduler' => array(

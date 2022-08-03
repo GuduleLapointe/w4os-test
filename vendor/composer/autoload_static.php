@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit432d9f0cf56ce6e18b6e1cc192f75138
 {
     public static $files = array (
+        'd39d5970b6236469fd5c5e6baa8e1831' => __DIR__ . '/..' . '/autoload.php',
         '535cf38403fe1a8c6aea5654339f2510' => __DIR__ . '/..' . '/meta-box/meta-box/meta-box.php',
         '687e88d103d3c7b7e29ca5e836cb2272' => __DIR__ . '/..' . '/meta-box/mb-settings-page/mb-settings-page.php',
         'd625401fcd6c5ef99e9ddf76eb29ba78' => __DIR__ . '/..' . '/meta-box/meta-box-conditional-logic/meta-box-conditional-logic.php',
@@ -18,6 +19,7 @@ class ComposerStaticInit432d9f0cf56ce6e18b6e1cc192f75138
         'C' => 
         array (
             'Composer\\Installers\\' => 20,
+            'CodeNameGenerator\\' => 18,
         ),
     );
 
@@ -25,6 +27,10 @@ class ComposerStaticInit432d9f0cf56ce6e18b6e1cc192f75138
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+        'CodeNameGenerator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/node83/name-generator/src',
         ),
     );
 
