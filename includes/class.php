@@ -126,9 +126,10 @@ class W4OS {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-public.php';
 
-		$this->loader = new W4OS_Loader();
-
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-avatar.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
+
+		$this->loader = new W4OS_Loader();
 		$this->loaders[] = new W4OS3_Avatar();
 	}
 

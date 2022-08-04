@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '3.x-dev',
-        'version' => '3.9999999.9999999.9999999-dev',
+        'pretty_version' => 'dev-3.x-dev',
+        'version' => 'dev-3.x-dev',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5434a2b716e8199165539841c02e44321d9f03d6',
+        'reference' => '64d1312d5a6afae8028db9208942f075ae692f5e',
         'name' => 'speculoos/w4os',
         'dev' => true,
     ),
@@ -68,12 +68,12 @@
             ),
         ),
         'speculoos/w4os' => array(
-            'pretty_version' => '3.x-dev',
-            'version' => '3.9999999.9999999.9999999-dev',
+            'pretty_version' => 'dev-3.x-dev',
+            'version' => 'dev-3.x-dev',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '5434a2b716e8199165539841c02e44321d9f03d6',
+            'reference' => '64d1312d5a6afae8028db9208942f075ae692f5e',
             'dev_requirement' => false,
         ),
         'woocommerce/action-scheduler' => array(

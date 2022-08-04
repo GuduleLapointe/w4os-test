@@ -12,12 +12,12 @@
     },
     "autoload": {
       "files": [
+        "vendor/autoload.php",
         "vendor/meta-box/meta-box/meta-box.php",
         "vendor/meta-box/mb-settings-page/mb-settings-page.php",
         "vendor/meta-box/meta-box-conditional-logic/meta-box-conditional-logic.php",
         "vendor/meta-box/meta-box-columns/meta-box-columns.php",
-        "vendor/woocommerce/action-scheduler/action-scheduler.php",
-        "vendor/node83/name-generator/src/CodeNameGenerator.php"
+        "vendor/woocommerce/action-scheduler/action-scheduler.php"
       ]
     },
     "extra": {

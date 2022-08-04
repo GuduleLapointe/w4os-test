@@ -69,7 +69,7 @@ function w4os_load_textdomain() {
 }
 add_action( 'init', 'w4os_load_textdomain' );
 
-require_once dirname( __DIR__ ) . '/vendor/autoload.php';
+// require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
 define('W4OS_GRID_LOGIN_URI', w4os_grid_login_uri());
