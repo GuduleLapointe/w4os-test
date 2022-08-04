@@ -3,14 +3,14 @@
 define('W4OS_PROFILE_PATTERN', '^' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '/([a-zA-Z][a-zA-Z9]*)[ \.+-]([a-zA-Z][a-zA-Z9]*)(/.*)?$');
 define('W4OS_PROFILE_SELF_PATTERN', '^' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '/?$');
 
-add_action( 'init',  function() {
-  add_rewrite_rule( W4OS_PROFILE_PATTERN,
-  'index.php?pagename=' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '&post_tyoe=user&profile_firstname=$matches[1]&profile_lastname=$matches[2]&profile_args=$matches[3]', 'top' );
-  add_rewrite_rule( W4OS_PROFILE_SELF_PATTERN,
-  'index.php?pagename=' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '&post_tyoe=user&profile_args=$matches[1]', 'top' );
-} );
-update_option('w4os_rewrite_rules', true);
-flush_rewrite_rules();
+// add_action( 'init',  function() {
+//   add_rewrite_rule( W4OS_PROFILE_PATTERN,
+//   'index.php?pagename=' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '&post_tyoe=user&profile_firstname=$matches[1]&profile_lastname=$matches[2]&profile_args=$matches[3]', 'top' );
+//   add_rewrite_rule( W4OS_PROFILE_SELF_PATTERN,
+//   'index.php?pagename=' . esc_attr(get_option('w4os_profile_slug', 'profile')) . '&post_tyoe=user&profile_args=$matches[1]', 'top' );
+// } );
+// update_option('w4os_rewrite_rules', true);
+// flush_rewrite_rules();
 
 add_filter( 'query_vars', 'w4os_profile_query_vars');
 function w4os_profile_query_vars( $query_vars ) {
@@ -121,98 +121,98 @@ add_filter( 'login_errors', function( $error ) {
     return $error;
 } );
 
-add_action( 'template_include', function( $template ) {
-  global $wp_query;
-  if(isset($wp_query->queried_object->post_name) && $wp_query->queried_object->post_name != get_option('w4os_profile_slug')) return $template;
-  // echo "post_name " . $wp_query->queried_object->post_name;
-
-  if ( isset($_REQUEST['w4os_update_avatar'] ) ) {
-    $user=get_user_by('ID', $_REQUEST['user_id']);
-    $uuid = w4os_update_avatar( $user, array(
-      'action' => sanitize_text_field($_REQUEST['action']),
-      'w4os_firstname' => sanitize_text_field($_REQUEST['w4os_firstname']),
-      'w4os_lastname' => sanitize_text_field($_REQUEST['w4os_lastname']),
-      'w4os_model' => sanitize_text_field($_REQUEST['w4os_model']),
-      'w4os_password_1' => $_REQUEST['w4os_password_1'],
-    ));
-  }
-
-  $query_firstname = get_query_var( 'profile_firstname' );
-  $query_lastname = get_query_var( 'profile_lastname' );
-
-  if ( empty($query_firstname) || empty($query_lastname) ) {
-    if(is_user_logged_in()) {
-      $uuid = w4os_profile_sync(wp_get_current_user());
-      if($uuid) {
-        $page_title = __('My Profile', 'w4os');
-      } else {
-        $page_title = __('Create My Avatar', 'w4os');
-      }
-    } else {
-      $page_title = __('Log in', 'w4os');
-    }
-  } else {
-
-  // if ( $query_firstname != '' && $query_lastname != '' ) {
-    $user = w4os_get_avatar_by_name($query_firstname, $query_lastname );
-    if($user) {
-      $avatar = new W4OS_Avatar($user);
-      $avatar_profile = $avatar->profile_page();
-    }
-    if($avatar_profile) {
-      $avatar_name = esc_attr(get_the_author_meta( 'w4os_firstname', $avatar->ID) . ' ' . get_the_author_meta( 'w4os_lastname', $avatar->ID));
-      $page_title = $avatar_name;
-      $head_title = sprintf(__("%s's profile", 'w4os'), $avatar_name);
-    } else {
-      $not_found = true;
-      $page_title = __('Avatar not found', 'w4os');
-    }
-  }
-
-  if(isset($page_title)) {
-    // Doesn't seem to have any effect here
-    // add_action( 'wp_title', function () use($page_title) {
-    //   return $page_title;
-    // }, 20 );
-
-    add_filter( 'the_title', function($title, $id = NULL) use ($page_title) {
-      if ( is_singular() && in_the_loop() && is_main_query() ) {
-        return $page_title;
-      }
-      return $title;
-    }, 20, 2 );
-
-    if(!isset($head_title)) $head_title = $page_title;
-
-    if(wp_get_theme()->Name == 'Divi' || wp_get_theme()->parent()->Name == 'Divi') {
-      // document_title_parts doesn't work with some themes, workaround...
-      add_filter('pre_get_document_title', function() use($head_title) {
-        return $head_title . ' – ' . get_bloginfo('name') ;
-      }, 20);
-    } else {
-      // Document_title_parts is preferred as it keeps website SEO preferences
-      add_filter('document_title_parts', function($title) use($head_title) {
-        $title['title'] = $head_title;
-        // $title['site'] = get_option('w4os_grid_name');
-        return $title;
-      }, 20);
-    }
-  }
-
-  if(@$not_found) {
-    // header("Status: 404 Not Found");
-    $wp_query->set_404();
-    status_header( 404 );
-    get_template_part( 404 );
-    exit();
-  }
-
-  $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
-  if(strpos( $user_agent, ' - SecondLife/') !== false) {
-    return plugin_dir_path(__DIR__) . "templates/page-profile-viewer.php"; die();
-  }
-  return $template;
-} );
+// add_action( 'template_include', function( $template ) {
+//   global $wp_query;
+//   if(isset($wp_query->queried_object->post_name) && $wp_query->queried_object->post_name != get_option('w4os_profile_slug')) return $template;
+//   // echo "post_name " . $wp_query->queried_object->post_name;
+//
+//   if ( isset($_REQUEST['w4os_update_avatar'] ) ) {
+//     $user=get_user_by('ID', $_REQUEST['user_id']);
+//     $uuid = w4os_update_avatar( $user, array(
+//       'action' => sanitize_text_field($_REQUEST['action']),
+//       'w4os_firstname' => sanitize_text_field($_REQUEST['w4os_firstname']),
+//       'w4os_lastname' => sanitize_text_field($_REQUEST['w4os_lastname']),
+//       'w4os_model' => sanitize_text_field($_REQUEST['w4os_model']),
+//       'w4os_password_1' => $_REQUEST['w4os_password_1'],
+//     ));
+//   }
+//
+//   $query_firstname = get_query_var( 'profile_firstname' );
+//   $query_lastname = get_query_var( 'profile_lastname' );
+//
+//   if ( empty($query_firstname) || empty($query_lastname) ) {
+//     if(is_user_logged_in()) {
+//       $uuid = w4os_profile_sync(wp_get_current_user());
+//       if($uuid) {
+//         $page_title = __('My Profile', 'w4os');
+//       } else {
+//         $page_title = __('Create My Avatar', 'w4os');
+//       }
+//     } else {
+//       $page_title = __('Log in', 'w4os');
+//     }
+//   } else {
+//
+//   // if ( $query_firstname != '' && $query_lastname != '' ) {
+//     $user = w4os_get_avatar_by_name($query_firstname, $query_lastname );
+//     if($user) {
+//       $avatar = new W4OS_Avatar($user);
+//       $avatar_profile = $avatar->profile_page();
+//     }
+//     if($avatar_profile) {
+//       $avatar_name = esc_attr(get_the_author_meta( 'w4os_firstname', $avatar->ID) . ' ' . get_the_author_meta( 'w4os_lastname', $avatar->ID));
+//       $page_title = $avatar_name;
+//       $head_title = sprintf(__("%s's profile", 'w4os'), $avatar_name);
+//     } else {
+//       $not_found = true;
+//       $page_title = __('Avatar not found', 'w4os');
+//     }
+//   }
+//
+//   if(isset($page_title)) {
+//     // Doesn't seem to have any effect here
+//     // add_action( 'wp_title', function () use($page_title) {
+//     //   return $page_title;
+//     // }, 20 );
+//
+//     add_filter( 'the_title', function($title, $id = NULL) use ($page_title) {
+//       if ( is_singular() && in_the_loop() && is_main_query() ) {
+//         return $page_title;
+//       }
+//       return $title;
+//     }, 20, 2 );
+//
+//     if(!isset($head_title)) $head_title = $page_title;
+//
+//     if(wp_get_theme()->Name == 'Divi' || wp_get_theme()->parent()->Name == 'Divi') {
+//       // document_title_parts doesn't work with some themes, workaround...
+//       add_filter('pre_get_document_title', function() use($head_title) {
+//         return $head_title . ' – ' . get_bloginfo('name') ;
+//       }, 20);
+//     } else {
+//       // Document_title_parts is preferred as it keeps website SEO preferences
+//       add_filter('document_title_parts', function($title) use($head_title) {
+//         $title['title'] = $head_title;
+//         // $title['site'] = get_option('w4os_grid_name');
+//         return $title;
+//       }, 20);
+//     }
+//   }
+//
+//   if(@$not_found) {
+//     // header("Status: 404 Not Found");
+//     $wp_query->set_404();
+//     status_header( 404 );
+//     get_template_part( 404 );
+//     exit();
+//   }
+//
+//   $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+//   if(strpos( $user_agent, ' - SecondLife/') !== false) {
+//     return plugin_dir_path(__DIR__) . "templates/page-profile-viewer.php"; die();
+//   }
+//   return $template;
+// } );
 
 add_action('admin_init', function() {
 
