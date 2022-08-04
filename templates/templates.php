@@ -2,13 +2,19 @@
 
 add_action( 'template_include', 'w4os_template_include' );
 function w4os_template_include( $template ) {
-  global $wp_query;
+  global $wp_query, $wp;
   $plugindir = dirname( __DIR__ );
   $post_name = (isset($wp_query->queried_object->post_name)) ? $wp_query->queried_object->post_name : '';
   $template_slug=str_replace('.php', '', basename($template));
   $post_type_slug=get_post_type();
+
+  if ( !empty(W4OS_GRID_INFO['welcome']) && get_permalink( get_the_ID() ) === W4OS_GRID_INFO['welcome'] )
+  $custom = "$plugindir/templates/$template_slug-splash.php";
+  if(file_exists($custom)) return $custom;
+
   $custom = "$plugindir/templates/$template_slug-$post_name.php";
   if(file_exists($custom)) return $custom;
+
   return $template;
 }
 
