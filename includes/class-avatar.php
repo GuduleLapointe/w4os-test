@@ -41,6 +41,11 @@ class W4OS3_Avatar {
 	protected $filters;
 
 	protected $post;
+
+	public $ID;
+	public $name;
+	public $UUID;
+
 	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *
@@ -53,13 +58,64 @@ class W4OS3_Avatar {
 		}
 		if(!empty($post) &! is_wp_error($post)) {
 			$this->post = $post;
+			$this->ID = $post->ID;
+			$this->UUID = get_post_meta($post->ID, 'avatar_uuid', true);
+			$this->name = get_post_meta($post->ID, 'avatar_name', true);
 		}
+		// error_log(__CLASS__ . ' ' . print_r($this, true));
 	}
 
-	function update($data = []) {
-	}
+	function avatar_sync($data=[]) {
+		// error_log(__FUNCTION__ . ' data ' . print_r($data, true));
+		return;
 
-	function create() {
+		if(!W4OS_DB_CONNECTED) return false;
+	  global $w4osdb;
+
+		if(is_numeric($post)) {
+			$post_id = $post;
+			$post = get_post($post_id);
+		}
+		if(empty($post) || is_wp_error($post)) return false;
+		if($post->post_type != 'avatar') return false;
+
+		return;
+
+	  if(is_numeric($post_or_id)) $post = get_user_by('ID', $post_or_id);
+	  else $post = $post_or_id;
+	  if(!is_object($post)) return;
+
+	  if(w4os_empty($uuid)) {
+	    $condition = "Email = '$post->user_email'";
+	  } else {
+	    $condition = "PrincipalID = '$uuid'";
+	  }
+
+	  $avatars=$w4osdb->get_results("SELECT * FROM UserAccounts
+	    LEFT JOIN userprofile ON PrincipalID = userUUID
+	    LEFT JOIN GridUser ON PrincipalID = UserID
+	    WHERE active = 1 AND $condition"
+	  );
+	  if(empty($avatars)) return false;
+
+	  $avatar_row = array_shift($avatars);
+	  if(w4os_empty($uuid)) $uuid = $avatar_row->PrincipalID;
+
+	  if(w4os_empty($uuid)) {
+	    w4os_profile_dereference($post);
+	    return false;
+	  }
+
+	  $post->add_role('grid_user');
+
+	  update_user_meta( $post->ID, 'w4os_uuid', $uuid );
+	  update_user_meta( $post->ID, 'w4os_firstname', $avatar_row->FirstName );
+	  update_user_meta( $post->ID, 'w4os_lastname', $avatar_row->LastName );
+	  update_user_meta( $post->ID, 'w4os_avatarname', trim($avatar_row->FirstName . ' ' . $avatar_row->LastName) );
+	  update_user_meta( $post->ID, 'w4os_created', $avatar_row->Created);
+	  update_user_meta( $post->ID, 'w4os_lastseen', $avatar_row->Login);
+	  update_user_meta( $post->ID, 'w4os_profileimage', $avatar_row->profileImage );
+	  return $uuid;
 	}
 
 	/**
@@ -189,11 +245,18 @@ class W4OS3_Avatar {
 	    'style'      => 'seamless',
 			'fields'     => [
 				'name' => [
-						// 'name'     => __( 'Avatar Name', 'w4os' ),
-						'id'       => $prefix . 'name',
-						'type'     => 'custom_html',
-						'std' => '<h1>' . self::current_avatar_name() . '</h1>',
-						// 'callback' => __CLASS__ . '::current_avatar_name',
+				// 		// 'name'     => __( 'Avatar Name', 'w4os' ),
+				// 		'id'       => $prefix . 'name',
+				// 		'type'     => 'hidden',
+				// 		'std'	=> 'saved ' . self::current_avatar_name(),
+				// 		// 'callback' => __CLASS__ . '::current_avatar_name',
+				// ],
+				// 'saved_name' => [
+					// 'name'     => __( 'Avatar Name', 'w4os' ),
+					'id'       => $prefix . 'name',
+					'type'     => 'custom_html',
+					'std' => '<h1>' . self::current_avatar_name() . '</h1>',
+					// 'callback' => __CLASS__ . '::current_avatar_name',
 				],
 				[
 					'name'       => __( 'WordPress User', 'w4os' ),
@@ -243,14 +306,14 @@ class W4OS3_Avatar {
 	          'id'      => $prefix . 'password',
 	          'type'    => 'password',
 	          'columns' => 4,
-						'required' => W4OS::is_new_post(),
+						// 'required' => W4OS::is_new_post() &! current_user_can('administrator'),
 	      ],
 	      [
 	          'name'    => __( 'Confirm password', 'w4os' ),
 	          'id'      => $prefix . 'password_2',
 	          'type'    => 'password',
 	          'columns' => 4,
-						'required' => W4OS::is_new_post(),
+						// 'required' => W4OS::is_new_post() &! current_user_can('administrator'),
 	      ],
 	      [
 	          'name'    => __( 'Same password as WP user', 'w4os' ),
@@ -328,29 +391,332 @@ class W4OS3_Avatar {
 	  return $meta_boxes;
 	}
 
+	function get_uuid() {
+		return get_post_meta($this->post, 'avatar_uuid', true);
+	}
+
 	static function insert_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
 	  if(!$update) return $data;
 	  if('avatar' !== $data['post_type']) return $data;
 
-		/**
-		 * Rewrite post title
-		 */
-	  $avatar_name = trim(@$postarr['avatar_name']);
-	  if(empty($avatar_name)) {
-	    $avatar_name = trim(get_post_meta($postarr['ID'], 'avatar_name', true));
-	  }
-	  if(!empty($avatar_name)) $data['post_title'] = $avatar_name;
+		$avatar = new self ($postarr['ID']);
 
-		/**
-		 * If new, eheck if name is valid and create on simulator
-		 */
+		$avatar_name = trim(@$postarr['avatar_name']);
+		if(!empty($avatar->name)) {
+			$avatar_name = $avatar->name;
+			unset($data['avatar_name']);
+		}
+		if(!empty($avatar_name)) {
+			$data['post_title'] = $avatar_name;
+			$data['post_name'] = $avatar_name;
+		}
 
-		/**
-		 * Update WP post with simulator info (UUID, About, Created, Partner, Watns, Skills, Languages, Real Life)
-		 */
+		if(empty($avatar_name)) {
+			$avatar_name = $avatar->post->post_title;
+		}
+
+		$uuid = $avatar->UUID;
+		if(w4os_empty($uuid)) {
+			$uuid = self::get_uuid_by_name($avatar_name);
+		} else {
+			unset($data['avatar_uuid']);
+		}
+		if(w4os_empty($uuid)) {
+			// We must create one
+			$avatar->name = $avatar_name;
+			$uuid = $avatar->create($avatar, $data, $postarr);
+			if(!w4os_empty($uuid)) {
+				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
+			}
+		}
 
 	  return $data;
 	}
+
+	function update($data = []) {
+	}
+
+	function create($avatar = NULL, $data = [], $postarr = []) {
+		if(!W4OS_DB_CONNECTED) return;
+		if(!is_object($avatar)) return; // We might need to handle this in the future
+
+		global $w4osdb;
+		$errors = false;
+
+		$uuid = self::get_uuid_by_name($avatar->name);
+		if ( $uuid ) {
+	    w4os_notice(__("This user already has an avatar.", 'w4os'), 'fail');
+			error_log('This user already has an avatar');
+	    return $uuid;
+		}
+
+		if(!self::check_name_availability($avatar->name)) {
+			w4os_notice(__("This name is not available.", 'w4os'), 'error') ;
+			return false;
+		}
+
+		$parts = explode(' ', $avatar->name);
+		$FirstName=$parts[0];
+		$LastName=$parts[1];
+
+		$model = esc_attr(empty($postarr['avatar_model']) ? W4OS_DEFAULT_AVATAR : $postarr['avatar_model']);
+
+		if ($postarr['avatar_password'] != $postarr['avatar_password_2']) {
+			w4os_notice(__("Passwords don't match.", 'w4os'), 'error') ;
+			return false;
+
+			// TODO: also check if same pwd as user if use_wp_password is set
+			// $owner = get_user($postarr['avatar_owner']);
+			// if ( ! wp_check_password($params['w4os_password_1'], $owner->user_pass, $owner->ID)) {
+			// 		$errors=true; w4os_notice(__("The password does not match.", 'w4os'), 'error') ;
+			// 		return false;
+			// }
+		}
+		$password=stripcslashes($postarr['avatar_password']);
+
+		$newavatar_uuid = w4os_gen_uuid();
+		$check_uuid = $w4osdb->get_var("SELECT PrincipalID FROM UserAccounts WHERE PrincipalID = '$newavatar_uuid'");
+	  if ( $check_uuid ) {
+	    w4os_notice(__( 'This should never happen! Generated a random UUID that already existed. Sorry. Try again.', 'w4os' ), 'fail');
+	    return false;
+	  }
+
+		$salt = md5(w4os_gen_uuid());
+	  $hash = md5(md5($password) . ":" . $salt);
+		$created = time();
+		$HomeRegionID = $w4osdb->get_var("SELECT UUID FROM regions WHERE regionName = '" . W4OS_DEFAULT_HOME . "'");
+	  if(empty($HomeRegionID)) $HomeRegionID = '00000000-0000-0000-0000-000000000000';
+
+		$result = $w4osdb->insert (
+	    'UserAccounts', array (
+				'PrincipalID' => $newavatar_uuid,
+				'ScopeID' => W4OS_NULL_KEY,
+				'FirstName'   => $FirstName,
+				'LastName'   => $LastName,
+				'Email' => $postarr['avatar_email'],
+				'ServiceURLs' => 'HomeURI= InventoryServerURI= AssetServerURI=',
+				'Created' => $created,
+	    )
+	  );
+		if ( !$result ) w4os_notice(__("Error while creating user", 'w4os'), 'fail');
+		else $result = $w4osdb->insert (
+			'auth', array (
+				'UUID' => $newavatar_uuid,
+				'passwordHash'   => $hash,
+				'passwordSalt'   => $salt,
+				'webLoginKey' => W4OS_NULL_KEY,
+			)
+		);
+		if ( !$result ) w4os_notice(__("Error while setting password", 'w4os'), 'fail');
+		else $result = $w4osdb->insert (
+	    'GridUser', array (
+	      'UserID' => $newavatar_uuid,
+	      'HomeRegionID' => $HomeRegionID,
+	      'HomePosition' => '<128,128,21>',
+	      'LastRegionID' => $HomeRegionID,
+	      'LastPosition' => '<128,128,21>',
+	    )
+	  );
+	  if ( !$result ) w4os_notice(__("Error while setting home region", 'w4os'), 'fail');
+		else {
+			$model_firstname=strstr($model, " ", true);
+			$model_lastname=trim(strstr($model, " "));
+			$model_uuid = $w4osdb->get_var("SELECT PrincipalID FROM UserAccounts WHERE FirstName = '$model_firstname' AND LastName = '$model_lastname'");
+			if(w4os_empty($model_uuid))
+			error_log(sprintf(
+				'%s could not find model %s\'s uuid',
+				__FUNCTION__,
+				"$model_firstname $model_lastname"
+			));
+
+			$inventory_uuid = w4os_gen_uuid();
+		  $result = $w4osdb->insert (
+		    'inventoryfolders', array (
+		      'folderName' => 'My Inventory',
+		      'type' => 8,
+		      'version' => 1,
+		      'folderID' => $inventory_uuid,
+		      'agentID' => $newavatar_uuid,
+		      'parentFolderID' => W4OS_NULL_KEY,
+		    )
+		  );
+		}
+		if ( !$result ) w4os_notice(__("Error while creating user inventory", 'w4os'), 'fail');
+		else {
+			$bodyparts_uuid = w4os_gen_uuid();
+			$bodyparts_model_uuid = w4os_gen_uuid();
+			$currentoutfit_uuid = w4os_gen_uuid();
+			$folders = array(
+				array('Textures', 0, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Sounds', 1, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Calling Cards', 2, 2, w4os_gen_uuid(), $inventory_uuid ),
+				array('Landmarks', 3, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Photo Album', 15, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Clothing', 5, 3, w4os_gen_uuid(), $inventory_uuid ),
+				array('Objects', 6, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Notecards', 7, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Scripts', 10, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Body Parts', 13, 5, $bodyparts_uuid, $inventory_uuid ),
+				array('Trash', 14, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Animations', 20, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Gestures', 21, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array('Lost And Found', 16, 1, w4os_gen_uuid(), $inventory_uuid ),
+				array("$model_firstname $model_lastname outfit", -1, 1, $bodyparts_model_uuid, $bodyparts_uuid ),
+				array('Current Outfit', 46, 1, $currentoutfit_uuid, $inventory_uuid ),
+				// array('My Outfits', 48, 1, $myoutfits_uuid, $inventory_uuid ),
+				// array("$model_firstname $model_lastname", 47, 1, $myoutfits_model_uuid, $myoutfits_uuid ),
+				// array('Friends', 2, 2, w4os_gen_uuid(), $inventory_uuid ),
+				// array('Favorites', 23, w4os_gen_uuid(), $inventory_uuid ),
+				// array('All', 2, 1, w4os_gen_uuid(), $inventory_uuid ),
+			);
+			foreach($folders as $folder) {
+	      $name = $folder[0];
+	      $type = $folder[1];
+	      $version = $folder[2];
+	      $folderid = $folder[3];
+	      $parentid = $folder[4];
+	      if ($result) $result = $w4osdb->insert (
+	        'inventoryfolders', array (
+	          'folderName' => $name,
+	          'type' => $type,
+	          'version' => $version,
+	          'folderID' => $folderid,
+	          'agentID' => $newavatar_uuid,
+	          'parentFolderID' => $parentid,
+	        )
+	      );
+	      if( !$result ) {
+					w4os_notice(__("Error while adding folder $folder", 'w4os'), 'fail');
+					break;
+				}
+	    }
+		}
+
+		// if ( $result ) {
+		//   $result = $w4osdb->get_results("SELECT folderName,type,version FROM inventoryfolders WHERE agentID = '$model_uuid' AND type != 8");
+		//   if($result) {
+		//     foreach($result as $row) {
+		//       $result = $w4osdb->insert (
+		//         'inventoryfolders', array (
+		//           'folderName' => $row->folderName,
+		//           'type' => $row->type,
+		//           'version' => $row->version,
+		//           'folderID' => w4os_gen_uuid(),
+		//           'agentID' => $newavatar_uuid,
+		//           'parentFolderID' => $inventory_uuid,
+		//         )
+		//       );
+		//       if( ! $result ) break;
+		//     }
+		//   }
+		// }
+
+		if ( $result ) {
+	    $model = $w4osdb->get_results("SELECT Name, Value FROM Avatars WHERE PrincipalID = '$model_uuid'");
+	    // w4os_notice(print_r($result, true), 'code');
+	    // foreach($result as $row) {
+	    //   w4os_notice(print_r($row, true), 'code');
+	    //   w4os_notice($row->Name . " = " . $row->Value);
+	    // }
+
+	    // foreach($avatars_prefs as $var => $val) {
+	    if($model) {
+	      foreach($model as $row) {
+	        unset($newitem);
+	        unset($newitems);
+	        unset($newvalues);
+	        $Name = $row->Name;
+	        $Value = $row->Value;
+	        if (strpos($Name, 'Wearable') !== FALSE) {
+	          // Must add a copy of item in inventory
+	          $uuids = explode(":", $Value);
+	          $item = $uuids[0];
+	          $asset = $uuids[1];
+	          $destinventoryid = $w4osdb->get_var("SELECT inventoryID FROM inventoryitems WHERE assetID='$asset' AND avatarID='$newavatar_uuid'");
+	          if(!$destinventoryid) {
+	            $newitem = $w4osdb->get_row("SELECT * FROM inventoryitems WHERE assetID='$asset' AND avatarID='$model_uuid'", ARRAY_A);
+	            $destinventoryid = w4os_gen_uuid();
+	            $newitem['inventoryID'] = $destinventoryid;
+	            $newitems[] = $newitem;
+	            $Value = "$destinventoryid:$asset";
+	          }
+	        } else if (strpos($Name, '_ap_') !== FALSE) {
+	          $items = explode(",", $Value);
+	          foreach($items as $item) {
+	            $asset = $w4osdb->get_var("SELECT assetID FROM inventoryitems WHERE inventoryID='$item'");
+	            $destinventoryid = $w4osdb->get_var("SELECT inventoryID FROM inventoryitems WHERE assetID='$asset' AND avatarID='$newavatar_uuid'");
+	            if(!$destinventoryid) {
+	              $newitem = $w4osdb->get_row("SELECT * FROM inventoryitems WHERE assetID='$asset' AND avatarID='$model_uuid'", ARRAY_A);
+	              $destinventoryid = w4os_gen_uuid();
+	              $newitem['inventoryID'] = $destinventoryid;
+	              // $Value = $destinventoryid;
+	              $newitems[] = $newitem;
+	              $newvalues[] = $destinventoryid;
+	            }
+	          }
+	          if($newvalues) $Value = implode(",", $newvalues);
+	        }
+	        if(!empty($newitems)) {
+	          foreach($newitems as $newitem) {
+	            // $destinventoryid = w4os_gen_uuid();
+	            // w4os_notice("Creating inventory item '$Name' for $firstname");
+	            $newitem['parentFolderID'] = $bodyparts_model_uuid;
+	            $newitem['avatarID'] = $newavatar_uuid;
+	            $result = $w4osdb->insert ('inventoryitems', $newitem);
+	            if( !$result ) w4os_notice(__("Error while adding inventory item", 'w4os'), 'fail');
+	            // w4os_notice(print_r($newitem, true), 'code');
+	            // echo "<pre>" . print_r($newitem, true) . "</pre>"; exit;
+
+	            // Adding aliases in "Current Outfit" folder to avoid FireStorm error message
+	            $outfit_link=$newitem;
+	            $outfit_link['assetType']=24;
+	            $outfit_link['assetID']=$newitem['inventoryID'];
+	            $outfit_link['inventoryID'] = w4os_gen_uuid();
+	            $outfit_link['parentFolderID'] = $currentoutfit_uuid;
+	            $result = $w4osdb->insert ('inventoryitems', $outfit_link);
+	            if( !$result ) w4os_notice(__("Error while adding inventory outfit link", 'w4os'), 'fail');
+	          }
+	          // } else {
+	          //   w4os_notice("Not creating inventory item '$Name' for $firstname");
+	        }
+					$result = $w4osdb->insert (
+						'Avatars', array (
+							'PrincipalID' => $newavatar_uuid,
+							'Name' => $Name,
+							'Value' => $Value,
+						)
+					);
+	        if( !$result ) w4os_notice(__("Error while adding avatar", 'w4os'), 'fail');
+	      }
+	    } else {
+				error_log(sprintf(
+					'%s could find model %s\'s inventory items',
+					__FUNCTION__,
+					"$model_firstname $model_lastname"
+				));
+			}
+	  }
+
+	  if( ! $result ) {
+	    w4os_notice(__("Errors occurred while creating the user", 'w4os'), 'fail');
+	    // w4os_notice($sql, 'code');
+	    return false;
+	  }
+
+		w4os_notice(sprintf( __('Avatar %s created successfully.', 'w4os' ), "$FirstName $LastName" ), 'success' );
+
+		// error_log("creating avatar $FirstName $LastName with model $model_firstname/$model_lastname");
+		// return $newavatar_uuid;
+
+		// if( ! current_user_can( 'edit_user', $postarr['avatar_owner'] )) {
+	  //   if ( ! $params['w4os_password_1'] ) { $errors=true; w4os_notice(__("Password required", 'w4os'), 'error') ; }
+	  //   else if ( ! wp_check_password($params['w4os_password_1'], $user->user_pass)) { $errors=true; w4os_notice(__("The password does not match.", 'w4os'), 'error') ; }
+	  // }
+
+
+		// error_log(__FUNCTION__ . ' ' . print_r($data, true));
+	}
+
 
 	/**
 	 * example row action link for avatar post type
