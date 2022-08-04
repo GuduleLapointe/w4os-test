@@ -13,11 +13,21 @@ WordPress interface for OpenSimulator (w4os)
 
 ## Description
 
+**This is a hihgly experimental developement branch. It contains unfinished code and is probably not really operational, and most likely not secure.**
+
+**For a stable release, use the master branch or download from WordPress directory.**
+
 Ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). Provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
 
 See Features and Roadmap sections for current and upcoming functionalties.
 
 ### Features
+
+Experimental, under developement: transition from user-linked avatars to independant post types
+* to avoid conflicts if multiple avatar were created with the same email address from console
+* will allow multiple avatars for a single account (the option will eventually be switchable in w4os settings)
+
+Standard features
 
 - **Grid info**: `[gridinfo]` shortcode and admin dashboard widgets
 - **Grid status**: `[gridstatus]` shortcode and admin dashboard widgets
