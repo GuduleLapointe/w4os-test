@@ -273,7 +273,7 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 = 2.0.8 =
 * Now distributed via WordPress plugins directory
 * Official git repository changed to GitHub
-* renamed plugin as W4OS - OpenSimulator Web Interface
+* renamed plugin as w4os - OpenSimulator Web Interface
 * fix other WP plugins directory requirements
 * fix localizations not loading
 * fix regression, automatic updates restored. Users with version 2.0 to 2.0.3 will need to reinstall the plugin from source. Sorry.

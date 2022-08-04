@@ -1,6 +1,6 @@
 {
     "name": "speculoos/w4os",
-    "description": "W4OS - OpenSimulator Web Interface",
+    "description": "w4os - OpenSimulator Web Interface",
     "type": "wordpress-plugin",
     "require": {
         "woocommerce/action-scheduler": "^3.4",

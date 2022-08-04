@@ -103,7 +103,7 @@ if(!defined('W4OS_VERSION')) {
 			"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
 			sprintf(
 				__("%s %s is installed and active. Deactivate it before activating another version.", 'w4os'),
-				'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('W4OS - OpenSimulator Web Interface', 'w4os') )) . '<strong>',
+				'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('w4os - OpenSimulator Web Interface', 'w4os') )) . '<strong>',
 				W4OS_VERSION,
 			),
 		);
