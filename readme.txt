@@ -153,7 +153,7 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 
 == Changelog ==
 
-= Unreleased =
+= Experimental =
 * added grid avatar creation from new avatar post type
 * added owner, mail and born columns to avatars admin list
 * added avatar creation form
