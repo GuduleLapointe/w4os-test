@@ -429,9 +429,11 @@ class W4OS3_Avatar {
 			$avatar->name = $avatar_name;
 			$uuid = $avatar->create($avatar, $data, $postarr);
 			if(!$uuid || w4os_empty($uuid)) {
+				error_log('got no uuid ' . $uuid);
 				wp_redirect($_POST['referredby']);
 				die();
 			} else {
+				error_log('got uuid ' . $uuid);
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
@@ -718,13 +720,14 @@ class W4OS3_Avatar {
 
 	  if( ! $result ) {
 			// TODO: delete sql rows created during the process
-			
+
 			$message = sprintf( __("Errors occurred while creating avatar %s", 'w4os'), "$FirstName $LastName" );
 			w4os_notice(sprintf( $message, "$FirstName $LastName" ), 'fail');
 			error_log(sprintf( $message, "$FirstName $LastName" ));
 			return false;
 	  }
 
+		return $newavatar_uuid;
 		// w4os_notice(sprintf( __('Avatar %s created successfully.', 'w4os' ), "$FirstName $LastName" ), 'success' );
 	}
 
