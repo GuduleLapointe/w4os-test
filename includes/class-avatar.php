@@ -433,7 +433,6 @@ class W4OS3_Avatar {
 				wp_redirect($_POST['referredby']);
 				die();
 			} else {
-				error_log('got uuid ' . $uuid);
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
@@ -545,8 +544,8 @@ class W4OS3_Avatar {
 			$model_uuid = $w4osdb->get_var("SELECT PrincipalID FROM UserAccounts WHERE FirstName = '$model_firstname' AND LastName = '$model_lastname'");
 			if(w4os_empty($model_uuid))
 			error_log(sprintf(
-				'%s could not find model %s\'s uuid',
-				__FUNCTION__,
+				'%s could not find model %s',
+				__CLASS__ . '->' . __FUNCTION__ . '()',
 				"$model_firstname $model_lastname"
 			));
 
@@ -582,7 +581,6 @@ class W4OS3_Avatar {
 				array('Animations', 20, 1, w4os_gen_uuid(), $inventory_uuid ),
 				array('Gestures', 21, 1, w4os_gen_uuid(), $inventory_uuid ),
 				array('Lost And Found', 16, 1, w4os_gen_uuid(), $inventory_uuid ),
-				array("$model_firstname $model_lastname outfit", -1, 1, $bodyparts_model_uuid, $bodyparts_uuid ),
 				array('Current Outfit', 46, 1, $currentoutfit_uuid, $inventory_uuid ),
 				// array('My Outfits', 48, 1, $myoutfits_uuid, $inventory_uuid ),
 				// array("$model_firstname $model_lastname", 47, 1, $myoutfits_model_uuid, $myoutfits_uuid ),
@@ -590,6 +588,9 @@ class W4OS3_Avatar {
 				// array('Favorites', 23, w4os_gen_uuid(), $inventory_uuid ),
 				// array('All', 2, 1, w4os_gen_uuid(), $inventory_uuid ),
 			);
+			if(!w4os_empty($model_uuid)) {
+				$folders[] = array("$model_firstname $model_lastname outfit", -1, 1, $bodyparts_model_uuid, $bodyparts_uuid );
+			}
 			foreach($folders as $folder) {
 	      $name = $folder[0];
 	      $type = $folder[1];
@@ -632,7 +633,9 @@ class W4OS3_Avatar {
 		//   }
 		// }
 
-		if ( $result ) {
+		if ( $result &! w4os_empty($model_uuid) ) {
+			// TODO: add default ruth values if no model found
+
 	    $model = $w4osdb->get_results("SELECT Name, Value FROM Avatars WHERE PrincipalID = '$model_uuid'");
 	    // w4os_notice(print_r($result, true), 'code');
 	    // foreach($result as $row) {
