@@ -134,6 +134,10 @@ class W4OS3_Avatar {
 				'hook' => 'wp_ajax_check_name_availability',
 				'callback' => 'ajax_check_name_availability',
 			),
+			array (
+				'hook' => 'save_post',
+				'callback' => 'save_avatar_slug',
+			),
 		);
 
 		$filters = array(
@@ -408,7 +412,6 @@ class W4OS3_Avatar {
 		}
 		if(!empty($avatar_name)) {
 			$data['post_title'] = $avatar_name;
-			$data['post_name'] = $avatar_name;
 		}
 
 		if(empty($avatar_name)) {
@@ -431,6 +434,19 @@ class W4OS3_Avatar {
 		}
 
 	  return $data;
+	}
+
+	static function save_avatar_slug( $post_id ) {
+		if ( wp_is_post_revision( $post_id ) ) return;
+		$post = get_post($post_id);
+		if('avatar' !== $post->post_type) return;
+
+		remove_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
+
+		$slug = sanitize_title($post->post_title);
+		wp_update_post( array( 'ID' => $post_id, 'post_name' => $slug ));
+
+		add_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
 	}
 
 	function update($data = []) {
