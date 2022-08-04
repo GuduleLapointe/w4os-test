@@ -154,7 +154,10 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 == Changelog ==
 
 = Unreleased =
+* added grid avatar creation from new avatar post type
+* added owner, mail and born columns to avatars admin list
 * added avatar creation form
+* default avatar name as wp user name, fallback to randomly generated
 
 = 2.3.7 =
 * fix offline messages not forwarded by mail (opensim db not properly loaded by helpers)
