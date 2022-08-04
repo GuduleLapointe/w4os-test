@@ -5,17 +5,37 @@ function w4os_template_include( $template ) {
   global $wp_query, $wp;
   $plugindir = dirname( __DIR__ );
   $post_name = (isset($wp_query->queried_object->post_name)) ? $wp_query->queried_object->post_name : '';
-  $template_slug=str_replace('.php', '', basename($template));
+  $template_slug=str_replace('/^index$/', 'archive', str_replace('.php', '', basename($template)));
+  $post_id = get_the_ID();
   $post_type_slug=get_post_type();
 
-  if ( !empty(W4OS_GRID_INFO['welcome']) && get_permalink( get_the_ID() ) === W4OS_GRID_INFO['welcome'] )
-  $custom = "$plugindir/templates/$template_slug-splash.php";
-  if(file_exists($custom)) return $custom;
-
-  $custom = "$plugindir/templates/$template_slug-$post_name.php";
-  if(file_exists($custom)) return $custom;
+  $attempts = array(
+    (w4os_is_splash()) ? "$plugindir/templates/$template_slug-splash.php" : NULL,
+    "$plugindir/templates/$template_slug-$post_type_slug.php",
+    // "$plugindir/templates/$template_slug.php", // We should probably not override generic templates
+  );
+  foreach($attempts as $attempt) if(file_exists($attempt)) return $attempt;
 
   return $template;
+}
+
+function w4os_is_splash($post_id = NULL) {
+  if(!$post_id) $post_id = get_the_ID();
+  if(!$post_id) return false;
+
+  if ( !empty(W4OS_GRID_INFO['welcome']) && get_permalink( $post_id ) === W4OS_GRID_INFO['welcome'] ) return true;
+  $original_post_id = w4os_original_language_post($post_id);
+  if ( !empty(W4OS_GRID_INFO['welcome']) && wp_get_canonical_url( $original_post_id ) === W4OS_GRID_INFO['welcome'] ) return true;
+
+  return false;
+}
+
+function w4os_original_language_post( $object_id, $type = 'post' ) {
+
+  if($original_post_id = apply_filters( 'wpml_element_trid', NULL, $object_id, 'post_page' ))
+  return $original_post_id;
+
+  return false;
 }
 
 add_filter( 'the_content', 'w4os_the_content');
