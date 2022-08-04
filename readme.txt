@@ -13,9 +13,9 @@ WordPress interface for OpenSimulator (w4os)
 
 == Description ==
 
-**This is a hihgly experimental developement branch. It contains unfinished code and is probably not really operational, and most likely not secure.**
+Important: this is a **hihgly experimental developement branch**. It contains **unfinished code** and is probably **not really operational**, and most likely **not secure**.
 
-**For a stable release, use the master branch or download from WordPress directory.**
+For a stable release, use **only the master branch** or download from WordPress directory**.
 
 Ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). Provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
 
