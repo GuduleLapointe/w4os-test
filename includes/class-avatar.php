@@ -428,7 +428,10 @@ class W4OS3_Avatar {
 			// We must create one
 			$avatar->name = $avatar_name;
 			$uuid = $avatar->create($avatar, $data, $postarr);
-			if(!w4os_empty($uuid)) {
+			if(!$uuid || w4os_empty($uuid)) {
+				wp_redirect($_POST['referredby']);
+				die();
+			} else {
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
@@ -714,23 +717,15 @@ class W4OS3_Avatar {
 	  }
 
 	  if( ! $result ) {
-	    w4os_notice(__("Errors occurred while creating the user", 'w4os'), 'fail');
-	    // w4os_notice($sql, 'code');
-	    return false;
+			// TODO: delete sql rows created during the process
+			
+			$message = sprintf( __("Errors occurred while creating avatar %s", 'w4os'), "$FirstName $LastName" );
+			w4os_notice(sprintf( $message, "$FirstName $LastName" ), 'fail');
+			error_log(sprintf( $message, "$FirstName $LastName" ));
+			return false;
 	  }
 
-		w4os_notice(sprintf( __('Avatar %s created successfully.', 'w4os' ), "$FirstName $LastName" ), 'success' );
-
-		// error_log("creating avatar $FirstName $LastName with model $model_firstname/$model_lastname");
-		// return $newavatar_uuid;
-
-		// if( ! current_user_can( 'edit_user', $postarr['avatar_owner'] )) {
-	  //   if ( ! $params['w4os_password_1'] ) { $errors=true; w4os_notice(__("Password required", 'w4os'), 'error') ; }
-	  //   else if ( ! wp_check_password($params['w4os_password_1'], $user->user_pass)) { $errors=true; w4os_notice(__("The password does not match.", 'w4os'), 'error') ; }
-	  // }
-
-
-		// error_log(__FUNCTION__ . ' ' . print_r($data, true));
+		// w4os_notice(sprintf( __('Avatar %s created successfully.', 'w4os' ), "$FirstName $LastName" ), 'success' );
 	}
 
 
