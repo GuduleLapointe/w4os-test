@@ -84,7 +84,6 @@ class W4OS3_Avatar {
 	  if(is_numeric($post_or_id)) $post = get_user_by('ID', $post_or_id);
 	  else $post = $post_or_id;
 	  if(!is_object($post)) return;
-
 	  if(w4os_empty($uuid)) {
 	    $condition = "Email = '$post->user_email'";
 	  } else {
@@ -1034,6 +1033,112 @@ class W4OS3_Avatar {
 		return $accounts;
 	}
 
+	static function sync_avatars() {
+		if(! W4OS_DB_CONNECTED) return;
+		global $wpdb, $w4osdb;
+		if(!isset($wpdb)) return false;
+		if(!isset($w4osdb)) return false;
+
+	  $accounts = W4OS3_Avatar::get_avatars_ids_and_uuids();
+		$messages=array();
+		$users_created=[];
+		$users_updated=[];
+		foreach ($accounts as $key => $account) {
+			// $user = @get_user_by('ID', $account['user_id']);
+	    // First cleanup NULL_KEY and other empty UUIDs
+	    if(!isset($account['PrincipalID']) || w4os_empty($account['PrincipalID'])) $account['PrincipalID'] = NULL;
+	    if(!isset($account['w4os_uuid']) || w4os_empty($account['w4os_uuid'])) $account['w4os_uuid'] = NULL;
+
+			if(isset($account['ID'])) {
+				$avatar = new W4OS3_Avatar($account['ID']);
+			} else {
+				$avatar = new W4OS3_Avatar($account);
+			}
+
+			$debug_name = strstr($account['PrincipalID'], '-', true) . ' ' . $account['avatar_name'];
+	    if( isset($account['PrincipalID']) &! w4os_empty($account['PrincipalID']) ) {
+				if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
+					// already linked, just resync
+					error_log("$debug_name already linked, just resync ");
+					// error_log(print_r($avatar, true));
+					// W4OS_Avatar::sync_single_avatar($account['user_id']);
+				} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
+					// wrong reference, but an avatar exists for this WP user, replace reference
+					error_log("$debug_name wrong reference, but an avatar exists for this WP user, replace referencewrong reference, but an avatar exists for this WP user, replace reference");
+					// $result = W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']);
+					// if(W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']))
+					// $users_updated[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
+					// else
+					// $errors[] = '<p class=error>' .  sprintf(__('Error while updating %s %s (%s) %s', 'w4os'), $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
+				} else {
+					// not present in WP, create a post
+					error_log("$debug_name not present in WP, create a post");
+
+					$user = get_user_by('email', $account['email']);
+					if($user) {
+						// assign to existing user
+						error_log("assign $debug_name to $user->display_name");
+					} else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
+						// create user if create_wp_users is true
+						error_log("create user $debug_name");
+						// 	$newid = wp_insert_user(array(
+						// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
+						// 		'user_pass' => wp_generate_password(),
+						// 		'user_email' => $account['email'],
+						// 		'first_name' => $account['FirstName'],
+						// 		'last_name' => $account['LastName'],
+						// 		'role' => 'grid_user',
+						// 		'display_name' => trim($account['FirstName'] . ' ' . $account['LastName']),
+						// 	));
+						// 	if(is_wp_error( $newid )) {
+						// 		$errors[] = $newid->get_error_message();
+						// 	} else if(W4OS_Avatar::sync_single_avatar($newid, $account['PrincipalID'])) {
+						// 		$users_created[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
+						// 	} else {
+						// 		$errors[] = '<p class=error>' .  sprintf(__('Error while updating newly created user %s for %s %s (%s) %s', 'w4os'), $newid, $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
+						// 	}
+					}
+
+				}
+			} else if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
+				// Avatar does not exit (anymore) on grid, delete it
+				error_log("$debug_name does not exit (anymore) on grid, delete it");
+				// w4os_profile_dereference($account['user_id']);
+				// $users_dereferenced[] = sprintf('<a href=%s>%s</a>', get_edit_user_link($account['user_id']), $account['user_id']);
+			} else {
+			// // No linked account, but none referenced so we should not interfer
+			// 	w4os_profile_dereference($account['user_id']);
+			}
+		}
+
+		if(!empty($users_updated)) $messages[] = sprintf(_n(
+			'%d reference updated',
+			'%d references updated',
+			count($users_updated),
+			'w4os',
+		), count($users_updated)) . ': ' . join(', ', $users_updated);
+		if(!empty($users_created)) $messages[] = '<p>' . sprintf(_n(
+	    '%d new WordPress account created',
+	    '%d new WordPress accounts created',
+	    count($users_created),
+	    'w4os',
+	  ), count($users_created)) . ': ' . join(', ', $users_created);
+	  if(!empty($users_dereferenced)) $messages[] = sprintf(_n(
+	    '%d broken reference removed',
+	    '%d broken references removed',
+	    count($users_dereferenced),
+	    'w4os',
+	  ), count($users_dereferenced));
+
+		// // add_action('admin_init', 'w4os_profile_sync_all');
+		// w4os_profile_sync_all();
+		update_option('w4os_sync_users', NULL);
+		// // return '<pre>' . print_r($messages, true) . '</pre>';
+		if(!empty($errors)) $messages[] = '<p class=sync-errors><ul><li>' . join('</li><li>', $errors) . '</p>';
+		// $messages[] = w4os_array2table($accounts, 'accounts', 2);
+		if(!empty($messages)) return '<div class=messages><p>' . join('</p><p>', $messages) . '</div>';
+	}
+
 	static function display_synchronization_status($views = NULL) {
 		$count = self::count();
 
@@ -1067,7 +1172,7 @@ class W4OS3_Avatar {
 			echo '<p class=description>
 			<form method="post" action="options.php" autocomplete="off">
 			<input type="hidden" input-hidden" id="w4os_sync_users" name="w4os_sync_users" value="1">';
-			// settings_fields( 'w4os_status' );
+			settings_fields( 'w4os_status' );
 			submit_button(__('Synchronize users now', 'w4os'));
 			_e('Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console.', 'w4os');
 			echo '</form></p>';

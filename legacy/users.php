@@ -111,7 +111,7 @@ function w4os_sync_users() {
 function register_w4os_sync_users_async_cron()
 {
 	if ( false === as_next_scheduled_action( 'w4os_sync_users' ) ) {
-		as_schedule_cron_action(time(), '0 * * * *', 'w4os_sync_users');
+		as_schedule_cron_action(time(), '0 * * * *', 'W4OS3_Avatar::sync_avatars');
 	}
 }
 add_action('init','register_w4os_sync_users_async_cron');
