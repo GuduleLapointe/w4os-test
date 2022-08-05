@@ -54,10 +54,10 @@ function w4os_gridauth ( $user, $username, $password ) {
         $user = get_user_by('ID', $newid);
         reset_password($user, $password);
         if (is_wp_error( $user )) return $user;
-        w4os_profile_sync($newid, $avatar_row->PrincipalID);
+        W4OS_Avatar::sync_single_avatar($newid, $avatar_row->PrincipalID);
       } else {
         // user exists, just sync update password
-        w4os_profile_sync($user);
+        W4OS_Avatar::sync_single_avatar($user);
         reset_password($user, $password);
       }
     }

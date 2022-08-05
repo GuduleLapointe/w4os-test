@@ -65,8 +65,16 @@ class W4OS3_Avatar {
 		// error_log(__CLASS__ . ' ' . print_r($this, true));
 	}
 
-	function avatar_sync($data=[]) {
-		// error_log(__FUNCTION__ . ' data ' . print_r($data, true));
+
+	/**
+	 * Sync avatar info from OpenSimulator
+	 * @param  object $user_or_id   user object or user id
+	 * @param  key    $uuid         if set, create link with avatar and update info
+	 *                              if not set, update avatar info if link exists
+	 * @return object       [description]
+	 */
+	function sync_single_avatar($data=[]) {
+		error_log(__FUNCTION__ . ' data ' . print_r($data, true));
 		return;
 
 		if(!W4OS_DB_CONNECTED) return false;
@@ -81,9 +89,6 @@ class W4OS3_Avatar {
 
 		return;
 
-	  if(is_numeric($post_or_id)) $post = get_user_by('ID', $post_or_id);
-	  else $post = $post_or_id;
-	  if(!is_object($post)) return;
 	  if(w4os_empty($uuid)) {
 	    $condition = "Email = '$post->user_email'";
 	  } else {
