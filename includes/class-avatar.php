@@ -150,6 +150,17 @@ class W4OS3_Avatar {
 				'callback' => 'insert_post_data',
 				'accepted_args' => 4,
 			),
+
+			array (
+				'hook' => 'views_edit-avatar',
+				'callback' => 'display_synchronization_status',
+			),
+
+			// array (
+			// 	'hook' => 'load-edit.php',
+			// 	'callback' => 'add_in_admin_footer',
+			// ),
+
 			// array (
 			// 	'hook' => 'post_row_actions',
 			// 	'add_row_action_links',
@@ -172,6 +183,15 @@ class W4OS3_Avatar {
 		}
 
 	}
+
+	// static function add_in_admin_footer() {
+	// 	$screen = get_current_screen();
+	// 	if( 'edit-avatar' !== $screen->id ) return;
+	//
+	// 	add_action( 'in_admin_footer', function(){
+	// 		echo '<p>Goodbye from <strong>in_admin_footer</strong>!</p>';
+	// 	});
+	// }
 
 	static function register_post_types() {
 	  $labels = [
@@ -902,4 +922,164 @@ class W4OS3_Avatar {
 
 		return $name;
 	}
+
+	static function count() {
+		// TODO: count broken assets
+		// SELECT inventoryname, inventoryID, assetID, a.id FROM inventoryitems LEFT JOIN assets AS a ON id = assetID WHERE a.id IS NULL;
+
+		if(! W4OS_DB_CONNECTED) return;
+	  global $wpdb, $w4osdb;
+		if(!isset($wpdb)) return false;
+		if(!isset($w4osdb)) return false;
+
+		$count['wp_users'] = count_users()['total_users'];
+		$count['grid_accounts'] = 0;	// Deprecated in 3.0
+		$count['wp_linked'] = 0;			// Deprecated in 3.0
+		$count['wp_only'] = NULL;			// Deprecated in 3.0
+		$count['grid_only'] = NULL;		// Deprecated in 3.0
+		$count['sync'] = 0;						// Deprecated in 3.0?
+
+		$count['models'] = $w4osdb->get_var(sprintf(
+			"SELECT count(*) FROM UserAccounts
+			WHERE FirstName = '%s'
+			OR LastName = '%s'
+			",
+			get_option('w4os_model_firstname'),
+			get_option('w4os_model_lastname'),
+		));
+
+		$count['tech'] = $w4osdb->get_var(sprintf(
+			"SELECT count(*) FROM UserAccounts
+			WHERE (Email IS NULL OR Email = '')
+			AND FirstName != '%s'
+			AND LastName != '%s'
+			AND (FirstName != 'GRID' OR LastName != 'SERVICE')
+			",
+			esc_sql(get_option('w4os_model_firstname')),
+			esc_sql(get_option('w4os_model_lastname')),
+		));
+
+		/**
+		 * Will be deprecated in 3.0
+		 * @var [type]
+		 */
+		$accounts = W4OS3_Avatar::get_avatars_ids_and_uuids();
+	  foreach ($accounts as $key => $account) {
+			if( ! isset($account['w4os_uuid']) ) $account['w4os_uuid'] = NULL;
+			if(!w4os_empty($account['w4os_uuid'])) $count['wp_linked']++;
+			if( ! isset($account['PrincipalID']) ) $account['PrincipalID'] = NULL;
+
+			if( ! w4os_empty($account['PrincipalID']) ) {
+				$count['grid_accounts']++;
+				if($account['PrincipalID'] == $account['w4os_uuid']) {
+					$count['sync']++;
+				} else {
+					$count['grid_only'] += 1;
+				}
+			} else {
+				$account['PrincipalID'] = NULL;
+				if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
+					$count['wp_only']++;
+				}
+			}
+	  }
+		// End deprecated
+
+	  return $count;
+	}
+
+	static function get_avatars_ids_and_uuids() {
+		if(! W4OS_DB_CONNECTED) return;
+		global $wpdb, $w4osdb;
+		if(!isset($wpdb)) return false;
+		if(!isset($w4osdb)) return false;
+
+		$GridAccounts = $w4osdb->get_results(sprintf(
+			"SELECT CONCAT(FirstName, ' ', LastName) as avatar_name, PrincipalID, Email as email FROM UserAccounts
+			WHERE active = 1
+			AND Email is not NULL AND Email != ''
+			AND FirstName != '%s'
+			AND LastName != '%s'
+			AND (FirstName != 'GRID' OR LastName != 'SERVICE')
+			",
+			esc_sql(get_option('w4os_model_firstname')),
+			esc_sql(get_option('w4os_model_lastname')),
+		), OBJECT_K );
+
+		foreach (	$GridAccounts as $key => $row ) {
+			// if(empty($row->email)) continue;
+			// $GridAccounts[$row->email] = (array)$row;
+			$accounts[$key] = (array)$row;
+		}
+
+		$avatars = $wpdb->get_results(
+			"SELECT post_title as avatar_name, mail.meta_value as email, ID, user.meta_value as user_id, uuid.meta_value AS w4os_uuid
+			FROM wp2021_posts
+			LEFT JOIN wp2021_postmeta as mail ON ID = mail.post_id AND mail.meta_key = 'avatar_email'
+			LEFT JOIN wp2021_postmeta as user ON ID = user.post_id AND user.meta_key = 'avatar_owner'
+			LEFT JOIN wp2021_postmeta as uuid ON ID = uuid.post_id AND uuid.meta_key = 'avatar_uuid'
+			WHERE post_type = 'avatar' AND post_status='publish'",
+		OBJECT_K );
+
+		foreach (	$avatars as $key => $row ) {
+			if(empty($key)) continue;
+			// $WPGridAccounts[$row->email] = (array)$row;
+			if (empty($key)) {
+				$accounts[$key] = (array)$row;
+			} else {
+				$accounts[$key] =  array_merge( $accounts[$key], (array)$row );
+			}
+		}
+
+		return $accounts;
+	}
+
+	static function display_synchronization_status($views = NULL) {
+		$count = self::count();
+
+		$messages = [];
+		if($count['grid_only']  > 0 ) {
+			$messages[] = sprintf(_n(
+				'%d grid account has no linked WP account. Syncing will create a new WP account.',
+				'%d grid accounts have no linked WP account. Syncing will create new WP accounts.',
+				$count['grid_only'],
+				'w4os'
+			), $count['grid_only']);
+		}
+		if($count['wp_only']  > 0 ) {
+			$messages[] = sprintf(_n(
+				'%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference.',
+				'%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference.',
+				$count['wp_only'],
+				'w4os'
+			), $count['wp_only']);
+		}
+		if($count['tech'] > 0) {
+			$messages[] = sprintf(_n(
+				"%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks.",
+				"%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks.",
+				$count['tech'],
+				'w4os'
+				) . ' ' . __('Real accounts need a unique email address for W4OS to function properly.', 'w4os'
+			), $count['tech']);
+		}
+		if($count['grid_only'] + $count['wp_only'] > 0) {
+			echo '<p class=description>
+			<form method="post" action="options.php" autocomplete="off">
+			<input type="hidden" input-hidden" id="w4os_sync_users" name="w4os_sync_users" value="1">';
+			// settings_fields( 'w4os_status' );
+			submit_button(__('Synchronize users now', 'w4os'));
+			_e('Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console.', 'w4os');
+			echo '</form></p>';
+		}
+		if(!empty($sync_result))
+		echo '<p class=info>' . $sync_result . '</p>';
+		// include(plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/table-header-avatar.php');
+
+		foreach($messages as $message) {
+			echo "<p>" . esc_attr($message) . "</p>";
+		}
+		return $views;
+	}
+
 }

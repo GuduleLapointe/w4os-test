@@ -1,89 +1,5 @@
 <?php if ( ! defined( 'W4OS_PLUGIN' ) ) die;
 
-function w4os_get_users_ids_and_uuids() {
-	if(! W4OS_DB_CONNECTED) return;
-	global $wpdb, $w4osdb;
-	if(!isset($wpdb)) return false;
-	if(!isset($w4osdb)) return false;
-
-	$GridAccounts = $w4osdb->get_results("SELECT Email as email, PrincipalID, FirstName, LastName FROM UserAccounts
-		WHERE active = 1
-		AND Email is not NULL AND Email != ''
-		AND FirstName != '" . get_option('w4os_model_firstname') . "'
-		AND LastName != '" . get_option('w4os_model_lastname') . "'
-		", OBJECT_K);
-		foreach (	$GridAccounts as $key => $row ) {
-			if(empty($row->email)) continue;
-			// $GridAccounts[$row->email] = (array)$row;
-			$accounts[$key] = (array)$row;
-		}
-
-		$WPGridAccounts = $wpdb->get_results("SELECT user_email as email, ID as user_id, meta_value AS w4os_uuid
-			FROM $wpdb->users LEFT JOIN $wpdb->usermeta
-			ON ID = user_id AND meta_key = 'w4os_uuid' AND meta_value != '' AND meta_value != '" . W4OS_NULL_KEY . "'", OBJECT_K);
-
-			foreach (	$WPGridAccounts as $key => $row ) {
-				if(empty($row->email)) continue;
-				// $WPGridAccounts[$row->email] = (array)$row;
-				if (empty($accounts[$row->email])) {
-					$accounts[$row->email] = (array)$row;
-				} else {
-					$accounts[$row->email] =  array_merge( $accounts[$row->email], (array)$row );
-				}
-			}
-			// echo w4os_array2table($accounts, 'accounts', 2);
-
-			return $accounts;
-}
-
-function w4os_count_users() {
-	if(! W4OS_DB_CONNECTED) return;
-  global $wpdb, $w4osdb;
-	if(!isset($wpdb)) return false;
-	if(!isset($w4osdb)) return false;
-
-  $accounts = w4os_get_users_ids_and_uuids();
-
-  $count['wp_users'] = count_users()['total_users'];
-  $count['grid_accounts'] = 0;
-  $count['wp_linked'] = 0;
-  $count['wp_only'] = NULL;
-  $count['grid_only'] = NULL;
-	$count['sync'] = 0;
-  foreach ($accounts as $key => $account) {
-		if( ! isset($account['w4os_uuid']) ) $account['w4os_uuid'] = NULL;
-		if(!w4os_empty($account['w4os_uuid'])) $count['wp_linked']++;
-		if( ! isset($account['PrincipalID']) ) $account['PrincipalID'] = NULL;
-
-		if( ! w4os_empty($account['PrincipalID']) ) {
-			$count['grid_accounts']++;
-			if($account['PrincipalID'] == $account['w4os_uuid']) {
-				$count['sync']++;
-			} else {
-				$count['grid_only'] += 1;
-			}
-		} else {
-			$account['PrincipalID'] = NULL;
-			if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
-				$count['wp_only']++;
-			}
-		}
-  }
-
-  $count['models'] = $w4osdb->get_var("SELECT count(*) FROM UserAccounts
-  WHERE FirstName = '" . get_option('w4os_model_firstname') . "'
-  OR LastName = '" . get_option('w4os_model_lastname') . "'
-  ");
-
-  $count['tech'] = $w4osdb->get_var("SELECT count(*) FROM UserAccounts
-  WHERE (Email IS NULL OR Email = '')
-  AND FirstName != '" . get_option('w4os_model_firstname') . "'
-  AND LastName != '" . get_option('w4os_model_lastname') . "'
-  AND FirstName != 'GRID'
-  AND LastName != 'SERVICE'
-  ");
-  return $count;
-}
 
 function w4os_create_user_login($firstname = '', $lastname = '', $email = '') {
 	// makes more sense to try name part of the mail first, as it's a login the user is used to.
@@ -115,7 +31,7 @@ function w4os_sync_users() {
 	if(!isset($wpdb)) return false;
 	if(!isset($w4osdb)) return false;
 
-  $accounts = w4os_get_users_ids_and_uuids();
+  $accounts = W4OS3_Avatar::get_avatars_ids_and_uuids();
 	$messages=array();
 	$users_created=[];
 	$users_updated=[];

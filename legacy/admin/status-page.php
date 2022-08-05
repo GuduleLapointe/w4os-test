@@ -1,9 +1,6 @@
 <?php if ( ! defined( 'W4OS_ADMIN' ) ) die;
 
-$count = w4os_count_users();
-
-// Note for future me, count broken assets
-// SELECT inventoryname, inventoryID, assetID, a.id FROM inventoryitems LEFT JOIN assets AS a ON id = assetID WHERE a.id IS NULL;
+$count = W4OS3_Avatar::count();
 
 ?><div class="w4os-status-page wrap">
 	<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
@@ -85,53 +82,16 @@ $count = w4os_count_users();
 					</tr>
 				<?php } ?>
 			</table>
-			<?php	if($count['wp_only'] + $count['grid_only'] > 0 |! empty($sync_result)) { ?>
-				<table class="w4os-table .notes">
-					<tr class=notes>
-						<th></th>
-						<td>
+			<table class="w4os-table .notes">
+				<tr class=notes>
+					<th></th>
+					<td>
 						<?php
-						if($count['grid_only']  > 0 ) {
-							echo '<p>' . sprintf(_n(
-								'%d grid account has no linked WP account. Syncing will create a new WP account.',
-								'%d grid accounts have no linked WP account. Syncing will create new WP accounts.',
-								$count['grid_only'],
-								'w4os'
-							), $count['grid_only']) . '</p>';
-						}
-						if($count['wp_only']  > 0 ) {
-							echo '<p>' . sprintf(_n(
-								'%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference.',
-								'%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference.',
-								$count['wp_only'],
-								'w4os'
-							), $count['wp_only']) . '</p>';
-						}
-						if($count['tech'] > 0) {
-							echo '<p>' . sprintf(_n(
-								"%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks.",
-								"%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks.",
-								$count['tech'],
-								'w4os'
-								) . ' ' . __('Real accounts need a unique email address for W4OS to function properly.', 'w4os'
-							), $count['tech']) . '</p>';
-						}
-						if($count['grid_only'] + $count['wp_only'] > 0) {
-							echo '<form method="post" action="options.php" autocomplete="off">';
-							settings_fields( 'w4os_status' );
-							echo '<input type="hidden" input-hidden" id="w4os_sync_users" name="w4os_sync_users" value="1">';
-
-							submit_button(__('Synchronize users now', 'w4os'));
-							echo '</form>';
-							echo '<p class=description>' . __('Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console.', 'w4os') . '<p>';
-						}
-						if($sync_result)
-						echo '<p class=info>' . $sync_result . '<p>';
-							?>
-						</td>
-					</tr>
-				</table>
-			<?php	} ?>
+						W4OS3_Avatar::display_synchronization_status();
+						?>
+					</td>
+				</tr>
+			</table>
 		</div>
 	<?php } ?>
 	<?php
