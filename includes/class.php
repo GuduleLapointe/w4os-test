@@ -243,4 +243,17 @@ class W4OS {
 	    //   return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
 	}
 
+	static function get_option($option, $default = false) {
+		$settings_page = NULL;
+		$result = $default;
+		if(preg_match('/:/', $option)) {
+			$settings_page = strstr($option, ':', true);
+			$option = trim(strstr($option, ':'), ':');
+			$settings = get_option($settings_page);
+			if($settings && isset($settings[$option])) $result = $settings[$option];
+		} else {
+			$result = get_option($option, $default);
+		}
+		return $result;
+	}
 }
