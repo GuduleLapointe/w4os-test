@@ -1122,7 +1122,7 @@ class W4OS3_Avatar {
 		foreach (	$avatars as $key => $row ) {
 			if(empty($key)) continue;
 			// $WPGridAccounts[$row->email] = (array)$row;
-			if (empty($key)) {
+			if (empty($accounts[$key])) {
 				$accounts[$key] = (array)$row;
 			} else {
 				$accounts[$key] =  array_merge( $accounts[$key], (array)$row );
