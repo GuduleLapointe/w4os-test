@@ -13,9 +13,9 @@ WordPress interface for OpenSimulator (w4os)
 
 == Description ==
 
-Important: this is a **hihgly experimental developement branch**. It contains **unfinished code** and is probably **not really operational**, and most likely **not secure**.
+Important: this is a **highly experimental developement branch**. It contains **unfinished code** and is probably **not really operational**, and most likely **not secure**.
 
-For a stable release, use **only the master branch** or download from WordPress directory**.
+**DO NOT USE ON A LIVE GRID**. For a stable release, use **only the master branch** or download from WordPress directory.
 
 Ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). Provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
 
@@ -163,17 +163,15 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 
 == Changelog ==
 
-= Unreleased =
-* added grid avatar creation from new avatar post type
-* added owner, mail and born columns to avatars admin list
-* added avatar creation form
-* default avatar name as wp user name, fallback to randomly generated
-
-= Experimental =
-* added grid avatar creation from new avatar post type
-* added owner, mail and born columns to avatars admin list
-* added avatar creation form
-* default avatar name as wp user name, fallback to randomly generated
+= 3.x-dev Experimental =
+* allow multiple avatars sharing the same email address
+* avatar creation from admin area
+* dedicated avatar admin list, including
+  - name, WP owner, mail, last seen and (avatar) born date
+  - filter per account type (regular, models, service accounts)
+* avatar post type contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task
+* default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
+* splash page page improvement (remove headers, footer and sidebars)
 
 = 2.3.7 =
 * fix offline messages not forwarded by mail (opensim db not properly loaded by helpers)
