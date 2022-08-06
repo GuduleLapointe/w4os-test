@@ -989,6 +989,7 @@ class W4OS3_Avatar {
 	static function current_avatar_name() {
 		global $post;
 		if(!empty($_REQUEST['post'])) {
+			if(is_array($_REQUEST['post'])) return;
 			$post_id = esc_attr($_REQUEST['post']);
 			$post = get_post($post_id);
 		}
