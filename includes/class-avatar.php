@@ -138,14 +138,13 @@ class W4OS3_Avatar {
 	}
 
 	function create_post() {
-		error_log("create post " . print_r($this, true));
 		$post_id = wp_insert_post(array(
 			'ID' => (isset($this->ID)) ? $this->ID : 0,
 			'post_type' => 'avatar',
 			'post_status' => 'publish',
 			'post_author' => (empty($this->user_id)) ? 0 : $this->user_id,
 			'post_title' => $this->name,
-			'post_date' => date( 'Y-m-d H:i:s', ((!empty($this->born) && $this->born > 0) ? $this->born : NULL) ),
+			'post_date_gmt' => date( 'Y-m-d H:i:s', ((!empty($this->born) && $this->born > 0) ? $this->born : current_time('timestamp', true)) ),
 			'meta_input' => array(
 				'avatar_email' => $this->email,
 				'avatar_owner' => (empty($this->user_id)) ? NULL : $this->user_id,
@@ -620,7 +619,7 @@ class W4OS3_Avatar {
 
 		$salt = md5(w4os_gen_uuid());
 	  $hash = md5(md5($password) . ":" . $salt);
-		$created = time();
+		$created = current_time('timestamp', true);
 		$HomeRegionID = $w4osdb->get_var("SELECT UUID FROM regions WHERE regionName = '" . W4OS_DEFAULT_HOME . "'");
 	  if(empty($HomeRegionID)) $HomeRegionID = '00000000-0000-0000-0000-000000000000';
 
