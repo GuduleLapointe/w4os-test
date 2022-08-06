@@ -1202,11 +1202,11 @@ class W4OS3_Avatar {
 
 		$avatars = $wpdb->get_results(
 			"SELECT post_title as avatar_name, mail.meta_value as email, ID, user.meta_value as user_id, uuid.meta_value AS w4os_uuid
-			FROM wp2021_posts
-			LEFT JOIN wp2021_postmeta as mail ON ID = mail.post_id AND mail.meta_key = 'avatar_email'
-			LEFT JOIN wp2021_postmeta as user ON ID = user.post_id AND user.meta_key = 'avatar_owner'
-			LEFT JOIN wp2021_postmeta as uuid ON ID = uuid.post_id AND uuid.meta_key = 'avatar_uuid'
-			WHERE post_type = 'avatar' AND post_status='publish'",
+			FROM $wpdb->posts
+			LEFT JOIN $wpdb->postmeta as mail ON ID = mail.post_id AND mail.meta_key = 'avatar_email'
+			LEFT JOIN $wpdb->postmeta as user ON ID = user.post_id AND user.meta_key = 'avatar_owner'
+			LEFT JOIN $wpdb->postmeta as uuid ON ID = uuid.post_id AND uuid.meta_key = 'avatar_uuid'
+			WHERE post_type = 'avatar' AND ( post_status='publish' OR post_status='model' post_status='bot' OR post_status='service' ) ",
 		OBJECT_K );
 
 		foreach (	$avatars as $key => $row ) {
