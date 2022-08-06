@@ -1345,20 +1345,25 @@ class W4OS3_Avatar {
 		}
 		if($count['wp_only']  > 0 ) {
 			$messages[] = sprintf(_n(
-				'%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference.',
-				'%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference.',
+				'%d WordPress avatar has no related account in OpenSimulator database (corrupt reference or deleted). Syncing accounts will delete it from WordPress database too.',
+				'%d WordPress avatars have no related account in OpenSimulator database corrupt reference or deleted). Syncing accounts will remove these from WordPress database too.',
 				$count['wp_only'],
 				'w4os'
 			), $count['wp_only']);
 		}
 		if($count['tech'] > 0) {
 			$messages[] = sprintf(_n(
-				"%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks.",
-				"%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks.",
+				"%d grid avatar (other than models) has no email address, it is handled as a service account and is not displayed in avatars list.",
+				"%d grid avatars (other than models) have no email address, they are handled as service accounts and are not displayed in avatars list.",
 				$count['tech'],
 				'w4os'
-				) . ' ' . __('Real accounts need a unique email address for W4OS to function properly.', 'w4os'
-			), $count['tech']);
+			), $count['tech'])
+			. ' '
+			. sprintf(
+				__('Users avatars need an email address for %s and %s to work properly.', 'w4os'),
+				'<em>OpenSimulator</em>',
+				'<em>w4os</em>',
+			);
 		}
 		if($count['grid_only'] + $count['wp_only'] > 0) {
 			echo '<p class=description>
@@ -1374,7 +1379,7 @@ class W4OS3_Avatar {
 		// include(plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/table-header-avatar.php');
 
 		foreach($messages as $message) {
-			echo "<p>" . esc_attr($message) . "</p>";
+			echo "<p>" . $message . "</p>";
 		}
 		return $views;
 	}
