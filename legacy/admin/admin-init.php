@@ -10,41 +10,6 @@ function w4os_enqueue_admin_script( $hook ) {
 }
 add_action( 'admin_enqueue_scripts', 'w4os_enqueue_admin_script' );
 
-function w4os_register_options_pages() {
-	// add_options_page('OpenSimulator settings', 'w4os', 'manage_options', 'w4os', 'w4os_settings_page');
-	add_menu_page(
-		'OpenSimulator', // page title
-		'OpenSimulator', // menu title
-		'manage_options', // capability
-		'w4os', // slug
-		'w4os_status_page', // callable function
-		// plugin_dir_path(__FILE__) . 'options.php', // slug
-		// null,	// callable function
-		plugin_dir_url(__FILE__) . 'images/opensimulator-logo-24x14.png', // icon url
-		2 // position
-	);
-	add_submenu_page('w4os', __('OpenSimulator Status', "w4os"), __('Status'), 'manage_options', 'w4os', 'w4os_status_page');
-	add_submenu_page(
-		'w4os', // parent
-		__('OpenSimulator Settings', "w4os"), // page title
-		__('Settings'), // menu title
-		'manage_options', // capability
-		'w4os_settings', // menu slug
-		'w4os_settings_page' // function
-	);
-  if(function_exists('xmlrpc_encode_request')) {
-    add_submenu_page(
-      'w4os', // parent
-      __('OpenSimulator Helpers', "w4os"), // page title
-      __('Helpers'), // menu title
-      'manage_options', // capability
-      'w4os_helpers', // menu slug
-      'w4os_helpers_page' // function
-    );
-  }
-}
-add_action('admin_menu', 'w4os_register_options_pages');
-
 function w4os_status_page()
 {
 	if ( ! current_user_can( 'manage_options' ) ) {
