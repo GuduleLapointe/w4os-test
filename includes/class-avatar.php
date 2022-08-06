@@ -166,8 +166,33 @@ class W4OS3_Avatar {
 	 *                              if not set, update avatar info if link exists
 	 * @return object       [description]
 	 */
-	function sync_single_avatar($data=[]) {
-		error_log(__FUNCTION__ . ' data ' . print_r($data, true));
+	function sync_single_avatar() {
+		$user = get_user_by('email', $this->email);
+		$user_id = ($user) ? $user->ID : NULL;
+		$postarr = array(
+			'ID' => $this->ID,
+			'post_author' => ($user) ? $user->ID : 0,
+			'meta_input' => array(
+				'avatar_lastseen' => $this->lastseen,
+				'avatar_email' => $this->email,
+				'avatar_owner' => ($user) ? $user->ID : NULL,
+			),
+		);
+
+		// if(isset($this->lastseen)) $postarr['meta_input'][
+		// if(isset($this->email)) $postarr['meta_input']['avatar_email'] = $this->email;
+		//
+		if(!empty($postarr)) {
+			$postarr['ID'] = $this->ID;
+			// error_log(__FUNCTION__ . ' ' . $this->name . ' ' . print_r($postarr, true));
+			$result = wp_update_post( $postarr, true, true );
+			if($result) {
+				// error_log("$this->name succeeded " . print_r(get_post_meta($this->ID), true));
+			} else {
+				error_log($result>get_error_message());
+			}
+		}
+
 		return;
 
 		if(!W4OS_DB_CONNECTED) return false;
@@ -521,7 +546,7 @@ class W4OS3_Avatar {
 		return get_post_meta($this->post, 'avatar_uuid', true);
 	}
 
-	static function update_password ( $post_ID, $post_after, $post_before ) {
+	static function update_password( $post_ID, $post_after, $post_before ) {
 		if($post_after->post_type !== 'avatar') return;
 		if(empty($_POST['avatar_password']) || $_POST['avatar_password'] != $_POST['avatar_password_2']) return;
 		$avatar = new W4OS3_Avatar($post_after);
@@ -538,7 +563,7 @@ class W4OS3_Avatar {
 			'passwordSalt'   => $salt,
 		);
 		$w4osdb->replace( 'auth', $new );
-		
+
 		if(is_wp_error($new)) {
 			error_log($new->get_error_message());
 			wp_redirect($_POST['referredby']);
@@ -1186,9 +1211,7 @@ class W4OS3_Avatar {
 	    if( isset($account['PrincipalID']) &! w4os_empty($account['PrincipalID']) ) {
 				if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
 					// already linked, just resync
-					error_log("$debug_name already linked, just resync ");
-					// error_log(print_r($avatar, true));
-					// W4OS_Avatar::sync_single_avatar($account['user_id']);
+					$avatar->sync_single_avatar();
 				} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
 					// wrong reference, but an avatar exists for this WP user, replace reference
 					error_log("$debug_name wrong reference, but an avatar exists for this WP user, replace referencewrong reference, but an avatar exists for this WP user, replace reference");
@@ -1233,7 +1256,8 @@ class W4OS3_Avatar {
 				}
 			} else if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
 				// Avatar does not exit (anymore) on grid, delete it
-				error_log("$debug_name does not exit (anymore) on grid, delete it");
+				wp_delete_post( $avatar->ID, true );
+				error_log("$debug_name does not exist anymore on the grid, it has been deleted from WordPress");
 				// w4os_profile_dereference($account['user_id']);
 				// $users_dereferenced[] = sprintf('<a href=%s>%s</a>', get_edit_user_link($account['user_id']), $account['user_id']);
 			} else {
