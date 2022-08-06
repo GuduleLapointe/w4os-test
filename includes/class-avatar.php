@@ -235,6 +235,11 @@ class W4OS3_Avatar {
 				'hook' => 'save_post',
 				'callback' => 'save_avatar_slug',
 			),
+			array (
+				'hook' => 'post_updated',
+				'callback' => 'update_password',
+				'accepted_args' => 3,
+			),
 		);
 
 		$filters = array(
@@ -516,6 +521,31 @@ class W4OS3_Avatar {
 		return get_post_meta($this->post, 'avatar_uuid', true);
 	}
 
+	static function update_password ( $post_ID, $post_after, $post_before ) {
+		if($post_after->post_type !== 'avatar') return;
+		if(empty($_POST['avatar_password']) || $_POST['avatar_password'] != $_POST['avatar_password_2']) return;
+		$avatar = new W4OS3_Avatar($post_after);
+		if(w4os_empty($avatar->uuid)) return;
+		global $w4osdb;
+
+		$password=stripcslashes($_POST['avatar_password']);
+		$salt = md5(w4os_gen_uuid());
+	  $hash = md5(md5($password) . ":" . $salt);
+
+		$new = array(
+			'UUID' => $avatar->uuid,
+			'passwordHash'   => $hash,
+			'passwordSalt'   => $salt,
+		);
+		$w4osdb->replace( 'auth', $new );
+		
+		if(is_wp_error($new)) {
+			error_log($new->get_error_message());
+			wp_redirect($_POST['referredby']);
+			die();
+		}
+	}
+
 	static function insert_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
 	  if(!$update) return $data;
 	  if('avatar' !== $data['post_type']) return $data;
@@ -552,7 +582,6 @@ class W4OS3_Avatar {
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
-
 	  return $data;
 	}
 
