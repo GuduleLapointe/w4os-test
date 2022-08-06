@@ -155,6 +155,21 @@
             "install-path": "./installers"
         },
         {
+            "name": "meta-box/mb-admin-columns",
+            "version": "master",
+            "version_normalized": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://metabox.io/?action=download&product=mb-admin-columns&api_key=42ecdf32b0e76fe7766bc340ad82046b"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "install-path": "../meta-box/mb-admin-columns"
+        },
+        {
             "name": "meta-box/mb-settings-page",
             "version": "master",
             "version_normalized": "dev-master",
@@ -287,20 +302,20 @@
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "5.6.5",
-            "version_normalized": "5.6.5.0",
+            "version": "5.6.6",
+            "version_normalized": "5.6.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "8df3a269af18e17ae49bfd187c8e785d8b81a641"
+                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/8df3a269af18e17ae49bfd187c8e785d8b81a641",
-                "reference": "8df3a269af18e17ae49bfd187c8e785d8b81a641",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
+                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
                 "shasum": ""
             },
-            "time": "2022-07-14T01:20:47+00:00",
+            "time": "2022-08-05T04:16:39+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -328,7 +343,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wpmetabox/meta-box/issues",
-                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.5"
+                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.6"
             },
             "install-path": "../meta-box/meta-box"
         }

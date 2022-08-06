@@ -13,6 +13,7 @@ class ComposerStaticInit432d9f0cf56ce6e18b6e1cc192f75138
         'd625401fcd6c5ef99e9ddf76eb29ba78' => __DIR__ . '/..' . '/meta-box/meta-box-conditional-logic/meta-box-conditional-logic.php',
         'd46e9eb4d08a138d32890bfd33c08c32' => __DIR__ . '/..' . '/meta-box/meta-box-columns/meta-box-columns.php',
         '3cdaf8a7feac7dab25a504ea4957b65a' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
+        'be497f88b773aa5c9974da46821effab' => __DIR__ . '/..' . '/meta-box/mb-admin-columns/mb-admin-columns.php',
     );
 
     public static $prefixLengthsPsr4 = array (

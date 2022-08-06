@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1975e0326cee64bd2ae456410c5bd738",
+    "content-hash": "24293f3437aab3ea7152f847a2539614",
     "packages": [
         {
             "name": "composer/installers",
@@ -158,6 +158,18 @@
             "time": "2021-09-13T08:19:44+00:00"
         },
         {
+            "name": "meta-box/mb-admin-columns",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://metabox.io/?action=download&product=mb-admin-columns&api_key=42ecdf32b0e76fe7766bc340ad82046b"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
             "name": "meta-box/mb-settings-page",
             "version": "master",
             "dist": {
@@ -275,16 +287,16 @@
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "5.6.5",
+            "version": "5.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "8df3a269af18e17ae49bfd187c8e785d8b81a641"
+                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/8df3a269af18e17ae49bfd187c8e785d8b81a641",
-                "reference": "8df3a269af18e17ae49bfd187c8e785d8b81a641",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
+                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
                 "shasum": ""
             },
             "type": "wordpress-plugin",
@@ -313,9 +325,9 @@
             ],
             "support": {
                 "issues": "https://github.com/wpmetabox/meta-box/issues",
-                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.5"
+                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.6"
             },
-            "time": "2022-07-14T01:20:47+00:00"
+            "time": "2022-08-05T04:16:39+00:00"
         }
     ],
     "packages-dev": [],
@@ -324,7 +336,8 @@
     "stability-flags": {
         "meta-box/mb-settings-page": 20,
         "meta-box/meta-box-conditional-logic": 20,
-        "meta-box/meta-box-columns": 20
+        "meta-box/meta-box-columns": 20,
+        "meta-box/mb-admin-columns": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
