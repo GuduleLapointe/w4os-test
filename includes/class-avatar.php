@@ -1518,5 +1518,14 @@ class W4OS3_Avatar {
 			'show_in_admin_status_list' => true,
 			'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
 		) );
+		register_post_status('banned', array(
+			'label'                     => _x( 'Banned Account', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false,
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Banned Account <span class="count">(%s)</span>', 'Banned Accounts <span class="count">(%s)</span>' ),
+		) );
 	}
 }
