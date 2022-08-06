@@ -141,7 +141,7 @@ class W4OS3_Avatar {
 		$post_id = wp_insert_post(array(
 			'ID' => (isset($this->ID)) ? $this->ID : 0,
 			'post_type' => 'avatar',
-			'post_status' => 'publish',
+			'post_status' => $this->avatar_status(),
 			'post_author' => (empty($this->user_id)) ? 0 : $this->user_id,
 			'post_title' => $this->name,
 			'post_date_gmt' => date( 'Y-m-d H:i:s', ((!empty($this->born) && $this->born > 0) ? $this->born : current_time('timestamp', true)) ),
@@ -169,6 +169,7 @@ class W4OS3_Avatar {
 	function sync_single_avatar() {
 		$user = get_user_by('email', $this->email);
 		$user_id = ($user) ? $user->ID : NULL;
+
 		$postarr = array(
 			'ID' => $this->ID,
 			'post_author' => ($user) ? $user->ID : 0,
@@ -178,6 +179,10 @@ class W4OS3_Avatar {
 				'avatar_owner' => ($user) ? $user->ID : NULL,
 			),
 		);
+		// if($this->is_service()) $postarr['post_status'] =  'service';
+		// if($this->is_model()) $postarr['post_status'] =  'model';
+		error_log(print_r($this, true));
+		$postarr['post_status'] = $this->avatar_status();
 
 		// if(isset($this->lastseen)) $postarr['meta_input'][
 		// if(isset($this->email)) $postarr['meta_input']['avatar_email'] = $this->email;
@@ -265,6 +270,19 @@ class W4OS3_Avatar {
 				'callback' => 'update_password',
 				'accepted_args' => 3,
 			),
+
+			array (
+				'hook' => 'init',
+				'callback' => 'remove_avatar_delete_cap',
+			),
+			array(
+				'hook' => 'wp_trash_post',
+				'callback' => 'avatar_deletion_warning',
+			),
+			array(
+				'hook' => 'admin_head',
+				'callback' => 'remove_avatar_edit_delete_action',
+			),
 		);
 
 		$filters = array(
@@ -281,6 +299,12 @@ class W4OS3_Avatar {
 			array (
 				'hook' => 'views_edit-avatar',
 				'callback' => 'display_synchronization_status',
+			),
+
+			array(
+				'hook' => 'post_row_actions',
+				'callback' => 'remove_avatar_delete_row_actions',
+				'accepted_args' => 2,
 			),
 
 			// array (
@@ -421,6 +445,7 @@ class W4OS3_Avatar {
 						'position'   => 'after title',
 						'sort'       => true,
 						'searchable' => true,
+						'filterable' => true,
 					],
 				],
 	      'email' => [
@@ -623,27 +648,41 @@ class W4OS3_Avatar {
 			$data['post_title'] = $avatar_name;
 		}
 
-		if(empty($avatar_name)) {
-			$avatar_name = "Unknown Name";
+		if(empty($avatar_name) && W4OS::is_new_post()) {
+			$avatar_name = 'TEMPORARY UNDEFINED';
 		}
 
 		$uuid = $avatar->uuid;
 		if(w4os_empty($uuid)) {
 			$uuid = self::get_uuid_by_name($avatar_name);
-		} else {
-			unset($data['avatar_uuid']);
+		// } else {
+		// 	unset($data['avatar_uuid']);
 		}
-		if(w4os_empty($uuid)) {
+		if(w4os_empty($uuid) && $avatar_name != 'TEMPORARY UNDEFINED') {
 			// We must create one
 			$avatar->name = $avatar_name;
 			$uuid = $avatar->create($avatar, $data, $postarr);
-			if(!$uuid || w4os_empty($uuid)) {
-				wp_redirect($_POST['referredby']);
-				die();
+			if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $avatar->ID || in_array($avatar->ID, $_REQUEST['post']) ) ) {
+				return $data;
+			} else if(!$uuid || w4os_empty($uuid) || empty($avatar_name)) {
+				if(isset($_POST['referredby'])) {
+					wp_redirect($_POST['referredby']);
+					die();
+				} else {
+					w4os_transient_admin_notice("Could not create $avatar->name and redirect failed<pre>"
+					. "\nuuid " . print_r($uuid, true)
+					. "\navatar " . print_r($avatar, true)
+					. "\ndata " . print_r($data, true)
+					. "\npostarr " . print_r($postarr, true)
+					. "\nREQUEST " . print_r($_REQUEST, true)
+					. '</pre>'
+					, 'error');
+				}
 			} else {
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
+		$data['post_status'] = $avatar->avatar_status();
 	  return $data;
 	}
 
@@ -665,7 +704,8 @@ class W4OS3_Avatar {
 
 	function create($avatar = NULL, $data = [], $postarr = []) {
 		if(!W4OS_DB_CONNECTED) return;
-		if(!is_object($avatar)) return; // We might need to handle this in the future
+		if(!is_object($avatar)) return; // We might need to handle $this in the future
+		if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $avatar->ID || in_array($avatar->ID, $_REQUEST['post']) ) ) return;
 
 		global $w4osdb;
 		$errors = false;
@@ -688,7 +728,7 @@ class W4OS3_Avatar {
 
 		$model = esc_attr(empty($postarr['avatar_model']) ? W4OS_DEFAULT_AVATAR : $postarr['avatar_model']);
 
-		if ($postarr['avatar_password'] != $postarr['avatar_password_2']) {
+		if (isset($postarr['avatar_password']) && $postarr['avatar_password'] != $postarr['avatar_password_2']) {
 			w4os_notice(__("Passwords don't match.", 'w4os'), 'error') ;
 			return false;
 
@@ -1060,8 +1100,8 @@ class W4OS3_Avatar {
 			"SELECT PrincipalID FROM UserAccounts
 			WHERE (FirstName = '%s' AND LastName = '%s')
 			",
-			$FirstName,
-			$LastName,
+			esc_sql($FirstName),
+			esc_sql($LastName),
 		));
 
 		if($check_uuid) return $check_uuid;
@@ -1141,7 +1181,6 @@ class W4OS3_Avatar {
 			WHERE (Email IS NULL OR Email = '')
 			AND FirstName != '%s'
 			AND LastName != '%s'
-			AND (FirstName != 'GRID' OR LastName != 'SERVICE')
 			",
 			esc_sql(get_option('w4os_model_firstname')),
 			esc_sql(get_option('w4os_model_lastname')),
@@ -1162,6 +1201,7 @@ class W4OS3_Avatar {
 				if($account['PrincipalID'] == $account['w4os_uuid']) {
 					$count['sync']++;
 				} else {
+					error_log("grid only " . print_r($account, true));
 					$count['grid_only'] += 1;
 				}
 			} else {
@@ -1185,14 +1225,14 @@ class W4OS3_Avatar {
 		$GridAccounts = $w4osdb->get_results(sprintf(
 			"SELECT CONCAT(FirstName, ' ', LastName) as avatar_name, PrincipalID, Email as email FROM UserAccounts
 			WHERE active = 1
-			AND Email is not NULL AND Email != ''
-			AND FirstName != '%s'
-			AND LastName != '%s'
-			AND (FirstName != 'GRID' OR LastName != 'SERVICE')
+			AND (FirstName != 'GRID' OR LastName != 'SERVICES')
+			AND FirstName != ''
+			AND LastName != ''
 			",
 			esc_sql(get_option('w4os_model_firstname')),
 			esc_sql(get_option('w4os_model_lastname')),
 		), OBJECT_K );
+		// AND Email is not NULL AND Email != ''
 
 		foreach (	$GridAccounts as $key => $row ) {
 			// if(empty($row->email)) continue;
@@ -1206,7 +1246,7 @@ class W4OS3_Avatar {
 			LEFT JOIN $wpdb->postmeta as mail ON ID = mail.post_id AND mail.meta_key = 'avatar_email'
 			LEFT JOIN $wpdb->postmeta as user ON ID = user.post_id AND user.meta_key = 'avatar_owner'
 			LEFT JOIN $wpdb->postmeta as uuid ON ID = uuid.post_id AND uuid.meta_key = 'avatar_uuid'
-			WHERE post_type = 'avatar' AND ( post_status='publish' OR post_status='model' post_status='bot' OR post_status='service' ) ",
+			WHERE post_type = 'avatar' AND ( post_status='publish' OR post_status='model' OR post_status='bot' OR post_status='service' ) ",
 		OBJECT_K );
 
 		foreach (	$avatars as $key => $row ) {
@@ -1215,7 +1255,7 @@ class W4OS3_Avatar {
 			if (empty($accounts[$key])) {
 				$accounts[$key] = (array)$row;
 			} else {
-				$accounts[$key] =  array_merge( $accounts[$key], (array)$row );
+				$accounts[$key] = array_merge( $accounts[$key], (array)$row );
 			}
 		}
 
@@ -1244,14 +1284,15 @@ class W4OS3_Avatar {
 				$avatar = new W4OS3_Avatar($account);
 			}
 
-			$debug_name = strstr($account['PrincipalID'], '-', true) . ' ' . $account['avatar_name'];
 	    if( isset($account['PrincipalID']) &! w4os_empty($account['PrincipalID']) ) {
 				if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
 					// already linked, just resync
+					error_log("$avatar->name already linked, resync");
+					$avatar->get_simulator_data();
 					$avatar->sync_single_avatar();
 				} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
 					// wrong reference, but an avatar exists for this WP user, replace reference
-					error_log("$debug_name wrong reference, but an avatar exists for this WP user, replace referencewrong reference, but an avatar exists for this WP user, replace reference");
+					error_log("$avatar->name wrong reference, but an avatar exists in WP, replace wrong reference");
 					// $result = W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']);
 					// if(W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']))
 					// $users_updated[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
@@ -1259,19 +1300,21 @@ class W4OS3_Avatar {
 					// $errors[] = '<p class=error>' .  sprintf(__('Error while updating %s %s (%s) %s', 'w4os'), $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
 				} else {
 					// not present in WP, create a post
+					error_log("$avatar->name not present in WP, create a post");
+
 					$avatar->get_simulator_data();
 					if(!$avatar->create_post()) {
-						error_log("could not create avatar post for $debug_name");
+						error_log("could not create avatar post for $avatar->name");
 					}
 
 					// TODO: create user if none and wp_create_users is enabled
 					// $user = get_user_by('email', $account['email']);
 					// if($user) {
 					// 	// assign to existing user
-					// 	error_log("assign $debug_name to $user->display_name");
+					// 	error_log("assign $avatar->name to $user->display_name");
 					// } else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
 					// 	// create user if create_wp_users is true
-					// 	error_log("TODO: create user $debug_name");
+					// 	error_log("TODO: create user $avatar->name");
 					// 	// 	$newid = wp_insert_user(array(
 					// 	// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
 					// 	// 		'user_pass' => wp_generate_password(),
@@ -1294,7 +1337,7 @@ class W4OS3_Avatar {
 			} else if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
 				// Avatar does not exit (anymore) on grid, delete it
 				wp_delete_post( $avatar->ID, true );
-				error_log("$debug_name does not exist anymore on the grid, it has been deleted from WordPress");
+				error_log("$avatar->name does not exist anymore on the grid, it has been deleted from WordPress");
 				// w4os_profile_dereference($account['user_id']);
 				// $users_dereferenced[] = sprintf('<a href=%s>%s</a>', get_edit_user_link($account['user_id']), $account['user_id']);
 			} else {
@@ -1351,20 +1394,20 @@ class W4OS3_Avatar {
 				'w4os'
 			), $count['wp_only']);
 		}
-		if($count['tech'] > 0) {
-			$messages[] = sprintf(_n(
-				"%d grid avatar (other than models) has no email address, it is handled as a service account and is not displayed in avatars list.",
-				"%d grid avatars (other than models) have no email address, they are handled as service accounts and are not displayed in avatars list.",
-				$count['tech'],
-				'w4os'
-			), $count['tech'])
-			. ' '
-			. sprintf(
-				__('Users avatars need an email address for %s and %s to work properly.', 'w4os'),
-				'<em>OpenSimulator</em>',
-				'<em>w4os</em>',
-			);
-		}
+		// if($count['tech'] > 0) {
+		// 	$messages[] = sprintf(_n(
+		// 		"%d grid avatar (other than models) has no email address, it is handled as a service account and is not displayed in avatars list.",
+		// 		"%d grid avatars (other than models) have no email address, they are handled as service accounts and are not displayed in avatars list.",
+		// 		$count['tech'],
+		// 		'w4os'
+		// 	), $count['tech'])
+		// 	. ' '
+		// 	. sprintf(
+		// 		__('Users avatars need an email address for %s and %s to work properly.', 'w4os'),
+		// 		'<em>OpenSimulator</em>',
+		// 		'<em>w4os</em>',
+		// 	);
+		// }
 		if($count['grid_only'] + $count['wp_only'] > 0) {
 			echo '<p class=description>
 			<form method="post" action="options.php" autocomplete="off">
@@ -1384,4 +1427,93 @@ class W4OS3_Avatar {
 		return $views;
 	}
 
+	function is_model() {
+		return ( $this->FirstName == get_option('w4os_model_firstname') || $this->FirstName == get_option('w4os_model_firstname') );
+	}
+
+	function is_service() {
+		return ( !$this->is_model() && empty($this->email) );
+	}
+
+	function avatar_status() {
+		if($this->is_model()) return 'model';
+		if($this->is_service()) return 'service';
+		return 'publish';
+	}
+
+	/**
+	 * Remove avatar delete capabilities for very add_role
+	 * (this has to be done on OpenSimulator side, or the avatars will be created again)
+	 *
+	 * Call the function when your plugin/theme is activated.
+	 */
+	static function remove_avatar_delete_cap() {
+		global $wp_roles;
+
+		$remove_caps = array(
+			'delete_avatar',
+			'delete_avatars',
+		);
+
+		$roles = $wp_roles->roles;
+		$editable_roles = apply_filters('editable_roles', $roles);
+
+		foreach($roles as $role_slug => $role_array) {
+			$role = get_role( $role_slug );
+
+			foreach ( $remove_caps as $cap ) {
+				$role->remove_cap( $cap );
+			}
+		}
+	}
+
+	static function remove_avatar_delete_row_actions( $actions, $post ) {
+	    if( $post->post_type === 'avatar' ) {
+	        unset( $actions['clone'] );
+	        unset( $actions['trash'] );
+	    }
+	    return $actions;
+	}
+
+	static function avatar_deletion_warning($post_id) {
+	    if( get_post_type($post_id) === 'avatar' ) {
+				w4os_transient_admin_notice(__('Avatars can not be deleted from WordPress.', 'w4os'), 'error');
+	      // wp_die('The post you were trying to delete is protected.');
+	    }
+	}
+
+	static function remove_avatar_edit_delete_action() {
+	    $current_screen = get_current_screen();
+
+	    // Hides the "Move to Trash" link on the post edit page.
+	    if ( 'post' === $current_screen->base &&
+	    'avatar' === $current_screen->post_type ) :
+	    ?>
+	        <style>#delete-action { display: none; }</style>
+	    <?php
+	    endif;
+	}
+
 }
+
+function wpb_custom_post_status(){
+	register_post_status('model', array(
+		'label'                     => _x( 'Model', 'avatar' ),
+		'public'                    => false,
+		'post_type'									=> 'avatar',
+		'exclude_from_search'       => true,
+		'show_in_admin_all_list'    => false, // actuelly means "count in section 'all' of status list"
+		'show_in_admin_status_list' => true,
+		'label_count'               => _n_noop( 'Model <span class="count">(%s)</span>', 'Models <span class="count">(%s)</span>' ),
+	) );
+	register_post_status('service', array(
+		'label'                     => _x( 'Service Account', 'avatar' ),
+		'public'                    => false,
+		'post_type'									=> 'avatar',
+		'exclude_from_search'       => true,
+		'show_in_admin_all_list'    => false,
+		'show_in_admin_status_list' => true,
+		'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
+	) );
+}
+add_action( 'init', 'wpb_custom_post_status' );
