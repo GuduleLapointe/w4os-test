@@ -125,7 +125,7 @@ function w4os_popular_places($atts = []) {
 
 function w4os_popular_places_html($atts = [], $args = []) {
 	extract( $args );
-	isset($atts['title']) ? $title=$atts['title'] : $title=__("Popular places", 'w4os');
+	isset($atts['title']) ? $title=$atts['title'] : $title=__('Popular places', 'w4os');
 	$content = $before_title . $title . $after_title;
 
 	$places=w4os_popular_places($atts);
