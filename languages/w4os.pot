@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-04T14:50:59-04:00\n"
+"POT-Creation-Date: 2022-08-06T12:48:41-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 
@@ -42,191 +42,200 @@ msgstr ""
 msgid "No result"
 msgstr ""
 
-#: includes/class-avatar.php:178
-#: includes/class-avatar.php:199
-#: includes/class-avatar.php:212
+#: includes/class-avatar.php:122
+msgid "Simulator database contains more than one avatar matching %s. This should never happen and requires an immediate fix."
+msgstr ""
+
+#: includes/class-avatar.php:325
+#: includes/class-avatar.php:346
+#: includes/class-avatar.php:359
 #: tmp/class-avatar.php:130
 #: tmp/class-avatar.php:151
 #: tmp/class-avatar.php:164
 msgid "Avatars"
 msgstr ""
 
-#: includes/class-avatar.php:179
+#: includes/class-avatar.php:326
 #: tmp/class-avatar.php:131
 msgid "Avatar"
 msgstr ""
 
-#: includes/class-avatar.php:180
+#: includes/class-avatar.php:327
 #: tmp/class-avatar.php:132
 msgid "Add New"
 msgstr ""
 
-#: includes/class-avatar.php:181
+#: includes/class-avatar.php:328
 #: tmp/class-avatar.php:133
 msgid "Add new avatar"
 msgstr ""
 
-#: includes/class-avatar.php:182
+#: includes/class-avatar.php:329
 #: tmp/class-avatar.php:134
 msgid "Edit Avatar"
 msgstr ""
 
-#: includes/class-avatar.php:183
+#: includes/class-avatar.php:330
 #: tmp/class-avatar.php:135
 msgid "New Avatar"
 msgstr ""
 
-#: includes/class-avatar.php:184
+#: includes/class-avatar.php:331
 #: tmp/class-avatar.php:136
 msgid "View Avatar"
 msgstr ""
 
-#: includes/class-avatar.php:185
+#: includes/class-avatar.php:332
 #: tmp/class-avatar.php:137
 msgid "View Avatars"
 msgstr ""
 
-#: includes/class-avatar.php:186
+#: includes/class-avatar.php:333
 #: tmp/class-avatar.php:138
 msgid "Search Avatars"
 msgstr ""
 
-#: includes/class-avatar.php:187
+#: includes/class-avatar.php:334
 #: tmp/class-avatar.php:139
 msgid "No avatars found"
 msgstr ""
 
-#: includes/class-avatar.php:188
+#: includes/class-avatar.php:335
 #: tmp/class-avatar.php:140
 msgid "No avatars found in Trash"
 msgstr ""
 
-#: includes/class-avatar.php:189
+#: includes/class-avatar.php:336
 #: tmp/class-avatar.php:141
 msgid "Parent Avatar:"
 msgstr ""
 
-#: includes/class-avatar.php:190
+#: includes/class-avatar.php:337
 #: tmp/class-avatar.php:142
 msgid "All Avatars"
 msgstr ""
 
-#: includes/class-avatar.php:191
+#: includes/class-avatar.php:338
 #: tmp/class-avatar.php:143
 msgid "Avatar Archives"
 msgstr ""
 
-#: includes/class-avatar.php:192
+#: includes/class-avatar.php:339
 #: tmp/class-avatar.php:144
 msgid "Avatar Attributes"
 msgstr ""
 
-#: includes/class-avatar.php:193
+#: includes/class-avatar.php:340
 #: tmp/class-avatar.php:145
 msgid "Insert into avatar"
 msgstr ""
 
-#: includes/class-avatar.php:194
+#: includes/class-avatar.php:341
 #: tmp/class-avatar.php:146
 msgid "Uploaded to this avatar"
 msgstr ""
 
-#: includes/class-avatar.php:195
+#: includes/class-avatar.php:342
 #: tmp/class-avatar.php:147
 msgid "Featured image"
 msgstr ""
 
-#: includes/class-avatar.php:196
+#: includes/class-avatar.php:343
 #: tmp/class-avatar.php:148
 msgid "Set featured image"
 msgstr ""
 
-#: includes/class-avatar.php:197
+#: includes/class-avatar.php:344
 #: tmp/class-avatar.php:149
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/class-avatar.php:198
+#: includes/class-avatar.php:345
 #: tmp/class-avatar.php:150
 msgid "Use as featured image"
 msgstr ""
 
-#: includes/class-avatar.php:200
+#: includes/class-avatar.php:347
 #: tmp/class-avatar.php:152
 msgid "Filter avatars list"
 msgstr ""
 
-#: includes/class-avatar.php:201
+#: includes/class-avatar.php:348
 #: tmp/class-avatar.php:153
 msgid "Filter by date"
 msgstr ""
 
-#: includes/class-avatar.php:202
+#: includes/class-avatar.php:349
 #: tmp/class-avatar.php:154
 msgid "Avatars list navigation"
 msgstr ""
 
-#: includes/class-avatar.php:203
+#: includes/class-avatar.php:350
 #: tmp/class-avatar.php:155
 msgid "Avatars list"
 msgstr ""
 
-#: includes/class-avatar.php:204
+#: includes/class-avatar.php:351
 #: tmp/class-avatar.php:156
 msgid "Avatar published"
 msgstr ""
 
-#: includes/class-avatar.php:205
+#: includes/class-avatar.php:352
 #: tmp/class-avatar.php:157
 msgid "Avatar published privately"
 msgstr ""
 
-#: includes/class-avatar.php:206
+#: includes/class-avatar.php:353
 #: tmp/class-avatar.php:158
 msgid "Avatar reverted to draft"
 msgstr ""
 
-#: includes/class-avatar.php:207
+#: includes/class-avatar.php:354
 #: tmp/class-avatar.php:159
 msgid "Avatar scheduled"
 msgstr ""
 
-#: includes/class-avatar.php:208
+#: includes/class-avatar.php:355
 #: tmp/class-avatar.php:160
 msgid "Avatar updated"
 msgstr ""
 
-#: includes/class-avatar.php:245
+#: includes/class-avatar.php:392
 #: tmp/class-avatar.php:205
 msgid "Profile"
 msgstr ""
 
-#: includes/class-avatar.php:266
+#: includes/class-avatar.php:413
 #: tmp/class-avatar.php:234
 msgid "WordPress User"
 msgstr ""
 
-#: includes/class-avatar.php:272
+#: includes/class-avatar.php:419
 #: tmp/class-avatar.php:240
 msgid "Select a user"
 msgstr ""
 
-#: includes/class-avatar.php:280
+#: includes/class-avatar.php:427
 #: tmp/class-avatar.php:248
 msgid "E-mail"
 msgstr ""
 
-#: includes/class-avatar.php:291
+#: includes/class-avatar.php:438
 #: tmp/class-avatar.php:259
 msgid "Optional. If set, the avatar will be linked to any matching WP user account."
 msgstr ""
 
-#: includes/class-avatar.php:298
+#: includes/class-avatar.php:445
 #: tmp/class-avatar.php:266
 msgid "Create WP user"
 msgstr ""
 
-#: includes/class-avatar.php:309
+#: includes/class-avatar.php:450
+#: includes/class-avatar.php:478
+msgid "(not implemented)"
+msgstr ""
+
+#: includes/class-avatar.php:459
 #: legacy/admin/settings.php:76
 #: legacy/admin/settings.php:234
 #: legacy/admin/settings.php:391
@@ -234,305 +243,371 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: includes/class-avatar.php:309
+#: includes/class-avatar.php:459
 #: legacy/profile.php:132
 #: tmp/class-avatar.php:277
 msgid "Change password"
 msgstr ""
 
-#: includes/class-avatar.php:316
+#: includes/class-avatar.php:466
 #: tmp/class-avatar.php:283
 msgid "Confirm password"
 msgstr ""
 
-#: includes/class-avatar.php:323
+#: includes/class-avatar.php:473
 #: tmp/class-avatar.php:289
 msgid "Same password as WP user"
 msgstr ""
 
-#: includes/class-avatar.php:342
+#: includes/class-avatar.php:495
 #: tmp/class-avatar.php:308
 msgid "Model"
 msgstr ""
 
-#: includes/class-avatar.php:349
-#: legacy/admin/admin-init.php:105
+#: includes/class-avatar.php:502
+#: legacy/admin/admin-init.php:70
 #: legacy/profile.php:118
 #: tmp/class-avatar.php:315
 msgid "Avatar Name"
 msgstr ""
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:356
+#: includes/class-avatar.php:509
 #: tmp/class-avatar.php:322
 msgid "Firstname"
 msgstr ""
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:356
+#: includes/class-avatar.php:509
 #: tmp/class-avatar.php:322
 msgid "Lastname"
 msgstr ""
 
-#: includes/class-avatar.php:360
+#: includes/class-avatar.php:513
 #: tmp/class-avatar.php:326
 msgid "The avatar name is permanent, it can't be changed later."
 msgstr ""
 
-#: includes/class-avatar.php:369
+#: includes/class-avatar.php:522
 #: tmp/class-avatar.php:221
 msgid "Please provide first and last name, only letters and numbers, separated by a space."
 msgstr ""
 
-#: includes/class-avatar.php:467
-#: legacy/profile.php:414
+#: includes/class-avatar.php:527
+#: tmp/class-avatar.php:338
+msgid "UUID"
+msgstr ""
+
+#: includes/class-avatar.php:530
+#: tmp/class-avatar.php:341
+msgid "Wil be set by the server"
+msgstr ""
+
+#: includes/class-avatar.php:541
+msgid "Last seen"
+msgstr ""
+
+#: includes/class-avatar.php:675
+#: legacy/profile.php:365
 msgid "This user already has an avatar."
 msgstr ""
 
-#: includes/class-avatar.php:473
+#: includes/class-avatar.php:681
 msgid "This name is not available."
 msgstr ""
 
-#: includes/class-avatar.php:484
+#: includes/class-avatar.php:692
 msgid "Passwords don't match."
 msgstr ""
 
-#: includes/class-avatar.php:499
-#: legacy/profile.php:458
+#: includes/class-avatar.php:707
+#: legacy/profile.php:409
 msgid "This should never happen! Generated a random UUID that already existed. Sorry. Try again."
 msgstr ""
 
-#: includes/class-avatar.php:520
-#: legacy/profile.php:480
+#: includes/class-avatar.php:728
+#: legacy/profile.php:431
 msgid "Error while creating user"
 msgstr ""
 
-#: includes/class-avatar.php:529
-#: legacy/profile.php:489
+#: includes/class-avatar.php:737
+#: legacy/profile.php:440
 msgid "Error while setting password"
 msgstr ""
 
-#: includes/class-avatar.php:539
-#: legacy/profile.php:500
+#: includes/class-avatar.php:747
+#: legacy/profile.php:451
 msgid "Error while setting home region"
 msgstr ""
 
-#: includes/class-avatar.php:563
-#: legacy/profile.php:517
+#: includes/class-avatar.php:771
+#: legacy/profile.php:468
 msgid "Error while creating user inventory"
 msgstr ""
 
-#: includes/class-avatar.php:685
-#: legacy/profile.php:639
+#: includes/class-avatar.php:897
+#: legacy/profile.php:590
 msgid "Error while adding inventory item"
 msgstr ""
 
-#: includes/class-avatar.php:696
-#: legacy/profile.php:650
+#: includes/class-avatar.php:908
+#: legacy/profile.php:601
 msgid "Error while adding inventory outfit link"
 msgstr ""
 
-#: includes/class-avatar.php:708
-#: legacy/profile.php:662
+#: includes/class-avatar.php:920
+#: legacy/profile.php:613
 msgid "Error while adding avatar"
 msgstr ""
 
-#: includes/class-avatar.php:722
+#: includes/class-avatar.php:934
 msgid "Errors occurred while creating avatar %s"
 msgstr ""
 
-#: includes/class-avatar.php:755
+#: includes/class-avatar.php:968
 #: tmp/class-avatar.php:420
 msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
 msgstr ""
 
-#: legacy/admin/admin-init.php:26
+#: includes/class-avatar.php:1306
+msgid "%d reference updated"
+msgid_plural "%d references updated"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1312
+msgid "%d new WordPress account created"
+msgid_plural "%d new WordPress accounts created"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1318
+msgid "%d broken reference removed"
+msgid_plural "%d broken references removed"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1339
+msgid "%d grid account has no linked WP account. Syncing will create a new WP account."
+msgid_plural "%d grid accounts have no linked WP account. Syncing will create new WP accounts."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1347
+msgid "%d WordPress avatar has no related account in OpenSimulator database (corrupt reference or deleted). Syncing accounts will delete it from WordPress database too."
+msgid_plural "%d WordPress avatars have no related account in OpenSimulator database corrupt reference or deleted). Syncing accounts will remove these from WordPress database too."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1355
+msgid "%d grid avatar (other than models) has no email address, it is handled as a service account and is not displayed in avatars list."
+msgid_plural "%d grid avatars (other than models) have no email address, they are handled as service accounts and are not displayed in avatars list."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-avatar.php:1363
+msgid "Users avatars need an email address for %s and %s to work properly."
+msgstr ""
+
+#: includes/class-avatar.php:1373
+msgid "Synchronize users now"
+msgstr ""
+
+#: includes/class-avatar.php:1374
+msgid "Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console."
+msgstr ""
+
+#: includes/class-settings.php:169
 msgid "OpenSimulator Status"
 msgstr ""
 
-#: legacy/admin/admin-init.php:26
+#: includes/class-settings.php:169
 #: legacy/functions.php:227
 msgid "Status"
 msgstr ""
 
-#: legacy/admin/admin-init.php:29
+#: includes/class-settings.php:176
 msgid "OpenSimulator Settings"
 msgstr ""
 
-#: legacy/admin/admin-init.php:30
+#: includes/class-settings.php:177
+msgid "Legacy Settings"
+msgstr ""
+
+#: includes/class-settings.php:186
+#: legacy/admin/admin-init.php:50
+msgid "OpenSimulator Helpers"
+msgstr ""
+
+#: includes/class-settings.php:187
+msgid "Legacy Helpers"
+msgstr ""
+
+#: includes/class-settings.php:208
 #: legacy/admin/settings.php:603
 msgid "Settings"
 msgstr ""
 
-#: legacy/admin/admin-init.php:38
-#: legacy/admin/admin-init.php:85
-msgid "OpenSimulator Helpers"
-msgstr ""
-
-#: legacy/admin/admin-init.php:39
-msgid "Helpers"
-msgstr ""
-
-#: legacy/admin/admin-init.php:111
-#: legacy/admin/admin-init.php:117
+#: legacy/admin/admin-init.php:76
+#: legacy/admin/admin-init.php:82
 #: legacy/profile.php:124
 #: tmp/class-avatar.php:350
 msgid "Born"
 msgstr ""
 
-#: legacy/admin/admin-init.php:112
-#: legacy/admin/admin-init.php:118
+#: legacy/admin/admin-init.php:77
+#: legacy/admin/admin-init.php:83
 msgid "Last Seen"
 msgstr ""
 
-#: legacy/admin/admin-init.php:133
+#: legacy/admin/admin-init.php:98
 #: legacy/shortcodes.php:104
 msgid "View profile"
 msgstr ""
 
-#: legacy/admin/admin-init.php:190
+#: legacy/admin/admin-init.php:155
 msgid "With Avatar"
 msgstr ""
 
-#: legacy/admin/admin-init.php:191
+#: legacy/admin/admin-init.php:156
 msgid "Without Avatar"
 msgstr ""
 
-#: legacy/admin/admin-init.php:208
+#: legacy/admin/admin-init.php:173
 msgid "Filter users..."
 msgstr ""
 
-#: legacy/admin/admin-init.php:214
+#: legacy/admin/admin-init.php:179
 msgid "Filter"
 msgstr ""
 
-#: legacy/admin/admin-init.php:260
+#: legacy/admin/admin-init.php:225
 msgid "OpenSimulator Profile"
 msgstr ""
 
-#: legacy/admin/admin-init.php:262
+#: legacy/admin/admin-init.php:227
 msgid "OpenSimulator Splash"
 msgstr ""
 
-#: legacy/admin/admin-init.php:264
+#: legacy/admin/admin-init.php:229
 msgid "OpenSimulator Search"
 msgstr ""
 
-#: legacy/admin/admin-init.php:266
+#: legacy/admin/admin-init.php:231
 msgid "OpenSimulator Economy"
 msgstr ""
 
-#: legacy/admin/admin-init.php:268
+#: legacy/admin/admin-init.php:233
 msgid "OpenSimulator About"
 msgstr ""
 
-#: legacy/admin/admin-init.php:270
+#: legacy/admin/admin-init.php:235
 msgid "OpenSimulator Register"
 msgstr ""
 
-#: legacy/admin/admin-init.php:272
+#: legacy/admin/admin-init.php:237
 msgid "OpenSimulator Password"
 msgstr ""
 
-#: legacy/admin/admin-init.php:274
+#: legacy/admin/admin-init.php:239
 msgid "OpenSimulator Offline Messages"
 msgstr ""
 
-#: legacy/admin/admin-init.php:286
-#: legacy/admin/admin-init.php:300
+#: legacy/admin/admin-init.php:251
+#: legacy/admin/admin-init.php:265
 msgid "The followed link has expired, please try again"
 msgstr ""
 
-#: legacy/admin/admin-init.php:307
+#: legacy/admin/admin-init.php:272
 msgid "Page %s already exists."
 msgstr ""
 
-#: legacy/admin/admin-init.php:324
+#: legacy/admin/admin-init.php:289
 msgid "New page %s created."
 msgstr ""
 
-#: legacy/admin/admin-init.php:328
+#: legacy/admin/admin-init.php:293
 msgid "Error while creating page %s."
 msgstr ""
 
-#: legacy/admin/admin-init.php:340
+#: legacy/admin/admin-init.php:305
 msgid "Avatar profile"
 msgstr ""
 
-#: legacy/admin/admin-init.php:341
+#: legacy/admin/admin-init.php:306
 msgid "The base URL for avatar web profiles."
 msgstr ""
 
-#: legacy/admin/admin-init.php:344
+#: legacy/admin/admin-init.php:309
 msgid "Search Service"
 msgstr ""
 
-#: legacy/admin/admin-init.php:345
+#: legacy/admin/admin-init.php:310
 msgid "Search service used by the viewer. Search can be provided by the simulator core (limited), or by an external service for additional functionalities (like events). Requires OpenSimSearch.Modules.dll."
 msgstr ""
 
-#: legacy/admin/admin-init.php:355
+#: legacy/admin/admin-init.php:320
 msgid "Web Search"
 msgstr ""
 
-#: legacy/admin/admin-init.php:356
+#: legacy/admin/admin-init.php:321
 msgid "Web tab of viewer search windows. Relevant if you have a search page providing content from the grid."
 msgstr ""
 
-#: legacy/admin/admin-init.php:366
+#: legacy/admin/admin-init.php:331
 #: legacy/admin/settings.php:290
 msgid "Offline messages"
 msgstr ""
 
-#: legacy/admin/admin-init.php:367
+#: legacy/admin/admin-init.php:332
 msgid "Needed by viewers to keep messages while user is offline and deliver them when they come back online. Internal service, not accessed directly by the user."
 msgstr ""
 
-#: legacy/admin/admin-init.php:372
+#: legacy/admin/admin-init.php:337
 msgid "Splash"
 msgstr ""
 
-#: legacy/admin/admin-init.php:373
+#: legacy/admin/admin-init.php:338
 msgid "The welcome page displayed in the viewer with the login form. A short, no-scroll page, with only essential info. It is required, or at least highly recommended."
 msgstr ""
 
-#: legacy/admin/admin-init.php:398
+#: legacy/admin/admin-init.php:363
 msgid "Registration page"
 msgstr ""
 
-#: legacy/admin/admin-init.php:399
+#: legacy/admin/admin-init.php:364
 msgid "Link to the user registration."
 msgstr ""
 
-#: legacy/admin/admin-init.php:404
+#: legacy/admin/admin-init.php:369
 msgid "Password revovery"
 msgstr ""
 
-#: legacy/admin/admin-init.php:405
+#: legacy/admin/admin-init.php:370
 msgid "Link to lost password page."
 msgstr ""
 
-#: legacy/admin/admin-init.php:410
+#: legacy/admin/admin-init.php:375
 msgid "Economy"
 msgstr ""
 
-#: legacy/admin/admin-init.php:411
+#: legacy/admin/admin-init.php:376
 msgid "Currencies and some other services queried by the viewer. They are not accessed directly by the user."
 msgstr ""
 
-#: legacy/admin/admin-init.php:417
+#: legacy/admin/admin-init.php:382
 msgid "About this grid"
 msgstr ""
 
-#: legacy/admin/admin-init.php:418
+#: legacy/admin/admin-init.php:383
 msgid "Detailed info page on your website, via a link displayed on the viewer login page."
 msgstr ""
 
-#: legacy/admin/admin-init.php:422
+#: legacy/admin/admin-init.php:387
 msgid "Help"
 msgstr ""
 
-#: legacy/admin/admin-init.php:423
+#: legacy/admin/admin-init.php:388
 msgid "Link to a help page on your website."
 msgstr ""
 
@@ -586,7 +661,7 @@ msgid "Username"
 msgstr ""
 
 #: legacy/admin/settings.php:83
-#: legacy/admin/status-page.php:74
+#: legacy/admin/status-page.php:71
 msgid "Avatar models"
 msgstr ""
 
@@ -835,129 +910,99 @@ msgstr ""
 msgid "Grid accounts matching first name or last name set below are considered as avatar models. They will appear on the avatar registration form, with their in-world profile picture."
 msgstr ""
 
-#: legacy/admin/status-page.php:15
+#: legacy/admin/status-page.php:12
 msgid "PHP xml-rpc is required but is not installed."
 msgstr ""
 
-#: legacy/admin/status-page.php:22
+#: legacy/admin/status-page.php:19
 msgid "Available shortcodes"
 msgstr ""
 
-#: legacy/admin/status-page.php:27
+#: legacy/admin/status-page.php:24
 msgid "General information (grid name and login uri)"
 msgstr ""
 
-#: legacy/admin/status-page.php:33
+#: legacy/admin/status-page.php:30
 msgid "Online users, regions, etc."
 msgstr ""
 
-#: legacy/admin/status-page.php:39
+#: legacy/admin/status-page.php:36
 msgid "Grid profile if user is connected and has an avatar, avatar registration form otherwise"
 msgstr ""
 
-#: legacy/admin/status-page.php:40
+#: legacy/admin/status-page.php:37
 msgid "(formerly %s)"
 msgstr ""
 
-#: legacy/admin/status-page.php:50
+#: legacy/admin/status-page.php:47
 msgid "Users"
 msgstr ""
 
-#: legacy/admin/status-page.php:55
+#: legacy/admin/status-page.php:52
 msgid "Total"
 msgstr ""
 
-#: legacy/admin/status-page.php:56
+#: legacy/admin/status-page.php:53
 msgid "WP only"
 msgstr ""
 
-#: legacy/admin/status-page.php:57
+#: legacy/admin/status-page.php:54
 msgid "Sync"
 msgstr ""
 
-#: legacy/admin/status-page.php:58
+#: legacy/admin/status-page.php:55
 msgid "Grid only"
 msgstr ""
 
-#: legacy/admin/status-page.php:62
+#: legacy/admin/status-page.php:59
 msgid "Grid accounts"
 msgstr ""
 
-#: legacy/admin/status-page.php:69
+#: legacy/admin/status-page.php:66
 msgid "Linked WordPress accounts"
 msgstr ""
 
-#: legacy/admin/status-page.php:81
+#: legacy/admin/status-page.php:78
 msgid "Other service accounts"
 msgstr ""
 
-#: legacy/admin/status-page.php:95
-msgid "%d grid account has no linked WP account. Syncing will create a new WP account."
-msgid_plural "%d grid accounts have no linked WP account. Syncing will create new WP accounts."
-msgstr[0] ""
-msgstr[1] ""
-
-#: legacy/admin/status-page.php:103
-msgid "%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference."
-msgid_plural "%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference."
-msgstr[0] ""
-msgstr[1] ""
-
-#: legacy/admin/status-page.php:111
-msgid "%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks."
-msgid_plural "%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks."
-msgstr[0] ""
-msgstr[1] ""
-
-#: legacy/admin/status-page.php:116
-msgid "Real accounts need a unique email address for W4OS to function properly."
-msgstr ""
-
-#: legacy/admin/status-page.php:124
-msgid "Synchronize users now"
-msgstr ""
-
-#: legacy/admin/status-page.php:126
-msgid "Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console."
-msgstr ""
-
-#: legacy/admin/status-page.php:144
+#: legacy/admin/status-page.php:104
 msgid "Missing PHP modules"
 msgstr ""
 
-#: legacy/admin/status-page.php:146
+#: legacy/admin/status-page.php:106
 msgid "These modules were not found: %s. Install them to get the most of this plugin."
 msgstr ""
 
-#: legacy/admin/status-page.php:154
+#: legacy/admin/status-page.php:114
 msgid "OpenSimulator pages"
 msgstr ""
 
-#: legacy/admin/status-page.php:156
+#: legacy/admin/status-page.php:116
 msgid "The following page are needed by OpenSimulator and/or by W4OS plugin. Make sure they exist or adjust your simulator .ini file."
 msgstr ""
 
-#: legacy/admin/status-page.php:166
+#: legacy/admin/status-page.php:126
 msgid "Grid not running, start Robust server or %scheck OpenSimulator settings%s."
 msgstr ""
 
-#: legacy/admin/status-page.php:186
+#: legacy/admin/status-page.php:146
 msgid "Check pages now"
 msgstr ""
 
-#: legacy/admin/status-page.php:190
+#: legacy/admin/status-page.php:150
 msgid "Last checked %s ago."
 msgstr ""
 
-#: legacy/admin/status-page.php:191
+#: legacy/admin/status-page.php:151
 msgid "OpenSimulator pages are checked regularly in the background. Synchronize now only if you made changes and want an immediate status."
 msgstr ""
 
-#: legacy/admin/status-page.php:212
+#: legacy/admin/status-page.php:172
 msgid "Should be %s"
 msgstr ""
 
-#: legacy/admin/status-page.php:218
+#: legacy/admin/status-page.php:178
 msgid "This service requires a separate web application.<br>Try <a href=\"%1$s\" target=_blank>%1$s</a>."
 msgstr ""
 
@@ -1147,120 +1192,120 @@ msgstr ""
 msgid "Password reset link"
 msgstr ""
 
-#: legacy/profile.php:244
+#: legacy/profile.php:195
 msgid "%s local users updated with avatar data"
 msgstr ""
 
-#: legacy/profile.php:258
-#: legacy/profile.php:977
+#: legacy/profile.php:209
+#: legacy/profile.php:928
 msgid "OpenSimulator"
 msgstr ""
 
-#: legacy/profile.php:425
+#: legacy/profile.php:376
 msgid "First name required"
 msgstr ""
 
-#: legacy/profile.php:426
+#: legacy/profile.php:377
 msgid "Last name required"
 msgstr ""
 
-#: legacy/profile.php:428
+#: legacy/profile.php:379
 msgid "Password required"
 msgstr ""
 
-#: legacy/profile.php:429
+#: legacy/profile.php:380
 msgid "The password does not match."
 msgstr ""
 
-#: legacy/profile.php:438
-#: legacy/profile.php:442
+#: legacy/profile.php:389
+#: legacy/profile.php:393
 msgid "The name %s is not allowed"
 msgstr ""
 
-#: legacy/profile.php:446
+#: legacy/profile.php:397
 msgid "Names can only contain alphanumeric characters"
 msgstr ""
 
-#: legacy/profile.php:452
+#: legacy/profile.php:403
 msgid "There is already a grid user named %s"
 msgstr ""
 
-#: legacy/profile.php:668
+#: legacy/profile.php:619
 msgid "Errors occurred while creating the user"
 msgstr ""
 
-#: legacy/profile.php:673
+#: legacy/profile.php:624
 msgid "Avatar %s created successfully."
 msgstr ""
 
-#: legacy/profile.php:686
+#: legacy/profile.php:637
 msgid "You need an avatar to explore our virtual world."
 msgstr ""
 
-#: legacy/profile.php:687
+#: legacy/profile.php:638
 msgid "Choose a name below. This is how people will see you in-world. Once set, your avatar name cannot be changed."
 msgstr ""
 
-#: legacy/profile.php:710
+#: legacy/profile.php:661
 msgid "Avatar first name"
 msgstr ""
 
-#: legacy/profile.php:714
+#: legacy/profile.php:665
 msgid "Avatar last name"
 msgstr ""
 
-#: legacy/profile.php:719
+#: legacy/profile.php:670
 msgid "Confirm your password"
 msgstr ""
 
-#: legacy/profile.php:721
+#: legacy/profile.php:672
 msgid "Your in-world Avatar password is the same as your password on this website."
 msgstr ""
 
-#: legacy/profile.php:735
+#: legacy/profile.php:686
 msgid "Your initial appearance"
 msgstr ""
 
-#: legacy/profile.php:736
+#: legacy/profile.php:687
 msgid "You can change it as often as you want in the virtual world."
 msgstr ""
 
-#: legacy/profile.php:772
+#: legacy/profile.php:723
 msgid "Save"
 msgstr ""
 
-#: legacy/profile.php:805
+#: legacy/profile.php:756
 msgid "leave blank to leave unchanged"
 msgstr ""
 
-#: legacy/profile.php:813
+#: legacy/profile.php:764
 msgid "Create an avatar"
 msgstr ""
 
-#: legacy/profile.php:899
+#: legacy/profile.php:850
 #: blocks/w4os-gridprofile-block/index.js:27
 #: blocks/w4os-gridprofile-block/index.js:74
 msgid "Grid profile"
 msgstr ""
 
-#: legacy/profile.php:987
+#: legacy/profile.php:938
 msgid "Avatar First Name"
 msgstr ""
 
-#: legacy/profile.php:993
+#: legacy/profile.php:944
 msgid "Avatar Last Name"
 msgstr ""
 
-#: legacy/profile.php:999
+#: legacy/profile.php:950
 #: tmp/class-avatar.php:361
 msgid "Profile Picture"
 msgstr ""
 
-#: legacy/profile.php:1001
+#: legacy/profile.php:952
 msgid "Must be set in the viewer."
 msgstr ""
 
-#: legacy/profile.php:1006
+#: legacy/profile.php:957
 msgid "Web Profile URL"
 msgstr ""
 
@@ -1321,32 +1366,6 @@ msgstr ""
 #: legacy/updates.php:129
 msgid "OpenSim Search tables updated."
 msgstr ""
-
-#: legacy/users.php:138
-msgid "Error while updating %s %s (%s) %s"
-msgstr ""
-
-#: legacy/users.php:155
-msgid "Error while updating newly created user %s for %s %s (%s) %s"
-msgstr ""
-
-#: legacy/users.php:167
-msgid "%d reference updated"
-msgid_plural "%d references updated"
-msgstr[0] ""
-msgstr[1] ""
-
-#: legacy/users.php:173
-msgid "%d new WordPress account created"
-msgid_plural "%d new WordPress accounts created"
-msgstr[0] ""
-msgstr[1] ""
-
-#: legacy/users.php:179
-msgid "%d broken reference removed"
-msgid_plural "%d broken references removed"
-msgstr[0] ""
-msgstr[1] ""
 
 #: legacy/w4osdb.php:12
 msgid "ROBUST database is not configured. To finish configuration, go to "
@@ -1431,14 +1450,6 @@ msgstr ""
 
 #: templates/content-page-profile.php:54
 msgid "%s's profile"
-msgstr ""
-
-#: tmp/class-avatar.php:338
-msgid "UUID"
-msgstr ""
-
-#: tmp/class-avatar.php:341
-msgid "Wil be set by the server"
 msgstr ""
 
 #: w4os.php:105

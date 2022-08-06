@@ -2,15 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: w4os\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w4os-dev\n"
+"POT-Creation-Date: 2022-08-06T12:48:09-04:00\n"
+"PO-Revision-Date: 2022-08-06 12:48-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-04T14:50:59-04:00\n"
-"PO-Revision-Date: 2022-08-04 14:51-0400\n"
-"Language: cy\n"
-"Plural-Forms: nplurals=4; plural= (n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural= (n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != "
+"11) ? 2 : 3;\n"
 "X-Generator: Poedit 3.0.1\n"
 
 #. Plugin Name of the plugin
@@ -37,551 +38,650 @@ msgstr "https://speculoos.world"
 msgid "Popular places"
 msgstr "Lleoedd poblogaidd"
 
-#: blocks/popular-places.php:134
-#: legacy/shortcodes.php:162
+#: blocks/popular-places.php:134 legacy/shortcodes.php:162
 msgid "No result"
 msgstr "Dim canlyniad"
 
-#: includes/class-avatar.php:178
-#: includes/class-avatar.php:199
-#: includes/class-avatar.php:212
-#: tmp/class-avatar.php:130
-#: tmp/class-avatar.php:151
-#: tmp/class-avatar.php:164
+#: includes/class-avatar.php:122
+msgid ""
+"Simulator database contains more than one avatar matching %s. This should "
+"never happen and requires an immediate fix."
+msgstr ""
+
+#: includes/class-avatar.php:325 includes/class-avatar.php:346
+#: includes/class-avatar.php:359 tmp/class-avatar.php:130
+#: tmp/class-avatar.php:151 tmp/class-avatar.php:164
 #, fuzzy
 msgid "Avatars"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:179
-#: tmp/class-avatar.php:131
+#: includes/class-avatar.php:326 tmp/class-avatar.php:131
 #, fuzzy
 msgid "Avatar"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:180
-#: tmp/class-avatar.php:132
+#: includes/class-avatar.php:327 tmp/class-avatar.php:132
 msgid "Add New"
 msgstr ""
 
-#: includes/class-avatar.php:181
-#: tmp/class-avatar.php:133
+#: includes/class-avatar.php:328 tmp/class-avatar.php:133
 #, fuzzy
 msgid "Add new avatar"
 msgstr "Creu avatar"
 
-#: includes/class-avatar.php:182
-#: tmp/class-avatar.php:134
+#: includes/class-avatar.php:329 tmp/class-avatar.php:134
 #, fuzzy
 msgid "Edit Avatar"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:183
-#: tmp/class-avatar.php:135
+#: includes/class-avatar.php:330 tmp/class-avatar.php:135
 #, fuzzy
 msgid "New Avatar"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:184
-#: tmp/class-avatar.php:136
+#: includes/class-avatar.php:331 tmp/class-avatar.php:136
 #, fuzzy
 msgid "View Avatar"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:185
-#: tmp/class-avatar.php:137
+#: includes/class-avatar.php:332 tmp/class-avatar.php:137
 #, fuzzy
 msgid "View Avatars"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:186
-#: tmp/class-avatar.php:138
+#: includes/class-avatar.php:333 tmp/class-avatar.php:138
 #, fuzzy
 msgid "Search Avatars"
 msgstr "Chwilio cronfa ddata"
 
-#: includes/class-avatar.php:187
-#: tmp/class-avatar.php:139
+#: includes/class-avatar.php:334 tmp/class-avatar.php:139
 #, fuzzy
 msgid "No avatars found"
 msgstr "Avatar heb ei ddarganfod"
 
-#: includes/class-avatar.php:188
-#: tmp/class-avatar.php:140
+#: includes/class-avatar.php:335 tmp/class-avatar.php:140
 msgid "No avatars found in Trash"
 msgstr ""
 
-#: includes/class-avatar.php:189
-#: tmp/class-avatar.php:141
+#: includes/class-avatar.php:336 tmp/class-avatar.php:141
 #, fuzzy
 msgid "Parent Avatar:"
 msgstr "Creu Fy Avatar"
 
-#: includes/class-avatar.php:190
-#: tmp/class-avatar.php:142
+#: includes/class-avatar.php:337 tmp/class-avatar.php:142
 #, fuzzy
 msgid "All Avatars"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:191
-#: tmp/class-avatar.php:143
+#: includes/class-avatar.php:338 tmp/class-avatar.php:143
 #, fuzzy
 msgid "Avatar Archives"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:192
-#: tmp/class-avatar.php:144
+#: includes/class-avatar.php:339 tmp/class-avatar.php:144
 #, fuzzy
 msgid "Avatar Attributes"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:193
-#: tmp/class-avatar.php:145
+#: includes/class-avatar.php:340 tmp/class-avatar.php:145
 #, fuzzy
 msgid "Insert into avatar"
 msgstr "Creu avatar"
 
-#: includes/class-avatar.php:194
-#: tmp/class-avatar.php:146
+#: includes/class-avatar.php:341 tmp/class-avatar.php:146
 msgid "Uploaded to this avatar"
 msgstr ""
 
-#: includes/class-avatar.php:195
-#: tmp/class-avatar.php:147
+#: includes/class-avatar.php:342 tmp/class-avatar.php:147
 msgid "Featured image"
 msgstr ""
 
-#: includes/class-avatar.php:196
-#: tmp/class-avatar.php:148
+#: includes/class-avatar.php:343 tmp/class-avatar.php:148
 msgid "Set featured image"
 msgstr ""
 
-#: includes/class-avatar.php:197
-#: tmp/class-avatar.php:149
+#: includes/class-avatar.php:344 tmp/class-avatar.php:149
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/class-avatar.php:198
-#: tmp/class-avatar.php:150
+#: includes/class-avatar.php:345 tmp/class-avatar.php:150
 msgid "Use as featured image"
 msgstr ""
 
-#: includes/class-avatar.php:200
-#: tmp/class-avatar.php:152
+#: includes/class-avatar.php:347 tmp/class-avatar.php:152
 msgid "Filter avatars list"
 msgstr ""
 
-#: includes/class-avatar.php:201
-#: tmp/class-avatar.php:153
+#: includes/class-avatar.php:348 tmp/class-avatar.php:153
 #, fuzzy
 msgid "Filter by date"
 msgstr "Hidlo"
 
-#: includes/class-avatar.php:202
-#: tmp/class-avatar.php:154
+#: includes/class-avatar.php:349 tmp/class-avatar.php:154
 #, fuzzy
 msgid "Avatars list navigation"
 msgstr "Enw olaf avatar"
 
-#: includes/class-avatar.php:203
-#: tmp/class-avatar.php:155
+#: includes/class-avatar.php:350 tmp/class-avatar.php:155
 #, fuzzy
 msgid "Avatars list"
 msgstr "Modelau avatar"
 
-#: includes/class-avatar.php:204
-#: tmp/class-avatar.php:156
+#: includes/class-avatar.php:351 tmp/class-avatar.php:156
 #, fuzzy
 msgid "Avatar published"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:205
-#: tmp/class-avatar.php:157
+#: includes/class-avatar.php:352 tmp/class-avatar.php:157
 msgid "Avatar published privately"
 msgstr ""
 
-#: includes/class-avatar.php:206
-#: tmp/class-avatar.php:158
+#: includes/class-avatar.php:353 tmp/class-avatar.php:158
 msgid "Avatar reverted to draft"
 msgstr ""
 
-#: includes/class-avatar.php:207
-#: tmp/class-avatar.php:159
+#: includes/class-avatar.php:354 tmp/class-avatar.php:159
 #, fuzzy
 msgid "Avatar scheduled"
 msgstr "Modelau avatar"
 
-#: includes/class-avatar.php:208
-#: tmp/class-avatar.php:160
+#: includes/class-avatar.php:355 tmp/class-avatar.php:160
 #, fuzzy
 msgid "Avatar updated"
 msgstr "Enw Avatar"
 
-#: includes/class-avatar.php:245
-#: tmp/class-avatar.php:205
+#: includes/class-avatar.php:392 tmp/class-avatar.php:205
 #, fuzzy
 msgid "Profile"
 msgstr "Fy mhroffil"
 
-#: includes/class-avatar.php:266
-#: tmp/class-avatar.php:234
+#: includes/class-avatar.php:413 tmp/class-avatar.php:234
 #, fuzzy
 msgid "WordPress User"
 msgstr "Cyfrifon WordPress cysylltiedig"
 
-#: includes/class-avatar.php:272
-#: tmp/class-avatar.php:240
+#: includes/class-avatar.php:419 tmp/class-avatar.php:240
 #, fuzzy
 msgid "Select a user"
 msgstr "Defnyddwyr diweddar"
 
-#: includes/class-avatar.php:280
-#: tmp/class-avatar.php:248
+#: includes/class-avatar.php:427 tmp/class-avatar.php:248
 #, fuzzy
 msgid "E-mail"
 msgstr "Ebost"
 
-#: includes/class-avatar.php:291
-#: tmp/class-avatar.php:259
-msgid "Optional. If set, the avatar will be linked to any matching WP user account."
+#: includes/class-avatar.php:438 tmp/class-avatar.php:259
+msgid ""
+"Optional. If set, the avatar will be linked to any matching WP user account."
 msgstr ""
 
-#: includes/class-avatar.php:298
-#: tmp/class-avatar.php:266
+#: includes/class-avatar.php:445 tmp/class-avatar.php:266
 #, fuzzy
 msgid "Create WP user"
 msgstr "Creu Fy Avatar"
 
-#: includes/class-avatar.php:309
-#: legacy/admin/settings.php:76
-#: legacy/admin/settings.php:234
-#: legacy/admin/settings.php:391
+#: includes/class-avatar.php:450 includes/class-avatar.php:478
+msgid "(not implemented)"
+msgstr ""
+
+#: includes/class-avatar.php:459 legacy/admin/settings.php:76
+#: legacy/admin/settings.php:234 legacy/admin/settings.php:391
 #: tmp/class-avatar.php:277
 msgid "Password"
 msgstr "Cyfrinair"
 
-#: includes/class-avatar.php:309
-#: legacy/profile.php:132
+#: includes/class-avatar.php:459 legacy/profile.php:132
 #: tmp/class-avatar.php:277
 #, fuzzy
 msgid "Change password"
 msgstr "Ailosod cyfrinair"
 
-#: includes/class-avatar.php:316
-#: tmp/class-avatar.php:283
+#: includes/class-avatar.php:466 tmp/class-avatar.php:283
 #, fuzzy
 msgid "Confirm password"
 msgstr "Cadarnhewch eich cyfrinair"
 
-#: includes/class-avatar.php:323
-#: tmp/class-avatar.php:289
+#: includes/class-avatar.php:473 tmp/class-avatar.php:289
 msgid "Same password as WP user"
 msgstr ""
 
-#: includes/class-avatar.php:342
-#: tmp/class-avatar.php:308
+#: includes/class-avatar.php:495 tmp/class-avatar.php:308
 #, fuzzy
 msgid "Model"
 msgstr "Modelau"
 
-#: includes/class-avatar.php:349
-#: legacy/admin/admin-init.php:105
-#: legacy/profile.php:118
-#: tmp/class-avatar.php:315
+#: includes/class-avatar.php:502 legacy/admin/admin-init.php:70
+#: legacy/profile.php:118 tmp/class-avatar.php:315
 msgid "Avatar Name"
 msgstr "Enw Avatar"
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:356
-#: tmp/class-avatar.php:322
+#: includes/class-avatar.php:509 tmp/class-avatar.php:322
 #, fuzzy
 msgid "Firstname"
 msgstr "Enw Cyntaf = "
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:356
-#: tmp/class-avatar.php:322
+#: includes/class-avatar.php:509 tmp/class-avatar.php:322
 #, fuzzy
 msgid "Lastname"
 msgstr "NEU Cyfenw = "
 
-#: includes/class-avatar.php:360
-#: tmp/class-avatar.php:326
+#: includes/class-avatar.php:513 tmp/class-avatar.php:326
 msgid "The avatar name is permanent, it can't be changed later."
 msgstr ""
 
-#: includes/class-avatar.php:369
-#: tmp/class-avatar.php:221
-msgid "Please provide first and last name, only letters and numbers, separated by a space."
+#: includes/class-avatar.php:522 tmp/class-avatar.php:221
+msgid ""
+"Please provide first and last name, only letters and numbers, separated by a "
+"space."
 msgstr ""
 
-#: includes/class-avatar.php:467
-#: legacy/profile.php:414
+#: includes/class-avatar.php:527 tmp/class-avatar.php:338
+msgid "UUID"
+msgstr ""
+
+#: includes/class-avatar.php:530 tmp/class-avatar.php:341
+#, fuzzy
+msgid "Wil be set by the server"
+msgstr "Gweinydd asedau gwe"
+
+#: includes/class-avatar.php:541
+#, fuzzy
+msgid "Last seen"
+msgstr "Gwelwyd Diwethaf"
+
+#: includes/class-avatar.php:675 legacy/profile.php:365
 msgid "This user already has an avatar."
 msgstr "Mae gan y defnyddiwr hwn avatar yn barod."
 
-#: includes/class-avatar.php:473
+#: includes/class-avatar.php:681
 #, fuzzy
 msgid "This name is not available."
 msgstr "Ni chaniateir yr enw %s"
 
-#: includes/class-avatar.php:484
+#: includes/class-avatar.php:692
 #, fuzzy
 msgid "Passwords don't match."
 msgstr "Nid yw'r cyfrinair yn cyfateb."
 
-#: includes/class-avatar.php:499
-#: legacy/profile.php:458
-msgid "This should never happen! Generated a random UUID that already existed. Sorry. Try again."
-msgstr "Ni ddylai hyn byth ddigwydd! Wedi creu UUID ar hap sy'n bodoli eisoes. Mae'n ddrwg gennyf. Ceisio eto."
+#: includes/class-avatar.php:707 legacy/profile.php:409
+msgid ""
+"This should never happen! Generated a random UUID that already existed. "
+"Sorry. Try again."
+msgstr ""
+"Ni ddylai hyn byth ddigwydd! Wedi creu UUID ar hap sy'n bodoli eisoes. Mae'n "
+"ddrwg gennyf. Ceisio eto."
 
-#: includes/class-avatar.php:520
-#: legacy/profile.php:480
+#: includes/class-avatar.php:728 legacy/profile.php:431
 msgid "Error while creating user"
 msgstr "Gwall wrth greu defnyddiwr"
 
-#: includes/class-avatar.php:529
-#: legacy/profile.php:489
+#: includes/class-avatar.php:737 legacy/profile.php:440
 msgid "Error while setting password"
 msgstr "Gwall wrth osod cyfrinair"
 
-#: includes/class-avatar.php:539
-#: legacy/profile.php:500
+#: includes/class-avatar.php:747 legacy/profile.php:451
 msgid "Error while setting home region"
 msgstr "Gwall wrth osod y rhanbarth cartref"
 
-#: includes/class-avatar.php:563
-#: legacy/profile.php:517
+#: includes/class-avatar.php:771 legacy/profile.php:468
 msgid "Error while creating user inventory"
 msgstr "Gwall wrth greu rhestr eiddo defnyddwyr"
 
-#: includes/class-avatar.php:685
-#: legacy/profile.php:639
+#: includes/class-avatar.php:897 legacy/profile.php:590
 msgid "Error while adding inventory item"
 msgstr "Gwall wrth ychwanegu eitem rhestr eiddo"
 
-#: includes/class-avatar.php:696
-#: legacy/profile.php:650
+#: includes/class-avatar.php:908 legacy/profile.php:601
 msgid "Error while adding inventory outfit link"
 msgstr "Gwall wrth ychwanegu dolen gwisg rhestr eiddo"
 
-#: includes/class-avatar.php:708
-#: legacy/profile.php:662
+#: includes/class-avatar.php:920 legacy/profile.php:613
 msgid "Error while adding avatar"
 msgstr "Gwall wrth ychwanegu avatar"
 
-#: includes/class-avatar.php:722
+#: includes/class-avatar.php:934
 #, fuzzy
 msgid "Errors occurred while creating avatar %s"
 msgstr "Digwyddodd gwallau wrth greu'r defnyddiwr"
 
-#: includes/class-avatar.php:755
-#: tmp/class-avatar.php:420
+#: includes/class-avatar.php:968 tmp/class-avatar.php:420
 msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
 msgstr ""
 
-#: legacy/admin/admin-init.php:26
+#: includes/class-avatar.php:1306
+msgid "%d reference updated"
+msgid_plural "%d references updated"
+msgstr[0] "%d cyfeirnod wedi'i ddiweddaru"
+msgstr[1] "%d cyfeirnod wedi'i ddiweddaru"
+msgstr[2] "%d cyfeirnod wedi'i ddiweddaru"
+msgstr[3] "%d cyfeirnod wedi'i ddiweddaru"
+
+#: includes/class-avatar.php:1312
+msgid "%d new WordPress account created"
+msgid_plural "%d new WordPress accounts created"
+msgstr[0] "%d cyfrif WordPress newydd wedi'i greu"
+msgstr[1] "%d cyfrif WordPress newydd wedi'i greu"
+msgstr[2] "%d cyfrif WordPress newydd wedi'i greu"
+msgstr[3] "%d cyfrif WordPress newydd wedi'i greu"
+
+#: includes/class-avatar.php:1318
+msgid "%d broken reference removed"
+msgid_plural "%d broken references removed"
+msgstr[0] "%d cyfeirnod toredig wedi'i dynnu"
+msgstr[1] "%d cyfeirnod toredig wedi'i dynnu"
+msgstr[2] "%d cyfeirnod toredig wedi'i dynnu"
+msgstr[3] "%d cyfeirnod toredig wedi'i dynnu"
+
+#: includes/class-avatar.php:1339
+msgid ""
+"%d grid account has no linked WP account. Syncing will create a new WP "
+"account."
+msgid_plural ""
+"%d grid accounts have no linked WP account. Syncing will create new WP "
+"accounts."
+msgstr[0] ""
+"Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu "
+"cyfrif WP newydd."
+msgstr[1] ""
+"Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu "
+"cyfrif WP newydd."
+msgstr[2] ""
+"Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu "
+"cyfrif WP newydd."
+msgstr[3] ""
+"Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu "
+"cyfrif WP newydd."
+
+#: includes/class-avatar.php:1347
+msgid ""
+"%d WordPress avatar has no related account in OpenSimulator database "
+"(corrupt reference or deleted). Syncing accounts will delete it from "
+"WordPress database too."
+msgid_plural ""
+"%d WordPress avatars have no related account in OpenSimulator database "
+"corrupt reference or deleted). Syncing accounts will remove these from "
+"WordPress database too."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/class-avatar.php:1355
+#, fuzzy
+msgid ""
+"%d grid avatar (other than models) has no email address, it is handled as a "
+"service account and is not displayed in avatars list."
+msgid_plural ""
+"%d grid avatars (other than models) have no email address, they are handled "
+"as service accounts and are not displayed in avatars list."
+msgstr[0] ""
+"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
+"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
+"wasanaeth yn unig."
+msgstr[1] ""
+"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
+"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
+"wasanaeth yn unig."
+msgstr[2] ""
+"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
+"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
+"wasanaeth yn unig."
+msgstr[3] ""
+"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
+"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
+"wasanaeth yn unig."
+
+#: includes/class-avatar.php:1363
+#, fuzzy
+msgid "Users avatars need an email address for %s and %s to work properly."
+msgstr ""
+"Mae cyfrifon go iawn angen cyfeiriad e-bost unigryw er mwyn i W4OS "
+"weithredu'n iawn."
+
+#: includes/class-avatar.php:1373
+msgid "Synchronize users now"
+msgstr "Cydamseru defnyddwyr nawr"
+
+#: includes/class-avatar.php:1374
+msgid ""
+"Synchronization is made at plugin activation and is handled automatically "
+"afterwards, but in certain circumstances it may be necessary to initiate it "
+"manually to get an immediate result, especially if users have been added or "
+"deleted directly from the grid administration console."
+msgstr ""
+"Gwneir cydamseru wrth actifadu ategyn a chaiff ei drin yn awtomatig wedyn, "
+"ond mewn rhai amgylchiadau efallai y bydd angen ei gychwyn â llaw i gael "
+"canlyniad ar unwaith, yn enwedig os yw defnyddwyr wedi'u hychwanegu neu eu "
+"dileu yn uniongyrchol o'r consol gweinyddu grid."
+
+#: includes/class-settings.php:169
 msgid "OpenSimulator Status"
 msgstr "Statws OpenSimulator"
 
-#: legacy/admin/admin-init.php:26
-#: legacy/functions.php:227
+#: includes/class-settings.php:169 legacy/functions.php:227
 msgid "Status"
 msgstr "Statws"
 
-#: legacy/admin/admin-init.php:29
+#: includes/class-settings.php:176
 msgid "OpenSimulator Settings"
 msgstr "Gosodiadau OpenSimulator"
 
-#: legacy/admin/admin-init.php:30
-#: legacy/admin/settings.php:603
-msgid "Settings"
+#: includes/class-settings.php:177
+#, fuzzy
+msgid "Legacy Settings"
 msgstr "Gosodiadau"
 
-#: legacy/admin/admin-init.php:38
-#: legacy/admin/admin-init.php:85
+#: includes/class-settings.php:186 legacy/admin/admin-init.php:50
 msgid "OpenSimulator Helpers"
 msgstr "Cynorthwywyr OpenSimulator"
 
-#: legacy/admin/admin-init.php:39
-msgid "Helpers"
+#: includes/class-settings.php:187
+#, fuzzy
+msgid "Legacy Helpers"
 msgstr "Cynorthwywyr"
 
-#: legacy/admin/admin-init.php:111
-#: legacy/admin/admin-init.php:117
-#: legacy/profile.php:124
-#: tmp/class-avatar.php:350
+#: includes/class-settings.php:208 legacy/admin/settings.php:603
+msgid "Settings"
+msgstr "Gosodiadau"
+
+#: legacy/admin/admin-init.php:76 legacy/admin/admin-init.php:82
+#: legacy/profile.php:124 tmp/class-avatar.php:350
 msgid "Born"
 msgstr "Eni"
 
-#: legacy/admin/admin-init.php:112
-#: legacy/admin/admin-init.php:118
+#: legacy/admin/admin-init.php:77 legacy/admin/admin-init.php:83
 msgid "Last Seen"
 msgstr "Gwelwyd Diwethaf"
 
-#: legacy/admin/admin-init.php:133
-#: legacy/shortcodes.php:104
+#: legacy/admin/admin-init.php:98 legacy/shortcodes.php:104
 msgid "View profile"
 msgstr "Gweld proffil"
 
-#: legacy/admin/admin-init.php:190
+#: legacy/admin/admin-init.php:155
 msgid "With Avatar"
 msgstr "Gyda Avatar"
 
-#: legacy/admin/admin-init.php:191
+#: legacy/admin/admin-init.php:156
 msgid "Without Avatar"
 msgstr "Heb Avatar"
 
-#: legacy/admin/admin-init.php:208
+#: legacy/admin/admin-init.php:173
 msgid "Filter users..."
 msgstr "Hidlo defnyddwyr..."
 
-#: legacy/admin/admin-init.php:214
+#: legacy/admin/admin-init.php:179
 msgid "Filter"
 msgstr "Hidlo"
 
-#: legacy/admin/admin-init.php:260
+#: legacy/admin/admin-init.php:225
 msgid "OpenSimulator Profile"
 msgstr "Proffil OpenSimulator"
 
-#: legacy/admin/admin-init.php:262
+#: legacy/admin/admin-init.php:227
 msgid "OpenSimulator Splash"
 msgstr "OpenSimulator Sblash"
 
-#: legacy/admin/admin-init.php:264
+#: legacy/admin/admin-init.php:229
 msgid "OpenSimulator Search"
 msgstr "Chwiliad OpenSimulator"
 
-#: legacy/admin/admin-init.php:266
+#: legacy/admin/admin-init.php:231
 msgid "OpenSimulator Economy"
 msgstr "Economi OpenSimulator"
 
-#: legacy/admin/admin-init.php:268
+#: legacy/admin/admin-init.php:233
 msgid "OpenSimulator About"
 msgstr "OpenSimulator Amdanom"
 
-#: legacy/admin/admin-init.php:270
+#: legacy/admin/admin-init.php:235
 msgid "OpenSimulator Register"
 msgstr "Cofrestr OpenSimulator"
 
-#: legacy/admin/admin-init.php:272
+#: legacy/admin/admin-init.php:237
 msgid "OpenSimulator Password"
 msgstr "Cyfrinair OpenSimulator"
 
-#: legacy/admin/admin-init.php:274
+#: legacy/admin/admin-init.php:239
 msgid "OpenSimulator Offline Messages"
 msgstr "Negeseuon All-lein OpenSimulator"
 
-#: legacy/admin/admin-init.php:286
-#: legacy/admin/admin-init.php:300
+#: legacy/admin/admin-init.php:251 legacy/admin/admin-init.php:265
 msgid "The followed link has expired, please try again"
 msgstr "Mae'r ddolen ganlynol wedi dod i ben, ceisiwch eto"
 
-#: legacy/admin/admin-init.php:307
+#: legacy/admin/admin-init.php:272
 msgid "Page %s already exists."
 msgstr "Mae tudalen %s yn bodoli yn barod."
 
-#: legacy/admin/admin-init.php:324
+#: legacy/admin/admin-init.php:289
 msgid "New page %s created."
 msgstr "Tudalen newydd %s wedi'i chreu."
 
-#: legacy/admin/admin-init.php:328
+#: legacy/admin/admin-init.php:293
 msgid "Error while creating page %s."
 msgstr "Gwall wrth greu tudalen %s."
 
-#: legacy/admin/admin-init.php:340
+#: legacy/admin/admin-init.php:305
 msgid "Avatar profile"
 msgstr "Proffil avatar"
 
-#: legacy/admin/admin-init.php:341
+#: legacy/admin/admin-init.php:306
 msgid "The base URL for avatar web profiles."
 msgstr "Yr URL sylfaenol ar gyfer proffiliau gwe avatar."
 
-#: legacy/admin/admin-init.php:344
+#: legacy/admin/admin-init.php:309
 msgid "Search Service"
 msgstr "Gwasanaeth Chwilio"
 
-#: legacy/admin/admin-init.php:345
-msgid "Search service used by the viewer. Search can be provided by the simulator core (limited), or by an external service for additional functionalities (like events). Requires OpenSimSearch.Modules.dll."
-msgstr "Gwasanaeth chwilio a ddefnyddir gan y gwyliwr. Gellir darparu chwiliad gan graidd yr efelychydd (cyfyngedig), neu gan wasanaeth allanol ar gyfer swyddogaethau ychwanegol (fel digwyddiadau). Angen OpenSimSearch.Modules.dll."
+#: legacy/admin/admin-init.php:310
+msgid ""
+"Search service used by the viewer. Search can be provided by the simulator "
+"core (limited), or by an external service for additional functionalities "
+"(like events). Requires OpenSimSearch.Modules.dll."
+msgstr ""
+"Gwasanaeth chwilio a ddefnyddir gan y gwyliwr. Gellir darparu chwiliad gan "
+"graidd yr efelychydd (cyfyngedig), neu gan wasanaeth allanol ar gyfer "
+"swyddogaethau ychwanegol (fel digwyddiadau). Angen OpenSimSearch.Modules.dll."
 
-#: legacy/admin/admin-init.php:355
+#: legacy/admin/admin-init.php:320
 msgid "Web Search"
 msgstr "Chwiliad Gwe"
 
-#: legacy/admin/admin-init.php:356
-msgid "Web tab of viewer search windows. Relevant if you have a search page providing content from the grid."
-msgstr "Tab gwe o ffenestri chwilio gwyliwr. Yn berthnasol os oes gennych dudalen chwilio sy'n darparu cynnwys o'r grid."
+#: legacy/admin/admin-init.php:321
+msgid ""
+"Web tab of viewer search windows. Relevant if you have a search page "
+"providing content from the grid."
+msgstr ""
+"Tab gwe o ffenestri chwilio gwyliwr. Yn berthnasol os oes gennych dudalen "
+"chwilio sy'n darparu cynnwys o'r grid."
 
-#: legacy/admin/admin-init.php:366
-#: legacy/admin/settings.php:290
+#: legacy/admin/admin-init.php:331 legacy/admin/settings.php:290
 msgid "Offline messages"
 msgstr "Negeseuon all-lein"
 
-#: legacy/admin/admin-init.php:367
-msgid "Needed by viewers to keep messages while user is offline and deliver them when they come back online. Internal service, not accessed directly by the user."
-msgstr "Mae ei angen ar wylwyr i gadw negeseuon tra bod y defnyddiwr all-lein a'u cyflwyno pan fyddant yn dod yn ôl ar-lein. Gwasanaeth mewnol, na chaiff ei gyrchu'n uniongyrchol gan y defnyddiwr."
+#: legacy/admin/admin-init.php:332
+msgid ""
+"Needed by viewers to keep messages while user is offline and deliver them "
+"when they come back online. Internal service, not accessed directly by the "
+"user."
+msgstr ""
+"Mae ei angen ar wylwyr i gadw negeseuon tra bod y defnyddiwr all-lein a'u "
+"cyflwyno pan fyddant yn dod yn ôl ar-lein. Gwasanaeth mewnol, na chaiff ei "
+"gyrchu'n uniongyrchol gan y defnyddiwr."
 
-#: legacy/admin/admin-init.php:372
+#: legacy/admin/admin-init.php:337
 msgid "Splash"
 msgstr "Sblash"
 
-#: legacy/admin/admin-init.php:373
-msgid "The welcome page displayed in the viewer with the login form. A short, no-scroll page, with only essential info. It is required, or at least highly recommended."
-msgstr "Y dudalen groeso a ddangosir yn y gwyliwr gyda'r ffurflen mewngofnodi. Tudalen fer, heb sgrolio, gyda dim ond gwybodaeth hanfodol. Mae'n ofynnol, neu o leiaf yn cael ei argymell yn fawr."
+#: legacy/admin/admin-init.php:338
+msgid ""
+"The welcome page displayed in the viewer with the login form. A short, no-"
+"scroll page, with only essential info. It is required, or at least highly "
+"recommended."
+msgstr ""
+"Y dudalen groeso a ddangosir yn y gwyliwr gyda'r ffurflen mewngofnodi. "
+"Tudalen fer, heb sgrolio, gyda dim ond gwybodaeth hanfodol. Mae'n ofynnol, "
+"neu o leiaf yn cael ei argymell yn fawr."
 
-#: legacy/admin/admin-init.php:398
+#: legacy/admin/admin-init.php:363
 msgid "Registration page"
 msgstr "Tudalen gofrestru"
 
-#: legacy/admin/admin-init.php:399
+#: legacy/admin/admin-init.php:364
 msgid "Link to the user registration."
 msgstr "Dolen i'r cofrestriad defnyddiwr."
 
-#: legacy/admin/admin-init.php:404
+#: legacy/admin/admin-init.php:369
 msgid "Password revovery"
 msgstr "Dirymiad cyfrinair"
 
-#: legacy/admin/admin-init.php:405
+#: legacy/admin/admin-init.php:370
 msgid "Link to lost password page."
 msgstr "Dolen i dudalen cyfrinair coll."
 
-#: legacy/admin/admin-init.php:410
+#: legacy/admin/admin-init.php:375
 msgid "Economy"
 msgstr "Economi"
 
-#: legacy/admin/admin-init.php:411
-msgid "Currencies and some other services queried by the viewer. They are not accessed directly by the user."
-msgstr "Arian cyfred a rhai gwasanaethau eraill yn cael eu holi gan y gwyliwr. Nid yw'r defnyddiwr yn mynd atynt yn uniongyrchol."
+#: legacy/admin/admin-init.php:376
+msgid ""
+"Currencies and some other services queried by the viewer. They are not "
+"accessed directly by the user."
+msgstr ""
+"Arian cyfred a rhai gwasanaethau eraill yn cael eu holi gan y gwyliwr. Nid "
+"yw'r defnyddiwr yn mynd atynt yn uniongyrchol."
 
-#: legacy/admin/admin-init.php:417
+#: legacy/admin/admin-init.php:382
 msgid "About this grid"
 msgstr "Am y grid hwn"
 
-#: legacy/admin/admin-init.php:418
-msgid "Detailed info page on your website, via a link displayed on the viewer login page."
-msgstr "Tudalen wybodaeth fanwl ar eich gwefan, trwy ddolen a ddangosir ar dudalen mewngofnodi'r gwyliwr."
+#: legacy/admin/admin-init.php:383
+msgid ""
+"Detailed info page on your website, via a link displayed on the viewer login "
+"page."
+msgstr ""
+"Tudalen wybodaeth fanwl ar eich gwefan, trwy ddolen a ddangosir ar dudalen "
+"mewngofnodi'r gwyliwr."
 
-#: legacy/admin/admin-init.php:422
+#: legacy/admin/admin-init.php:387
 msgid "Help"
 msgstr "Help"
 
-#: legacy/admin/admin-init.php:423
+#: legacy/admin/admin-init.php:388
 msgid "Link to a help page on your website."
 msgstr "Dolen i dudalen gymorth ar eich gwefan."
 
-#: legacy/admin/dashboard.php:13
-#: legacy/admin/settings.php:43
-#: legacy/shortcodes.php:125
-#: legacy/widgets.php:47
+#: legacy/admin/dashboard.php:13 legacy/admin/settings.php:43
+#: legacy/shortcodes.php:125 legacy/widgets.php:47
 #: blocks/w4os-gridinfo-block/index.js:27
 #: blocks/w4os-gridinfo-block/index.js:74
 msgid "Grid info"
 msgstr "Gwybodaeth grid"
 
-#: legacy/admin/dashboard.php:20
-#: legacy/shortcodes.php:154
-#: legacy/widgets.php:79
-#: legacy/widgets.php:115
+#: legacy/admin/dashboard.php:20 legacy/shortcodes.php:154
+#: legacy/widgets.php:79 legacy/widgets.php:115
 #: blocks/w4os-gridstatus-block/index.js:27
 #: blocks/w4os-gridstatus-block/index.js:74
 msgid "Grid status"
@@ -591,8 +691,7 @@ msgstr "Statws grid"
 msgid "Recent users"
 msgstr "Defnyddwyr diweddar"
 
-#: legacy/admin/settings.php:56
-#: legacy/shortcodes.php:130
+#: legacy/admin/settings.php:56 legacy/shortcodes.php:130
 msgid "Grid name"
 msgstr "Enw grid"
 
@@ -600,26 +699,22 @@ msgstr "Enw grid"
 msgid "Robust server database"
 msgstr "Cronfa ddata gweinyddwr cadarn"
 
-#: legacy/admin/settings.php:66
-#: legacy/admin/settings.php:221
+#: legacy/admin/settings.php:66 legacy/admin/settings.php:221
 #: legacy/admin/settings.php:378
 msgid "Hostname"
 msgstr "Enw gwesteiwr"
 
-#: legacy/admin/settings.php:69
-#: legacy/admin/settings.php:225
+#: legacy/admin/settings.php:69 legacy/admin/settings.php:225
 #: legacy/admin/settings.php:382
 msgid "Database name"
 msgstr "Enw cronfa ddata"
 
-#: legacy/admin/settings.php:72
-#: legacy/admin/settings.php:229
+#: legacy/admin/settings.php:72 legacy/admin/settings.php:229
 #: legacy/admin/settings.php:386
 msgid "Username"
 msgstr "Enw defnyddiwr"
 
-#: legacy/admin/settings.php:83
-#: legacy/admin/status-page.php:74
+#: legacy/admin/settings.php:83 legacy/admin/status-page.php:71
 msgid "Avatar models"
 msgstr "Modelau avatar"
 
@@ -635,25 +730,23 @@ msgstr "NEU Cyfenw = "
 msgid "Grid users"
 msgstr "Defnyddwyr grid"
 
-#: legacy/admin/settings.php:101
-#: legacy/admin/settings.php:116
+#: legacy/admin/settings.php:101 legacy/admin/settings.php:116
 msgid "Profile page"
 msgstr "Tudalen proffil"
 
-#: legacy/admin/settings.php:103
-#: legacy/admin/settings.php:118
+#: legacy/admin/settings.php:103 legacy/admin/settings.php:118
 msgid "Provide web profile page for avatars"
 msgstr "Darparu tudalen proffil gwe ar gyfer avatars"
 
-#: legacy/admin/settings.php:105
-#: legacy/admin/settings.php:120
+#: legacy/admin/settings.php:105 legacy/admin/settings.php:120
 msgid "Defaults"
 msgstr "Rhagosodiadau"
 
-#: legacy/admin/settings.php:109
-#: legacy/admin/settings.php:124
+#: legacy/admin/settings.php:109 legacy/admin/settings.php:124
 msgid "The page %s must exist, as defined in %spermalinks settings%s."
-msgstr "Rhaid i'r dudalen %s fodoli, fel y'i diffinnir yng ngosodiadau %spermalinks%s."
+msgstr ""
+"Rhaid i'r dudalen %s fodoli, fel y'i diffinnir yng ngosodiadau "
+"%spermalinks%s."
 
 #: legacy/admin/settings.php:132
 msgid "Show configuration instructions to new users."
@@ -696,8 +789,13 @@ msgid "Hypergrid visitors"
 msgstr "Ymwelwyr Hypergrid"
 
 #: legacy/admin/settings.php:159
-msgid "Accounts without email address are usually test accounts created from the console. Uncheck only if you have real avatars without email address."
-msgstr "Mae cyfrifon heb gyfeiriad e-bost fel arfer yn gyfrifon prawf sy'n cael eu creu o'r consol. Dad-diciwch dim ond os oes gennych avatars go iawn heb gyfeiriad e-bost."
+msgid ""
+"Accounts without email address are usually test accounts created from the "
+"console. Uncheck only if you have real avatars without email address."
+msgstr ""
+"Mae cyfrifon heb gyfeiriad e-bost fel arfer yn gyfrifon prawf sy'n cael eu "
+"creu o'r consol. Dad-diciwch dim ond os oes gennych avatars go iawn heb "
+"gyfeiriad e-bost."
 
 #: legacy/admin/settings.php:178
 msgid "Web Assets Server"
@@ -708,8 +806,12 @@ msgid "Provide web assets server"
 msgstr "Darparu gweinydd asedau gwe"
 
 #: legacy/admin/settings.php:186
-msgid "A web assets server is required to display in-world assets (from the grid) on the website (e.g. profile pictures)."
-msgstr "Mae angen gweinydd asedau gwe i arddangos asedau yn y byd (o'r grid) ar y wefan (e.e. lluniau proffil)."
+msgid ""
+"A web assets server is required to display in-world assets (from the grid) "
+"on the website (e.g. profile pictures)."
+msgstr ""
+"Mae angen gweinydd asedau gwe i arddangos asedau yn y byd (o'r grid) ar y "
+"wefan (e.e. lluniau proffil)."
 
 #: legacy/admin/settings.php:189
 msgid "Web asset server"
@@ -724,8 +826,12 @@ msgid "External assets server URI"
 msgstr "URI gweinydd asedau allanol"
 
 #: legacy/admin/settings.php:199
-msgid "If W4OS web assets service is disabled, you need a third-party web application."
-msgstr "Os yw gwasanaeth asedau gwe W4OS yn anabl, mae angen cymhwysiad gwe trydydd parti arnoch chi."
+msgid ""
+"If W4OS web assets service is disabled, you need a third-party web "
+"application."
+msgstr ""
+"Os yw gwasanaeth asedau gwe W4OS yn anabl, mae angen cymhwysiad gwe trydydd "
+"parti arnoch chi."
 
 #: legacy/admin/settings.php:205
 msgid "Search"
@@ -739,8 +845,7 @@ msgstr "Darparu chwiliad yn y byd"
 msgid "Search database"
 msgstr "Chwilio cronfa ddata"
 
-#: legacy/admin/settings.php:218
-#: legacy/admin/settings.php:365
+#: legacy/admin/settings.php:218 legacy/admin/settings.php:365
 msgid "Use the same database as Robust"
 msgstr "Defnyddiwch yr un gronfa ddata â Strong"
 
@@ -749,12 +854,24 @@ msgid "Search engine URL"
 msgstr "URL peiriant chwilio"
 
 #: legacy/admin/settings.php:243
-msgid "URL of the search engine used internally by the viewer (without arguments)."
-msgstr "URL y peiriant chwilio a ddefnyddir yn fewnol gan y gwyliwr (heb ddadleuon)."
+msgid ""
+"URL of the search engine used internally by the viewer (without arguments)."
+msgstr ""
+"URL y peiriant chwilio a ddefnyddir yn fewnol gan y gwyliwr (heb ddadleuon)."
 
 #: legacy/admin/settings.php:252
-msgid "Please note that Search URL is different from Web search URL, which is not handled by W4OS currently. Web search is relevant if you have a web search page dedicated to grid content, providing results with in-world URLs (hop:// or secondlife://). It is optional and is referenced here only to disambiguate settings which unfortunately have similar names."
-msgstr "Sylwch fod URL Chwilio yn wahanol i URL chwilio Gwe, nad yw W4OS yn ei drin ar hyn o bryd. Mae chwiliad gwe yn berthnasol os oes gennych chi dudalen chwilio gwe sy'n ymroddedig i gynnwys grid, sy'n darparu canlyniadau gydag URLs yn y byd (hop: / neu secondlife://). Mae'n ddewisol a chyfeirir ato yma dim ond i ddadamwys gosodiadau sydd yn anffodus ag enwau tebyg."
+msgid ""
+"Please note that Search URL is different from Web search URL, which is not "
+"handled by W4OS currently. Web search is relevant if you have a web search "
+"page dedicated to grid content, providing results with in-world URLs (hop:// "
+"or secondlife://). It is optional and is referenced here only to "
+"disambiguate settings which unfortunately have similar names."
+msgstr ""
+"Sylwch fod URL Chwilio yn wahanol i URL chwilio Gwe, nad yw W4OS yn ei drin "
+"ar hyn o bryd. Mae chwiliad gwe yn berthnasol os oes gennych chi dudalen "
+"chwilio gwe sy'n ymroddedig i gynnwys grid, sy'n darparu canlyniadau gydag "
+"URLs yn y byd (hop: / neu secondlife://). Mae'n ddewisol a chyfeirir ato yma "
+"dim ond i ddadamwys gosodiadau sydd yn anffodus ag enwau tebyg."
 
 #: legacy/admin/settings.php:265
 msgid "Search register"
@@ -762,19 +879,28 @@ msgstr "Chwilio cofrestr"
 
 #: legacy/admin/settings.php:268
 msgid "Data service, used to register regions, objects or land for sale."
-msgstr "Gwasanaeth data, a ddefnyddir i gofrestru rhanbarthau, gwrthrychau neu dir ar werth."
+msgstr ""
+"Gwasanaeth data, a ddefnyddir i gofrestru rhanbarthau, gwrthrychau neu dir "
+"ar werth."
 
 #: legacy/admin/settings.php:281
 msgid "Events server URL"
 msgstr "URL gweinydd digwyddiadau"
 
 #: legacy/admin/settings.php:283
-msgid "HYPEvents server URL, used to fetch upcoming events and make them available in search."
-msgstr "URL gweinydd HYPEvents, a ddefnyddir i nôl digwyddiadau sydd ar ddod a sicrhau eu bod ar gael wrth chwilio."
+msgid ""
+"HYPEvents server URL, used to fetch upcoming events and make them available "
+"in search."
+msgstr ""
+"URL gweinydd HYPEvents, a ddefnyddir i nôl digwyddiadau sydd ar ddod a "
+"sicrhau eu bod ar gael wrth chwilio."
 
 #: legacy/admin/settings.php:284
-msgid "Leave blank to ignore events or if you have an other events implementation."
-msgstr "Gadewch yn wag i anwybyddu digwyddiadau neu os oes gennych weithrediad digwyddiadau eraill."
+msgid ""
+"Leave blank to ignore events or if you have an other events implementation."
+msgstr ""
+"Gadewch yn wag i anwybyddu digwyddiadau neu os oes gennych weithrediad "
+"digwyddiadau eraill."
 
 #: legacy/admin/settings.php:294
 msgid "Provide offline helper"
@@ -793,24 +919,42 @@ msgid "Sender e-mail address"
 msgstr "Cyfeiriad e-bost yr anfonwr"
 
 #: legacy/admin/settings.php:324
-msgid "A no-reply e-mail address used to forward messages for users enabling \"Email me IMs when I'm offline\" option."
-msgstr "Cyfeiriad e-bost dim ateb a ddefnyddir i anfon negeseuon ymlaen ar gyfer defnyddwyr sy'n galluogi opsiwn \"E-bostiwch IMs ataf pan fyddaf all-lein\"."
+msgid ""
+"A no-reply e-mail address used to forward messages for users enabling "
+"\"Email me IMs when I'm offline\" option."
+msgstr ""
+"Cyfeiriad e-bost dim ateb a ddefnyddir i anfon negeseuon ymlaen ar gyfer "
+"defnyddwyr sy'n galluogi opsiwn \"E-bostiwch IMs ataf pan fyddaf all-lein\"."
 
 #: legacy/admin/settings.php:333
 msgid "Provide economy helpers"
 msgstr "Darparu cynorthwywyr economi"
 
 #: legacy/admin/settings.php:336
-msgid "Economy helpers are additional scripts needed if you implement economy on your grid (with real or fake currency)."
-msgstr "Mae cynorthwywyr economi yn sgriptiau ychwanegol sydd eu hangen os ydych chi'n gweithredu economi ar eich grid (gydag arian cyfred go iawn neu ffug)."
+msgid ""
+"Economy helpers are additional scripts needed if you implement economy on "
+"your grid (with real or fake currency)."
+msgstr ""
+"Mae cynorthwywyr economi yn sgriptiau ychwanegol sydd eu hangen os ydych "
+"chi'n gweithredu economi ar eich grid (gydag arian cyfred go iawn neu ffug)."
 
 #: legacy/admin/settings.php:337
-msgid "Helper scripts allow communication between the money server and the grid: current balance update, currency cost estimation, land and object sales, payments..."
-msgstr "Mae sgriptiau cynorthwywyr yn caniatáu cyfathrebu rhwng y gweinydd arian a'r grid: diweddariad balans cyfredol, amcangyfrif cost arian cyfred, gwerthu tir a gwrthrychau, taliadau ..."
+msgid ""
+"Helper scripts allow communication between the money server and the grid: "
+"current balance update, currency cost estimation, land and object sales, "
+"payments..."
+msgstr ""
+"Mae sgriptiau cynorthwywyr yn caniatáu cyfathrebu rhwng y gweinydd arian a'r "
+"grid: diweddariad balans cyfredol, amcangyfrif cost arian cyfred, gwerthu "
+"tir a gwrthrychau, taliadau ..."
 
 #: legacy/admin/settings.php:339
-msgid "Money server is not included in OpenSimulator distribution and require a separate installation, e.g. from %s."
-msgstr "Nid yw gweinydd arian wedi'i gynnwys yn nosbarthiad OpenSimulator ac mae angen gosodiad ar wahân, e.e. o %s."
+msgid ""
+"Money server is not included in OpenSimulator distribution and require a "
+"separate installation, e.g. from %s."
+msgstr ""
+"Nid yw gweinydd arian wedi'i gynnwys yn nosbarthiad OpenSimulator ac mae "
+"angen gosodiad ar wahân, e.e. o %s."
 
 #: legacy/admin/settings.php:347
 msgid "Economy base URI"
@@ -837,16 +981,25 @@ msgid "Currency conversion rate"
 msgstr "Cyfradd trosi arian cyfred"
 
 #: legacy/admin/settings.php:409
-msgid "Amount to pay in US$ for 1000 in-world money units. Used for cost estimation. If not set, the rate will be 10/1000 (1 cent per money unit)"
-msgstr "Swm i'w dalu mewn US$ am 1000 o unedau arian yn y byd. Defnyddir ar gyfer amcangyfrif cost. Os na chaiff ei gosod, y gyfradd fydd 10/1000 (1 cant fesul uned arian)"
+msgid ""
+"Amount to pay in US$ for 1000 in-world money units. Used for cost "
+"estimation. If not set, the rate will be 10/1000 (1 cent per money unit)"
+msgstr ""
+"Swm i'w dalu mewn US$ am 1000 o unedau arian yn y byd. Defnyddir ar gyfer "
+"amcangyfrif cost. Os na chaiff ei gosod, y gyfradd fydd 10/1000 (1 cant "
+"fesul uned arian)"
 
 #: legacy/admin/settings.php:412
 msgid "Podex redirect message"
 msgstr "Neges ailgyfeirio Podex"
 
 #: legacy/admin/settings.php:413
-msgid "Please use our terminals in-world to proceed. Click OK to teleport to terminals region."
-msgstr "Defnyddiwch ein terfynellau yn y byd i symud ymlaen. Cliciwch OK i deleportio i ranbarth terfynellau."
+msgid ""
+"Please use our terminals in-world to proceed. Click OK to teleport to "
+"terminals region."
+msgstr ""
+"Defnyddiwch ein terfynellau yn y byd i symud ymlaen. Cliciwch OK i "
+"deleportio i ranbarth terfynellau."
 
 #: legacy/admin/settings.php:416
 msgid "Podex redirect URL"
@@ -858,147 +1011,147 @@ msgstr "Allwedd Mynediad Sgript Arian"
 
 #: legacy/admin/settings.php:581
 msgid "Values must match Robust.HG.ini (or Robust.HG.ini) config file."
-msgstr "Rhaid i werthoedd gyd-fynd â ffeil ffurfweddu Robust.HG.ini (neu Robust.HG.ini)."
+msgstr ""
+"Rhaid i werthoedd gyd-fynd â ffeil ffurfweddu Robust.HG.ini (neu Robust.HG."
+"ini)."
 
 #: legacy/admin/settings.php:582
-msgid "Robust server must be running. Values entered here will be checked against your Robust server and updated if needed."
-msgstr "Rhaid i weinydd cadarn fod yn rhedeg. Bydd y gwerthoedd a nodir yma yn cael eu gwirio yn erbyn eich gweinydd Cadarn a'u diweddaru os oes angen."
+msgid ""
+"Robust server must be running. Values entered here will be checked against "
+"your Robust server and updated if needed."
+msgstr ""
+"Rhaid i weinydd cadarn fod yn rhedeg. Bydd y gwerthoedd a nodir yma yn cael "
+"eu gwirio yn erbyn eich gweinydd Cadarn a'u diweddaru os oes angen."
 
 #: legacy/admin/settings.php:587
-msgid "Grid accounts matching first name or last name set below are considered as avatar models. They will appear on the avatar registration form, with their in-world profile picture."
-msgstr "Mae cyfrifon grid sy'n cyfateb i'r enw cyntaf neu'r enw olaf a osodwyd isod yn cael eu hystyried fel modelau avatar. Byddant yn ymddangos ar y ffurflen gofrestru avatar, gyda'u llun proffil yn y byd."
+msgid ""
+"Grid accounts matching first name or last name set below are considered as "
+"avatar models. They will appear on the avatar registration form, with their "
+"in-world profile picture."
+msgstr ""
+"Mae cyfrifon grid sy'n cyfateb i'r enw cyntaf neu'r enw olaf a osodwyd isod "
+"yn cael eu hystyried fel modelau avatar. Byddant yn ymddangos ar y ffurflen "
+"gofrestru avatar, gyda'u llun proffil yn y byd."
 
-#: legacy/admin/status-page.php:15
+#: legacy/admin/status-page.php:12
 msgid "PHP xml-rpc is required but is not installed."
 msgstr ""
 
-#: legacy/admin/status-page.php:22
+#: legacy/admin/status-page.php:19
 msgid "Available shortcodes"
 msgstr "Codau byr sydd ar gael"
 
-#: legacy/admin/status-page.php:27
+#: legacy/admin/status-page.php:24
 msgid "General information (grid name and login uri)"
 msgstr "Gwybodaeth gyffredinol (enw grid a uri mewngofnodi)"
 
-#: legacy/admin/status-page.php:33
+#: legacy/admin/status-page.php:30
 msgid "Online users, regions, etc."
 msgstr "Defnyddwyr ar-lein, rhanbarthau, ac ati."
 
-#: legacy/admin/status-page.php:39
-msgid "Grid profile if user is connected and has an avatar, avatar registration form otherwise"
-msgstr "Proffil grid os yw'r defnyddiwr wedi'i gysylltu a bod ganddo avatar, ffurflen gofrestru avatar fel arall"
+#: legacy/admin/status-page.php:36
+msgid ""
+"Grid profile if user is connected and has an avatar, avatar registration "
+"form otherwise"
+msgstr ""
+"Proffil grid os yw'r defnyddiwr wedi'i gysylltu a bod ganddo avatar, "
+"ffurflen gofrestru avatar fel arall"
 
-#: legacy/admin/status-page.php:40
+#: legacy/admin/status-page.php:37
 msgid "(formerly %s)"
 msgstr "(%s yn flaenorol)"
 
-#: legacy/admin/status-page.php:50
+#: legacy/admin/status-page.php:47
 msgid "Users"
 msgstr "Defnyddwyr"
 
-#: legacy/admin/status-page.php:55
+#: legacy/admin/status-page.php:52
 msgid "Total"
 msgstr "Cyfanswm"
 
-#: legacy/admin/status-page.php:56
+#: legacy/admin/status-page.php:53
 msgid "WP only"
 msgstr "WP yn unig"
 
-#: legacy/admin/status-page.php:57
+#: legacy/admin/status-page.php:54
 msgid "Sync"
 msgstr "Cysoni"
 
-#: legacy/admin/status-page.php:58
+#: legacy/admin/status-page.php:55
 msgid "Grid only"
 msgstr "Grid yn unig"
 
-#: legacy/admin/status-page.php:62
+#: legacy/admin/status-page.php:59
 msgid "Grid accounts"
 msgstr "Cyfrifon grid"
 
-#: legacy/admin/status-page.php:69
+#: legacy/admin/status-page.php:66
 msgid "Linked WordPress accounts"
 msgstr "Cyfrifon WordPress cysylltiedig"
 
-#: legacy/admin/status-page.php:81
+#: legacy/admin/status-page.php:78
 msgid "Other service accounts"
 msgstr "Cyfrifon gwasanaeth eraill"
 
-#: legacy/admin/status-page.php:95
-msgid "%d grid account has no linked WP account. Syncing will create a new WP account."
-msgid_plural "%d grid accounts have no linked WP account. Syncing will create new WP accounts."
-msgstr[0] "Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu cyfrif WP newydd."
-msgstr[1] "Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu cyfrif WP newydd."
-msgstr[2] "Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu cyfrif WP newydd."
-msgstr[3] "Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu cyfrif WP newydd."
-
-#: legacy/admin/status-page.php:103
-msgid "%d WordPress account is linked to an unexisting avatar (wrong UUID). Syncing accounts will keep this WP account but remove the broken reference."
-msgid_plural "%d WordPress accounts are linked to unexisting avatars (wrong UUID). Syncing accounts will keep these WP accounts but remove the broken reference."
-msgstr[0] "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r cyfeirnod sydd wedi torri."
-msgstr[1] "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r cyfeirnod sydd wedi torri."
-msgstr[2] "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r cyfeirnod sydd wedi torri."
-msgstr[3] "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r cyfeirnod sydd wedi torri."
-
-#: legacy/admin/status-page.php:111
-msgid "%d grid account (other than models) has no email address, which is fine as long as it is used only for maintenance or service tasks."
-msgid_plural "%d grid accounts (other than models) have no email address, which is fine as long as they are used only for maintenance or service tasks."
-msgstr[0] "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu wasanaeth yn unig."
-msgstr[1] "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu wasanaeth yn unig."
-msgstr[2] "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu wasanaeth yn unig."
-msgstr[3] "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu wasanaeth yn unig."
-
-#: legacy/admin/status-page.php:116
-msgid "Real accounts need a unique email address for W4OS to function properly."
-msgstr "Mae cyfrifon go iawn angen cyfeiriad e-bost unigryw er mwyn i W4OS weithredu'n iawn."
-
-#: legacy/admin/status-page.php:124
-msgid "Synchronize users now"
-msgstr "Cydamseru defnyddwyr nawr"
-
-#: legacy/admin/status-page.php:126
-msgid "Synchronization is made at plugin activation and is handled automatically afterwards, but in certain circumstances it may be necessary to initiate it manually to get an immediate result, especially if users have been added or deleted directly from the grid administration console."
-msgstr "Gwneir cydamseru wrth actifadu ategyn a chaiff ei drin yn awtomatig wedyn, ond mewn rhai amgylchiadau efallai y bydd angen ei gychwyn â llaw i gael canlyniad ar unwaith, yn enwedig os yw defnyddwyr wedi'u hychwanegu neu eu dileu yn uniongyrchol o'r consol gweinyddu grid."
-
-#: legacy/admin/status-page.php:144
+#: legacy/admin/status-page.php:104
 msgid "Missing PHP modules"
 msgstr "Modiwlau PHP ar goll"
 
-#: legacy/admin/status-page.php:146
-msgid "These modules were not found: %s. Install them to get the most of this plugin."
-msgstr "Ni ddaethpwyd o hyd i'r modiwlau hyn: %s. Gosodwch nhw i gael y gorau o'r ategyn hwn."
+#: legacy/admin/status-page.php:106
+msgid ""
+"These modules were not found: %s. Install them to get the most of this "
+"plugin."
+msgstr ""
+"Ni ddaethpwyd o hyd i'r modiwlau hyn: %s. Gosodwch nhw i gael y gorau o'r "
+"ategyn hwn."
 
-#: legacy/admin/status-page.php:154
+#: legacy/admin/status-page.php:114
 msgid "OpenSimulator pages"
 msgstr "Tudalennau OpenSimulator"
 
-#: legacy/admin/status-page.php:156
-msgid "The following page are needed by OpenSimulator and/or by W4OS plugin. Make sure they exist or adjust your simulator .ini file."
-msgstr "Mae angen y dudalen ganlynol gan OpenSimulator a/neu drwy ategyn W4OS. Gwnewch yn siŵr eu bod yn bodoli neu addaswch eich ffeil .ini efelychydd."
+#: legacy/admin/status-page.php:116
+msgid ""
+"The following page are needed by OpenSimulator and/or by W4OS plugin. Make "
+"sure they exist or adjust your simulator .ini file."
+msgstr ""
+"Mae angen y dudalen ganlynol gan OpenSimulator a/neu drwy ategyn W4OS. "
+"Gwnewch yn siŵr eu bod yn bodoli neu addaswch eich ffeil .ini efelychydd."
 
-#: legacy/admin/status-page.php:166
-msgid "Grid not running, start Robust server or %scheck OpenSimulator settings%s."
-msgstr "Grid ddim yn rhedeg, cychwyn gweinydd cadarn neu %scheck gosodiadau OpenSimulator%s."
+#: legacy/admin/status-page.php:126
+msgid ""
+"Grid not running, start Robust server or %scheck OpenSimulator settings%s."
+msgstr ""
+"Grid ddim yn rhedeg, cychwyn gweinydd cadarn neu %scheck gosodiadau "
+"OpenSimulator%s."
 
-#: legacy/admin/status-page.php:186
+#: legacy/admin/status-page.php:146
 msgid "Check pages now"
 msgstr "Gwiriwch y tudalennau nawr"
 
-#: legacy/admin/status-page.php:190
+#: legacy/admin/status-page.php:150
 msgid "Last checked %s ago."
 msgstr "Gwiriwyd ddiwethaf %s yn ôl."
 
-#: legacy/admin/status-page.php:191
-msgid "OpenSimulator pages are checked regularly in the background. Synchronize now only if you made changes and want an immediate status."
-msgstr "Mae tudalennau OpenSimulator yn cael eu gwirio'n rheolaidd yn y cefndir. Cydamserwch nawr dim ond os gwnaethoch newidiadau ac eisiau statws ar unwaith."
+#: legacy/admin/status-page.php:151
+msgid ""
+"OpenSimulator pages are checked regularly in the background. Synchronize now "
+"only if you made changes and want an immediate status."
+msgstr ""
+"Mae tudalennau OpenSimulator yn cael eu gwirio'n rheolaidd yn y cefndir. "
+"Cydamserwch nawr dim ond os gwnaethoch newidiadau ac eisiau statws ar "
+"unwaith."
 
-#: legacy/admin/status-page.php:212
+#: legacy/admin/status-page.php:172
 msgid "Should be %s"
 msgstr "Dylai fod yn %s"
 
-#: legacy/admin/status-page.php:218
-msgid "This service requires a separate web application.<br>Try <a href=\"%1$s\" target=_blank>%1$s</a>."
-msgstr "Mae angen rhaglen we ar wahân ar gyfer y gwasanaeth hwn.<br>Ceisiwch <a href=\"%1$s\" target=_blank>%1$s</a>."
+#: legacy/admin/status-page.php:178
+msgid ""
+"This service requires a separate web application.<br>Try <a href=\"%1$s\" "
+"target=_blank>%1$s</a>."
+msgstr ""
+"Mae angen rhaglen we ar wahân ar gyfer y gwasanaeth hwn.<br>Ceisiwch <a "
+"href=\"%1$s\" target=_blank>%1$s</a>."
 
 #: legacy/assets.php:37
 msgid "Assets base"
@@ -1009,8 +1162,12 @@ msgid "every_five_minutes"
 msgstr "pob_pum_munud"
 
 #: legacy/functions.php:149
-msgid "A local Robust server has been found. Please check Login URI and Grid name configuration."
-msgstr "Mae gweinydd cadarn lleol wedi'i ganfod. Gwiriwch URI Mewngofnodi a ffurfweddiad enw Grid."
+msgid ""
+"A local Robust server has been found. Please check Login URI and Grid name "
+"configuration."
+msgstr ""
+"Mae gweinydd cadarn lleol wedi'i ganfod. Gwiriwch URI Mewngofnodi a "
+"ffurfweddiad enw Grid."
 
 #: legacy/functions.php:168
 msgid "OpenSimulator settings page"
@@ -1073,8 +1230,12 @@ msgid "Register"
 msgstr "Cofrestrwch"
 
 #: legacy/profile-page.php:87
-msgid "Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
-msgstr "Wedi colli eich cyfrinair? Rhowch eich enw defnyddiwr neu gyfeiriad e-bost. Byddwch yn derbyn dolen i greu cyfrinair newydd trwy e-bost."
+msgid ""
+"Lost your password? Please enter your username or email address. You will "
+"receive a link to create a new password via email."
+msgstr ""
+"Wedi colli eich cyfrinair? Rhowch eich enw defnyddiwr neu gyfeiriad e-bost. "
+"Byddwch yn derbyn dolen i greu cyfrinair newydd trwy e-bost."
 
 #: legacy/profile-page.php:89
 msgid "Email"
@@ -1084,15 +1245,15 @@ msgstr "Ebost"
 msgid "Reset Password"
 msgstr "Ailosod cyfrinair"
 
-#: legacy/profile-page.php:91
-#: templates/content-configuration.php:40
+#: legacy/profile-page.php:91 templates/content-configuration.php:40
 #: templates/content-page-profile.php:26
 msgid "Log in"
 msgstr "Mewngofnodi"
 
 #: legacy/profile-page.php:96
 msgid "Log in to create your avatar, view your profile or set your options."
-msgstr "Mewngofnodwch i greu eich avatar, gweld eich proffil neu osod eich opsiynau."
+msgstr ""
+"Mewngofnodwch i greu eich avatar, gweld eich proffil neu osod eich opsiynau."
 
 #: legacy/profile-page.php:220
 msgid "Profile base"
@@ -1187,120 +1348,122 @@ msgstr "Bywyd go iawn"
 msgid "Password reset link"
 msgstr "Dirymiad cyfrinair"
 
-#: legacy/profile.php:244
+#: legacy/profile.php:195
 msgid "%s local users updated with avatar data"
 msgstr "Diweddarwyd %s defnyddiwr lleol gyda data avatar"
 
-#: legacy/profile.php:258
-#: legacy/profile.php:977
+#: legacy/profile.php:209 legacy/profile.php:928
 msgid "OpenSimulator"
 msgstr "OpenSimulator"
 
-#: legacy/profile.php:425
+#: legacy/profile.php:376
 msgid "First name required"
 msgstr "Angen enw cyntaf"
 
-#: legacy/profile.php:426
+#: legacy/profile.php:377
 msgid "Last name required"
 msgstr "Angen enw olaf"
 
-#: legacy/profile.php:428
+#: legacy/profile.php:379
 msgid "Password required"
 msgstr "Angen cyfrinair"
 
-#: legacy/profile.php:429
+#: legacy/profile.php:380
 msgid "The password does not match."
 msgstr "Nid yw'r cyfrinair yn cyfateb."
 
-#: legacy/profile.php:438
-#: legacy/profile.php:442
+#: legacy/profile.php:389 legacy/profile.php:393
 msgid "The name %s is not allowed"
 msgstr "Ni chaniateir yr enw %s"
 
-#: legacy/profile.php:446
+#: legacy/profile.php:397
 msgid "Names can only contain alphanumeric characters"
 msgstr "Dim ond nodau alffaniwmerig y gall enwau eu cynnwys"
 
-#: legacy/profile.php:452
+#: legacy/profile.php:403
 msgid "There is already a grid user named %s"
 msgstr "Mae defnyddiwr grid o'r enw %s yn barod"
 
-#: legacy/profile.php:668
+#: legacy/profile.php:619
 msgid "Errors occurred while creating the user"
 msgstr "Digwyddodd gwallau wrth greu'r defnyddiwr"
 
-#: legacy/profile.php:673
+#: legacy/profile.php:624
 msgid "Avatar %s created successfully."
 msgstr "Crëwyd avatar %s yn llwyddiannus."
 
-#: legacy/profile.php:686
+#: legacy/profile.php:637
 msgid "You need an avatar to explore our virtual world."
 msgstr "Mae angen avatar arnoch i archwilio ein byd rhithwir."
 
-#: legacy/profile.php:687
-msgid "Choose a name below. This is how people will see you in-world. Once set, your avatar name cannot be changed."
-msgstr "Dewiswch enw isod. Dyma sut bydd pobl yn eich gweld chi yn y byd. Ar ôl ei osod, ni ellir newid enw eich avatar."
+#: legacy/profile.php:638
+msgid ""
+"Choose a name below. This is how people will see you in-world. Once set, "
+"your avatar name cannot be changed."
+msgstr ""
+"Dewiswch enw isod. Dyma sut bydd pobl yn eich gweld chi yn y byd. Ar ôl ei "
+"osod, ni ellir newid enw eich avatar."
 
-#: legacy/profile.php:710
+#: legacy/profile.php:661
 msgid "Avatar first name"
 msgstr "Enw cyntaf avatar"
 
-#: legacy/profile.php:714
+#: legacy/profile.php:665
 msgid "Avatar last name"
 msgstr "Enw olaf avatar"
 
-#: legacy/profile.php:719
+#: legacy/profile.php:670
 msgid "Confirm your password"
 msgstr "Cadarnhewch eich cyfrinair"
 
-#: legacy/profile.php:721
-msgid "Your in-world Avatar password is the same as your password on this website."
-msgstr "Mae eich cyfrinair Avatar yn y byd yr un peth â'ch cyfrinair ar y wefan hon."
+#: legacy/profile.php:672
+msgid ""
+"Your in-world Avatar password is the same as your password on this website."
+msgstr ""
+"Mae eich cyfrinair Avatar yn y byd yr un peth â'ch cyfrinair ar y wefan hon."
 
-#: legacy/profile.php:735
+#: legacy/profile.php:686
 msgid "Your initial appearance"
 msgstr "Eich ymddangosiad cychwynnol"
 
-#: legacy/profile.php:736
+#: legacy/profile.php:687
 msgid "You can change it as often as you want in the virtual world."
 msgstr "Gallwch ei newid mor aml ag y dymunwch yn y byd rhithwir."
 
-#: legacy/profile.php:772
+#: legacy/profile.php:723
 msgid "Save"
 msgstr "Arbed"
 
-#: legacy/profile.php:805
+#: legacy/profile.php:756
 msgid "leave blank to leave unchanged"
 msgstr "gadael yn wag i adael heb ei newid"
 
-#: legacy/profile.php:813
+#: legacy/profile.php:764
 msgid "Create an avatar"
 msgstr "Creu avatar"
 
-#: legacy/profile.php:899
-#: blocks/w4os-gridprofile-block/index.js:27
+#: legacy/profile.php:850 blocks/w4os-gridprofile-block/index.js:27
 #: blocks/w4os-gridprofile-block/index.js:74
 msgid "Grid profile"
 msgstr "Proffil grid"
 
-#: legacy/profile.php:987
+#: legacy/profile.php:938
 msgid "Avatar First Name"
 msgstr "Enw Cyntaf Avatar"
 
-#: legacy/profile.php:993
+#: legacy/profile.php:944
 msgid "Avatar Last Name"
 msgstr "Enw olaf Avatar"
 
-#: legacy/profile.php:999
-#: tmp/class-avatar.php:361
+#: legacy/profile.php:950 tmp/class-avatar.php:361
 msgid "Profile Picture"
 msgstr "Llun Proffil"
 
-#: legacy/profile.php:1001
+#: legacy/profile.php:952
 msgid "Must be set in the viewer."
 msgstr "Rhaid ei osod yn y gwyliwr."
 
-#: legacy/profile.php:1006
+#: legacy/profile.php:957
 msgid "Web Profile URL"
 msgstr "URL Proffil Gwe"
 
@@ -1353,8 +1516,12 @@ msgid "Grid user"
 msgstr "Defnyddiwr grid"
 
 #: legacy/updates.php:92
-msgid "Profiles service is not configured on your Robust server. It is required for full functionalities."
-msgstr "Nid yw gwasanaeth proffiliau wedi'i ffurfweddu ar eich gweinydd Cadarn. Mae'n ofynnol ar gyfer swyddogaethau llawn."
+msgid ""
+"Profiles service is not configured on your Robust server. It is required for "
+"full functionalities."
+msgstr ""
+"Nid yw gwasanaeth proffiliau wedi'i ffurfweddu ar eich gweinydd Cadarn. "
+"Mae'n ofynnol ar gyfer swyddogaethau llawn."
 
 #: legacy/updates.php:111
 msgid "Grid and WordPress users synchronized."
@@ -1364,60 +1531,39 @@ msgstr "Defnyddwyr grid a WordPress wedi'u cysoni."
 msgid "OpenSim Search tables updated."
 msgstr "Mae tablau OpenSim Search wedi'u diweddaru."
 
-#: legacy/users.php:138
-msgid "Error while updating %s %s (%s) %s"
-msgstr "Gwall wrth ddiweddaru %s %s (%s) %s"
-
-#: legacy/users.php:155
-msgid "Error while updating newly created user %s for %s %s (%s) %s"
-msgstr "Gwall wrth ddiweddaru defnyddiwr newydd ei greu %s ar gyfer %s %s (%s) %s"
-
-#: legacy/users.php:167
-msgid "%d reference updated"
-msgid_plural "%d references updated"
-msgstr[0] "%d cyfeirnod wedi'i ddiweddaru"
-msgstr[1] "%d cyfeirnod wedi'i ddiweddaru"
-msgstr[2] "%d cyfeirnod wedi'i ddiweddaru"
-msgstr[3] "%d cyfeirnod wedi'i ddiweddaru"
-
-#: legacy/users.php:173
-msgid "%d new WordPress account created"
-msgid_plural "%d new WordPress accounts created"
-msgstr[0] "%d cyfrif WordPress newydd wedi'i greu"
-msgstr[1] "%d cyfrif WordPress newydd wedi'i greu"
-msgstr[2] "%d cyfrif WordPress newydd wedi'i greu"
-msgstr[3] "%d cyfrif WordPress newydd wedi'i greu"
-
-#: legacy/users.php:179
-msgid "%d broken reference removed"
-msgid_plural "%d broken references removed"
-msgstr[0] "%d cyfeirnod toredig wedi'i dynnu"
-msgstr[1] "%d cyfeirnod toredig wedi'i dynnu"
-msgstr[2] "%d cyfeirnod toredig wedi'i dynnu"
-msgstr[3] "%d cyfeirnod toredig wedi'i dynnu"
-
 #: legacy/w4osdb.php:12
 msgid "ROBUST database is not configured. To finish configuration, go to "
-msgstr "Nid yw cronfa ddata ROBUST wedi'i ffurfweddu. I orffen cyfluniad, ewch i "
+msgstr ""
+"Nid yw cronfa ddata ROBUST wedi'i ffurfweddu. I orffen cyfluniad, ewch i "
 
 #: legacy/w4osdb.php:23
-msgid "Could not connect to the database server, please verify your credentials on "
-msgstr "Methu cysylltu â gweinydd y gronfa ddata, gwiriwch eich manylion adnabod ymlaen "
+msgid ""
+"Could not connect to the database server, please verify your credentials on "
+msgstr ""
+"Methu cysylltu â gweinydd y gronfa ddata, gwiriwch eich manylion adnabod "
+"ymlaen "
 
 #: legacy/w4osdb.php:30
-msgid "Could not connect to the ROBUST database, please verify database name and/or credentials on "
-msgstr "Methu cysylltu â chronfa ddata ROBUST, gwiriwch enw'r gronfa ddata a/neu'r manylion adnabod ymlaen "
+msgid ""
+"Could not connect to the ROBUST database, please verify database name and/or "
+"credentials on "
+msgstr ""
+"Methu cysylltu â chronfa ddata ROBUST, gwiriwch enw'r gronfa ddata a/neu'r "
+"manylion adnabod ymlaen "
 
 #: legacy/w4osdb.php:69
-msgid "Missing tables: %s. The ROBUST database is connected, but it does not seem valid. "
-msgstr "Tablau coll: %s. Mae cronfa ddata ROBUST wedi'i chysylltu, ond nid yw'n ymddangos yn ddilys. "
+msgid ""
+"Missing tables: %s. The ROBUST database is connected, but it does not seem "
+"valid. "
+msgstr ""
+"Tablau coll: %s. Mae cronfa ddata ROBUST wedi'i chysylltu, ond nid yw'n "
+"ymddangos yn ddilys. "
 
 #: legacy/widgets.php:10
 msgid "Grid info Widget"
 msgstr "Teclyn gwybodaeth grid"
 
-#: legacy/widgets.php:51
-#: legacy/widgets.php:119
+#: legacy/widgets.php:51 legacy/widgets.php:119
 msgid "Title:"
 msgstr "Teitl:"
 
@@ -1434,8 +1580,12 @@ msgid "Install the viewer"
 msgstr "Gosodwch y gwyliwr"
 
 #: templates/content-configuration.php:24
-msgid "You can use <a href=\"%1$s\" target=_blank>any compatible viewer</a> to access %2$s."
-msgstr "Gallwch ddefnyddio <a href=\"%1$s\" target=_blank>unrhyw wyliwr cydnaws</a> i gael mynediad i %2$s."
+msgid ""
+"You can use <a href=\"%1$s\" target=_blank>any compatible viewer</a> to "
+"access %2$s."
+msgstr ""
+"Gallwch ddefnyddio <a href=\"%1$s\" target=_blank>unrhyw wyliwr cydnaws</a> "
+"i gael mynediad i %2$s."
 
 #: templates/content-configuration.php:30
 msgid "Add %1$s to your viewer"
@@ -1447,7 +1597,8 @@ msgstr "Gall cyfarwyddiadau amrywio yn dibynnu ar y gwyliwr"
 
 #: templates/content-configuration.php:33
 msgid "Select \"Preferences\" under the \"Viewer\" menu (or type Ctrl-P)"
-msgstr "Dewiswch \"Preferences\" o dan y ddewislen \"Viewer\" (neu teipiwch Ctrl-P)"
+msgstr ""
+"Dewiswch \"Preferences\" o dan y ddewislen \"Viewer\" (neu teipiwch Ctrl-P)"
 
 #: templates/content-configuration.php:34
 msgid "Select \"OpenSim\", then \"Grid Manager\" tab"
@@ -1466,8 +1617,12 @@ msgid "Make sure %1$s is selected in the Grid menu"
 msgstr "Sicrhewch fod %1$s wedi ei ddewis yn newislen Grid"
 
 #: templates/content-configuration.php:43
-msgid "Enter your avatar’s first and last name in the \"Username\" box and your password in the \"Password\" box"
-msgstr "Rhowch enw cyntaf ac olaf eich avatar yn y blwch \"Enw Defnyddiwr\" a'ch cyfrinair yn y blwch \"Cyfrinair\""
+msgid ""
+"Enter your avatar’s first and last name in the \"Username\" box and your "
+"password in the \"Password\" box"
+msgstr ""
+"Rhowch enw cyntaf ac olaf eich avatar yn y blwch \"Enw Defnyddiwr\" a'ch "
+"cyfrinair yn y blwch \"Cyfrinair\""
 
 #: templates/content-configuration.php:44
 msgid "Click \"Log In\""
@@ -1481,27 +1636,55 @@ msgstr "Fy Avatar"
 msgid "%s's profile"
 msgstr "proffil %s"
 
-#: tmp/class-avatar.php:338
-msgid "UUID"
-msgstr ""
-
-#: tmp/class-avatar.php:341
-#, fuzzy
-msgid "Wil be set by the server"
-msgstr "Gweinydd asedau gwe"
-
 #: w4os.php:105
-msgid "%s %s is installed and active. Deactivate it before activating another version."
+msgid ""
+"%s %s is installed and active. Deactivate it before activating another "
+"version."
 msgstr ""
 
-#: w4os.php:106
-#: w4os.php:127
+#: w4os.php:106 w4os.php:127
 msgid "w4os - OpenSimulator Web Interface"
 msgstr "w4os - Rhyngwyneb Gwe OpenSimulator"
 
 #: w4os.php:126
 msgid "A stable release of %s is active. You should use %s and uninstall %s."
 msgstr ""
+
+#: blocks/popular-places/index.js:27 blocks/popular-places/index.js:79
+msgid "Popular Places"
+msgstr "Lleoedd poblogaidd"
+
+#~ msgid ""
+#~ "%d WordPress account is linked to an unexisting avatar (wrong UUID). "
+#~ "Syncing accounts will keep this WP account but remove the broken "
+#~ "reference."
+#~ msgid_plural ""
+#~ "%d WordPress accounts are linked to unexisting avatars (wrong UUID). "
+#~ "Syncing accounts will keep these WP accounts but remove the broken "
+#~ "reference."
+#~ msgstr[0] ""
+#~ "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID "
+#~ "anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r "
+#~ "cyfeirnod sydd wedi torri."
+#~ msgstr[1] ""
+#~ "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID "
+#~ "anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r "
+#~ "cyfeirnod sydd wedi torri."
+#~ msgstr[2] ""
+#~ "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID "
+#~ "anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r "
+#~ "cyfeirnod sydd wedi torri."
+#~ msgstr[3] ""
+#~ "Mae %d cyfrif WordPress wedi'i gysylltu ag avatar nad yw'n bodoli (UUID "
+#~ "anghywir). Bydd cysoni cyfrifon yn cadw'r cyfrif WP hwn ond yn dileu'r "
+#~ "cyfeirnod sydd wedi torri."
+
+#~ msgid "Error while updating %s %s (%s) %s"
+#~ msgstr "Gwall wrth ddiweddaru %s %s (%s) %s"
+
+#~ msgid "Error while updating newly created user %s for %s %s (%s) %s"
+#~ msgstr ""
+#~ "Gwall wrth ddiweddaru defnyddiwr newydd ei greu %s ar gyfer %s %s (%s) %s"
 
 #~ msgid "My Profile"
 #~ msgstr "Fy mhroffil"
@@ -1520,8 +1703,18 @@ msgstr ""
 #~ msgid "WP Account"
 #~ msgstr "Cyfrifon grid"
 
-#~ msgid "You already installed the official release of <strong>W4OS - OpenSimulator Web Interface</strong> from WordPress plugins directory. The developer version has been deactivated and should be uninstalled."
-#~ msgstr "Rydych chi eisoes wedi gosod datganiad swyddogol <strong>W4OS - OpenSimulator Web Interface</strong> o gyfeiriadur ategion WordPress. Mae fersiwn y datblygwr wedi'i dadactifadu a dylid ei ddadosod."
+#~ msgid ""
+#~ "You already installed the official release of <strong>W4OS - "
+#~ "OpenSimulator Web Interface</strong> from WordPress plugins directory. "
+#~ "The developer version has been deactivated and should be uninstalled."
+#~ msgstr ""
+#~ "Rydych chi eisoes wedi gosod datganiad swyddogol <strong>W4OS - "
+#~ "OpenSimulator Web Interface</strong> o gyfeiriadur ategion WordPress. Mae "
+#~ "fersiwn y datblygwr wedi'i dadactifadu a dylid ei ddadosod."
 
-#~ msgid "Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is installed and active. Duplicate disabled."
-#~ msgstr "Mae fersiwn arall o <strong>W4OS - OpenSimulator Web Interface</strong> wedi'i osod ac yn weithredol. Analluogwyd dyblyg."
+#~ msgid ""
+#~ "Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is "
+#~ "installed and active. Duplicate disabled."
+#~ msgstr ""
+#~ "Mae fersiwn arall o <strong>W4OS - OpenSimulator Web Interface</strong> "
+#~ "wedi'i osod ac yn weithredol. Analluogwyd dyblyg."
