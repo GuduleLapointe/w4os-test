@@ -143,12 +143,12 @@ class W4OS3_Avatar {
 			'ID' => (isset($this->ID)) ? $this->ID : 0,
 			'post_type' => 'avatar',
 			'post_status' => 'publish',
-			'post_author' => (empty($this->user_id)) ? -1 : $this->user_id,
+			'post_author' => (empty($this->user_id)) ? 0 : $this->user_id,
 			'post_title' => $this->name,
 			'post_date' => date( 'Y-m-d H:i:s', ((!empty($this->born) && $this->born > 0) ? $this->born : NULL) ),
 			'meta_input' => array(
 				'avatar_email' => $this->email,
-				'avatar_owner' => (empty($this->user_id)) ? -1 : $this->user_id,
+				'avatar_owner' => (empty($this->user_id)) ? NULL : $this->user_id,
 				'avatar_uuid' => $this->uuid,
 				'avatar_born' => $this->born,
 				'avatar_lastseen' => $this->lastseen,
@@ -346,7 +346,7 @@ class W4OS3_Avatar {
 	    'show_in_menu'        => 'w4os',
 	    'menu_icon'           => 'dashicons-universal-access',
 	    'capability_type'     => 'post',
-	    'supports'            => [ 'author' ],
+	    'supports'            => false,
 	    'taxonomies'          => [],
 	    'rewrite'             => [
 	      'with_front' => false,
