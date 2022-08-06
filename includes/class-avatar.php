@@ -283,7 +283,12 @@ class W4OS3_Avatar {
 				'hook' => 'admin_head',
 				'callback' => 'remove_avatar_edit_delete_action',
 			),
+			array(
+				'hook' => 'init',
+				'callback' => 'register_avatar_post_status',
+			),
 		);
+
 
 		$filters = array(
 			array (
@@ -1494,26 +1499,24 @@ class W4OS3_Avatar {
 	    endif;
 	}
 
+	static function register_avatar_post_status(){
+		register_post_status('model', array(
+			'label'                     => _x( 'Model', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false, // actuelly means "count in section 'all' of status list"
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Model <span class="count">(%s)</span>', 'Models <span class="count">(%s)</span>' ),
+		) );
+		register_post_status('service', array(
+			'label'                     => _x( 'Service Account', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false,
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
+		) );
+	}
 }
-
-function wpb_custom_post_status(){
-	register_post_status('model', array(
-		'label'                     => _x( 'Model', 'avatar' ),
-		'public'                    => false,
-		'post_type'									=> 'avatar',
-		'exclude_from_search'       => true,
-		'show_in_admin_all_list'    => false, // actuelly means "count in section 'all' of status list"
-		'show_in_admin_status_list' => true,
-		'label_count'               => _n_noop( 'Model <span class="count">(%s)</span>', 'Models <span class="count">(%s)</span>' ),
-	) );
-	register_post_status('service', array(
-		'label'                     => _x( 'Service Account', 'avatar' ),
-		'public'                    => false,
-		'post_type'									=> 'avatar',
-		'exclude_from_search'       => true,
-		'show_in_admin_all_list'    => false,
-		'show_in_admin_status_list' => true,
-		'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
-	) );
-}
-add_action( 'init', 'wpb_custom_post_status' );
