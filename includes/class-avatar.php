@@ -447,6 +447,9 @@ class W4OS3_Avatar {
 	          'type'    => 'switch',
 	          'style'   => 'rounded',
 	          'columns' => 2,
+						'desc'	=> __('(not implemented)', 'w4os'),
+						'disabled' => true,
+						'readonly' => true,
 	          'visible' => [
 	              'when'     => [['avatar_email', '!=', ''], ['avatar_owner', '=', '']],
 	              'relation' => 'and',
@@ -471,8 +474,11 @@ class W4OS3_Avatar {
 	          'id'      => $prefix . 'use_wp_password',
 	          'type'    => 'switch',
 	          'style'   => 'rounded',
-	          'std'     => true,
-	          'columns' => 2,
+	          'std'     => false,
+						'desc'	=> __('(not implemented)', 'w4os'),
+						'disabled' => true,
+						'readonly' => true,
+	          'columns' => 4,
 	          'visible' => [
 	              'when'     => [
 	                ['avatar_owner', '!=', ''],
@@ -517,6 +523,37 @@ class W4OS3_Avatar {
 			];
 
 	  } else {
+			$meta_boxes['avatar']['fields']['uuid'] = [
+				'name'        => __( 'UUID', 'w4os' ),
+				'id'          => $prefix . 'uuid',
+				'type'        => 'text',
+				'placeholder' => __( 'Wil be set by the server', 'w4os' ),
+				// 'disabled'    => true,
+				'readonly'    => true,
+				// 'save_field' => false,
+				// 'visible'     => [
+				// 	'when'     => [['avatar_uuid', '!=', '']],
+				// 	'relation' => 'or',
+				// ],
+			];
+
+			$meta_boxes['avatar']['fields']['lastseen'] = [
+				'name'          => __( 'Last seen', 'w4os' ),
+				'id'            => $prefix . 'lastseen',
+				'type'          => 'datetime',
+				'timestamp'     => true,
+				// 'disabled'      => true,
+				'readonly'      => true,
+				// 'save_field' => false,
+				'admin_columns' => [
+					'position' => 'before date',
+					'sort'     => true,
+				],
+				// 'visible'       => [
+				// 	'when'     => [['avatar_uuid', '!=', '']],
+				// 	'relation' => 'or',
+				// ],
+			];
 	    // $meta_boxes['avatar']['fields']['first_name']['disabled'] = true;
 	    // $meta_boxes['avatar']['fields']['first_name']['readonly'] = true;
 	    // $meta_boxes['avatar']['fields']['last_name']['disabled'] = true;
