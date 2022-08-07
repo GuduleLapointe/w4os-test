@@ -1322,6 +1322,8 @@ class W4OS3_Avatar {
 		if(!isset($wpdb)) return false;
 		if(!isset($w4osdb)) return false;
 
+		update_option('w4os_sync_users', NULL);
+
 	  $accounts = W4OS3_Avatar::get_avatars_ids_and_uuids();
 		$messages=array();
 		$users_created=[];
@@ -1442,12 +1444,19 @@ class W4OS3_Avatar {
 	    'w4os',
 	  ), count($users_dereferenced));
 
-		// // add_action('admin_init', 'w4os_profile_sync_all');
-		// w4os_profile_sync_all();
-		update_option('w4os_sync_users', NULL);
-		// // return '<pre>' . print_r($messages, true) . '</pre>';
 		if(!empty($errors)) $messages[] = '<p class=sync-errors><ul><li>' . join('</li><li>', $errors) . '</p>';
-		// $messages[] = w4os_array2table($accounts, 'accounts', 2);
+
+		/**
+		 * Resync avatars shown in WP user profiles
+		 */
+		$users = get_users();
+		foreach ( $users as $user ) {
+			$user_avatars = self::get_user_avatars($user->ID);
+			delete_user_meta($user->ID, 'opensimulator_avatars');
+			foreach($user_avatars as $user_avatar)
+			add_user_meta($user->ID, 'opensimulator_avatars', $user_avatar);
+		}
+
 		if(!empty($messages)) return '<div class=messages><p>' . join('</p><p>', $messages) . '</div>';
 	}
 
@@ -1531,6 +1540,38 @@ class W4OS3_Avatar {
 				w4os_transient_admin_notice(__('Avatars can not be deleted from WordPress.', 'w4os'), 'error');
 	      // wp_die('The post you were trying to delete is protected.');
 	    }
+	}
+
+	static function get_user_avatars($user_id) {
+		$avatars = [];
+		if($user_id <= 0) return $avatars;
+
+		$args = array(
+			'post_type'		=>	'avatar',
+			'order_by' => 'ID',
+			'meta_query'	=>	array(
+				array(
+					'key' => 'avatar_owner',
+					'value'	=>	$user_id,
+				)
+			)
+		);
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) {
+			$loop->the_post();
+			$avatars[] = get_the_ID();
+		}
+
+		wp_reset_query();
+		wp_reset_postdata();
+		return $avatars;
+	}
+
+	static function validate_user_avatars($value, $field = [], $old_value = NULL, $user_id = NULL) {
+		if($field['id'] != 'opensimulator_avatars') return $value;
+		if(empty($user_id)) return [];
+
+		return self::get_user_avatars($user_id);
 	}
 
 	static function remove_avatar_edit_delete_action() {
