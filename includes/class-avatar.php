@@ -621,7 +621,7 @@ class W4OS3_Avatar {
 		if(!$update) return;
 		if(W4OS::is_new_post())  return; // triggered when opened new post page, empty
 		if( $post->post_type != 'avatar' ) return;
-		if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $post->ID || in_array($post->ID, $_REQUEST['post']) ) ) return;
+		if( isset($_REQUEST['action']) && $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $post->ID || in_array($post->ID, $_REQUEST['post']) ) ) return;
 		remove_action( 'save_post_avatar', __CLASS__ . '::' . __FUNCTION__ );
 
 		$avatar = new self ($post->ID);
@@ -631,13 +631,13 @@ class W4OS3_Avatar {
 		if(empty($avatar->name))
 		$avatar->name = get_post_meta($post->ID, 'avatar_name', true);
 
-		$avatar->owner = sanitize_text_field($_POST['avatar_owner']);
+		$avatar->owner = (isset($_POST['avatar_owner'])) ? sanitize_text_field($_POST['avatar_owner']) : NULL;
 		$avatar->owner = (intval($avatar->owner) == (int)$avatar->owner) ? $avatar->owner : NULL;
 		if(!empty($avatar->owner)) {
 			$owner = get_user_by('id', $avatar->owner);
 			$avatar->email = $owner->user_email;
 		} else {
-			$avatar->email = sanitize_email($_POST['avatar_email']);
+			$avatar->email = (isset($_POST['avatar_email'])) ? sanitize_email($_POST['avatar_email']) : NULL;
 		}
 
 		$uuid = $avatar->uuid;
@@ -647,7 +647,6 @@ class W4OS3_Avatar {
 			$uuid = $avatar->create();
 			if(!w4os_empty($uuid) && !empty($avatar->name)) {
 				$avatar->uuid = $uuid;
-				error_log("$avatar->name created with $uuid");
 			} else {
 				if(isset($_POST['referredby'])) {
 					wp_redirect($_POST['referredby']);
@@ -664,6 +663,7 @@ class W4OS3_Avatar {
 			}
 		}
 		// TODO: check why email is emptied with get_simulator_data
+		//
 		$avatar_email = $avatar->email;
 		$avatar->get_simulator_data();
 		$avatar->email = $avatar_email;
@@ -726,7 +726,7 @@ class W4OS3_Avatar {
 			// 		return false;
 			// }
 		}
-		$password=stripcslashes($postarr['avatar_password']);
+		$password = (isset($postarr['avatar_password'])) ? stripcslashes($postarr['avatar_password']) : NULL;
 
 		$newavatar_uuid = w4os_gen_uuid();
 		$check_uuid = $w4osdb->get_var("SELECT PrincipalID FROM UserAccounts WHERE PrincipalID = '$newavatar_uuid'");
@@ -741,13 +741,20 @@ class W4OS3_Avatar {
 		$HomeRegionID = $w4osdb->get_var("SELECT UUID FROM regions WHERE regionName = '" . W4OS_DEFAULT_HOME . "'");
 	  if(empty($HomeRegionID)) $HomeRegionID = '00000000-0000-0000-0000-000000000000';
 
+		if(!empty($avatar->owner)) {
+			$owner = get_user_by('id', $avatar->owner);
+			$avatar->email = $owner->user_email;
+		} else {
+			$avatar->email = sanitize_email($postarr['avatar_email']);
+		}
+
 		$result = $w4osdb->insert (
 	    'UserAccounts', array (
 				'PrincipalID' => $newavatar_uuid,
 				'ScopeID' => W4OS_NULL_KEY,
 				'FirstName'   => $FirstName,
 				'LastName'   => $LastName,
-				'Email' => $postarr['avatar_email'],
+				'Email' => $avatar->email,
 				'ServiceURLs' => 'HomeURI= InventoryServerURI= AssetServerURI=',
 				'Created' => $created,
 	    )
