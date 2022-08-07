@@ -569,8 +569,31 @@ class W4OS3_Avatar {
 				'placeholder' => __( 'Wil be set by the server', 'w4os' ),
 				// 'disabled'    => true,
 				'readonly'    => true,
+				'admin_columns' => [
+					'position' => 'before date',
+					// 'sort'     => true,
+					'searchable' => true,
+				],
 				// 'save_field' => false,
 				// 'visible'     => [
+				// 	'when'     => [['avatar_uuid', '!=', '']],
+				// 	'relation' => 'or',
+				// ],
+			];
+
+			$meta_boxes['avatar']['fields']['lastseen'] = [
+				'name'          => __( 'Last seen', 'w4os' ),
+				'id'            => $prefix . 'lastseen',
+				'type'          => 'datetime',
+				'timestamp'     => true,
+				// 'disabled'      => true,
+				'readonly'      => true,
+				// 'save_field' => false,
+				'admin_columns' => [
+					'position' => 'before date',
+					'sort'     => true,
+				],
+				// 'visible'       => [
 				// 	'when'     => [['avatar_uuid', '!=', '']],
 				// 	'relation' => 'or',
 				// ],
@@ -586,23 +609,6 @@ class W4OS3_Avatar {
 				// 'save_field' => false,
 				'admin_columns' => [
 					'position' => 'replace date',
-					'sort'     => true,
-				],
-				// 'visible'       => [
-				// 	'when'     => [['avatar_uuid', '!=', '']],
-				// 	'relation' => 'or',
-				// ],
-			];
-			$meta_boxes['avatar']['fields']['lastseen'] = [
-				'name'          => __( 'Last seen', 'w4os' ),
-				'id'            => $prefix . 'lastseen',
-				'type'          => 'datetime',
-				'timestamp'     => true,
-				// 'disabled'      => true,
-				'readonly'      => true,
-				// 'save_field' => false,
-				'admin_columns' => [
-					'position' => 'before avatar_born',
 					'sort'     => true,
 				],
 				// 'visible'       => [
@@ -736,6 +742,7 @@ class W4OS3_Avatar {
 				'avatar_born' => $avatar->born,
 			),
 		);
+		error_log("updates ". print_r($updates, true));
 
 		wp_update_post($updates, false, false );
 		return;
