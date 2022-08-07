@@ -120,7 +120,7 @@ class W4OS3_Settings {
 			array (
 				'hook' => 'admin_menu',
 				'callback' => 'legacy_admin_menu',
-				'priority' => 5,
+				// 'priority' => 5,
 			),
 			array (
 				'hook' => 'admin_menu',
@@ -162,13 +162,12 @@ class W4OS3_Settings {
 			'OpenSimulator', // menu title
 			'manage_options', // capability
 			'w4os', // slug
-			'w4os_status_page', // callable function
+			'', // callable function
 			// plugin_dir_path(__FILE__) . 'options.php', // slug
 			// null,	// callable function
 			plugin_dir_url(__DIR__) . 'images/opensimulator-logo-24x14.png', // icon url,
 			2 // position
 		);
-		add_submenu_page('w4os', __('OpenSimulator Status', "w4os"), __('Status'), 'manage_options', 'w4os', 'w4os_status_page');
 
 	}
 
@@ -192,6 +191,7 @@ class W4OS3_Settings {
 				'w4os_helpers_page' // function
 			);
 		}
+		add_submenu_page('w4os', __('OpenSimulator Status', "w4os"), __('Status'), 'manage_options', 'w4os', 'w4os_status_page', 20);
 	}
 
 	static function register_settings_pages( $settings_pages ) {
