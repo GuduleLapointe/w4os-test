@@ -99,6 +99,101 @@ class W4OS3_Avatar {
 		}
 	}
 
+	/**
+	 * Register the filters and actions with WordPress.
+	 *
+	 * @since    1.0.0
+	 */
+	public function run() {
+		$actions = array(
+			array (
+				'hook' => 'init',
+				'callback' => 'register_post_types',
+			),
+			array (
+				'hook' => 'wp_ajax_check_name_availability',
+				'callback' => 'ajax_check_name_availability',
+			),
+			array (
+				'hook' => 'post_updated',
+				'callback' => 'update_password',
+				'accepted_args' => 3,
+			),
+
+			array (
+				'hook' => 'save_post_avatar',
+				'callback' => 'save_post_action',
+				'accepted_args' => 3,
+			),
+			array(
+				'hook' => 'wp_trash_post',
+				'callback' => 'avatar_deletion_warning',
+			),
+			array(
+				'hook' => 'admin_head',
+				'callback' => 'remove_avatar_edit_delete_action',
+			),
+		);
+
+		if(get_option('w4os_sync_users')) {
+			update_option('w4os_sync_users', false);
+			$actions[] = array(
+				'hook' => 'init',
+				'callback' => 'sync_avatars',
+			);
+		}
+
+
+		$filters = array(
+			array (
+				'hook' => 'rwmb_meta_boxes',
+				'callback' => 'add_fields',
+			),
+			// array (
+			// 	'hook' => 'wp_insert_post_data',
+			// 	'callback' => 'insert_post_data',
+			// 	'accepted_args' => 4,
+			// ),
+
+			array (
+				'hook' => 'views_edit-avatar',
+				'callback' => 'display_synchronization_status',
+			),
+
+			array(
+				'hook' => 'post_row_actions',
+				'callback' => 'remove_avatar_delete_row_actions',
+				'accepted_args' => 2,
+			),
+
+			// array (
+			// 	'hook' => 'load-edit.php',
+			// 	'callback' => 'add_in_admin_footer',
+			// ),
+
+			// array (
+			// 	'hook' => 'post_row_actions',
+			// 	'add_row_action_links',
+			// 	'accepted_args' => 2,
+			// ),
+		);
+
+		foreach ( $filters as $hook ) {
+			(empty($hook['component'])) && $hook['component'] = __CLASS__;
+			(empty($hook['priority'])) && $hook['priority'] = 10;
+			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
+			add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
+		}
+
+		foreach ( $actions as $hook ) {
+			(empty($hook['component'])) && $hook['component'] = __CLASS__;
+			(empty($hook['priority'])) && $hook['priority'] = 10;
+			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
+			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
+		}
+
+	}
+
 	function get_simulator_data() {
 		if(!W4OS_DB_CONNECTED) return false;
 		global $w4osdb;
@@ -200,101 +295,6 @@ class W4OS3_Avatar {
 		if(is_wp_error($result)) {
 			error_log( "$this->name update failed " . $result->get_error_message() );
 			return false;
-		}
-
-	}
-
-	/**
-	 * Register the filters and actions with WordPress.
-	 *
-	 * @since    1.0.0
-	 */
-	public function run() {
-		$actions = array(
-			array (
-				'hook' => 'init',
-				'callback' => 'register_post_types',
-			),
-			array (
-				'hook' => 'wp_ajax_check_name_availability',
-				'callback' => 'ajax_check_name_availability',
-			),
-			array (
-				'hook' => 'post_updated',
-				'callback' => 'update_password',
-				'accepted_args' => 3,
-			),
-
-			array (
-				'hook' => 'save_post_avatar',
-				'callback' => 'save_post_action',
-				'accepted_args' => 3,
-			),
-			array(
-				'hook' => 'wp_trash_post',
-				'callback' => 'avatar_deletion_warning',
-			),
-			array(
-				'hook' => 'admin_head',
-				'callback' => 'remove_avatar_edit_delete_action',
-			),
-		);
-
-		if(get_option('w4os_sync_users')) {
-			update_option('w4os_sync_users', false);
-			$actions[] = array(
-				'hook' => 'init',
-				'callback' => 'sync_avatars',
-			);
-		}
-
-
-		$filters = array(
-			array (
-				'hook' => 'rwmb_meta_boxes',
-				'callback' => 'add_fields',
-			),
-			// array (
-			// 	'hook' => 'wp_insert_post_data',
-			// 	'callback' => 'insert_post_data',
-			// 	'accepted_args' => 4,
-			// ),
-
-			array (
-				'hook' => 'views_edit-avatar',
-				'callback' => 'display_synchronization_status',
-			),
-
-			array(
-				'hook' => 'post_row_actions',
-				'callback' => 'remove_avatar_delete_row_actions',
-				'accepted_args' => 2,
-			),
-
-			// array (
-			// 	'hook' => 'load-edit.php',
-			// 	'callback' => 'add_in_admin_footer',
-			// ),
-
-			// array (
-			// 	'hook' => 'post_row_actions',
-			// 	'add_row_action_links',
-			// 	'accepted_args' => 2,
-			// ),
-		);
-
-		foreach ( $filters as $hook ) {
-			(empty($hook['component'])) && $hook['component'] = __CLASS__;
-			(empty($hook['priority'])) && $hook['priority'] = 10;
-			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
-			add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
-		}
-
-		foreach ( $actions as $hook ) {
-			(empty($hook['component'])) && $hook['component'] = __CLASS__;
-			(empty($hook['priority'])) && $hook['priority'] = 10;
-			(empty($hook['accepted_args'])) && $hook['accepted_args'] = 1;
-			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
 
 	}
