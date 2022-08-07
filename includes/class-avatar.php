@@ -1190,7 +1190,7 @@ class W4OS3_Avatar {
 
 			if( ! w4os_empty($account['PrincipalID']) ) {
 				$count['grid_accounts']++;
-				if($account['PrincipalID'] == $account['w4os_uuid']) {
+				if($account['PrincipalID'] == $account['w4os_uuid'] || !empty($account['ID'])) {
 					$count['sync']++;
 				} else {
 					error_log("grid only " . print_r($account, true));
