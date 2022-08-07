@@ -195,13 +195,11 @@ class W4OS3_Avatar {
 			),
 		);
 
-		error_log('meta before ' . print_r(get_post_meta($this->ID), true));
 		$result = wp_update_post( $updates, true, false );
 		if(is_wp_error($result)) {
-			error_log( "$this->name update failed " . $result->get_error_message() . print_r($updates, true) );
+			error_log( "$this->name update failed " . $result->get_error_message() );
 			return false;
 		}
-		error_log('meta after ' . print_r(get_post_meta($this->ID), true));
 
 	}
 
@@ -731,40 +729,11 @@ class W4OS3_Avatar {
 			}
 		}
 		$avatar->uuid = $uuid;
-		// TODO: check why email is emptied with get_simulator_data
-		//
-		//
-		// error_log('meta before ' . print_r(get_post_meta($post->ID), true));
 
-		$avatar_email = $avatar->email;
 		$avatar->get_simulator_data();
-		$avatar->email = $avatar_email;
 		$avatar->sync_single_avatar();
-		return;
-
-		// $updates = array(
-		// 	'ID' => $post->ID,
-		// 	'post_title' => $avatar->name,
-		// 	'post_author' => ($avatar->owner) ? $avatar->owner : 0,
-		// 	'post_status' => $avatar->avatar_status(),
-		// 	'post_name' => sanitize_title($avatar->name),
-		// 	'meta_input' => array(
-		// 		'avatar_uuid' => $avatar->uuid,
-		// 		'avatar_owner' => ($avatar->owner) ? $avatar->owner : NULL,
-		// 		'avatar_email' => $avatar->email,
-		// 		'avatar_born' => $avatar->born,
-		// 	),
-		// );
-		// error_log('meta after ' . print_r(get_post_meta($post->ID), true));
-		// // wp_update_post($updates, false, false );
-		// error_log("updates ". print_r($updates, true));
-		// error_log("avatar before ". print_r($avatar, true));
-		// error_log("avatar after ". print_r($avatar, true));
 
 		return;
-	}
-
-	function update($data = []) {
 	}
 
 	function create($avatar = NULL, $data = [], $postarr = []) {
@@ -1289,7 +1258,7 @@ class W4OS3_Avatar {
 				if($account['PrincipalID'] == $account['w4os_uuid'] || !empty($account['ID'])) {
 					$count['sync']++;
 				} else {
-					error_log("grid only " . print_r($account, true));
+					// error_log("grid only " . print_r($account, true));
 					$count['grid_only'] += 1;
 				}
 			} else {
