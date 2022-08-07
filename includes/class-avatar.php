@@ -639,12 +639,21 @@ class W4OS3_Avatar {
 		return get_post_meta($this->post, 'avatar_uuid', true);
 	}
 
+	static function password_match($password, $confirm_password = NULL, $user = NULL) {
+		if($password == $confirm_password) return true;
+
+		w4os_notice(__("Passwords don't match.", 'w4os'), 'error') ;
+		return false;
+	}
+
 	static function update_password( $post_ID, $post_after, $post_before ) {
 		if($post_after->post_type !== 'avatar') return;
-		if(empty($_POST['avatar_password']) || $_POST['avatar_password'] != $_POST['avatar_confirm_password']) return;
+		if(empty($_POST['avatar_password'])) return;
 		$avatar = new W4OS3_Avatar($post_after);
 		if(w4os_empty($avatar->uuid)) return;
 		global $w4osdb;
+
+		if(!self::password_match($_POST['avatar_password'], $_POST['avatar_confirm_password'])) return false;
 
 		$password=stripcslashes($_POST['avatar_password']);
 		$salt = md5(w4os_gen_uuid());
