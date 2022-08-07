@@ -156,14 +156,13 @@ class W4OS3_Avatar {
 				'avatar_lastname' => $this->LastName,
 			),
 		));
+
 		return $post_id;
 	}
 
 	function is_orphan() {
 	 	if(!isset($this->uuid)) return true;
 		if(w4os_empty($this->uuid)) return true;
-
-		error_log("not orphan? " . print_r($this, true));
 
 		return false;
 	}
@@ -188,70 +187,17 @@ class W4OS3_Avatar {
 				'avatar_owner' => ($user) ? $user->ID : NULL,
 			),
 		);
-		// if($this->is_service()) $postarr['post_status'] =  'service';
-		// if($this->is_model()) $postarr['post_status'] =  'model';
-		error_log(__FUNCTION__ . ' ' . print_r($this, true));
 		$postarr['post_status'] = $this->avatar_status();
 
-		// if(isset($this->lastseen)) $postarr['meta_input'][
-		// if(isset($this->email)) $postarr['meta_input']['avatar_email'] = $this->email;
-		//
 		if(!empty($postarr)) {
 			$postarr['ID'] = $this->ID;
-			// error_log(__FUNCTION__ . ' ' . $this->name . ' ' . print_r($postarr, true));
 			$result = wp_update_post( $postarr, true, true );
-			if($result) {
-				// error_log("$this->name succeeded " . print_r(get_post_meta($this->ID), true));
-			} else {
+			if(!$result) {
 				error_log($result>get_error_message());
+				return false;
 			}
 		}
 
-		return;
-
-		if(!W4OS_DB_CONNECTED) return false;
-	  global $w4osdb;
-
-		if(is_numeric($post)) {
-			$post_id = $post;
-			$post = get_post($post_id);
-		}
-		if(empty($post) || is_wp_error($post)) return false;
-		if($post->post_type != 'avatar') return false;
-
-		return;
-
-	  if(w4os_empty($uuid)) {
-	    $condition = "Email = '$post->user_email'";
-	  } else {
-	    $condition = "PrincipalID = '$uuid'";
-	  }
-
-	  $avatars=$w4osdb->get_results("SELECT * FROM UserAccounts
-	    LEFT JOIN userprofile ON PrincipalID = userUUID
-	    LEFT JOIN GridUser ON PrincipalID = UserID
-	    WHERE active = 1 AND $condition"
-	  );
-	  if(empty($avatars)) return false;
-
-	  $avatar_row = array_shift($avatars);
-	  if(w4os_empty($uuid)) $uuid = $avatar_row->PrincipalID;
-
-	  if(w4os_empty($uuid)) {
-	    w4os_profile_dereference($post);
-	    return false;
-	  }
-
-	  $post->add_role('grid_user');
-
-	  update_user_meta( $post->ID, 'w4os_uuid', $uuid );
-	  update_user_meta( $post->ID, 'w4os_firstname', $avatar_row->FirstName );
-	  update_user_meta( $post->ID, 'w4os_lastname', $avatar_row->LastName );
-	  update_user_meta( $post->ID, 'w4os_avatarname', trim($avatar_row->FirstName . ' ' . $avatar_row->LastName) );
-	  update_user_meta( $post->ID, 'w4os_created', $avatar_row->Created);
-	  update_user_meta( $post->ID, 'w4os_lastseen', $avatar_row->Login);
-	  update_user_meta( $post->ID, 'w4os_profileimage', $avatar_row->profileImage );
-	  return $uuid;
 	}
 
 	/**
@@ -270,10 +216,6 @@ class W4OS3_Avatar {
 				'callback' => 'ajax_check_name_availability',
 			),
 			array (
-				'hook' => 'save_post',
-				'callback' => 'save_avatar_slug',
-			),
-			array (
 				'hook' => 'post_updated',
 				'callback' => 'update_password',
 				'accepted_args' => 3,
@@ -282,6 +224,15 @@ class W4OS3_Avatar {
 			array (
 				'hook' => 'init',
 				'callback' => 'remove_avatar_delete_cap',
+			),
+			array (
+				'hook' => 'save_post',
+				'callback' => 'save_avatar_slug',
+			),
+			array (
+				'hook' => 'save_post_avatar',
+				'callback' => 'save_post',
+				'accepted_args' => 3,
 			),
 			array(
 				'hook' => 'wp_trash_post',
@@ -296,8 +247,8 @@ class W4OS3_Avatar {
 				'callback' => 'register_avatar_post_status',
 			),
 		);
+
 		if(get_option('w4os_sync_users')) {
-			error_log("resync: " . (get_option('w4os_sync_users')) ? "yes" : "no");
 			update_option('w4os_sync_users', false);
 			$actions[] = array(
 				'hook' => 'init',
@@ -311,11 +262,11 @@ class W4OS3_Avatar {
 				'hook' => 'rwmb_meta_boxes',
 				'callback' => 'add_fields',
 			),
-			array (
-				'hook' => 'wp_insert_post_data',
-				'callback' => 'insert_post_data',
-				'accepted_args' => 4,
-			),
+			// array (
+			// 	'hook' => 'wp_insert_post_data',
+			// 	'callback' => 'insert_post_data',
+			// 	'accepted_args' => 4,
+			// ),
 
 			array (
 				'hook' => 'views_edit-avatar',
@@ -654,38 +605,50 @@ class W4OS3_Avatar {
 		}
 	}
 
-	static function insert_post_data( $data, $postarr, $unsanitized_postarr, $update ) {
-	  if(!$update) return $data;
-	  if('avatar' !== $data['post_type']) return $data;
+	static function save_avatar_slug( $post_id ) {
+		// if ( wp_is_post_revision( $post_id ) ) return;
+		// $post = get_post($post_id);
+		// if('avatar' !== $post->post_type) return;
+		//
+		// remove_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
+		//
+		// $slug = sanitize_title($post->post_title);
+		// wp_update_post( array( 'ID' => $post_id, 'post_name' => $slug ));
+		//
+	}
 
-		$avatar = new self ($postarr['ID']);
+ 	static function save_post($post_ID, $post, $update ) {
+		if(!$update) return;
+		if(W4OS::is_new_post())  return; // triggered when opened new post page, empty
+		if( $post->post_type != 'avatar' ) return;
+		if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $post->ID || in_array($post->ID, $_REQUEST['post']) ) ) return;
+		remove_action( 'save_post_avatar', __CLASS__ . '::' . __FUNCTION__ );
 
-		$avatar_name = trim(@$postarr['avatar_name']);
-		if(!empty($avatar->name)) {
-			$avatar_name = $avatar->name;
-			unset($data['avatar_name']);
-		}
-		if(!empty($avatar_name)) {
-			$data['post_title'] = $avatar_name;
-		}
+		$avatar = new self ($post->ID);
 
-		if(empty($avatar_name) && W4OS::is_new_post()) {
-			$avatar_name = 'TEMPORARY UNDEFINED';
+		if(empty($avatar->name))
+		$avatar->name = sanitize_text_field(isset($_POST['avatar_name']) ? $_POST['avatar_name'] : NULL);
+		if(empty($avatar->name))
+		$avatar->name = get_post_meta($post->ID, 'avatar_name', true);
+
+		$avatar->owner = sanitize_text_field($_POST['avatar_owner']);
+		$avatar->owner = (intval($avatar->owner) == (int)$avatar->owner) ? $avatar->owner : NULL;
+		if(!empty($avatar->owner)) {
+			$owner = get_user_by('id', $avatar->owner);
+			$avatar->email = $owner->user_email;
+		} else {
+			$avatar->email = sanitize_email($_POST['avatar_email']);
 		}
 
 		$uuid = $avatar->uuid;
-		if(w4os_empty($uuid)) {
-			$uuid = self::get_uuid_by_name($avatar_name);
-		// } else {
-		// 	unset($data['avatar_uuid']);
-		}
-		if(w4os_empty($uuid) && $avatar_name != 'TEMPORARY UNDEFINED') {
-			// We must create one
-			$avatar->name = $avatar_name;
-			$uuid = $avatar->create($avatar, $data, $postarr);
-			if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $avatar->ID || in_array($avatar->ID, $_REQUEST['post']) ) ) {
-				return $data;
-			} else if(!$uuid || w4os_empty($uuid) || empty($avatar_name)) {
+		if(w4os_empty($uuid))
+		$uuid = self::get_uuid_by_name($avatar->name);
+		if(w4os_empty($uuid) && $avatar->name != 'TEMPORARY UNDEFINED') {
+			$uuid = $avatar->create();
+			if(!w4os_empty($uuid) && !empty($avatar->name)) {
+				$avatar->uuid = $uuid;
+				error_log("$avatar->name created with $uuid");
+			} else {
 				if(isset($_POST['referredby'])) {
 					wp_redirect($_POST['referredby']);
 					die();
@@ -698,25 +661,28 @@ class W4OS3_Avatar {
 					. "\nREQUEST " . print_r($_REQUEST, true)
 					. '</pre>');
 				}
-			} else {
-				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
 			}
 		}
-		$data['post_status'] = $avatar->avatar_status();
-	  return $data;
-	}
+		// TODO: check why email is emptied with get_simulator_data
+		$avatar_email = $avatar->email;
+		$avatar->get_simulator_data();
+		$avatar->email = $avatar_email;
 
-	static function save_avatar_slug( $post_id ) {
-		if ( wp_is_post_revision( $post_id ) ) return;
-		$post = get_post($post_id);
-		if('avatar' !== $post->post_type) return;
+		$updates = array(
+			'ID' => $post->ID,
+			'post_title' => $avatar->name,
+			'post_status' => $avatar->avatar_status(),
+			'post_name' => sanitize_title($avatar->name),
+			'meta_input' => array(
+				'avatar_uuid' => $avatar->uuid,
+				'avatar_owner' => $avatar->owner,
+				'avatar_email' => $avatar->email,
+				'avatar_born' => $avatar->born,
+			),
+		);
 
-		remove_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
-
-		$slug = sanitize_title($post->post_title);
-		wp_update_post( array( 'ID' => $post_id, 'post_name' => $slug ));
-
-		add_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
+		wp_update_post($updates, false, false );
+		return;
 	}
 
 	function update($data = []) {
@@ -724,7 +690,8 @@ class W4OS3_Avatar {
 
 	function create($avatar = NULL, $data = [], $postarr = []) {
 		if(!W4OS_DB_CONNECTED) return;
-		if(!is_object($avatar)) return; // We might need to handle $this in the future
+		if(!is_object($avatar)) $avatar = $this;
+		if(!is_object($avatar)) return;
 		if( $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $avatar->ID || in_array($avatar->ID, $_REQUEST['post']) ) ) return;
 
 		global $w4osdb;
@@ -996,6 +963,11 @@ class W4OS3_Avatar {
 			error_log(sprintf( $message, "$FirstName $LastName" ));
 			return false;
 	  }
+
+		// $avatar->uuid = $newavatar_uuid;
+		if($avatar->ID) {
+			update_post_meta($avatar->ID, 'avatar_uuid', $newavatar_uuid);
+		}
 
 		return $newavatar_uuid;
 		// w4os_notice(sprintf( __('Avatar %s created successfully.', 'w4os' ), "$FirstName $LastName" ), 'success' );
@@ -1286,9 +1258,12 @@ class W4OS3_Avatar {
 		return $accounts;
 	}
 
+	/**
+	 * Make sure avatar posts match OpenSimulator accounts. Executed on a regular
+	 * basis by scheduled actions, and can be triggered manually with "Synchronize
+	 * users now button" to get most recent changes immediately.
+	 */
 	static function sync_avatars() {
-		error_log(__FUNCTION__ . " launched");
-
 		if(! W4OS_DB_CONNECTED) return;
 		global $wpdb, $w4osdb;
 		if(!isset($wpdb)) return false;
@@ -1310,74 +1285,89 @@ class W4OS3_Avatar {
 				$avatar = new W4OS3_Avatar($account);
 			}
 
-			error_log("checking " . $avatar->name);
-			if($avatar->is_orphan()) {
+			if($avatar->is_orphan() || empty($account['PrincipalID'])) {
 				/**
-				 * Orphan: wp avatar without existing opensim account, delete it
+				 * Orphan: wp avatar without opensim account, delete it
 				 */
-				if(wp_delete_post( $avatar->ID, true ))
-				error_log("$avatar->name does not exist anymore on the grid, it has been deleted from WordPress");
+
+
+				$message = "$avatar->name does not exist anymore on the grid";
+				$result = wp_delete_post( $avatar->ID, true );
+				if (is_wp_error($result))
+				error_log("$message, but delete post failed " . $result>get_error_message());
 				else
-				error_log("$avatar->name does not exist anymore on the grid, but delete post failed");
-			} else {
-				if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
-					/**
-					 * Already linked, silently resync
-					 */
-					$avatar->get_simulator_data();
-					$avatar->sync_single_avatar();
-				} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
-					/**
-					 * TODO: wrong reference, but an avatar exists with same name as this WP post, update reference
-					 */
-					error_log("$avatar->name wrong reference, but an avatar exists in WP, fix wrong reference");
-					// $result = W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']);
-					// if(W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']))
-					// $users_updated[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
-					// else
-					// $errors[] = '<p class=error>' .  sprintf(__('Error while updating %s %s (%s) %s', 'w4os'), $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
-				} else {
-					/**
-					 * Widow: opensim accoun without related wp avatar, create one
-					 */
-					error_log("$avatar->name not present in WP, create a post");
+				error_log("$message, it has been deleted from WordPress.");
 
-					$avatar->get_simulator_data();
-					if(!$avatar->create_post()) {
-						error_log("could not create avatar post for $avatar->name");
-					}
-				}
+				continue;
+			}
+
+			if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
 
 				/**
-				 * TODO: create user if none and wp_create_users is enabled
-				 */
+				* Already linked, silently resync
+				*/
 
-				// $user = get_user_by('email', $account['email']);
-				// if($user) {
-				// 	// assign to existing user
-				// 	error_log("assign $avatar->name to $user->display_name");
-				// } else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
-				// 	// create user if create_wp_users is true
-				// 	error_log("TODO: create user $avatar->name");
-				// 	// 	$newid = wp_insert_user(array(
-				// 	// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
-				// 	// 		'user_pass' => wp_generate_password(),
-				// 	// 		'user_email' => $account['email'],
-				// 	// 		'first_name' => $account['FirstName'],
-				// 	// 		'last_name' => $account['LastName'],
-				// 	// 		'role' => 'grid_user',
-				// 	// 		'display_name' => trim($account['FirstName'] . ' ' . $account['LastName']),
-				// 	// 	));
-				// 	// 	if(is_wp_error( $newid )) {
-				// 	// 		$errors[] = $newid->get_error_message();
-				// 	// 	} else if(W4OS_Avatar::sync_single_avatar($newid, $account['PrincipalID'])) {
-				// 	// 		$users_created[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
-				// 	// 	} else {
-				// 	// 		$errors[] = '<p class=error>' .  sprintf(__('Error while updating newly created user %s for %s %s (%s) %s', 'w4os'), $newid, $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
-				// 	// 	}
-				// }
+				$avatar->get_simulator_data();
+				$avatar->sync_single_avatar();
 
+			} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
+
+				/**
+				* TODO: wrong reference, but an avatar exists with same name as this WP post, update reference
+				*/
+
+				error_log(
+					"$avatar->name wrong reference, but an avatar exists in WP, we should fix wrong reference (not implemented)"
+					// . "avatar " . print_r($avatar, true)
+					// . "account " . print_r($account, true)
+				);
+				// $result = W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']);
+				// if(W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']))
+				// $users_updated[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
+				// else
+				// $errors[] = '<p class=error>' .  sprintf(__('Error while updating %s %s (%s) %s', 'w4os'), $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
+
+			} else {
+
+				/**
+				* Widow: opensim accoun without related wp avatar, create one
+				*/
+
+				$avatar->get_simulator_data();
+				if(!$avatar->create_post()) {
+					error_log("could not create avatar post for $avatar->name");
+				}
 			}
+
+			/**
+			* TODO: create user if none and wp_create_users is enabled
+			*/
+
+			// $user = get_user_by('email', $account['email']);
+			// if($user) {
+			// 	// assign to existing user
+			// 	error_log("assign $avatar->name to $user->display_name");
+			// } else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
+			// 	// create user if create_wp_users is true
+			// 	error_log("TODO: create user $avatar->name");
+			// 	// 	$newid = wp_insert_user(array(
+			// 	// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
+			// 	// 		'user_pass' => wp_generate_password(),
+			// 	// 		'user_email' => $account['email'],
+			// 	// 		'first_name' => $account['FirstName'],
+			// 	// 		'last_name' => $account['LastName'],
+			// 	// 		'role' => 'grid_user',
+			// 	// 		'display_name' => trim($account['FirstName'] . ' ' . $account['LastName']),
+			// 	// 	));
+			// 	// 	if(is_wp_error( $newid )) {
+			// 	// 		$errors[] = $newid->get_error_message();
+			// 	// 	} else if(W4OS_Avatar::sync_single_avatar($newid, $account['PrincipalID'])) {
+			// 	// 		$users_created[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
+			// 	// 	} else {
+			// 	// 		$errors[] = '<p class=error>' .  sprintf(__('Error while updating newly created user %s for %s %s (%s) %s', 'w4os'), $newid, $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
+			// 	// 	}
+			// }
+
 		}
 
 		if(!empty($users_updated)) $messages[] = sprintf(_n(
