@@ -188,6 +188,7 @@ class W4OS3_Avatar {
 			'post_status' => $this->avatar_status(),
 			'post_name' => sanitize_title($this->name),
 			'meta_input' => array(
+				'avatar_name' => $this->name,
 				'avatar_uuid' => $this->uuid,
 				'avatar_lastseen' => $this->lastseen,
 				'avatar_email' => $this->email,
