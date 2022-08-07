@@ -175,28 +175,33 @@ class W4OS3_Avatar {
 	 * @return object       [description]
 	 */
 	function sync_single_avatar() {
+		if(empty($this->owner))
 		$user = get_user_by('email', $this->email);
+		else $user = get_user_by('email', $this->owner);
+
 		$user_id = ($user) ? $user->ID : NULL;
 
-		$postarr = array(
+		$updates = array(
 			'ID' => $this->ID,
-			'post_author' => ($user) ? $user->ID : 0,
+			'post_title' => $this->name,
+			'post_author' => ($user_id) ? $user_id : 0,
+			'post_status' => $this->avatar_status(),
+			'post_name' => sanitize_title($this->name),
 			'meta_input' => array(
+				'avatar_uuid' => $this->uuid,
 				'avatar_lastseen' => $this->lastseen,
 				'avatar_email' => $this->email,
-				'avatar_owner' => ($user) ? $user->ID : NULL,
+				'avatar_owner' => $user_id,
 			),
 		);
-		$postarr['post_status'] = $this->avatar_status();
 
-		if(!empty($postarr)) {
-			$postarr['ID'] = $this->ID;
-			$result = wp_update_post( $postarr, true, true );
-			if(!$result) {
-				error_log($result>get_error_message());
-				return false;
-			}
+		error_log('meta before ' . print_r(get_post_meta($this->ID), true));
+		$result = wp_update_post( $updates, true, false );
+		if(is_wp_error($result)) {
+			error_log( "$this->name update failed " . $result->get_error_message() . print_r($updates, true) );
+			return false;
 		}
+		error_log('meta after ' . print_r(get_post_meta($this->ID), true));
 
 	}
 
@@ -567,8 +572,10 @@ class W4OS3_Avatar {
 				'id'          => $prefix . 'uuid',
 				'type'        => 'text',
 				'placeholder' => __( 'Wil be set by the server', 'w4os' ),
-				// 'disabled'    => true,
+				'std' 	=> self::current_avatar_uuid(),
+				'disabled'    => true,
 				'readonly'    => true,
+				'save_field' => false,
 				'admin_columns' => [
 					'position' => 'before date',
 					// 'sort'     => true,
@@ -684,6 +691,7 @@ class W4OS3_Avatar {
 		if(W4OS::is_new_post())  return; // triggered when opened new post page, empty
 		if( $post->post_type != 'avatar' ) return;
 		if( isset($_REQUEST['action']) && $_REQUEST['action'] == 'trash' && ( $_REQUEST['post'] == $post->ID || in_array($post->ID, $_REQUEST['post']) ) ) return;
+
 		remove_action( 'save_post_avatar', __CLASS__ . '::' . __FUNCTION__ );
 
 		$avatar = new self ($post->ID);
@@ -696,8 +704,7 @@ class W4OS3_Avatar {
 		$avatar->owner = (isset($_POST['avatar_owner'])) ? sanitize_text_field($_POST['avatar_owner']) : NULL;
 		$avatar->owner = (intval($avatar->owner) == (int)$avatar->owner) ? $avatar->owner : NULL;
 		if(!empty($avatar->owner)) {
-			$owner = get_user_by('id', $avatar->owner);
-			$avatar->email = $owner->user_email;
+			$avatar->email = get_user_by('id', $avatar->owner)->user_email;
 		} else {
 			$avatar->email = (isset($_POST['avatar_email'])) ? sanitize_email($_POST['avatar_email']) : NULL;
 		}
@@ -708,7 +715,6 @@ class W4OS3_Avatar {
 		if(w4os_empty($uuid) && $avatar->name != 'TEMPORARY UNDEFINED') {
 			$uuid = $avatar->create();
 			if(!w4os_empty($uuid) && !empty($avatar->name)) {
-				$avatar->uuid = $uuid;
 			} else {
 				if(isset($_POST['referredby'])) {
 					wp_redirect($_POST['referredby']);
@@ -724,27 +730,37 @@ class W4OS3_Avatar {
 				}
 			}
 		}
+		$avatar->uuid = $uuid;
 		// TODO: check why email is emptied with get_simulator_data
 		//
+		//
+		// error_log('meta before ' . print_r(get_post_meta($post->ID), true));
+
 		$avatar_email = $avatar->email;
 		$avatar->get_simulator_data();
 		$avatar->email = $avatar_email;
+		$avatar->sync_single_avatar();
+		return;
 
-		$updates = array(
-			'ID' => $post->ID,
-			'post_title' => $avatar->name,
-			'post_status' => $avatar->avatar_status(),
-			'post_name' => sanitize_title($avatar->name),
-			'meta_input' => array(
-				'avatar_uuid' => $avatar->uuid,
-				'avatar_owner' => $avatar->owner,
-				'avatar_email' => $avatar->email,
-				'avatar_born' => $avatar->born,
-			),
-		);
-		error_log("updates ". print_r($updates, true));
+		// $updates = array(
+		// 	'ID' => $post->ID,
+		// 	'post_title' => $avatar->name,
+		// 	'post_author' => ($avatar->owner) ? $avatar->owner : 0,
+		// 	'post_status' => $avatar->avatar_status(),
+		// 	'post_name' => sanitize_title($avatar->name),
+		// 	'meta_input' => array(
+		// 		'avatar_uuid' => $avatar->uuid,
+		// 		'avatar_owner' => ($avatar->owner) ? $avatar->owner : NULL,
+		// 		'avatar_email' => $avatar->email,
+		// 		'avatar_born' => $avatar->born,
+		// 	),
+		// );
+		// error_log('meta after ' . print_r(get_post_meta($post->ID), true));
+		// // wp_update_post($updates, false, false );
+		// error_log("updates ". print_r($updates, true));
+		// error_log("avatar before ". print_r($avatar, true));
+		// error_log("avatar after ". print_r($avatar, true));
 
-		wp_update_post($updates, false, false );
 		return;
 	}
 
@@ -1186,6 +1202,16 @@ class W4OS3_Avatar {
 			$post = get_post($post_id);
 		}
 		if($post)	return $post->post_title;
+	}
+
+	static function current_avatar_uuid() {
+		global $post;
+		if(!empty($_REQUEST['post'])) {
+			if(is_array($_REQUEST['post'])) return;
+			$post_id = esc_attr($_REQUEST['post']);
+			$post = get_post($post_id);
+		}
+		if($post)	return get_post_meta($post->ID, 'avatar_uuid', true);
 	}
 
 	static function generate_name() {
