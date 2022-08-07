@@ -534,6 +534,23 @@ class W4OS3_Avatar {
 				// ],
 			];
 
+			$meta_boxes['avatar']['fields']['born'] = [
+				'name'          => __( 'Born', 'w4os' ),
+				'id'            => $prefix . 'born',
+				'type'          => 'datetime',
+				'timestamp'     => true,
+				// 'disabled'      => true,
+				'readonly'      => true,
+				// 'save_field' => false,
+				'admin_columns' => [
+					'position' => 'replace date',
+					'sort'     => true,
+				],
+				// 'visible'       => [
+				// 	'when'     => [['avatar_uuid', '!=', '']],
+				// 	'relation' => 'or',
+				// ],
+			];
 			$meta_boxes['avatar']['fields']['lastseen'] = [
 				'name'          => __( 'Last seen', 'w4os' ),
 				'id'            => $prefix . 'lastseen',
@@ -543,7 +560,7 @@ class W4OS3_Avatar {
 				'readonly'      => true,
 				// 'save_field' => false,
 				'admin_columns' => [
-					'position' => 'before date',
+					'position' => 'before avatar_born',
 					'sort'     => true,
 				],
 				// 'visible'       => [
