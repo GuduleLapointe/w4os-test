@@ -438,7 +438,7 @@ class W4OS3_Avatar {
 	    'style'      => 'seamless',
 			'fields'     => [
 				'name' => [
-				// 		// 'name'     => __( 'Avatar Name', 'w4os' ),
+						// 'name'     => __( 'Avatar Name', 'w4os' ),
 				// 		'id'       => $prefix . 'name',
 				// 		'type'     => 'hidden',
 				// 		'std'	=> 'saved ' . self::current_avatar_name(),
@@ -449,6 +449,12 @@ class W4OS3_Avatar {
 					'id'       => $prefix . 'name',
 					'type'     => 'custom_html',
 					'std' => '<h1>' . self::current_avatar_name() . '</h1>',
+					// 'admin_columns' => [
+					// 	'position'   => 'replace title',
+					// 	'sort'       => true,
+					// 	'searchable' => true,
+					// 	'filterable' => true,
+					// ],
 					// 'callback' => __CLASS__ . '::current_avatar_name',
 				],
 				[
@@ -622,26 +628,7 @@ class W4OS3_Avatar {
 				// 	'relation' => 'or',
 				// ],
 			];
-	    // $meta_boxes['avatar']['fields']['first_name']['disabled'] = true;
-	    // $meta_boxes['avatar']['fields']['first_name']['readonly'] = true;
-	    // $meta_boxes['avatar']['fields']['last_name']['disabled'] = true;
-	    // $meta_boxes['avatar']['fields']['last_name']['readonly'] = true;
-	    // $meta_boxes['avatar']['fields']['email']['disabled'] = true;
-	    // $meta_boxes['avatar']['fields']['email']['readonly'] = true;
-	    // $meta_boxes['avatar']['fields'] = array_merge( $meta_boxes['avatar']['fields'], [
-	    //   [
-	    //     'name'        => __( 'UUID', 'w4os' ),
-	    //     'id'          => $prefix . 'uuid',
-	    //     'type'        => 'text',
-	    //     'placeholder' => __( 'Wil be set by the server', 'w4os' ),
-	    //     'disabled'    => true,
-	    //     'readonly'    => true,
-	    //     'visible'     => [
-	    //       'when'     => [['avatar_uuid', '!=', '']],
-	    //       'relation' => 'or',
-	    //     ],
-	    //   ],
-	    // ]);
+
 	  }
 
 	  return $meta_boxes;
