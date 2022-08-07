@@ -461,7 +461,7 @@ class W4OS3_Avatar {
 	      ],
 	      [
 	          'name'    => __( 'Confirm password', 'w4os' ),
-	          'id'      => $prefix . 'password_2',
+	          'id'      => $prefix . 'confirm_password',
 	          'type'    => 'password',
 	          'columns' => 4,
 						// 'required' => W4OS::is_new_post() &! current_user_can('administrator'),
@@ -599,7 +599,7 @@ class W4OS3_Avatar {
 
 	static function update_password( $post_ID, $post_after, $post_before ) {
 		if($post_after->post_type !== 'avatar') return;
-		if(empty($_POST['avatar_password']) || $_POST['avatar_password'] != $_POST['avatar_password_2']) return;
+		if(empty($_POST['avatar_password']) || $_POST['avatar_password'] != $_POST['avatar_confirm_password']) return;
 		$avatar = new W4OS3_Avatar($post_after);
 		if(w4os_empty($avatar->uuid)) return;
 		global $w4osdb;
@@ -732,7 +732,7 @@ class W4OS3_Avatar {
 
 		$model = esc_attr(empty($postarr['avatar_model']) ? W4OS_DEFAULT_AVATAR : $postarr['avatar_model']);
 
-		if (isset($postarr['avatar_password']) && $postarr['avatar_password'] != $postarr['avatar_password_2']) {
+		if (isset($postarr['avatar_password']) && $postarr['avatar_password'] != $postarr['avatar_confirm_password']) {
 			w4os_notice(__("Passwords don't match.", 'w4os'), 'error') ;
 			return false;
 

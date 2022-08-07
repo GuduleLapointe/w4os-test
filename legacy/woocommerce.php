@@ -142,7 +142,7 @@ add_filter("woocommerce_get_query_vars", function ($vars) {
  */
 add_action('woocommSerce_save_account_details', 'w4os_woocommerce_save_account_details', 10, 1);
 function w4os_woocommerce_save_account_details ( $user_id ) {
-	if($_REQUEST['password_1'] == $_REQUEST['password_2'])
+	if($_REQUEST['password_1'] == $_REQUEST['confirm_password'])
 	w4os_set_avatar_password( $user_id, $_REQUEST['password_1'] );
 }
 
