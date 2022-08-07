@@ -159,6 +159,15 @@ class W4OS3_Avatar {
 		return $post_id;
 	}
 
+	function is_orphan() {
+	 	if(!isset($this->uuid)) return true;
+		if(w4os_empty($this->uuid)) return true;
+
+		error_log("not orphan? " . print_r($this, true));
+
+		return false;
+	}
+
 	/**
 	 * Sync avatar info from OpenSimulator
 	 * @param  object $user_or_id   user object or user id
@@ -181,7 +190,7 @@ class W4OS3_Avatar {
 		);
 		// if($this->is_service()) $postarr['post_status'] =  'service';
 		// if($this->is_model()) $postarr['post_status'] =  'model';
-		error_log(print_r($this, true));
+		error_log(__FUNCTION__ . ' ' . print_r($this, true));
 		$postarr['post_status'] = $this->avatar_status();
 
 		// if(isset($this->lastseen)) $postarr['meta_input'][
@@ -251,7 +260,6 @@ class W4OS3_Avatar {
 	 * @since    1.0.0
 	 */
 	public function run() {
-
 		$actions = array(
 			array (
 				'hook' => 'init',
@@ -288,6 +296,14 @@ class W4OS3_Avatar {
 				'callback' => 'register_avatar_post_status',
 			),
 		);
+		if(get_option('w4os_sync_users')) {
+			error_log("resync: " . (get_option('w4os_sync_users')) ? "yes" : "no");
+			update_option('w4os_sync_users', false);
+			$actions[] = array(
+				'hook' => 'init',
+				'callback' => 'sync_avatars',
+			);
+		}
 
 
 		$filters = array(
@@ -674,14 +690,13 @@ class W4OS3_Avatar {
 					wp_redirect($_POST['referredby']);
 					die();
 				} else {
-					w4os_transient_admin_notice("Could not create $avatar->name and redirect failed<pre>"
+					error_log("Could not create $avatar->name and redirect failed<pre>"
 					. "\nuuid " . print_r($uuid, true)
 					. "\navatar " . print_r($avatar, true)
 					. "\ndata " . print_r($data, true)
 					. "\npostarr " . print_r($postarr, true)
 					. "\nREQUEST " . print_r($_REQUEST, true)
-					. '</pre>'
-					, 'error');
+					. '</pre>');
 				}
 			} else {
 				update_post_meta($avatar->ID, 'avatar_uuid', $uuid);
@@ -1197,9 +1212,9 @@ class W4OS3_Avatar {
 		 */
 		$accounts = W4OS3_Avatar::get_avatars_ids_and_uuids();
 	  foreach ($accounts as $key => $account) {
-			if( ! isset($account['w4os_uuid']) ) $account['w4os_uuid'] = NULL;
+			if(!isset($account['w4os_uuid']) ) $account['w4os_uuid'] = NULL;
 			if(!w4os_empty($account['w4os_uuid'])) $count['wp_linked']++;
-			if( ! isset($account['PrincipalID']) ) $account['PrincipalID'] = NULL;
+			if(!isset($account['PrincipalID']) ) $account['PrincipalID'] = NULL;
 
 			if( ! w4os_empty($account['PrincipalID']) ) {
 				$count['grid_accounts']++;
@@ -1210,10 +1225,14 @@ class W4OS3_Avatar {
 					$count['grid_only'] += 1;
 				}
 			} else {
+				// error_log($account['avatar_name'] . ' no PrincipalID ' . print_r($account, true));
 				$account['PrincipalID'] = NULL;
-				if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
-					$count['wp_only']++;
-				}
+				// if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
+				if(!empty($account['ID'])) $count['wp_only']++;
+				else $count['grid_only'] += 1;
+				// } else {
+				// 	$count['grid_only'] += 1;
+				// }
 			}
 	  }
 		// End deprecated
@@ -1268,6 +1287,8 @@ class W4OS3_Avatar {
 	}
 
 	static function sync_avatars() {
+		error_log(__FUNCTION__ . " launched");
+
 		if(! W4OS_DB_CONNECTED) return;
 		global $wpdb, $w4osdb;
 		if(!isset($wpdb)) return false;
@@ -1289,65 +1310,73 @@ class W4OS3_Avatar {
 				$avatar = new W4OS3_Avatar($account);
 			}
 
-	    if( isset($account['PrincipalID']) &! w4os_empty($account['PrincipalID']) ) {
+			error_log("checking " . $avatar->name);
+			if($avatar->is_orphan()) {
+				/**
+				 * Orphan: wp avatar without existing opensim account, delete it
+				 */
+				if(wp_delete_post( $avatar->ID, true ))
+				error_log("$avatar->name does not exist anymore on the grid, it has been deleted from WordPress");
+				else
+				error_log("$avatar->name does not exist anymore on the grid, but delete post failed");
+			} else {
 				if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
-					// already linked, just resync
-					error_log("$avatar->name already linked, resync");
+					/**
+					 * Already linked, silently resync
+					 */
 					$avatar->get_simulator_data();
 					$avatar->sync_single_avatar();
 				} else if ( isset($account['user_id']) &! empty($account['user_id']) ) {
-					// wrong reference, but an avatar exists for this WP user, replace reference
-					error_log("$avatar->name wrong reference, but an avatar exists in WP, replace wrong reference");
+					/**
+					 * TODO: wrong reference, but an avatar exists with same name as this WP post, update reference
+					 */
+					error_log("$avatar->name wrong reference, but an avatar exists in WP, fix wrong reference");
 					// $result = W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']);
 					// if(W4OS_Avatar::sync_single_avatar($account['user_id'], $account['PrincipalID']))
 					// $users_updated[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
 					// else
 					// $errors[] = '<p class=error>' .  sprintf(__('Error while updating %s %s (%s) %s', 'w4os'), $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
 				} else {
-					// not present in WP, create a post
+					/**
+					 * Widow: opensim accoun without related wp avatar, create one
+					 */
 					error_log("$avatar->name not present in WP, create a post");
 
 					$avatar->get_simulator_data();
 					if(!$avatar->create_post()) {
 						error_log("could not create avatar post for $avatar->name");
 					}
-
-					// TODO: create user if none and wp_create_users is enabled
-					// $user = get_user_by('email', $account['email']);
-					// if($user) {
-					// 	// assign to existing user
-					// 	error_log("assign $avatar->name to $user->display_name");
-					// } else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
-					// 	// create user if create_wp_users is true
-					// 	error_log("TODO: create user $avatar->name");
-					// 	// 	$newid = wp_insert_user(array(
-					// 	// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
-					// 	// 		'user_pass' => wp_generate_password(),
-					// 	// 		'user_email' => $account['email'],
-					// 	// 		'first_name' => $account['FirstName'],
-					// 	// 		'last_name' => $account['LastName'],
-					// 	// 		'role' => 'grid_user',
-					// 	// 		'display_name' => trim($account['FirstName'] . ' ' . $account['LastName']),
-					// 	// 	));
-					// 	// 	if(is_wp_error( $newid )) {
-					// 	// 		$errors[] = $newid->get_error_message();
-					// 	// 	} else if(W4OS_Avatar::sync_single_avatar($newid, $account['PrincipalID'])) {
-					// 	// 		$users_created[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
-					// 	// 	} else {
-					// 	// 		$errors[] = '<p class=error>' .  sprintf(__('Error while updating newly created user %s for %s %s (%s) %s', 'w4os'), $newid, $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
-					// 	// 	}
-					// }
-
 				}
-			} else if(isset($account['w4os_uuid']) &! w4os_empty($account['w4os_uuid'])) {
-				// Avatar does not exit (anymore) on grid, delete it
-				wp_delete_post( $avatar->ID, true );
-				error_log("$avatar->name does not exist anymore on the grid, it has been deleted from WordPress");
-				// w4os_profile_dereference($account['user_id']);
-				// $users_dereferenced[] = sprintf('<a href=%s>%s</a>', get_edit_user_link($account['user_id']), $account['user_id']);
-			} else {
-			// // No linked account, but none referenced so we should not interfer
-			// 	w4os_profile_dereference($account['user_id']);
+
+				/**
+				 * TODO: create user if none and wp_create_users is enabled
+				 */
+
+				// $user = get_user_by('email', $account['email']);
+				// if($user) {
+				// 	// assign to existing user
+				// 	error_log("assign $avatar->name to $user->display_name");
+				// } else if (W4OS::get_option('w4os_settings:create_wp_users', 'nothing')) {
+				// 	// create user if create_wp_users is true
+				// 	error_log("TODO: create user $avatar->name");
+				// 	// 	$newid = wp_insert_user(array(
+				// 	// 		'user_login' => w4os_create_user_login($account['FirstName'], $account['LastName'], $account['email']),
+				// 	// 		'user_pass' => wp_generate_password(),
+				// 	// 		'user_email' => $account['email'],
+				// 	// 		'first_name' => $account['FirstName'],
+				// 	// 		'last_name' => $account['LastName'],
+				// 	// 		'role' => 'grid_user',
+				// 	// 		'display_name' => trim($account['FirstName'] . ' ' . $account['LastName']),
+				// 	// 	));
+				// 	// 	if(is_wp_error( $newid )) {
+				// 	// 		$errors[] = $newid->get_error_message();
+				// 	// 	} else if(W4OS_Avatar::sync_single_avatar($newid, $account['PrincipalID'])) {
+				// 	// 		$users_created[] = sprintf('<a href=%s>%s %s</a>', get_edit_user_link($newid), $account['FirstName'], $account['LastName']);
+				// 	// 	} else {
+				// 	// 		$errors[] = '<p class=error>' .  sprintf(__('Error while updating newly created user %s for %s %s (%s) %s', 'w4os'), $newid, $account['FirstName'], $account['LastName'], $account['email'], $result) . '</p>';
+				// 	// 	}
+				// }
+
 			}
 		}
 

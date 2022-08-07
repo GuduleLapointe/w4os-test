@@ -93,7 +93,7 @@ if(function_exists('xmlrpc_encode_request')) {
 require_once dirname(__DIR__) . '/blocks/blocks.php';
 
 if(W4OS_DB_CONNECTED) {
-  if(get_option('w4os_sync_users')) add_action('init', 'W4OS3_Avatar::sync_avatars');
+  // if(get_option('w4os_sync_users')) add_action('init', 'W4OS3_Avatar::sync_avatars');
   require_once __DIR__ . '/updates.php';
 }
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
