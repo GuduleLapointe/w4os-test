@@ -128,12 +128,14 @@ class W4OS3_Settings {
 				'priority' => 15,
 			),
 		);
-
 		$filters = array(
-			// add_filter( 'mb_settings_pages', 'register_settings_pages' );
 			array (
 				'hook' => 'mb_settings_pages',
 				'callback' => 'register_settings_pages',
+			),
+			array (
+				'hook' => 'rwmb_meta_boxes',
+				'callback' => 'register_settings_fields'
 			),
 		);
 
@@ -184,7 +186,7 @@ class W4OS3_Settings {
 			add_submenu_page(
 				'w4os', // parent
 				__('OpenSimulator Helpers', "w4os"), // page title
-				__('Legacy Helpers'), // menu title
+				__('Legacy Helpers', 'w4os'), // menu title
 				'manage_options', // capability
 				'w4os_helpers', // menu slug
 				'w4os_helpers_page' // function
@@ -215,6 +217,37 @@ class W4OS3_Settings {
 		];
 
 		return $settings_pages;
+	}
+
+	static function register_settings_fields( $meta_boxes ) {
+		$prefix = '';
+
+		$meta_boxes[] = [
+			'title'          => __( 'Settings', 'w4os' ),
+			'id'             => 'w4os_settings_fields',
+			'settings_pages' => ['w4os_settings'],
+			'fields'         => [
+				[
+					'name'              => __( 'Create WP accounts', 'w4os' ),
+					'id'                => $prefix . 'create_wp_account',
+					'type'              => 'switch',
+					'label_description' => __( '(work in progress, not implemented)', 'w4os' ),
+					'desc'              => __( 'Create a WordPress account for new avatars. If an account already exists with the same name or email address, force user to login first.', 'w4os' ),
+					'style'             => 'rounded',
+				],
+				[
+					'name'              => __( 'Restrict Multiple Avatars', 'w4os' ),
+					'id'                => $prefix . 'multiple_avatars',
+					'type'              => 'switch',
+					'label_description' => __( '(work in progress, not implemented)', 'w4os' ),
+					'desc'              => __( 'Multple avatars sharing a single email address and/or WordPress account. Restriction only apply to end users. Multiple avatars are always possible from admin or from OpenSimulator console. (not implemented)', 'w4os' ),
+					'style'             => 'rounded',
+					'std'               => true,
+				],
+			],
+		];
+
+		return $meta_boxes;
 	}
 
 }

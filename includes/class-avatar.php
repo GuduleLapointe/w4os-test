@@ -147,7 +147,11 @@ class W4OS3_Avatar {
 		$filters = array(
 			array (
 				'hook' => 'rwmb_meta_boxes',
-				'callback' => 'add_fields',
+				'callback' => 'metaboxes_avatar',
+			),
+			array (
+				'hook' => 'rwmb_meta_boxes',
+				'callback' => 'metaboxes_userprofile',
 			),
 			// array (
 			// 	'hook' => 'wp_insert_post_data',
@@ -427,9 +431,9 @@ class W4OS3_Avatar {
 
 	}
 
-	static function add_fields( $meta_boxes ) {
-	  $prefix = 'avatar_';
+	static function metaboxes_avatar( $meta_boxes ) {
 
+		$prefix = 'avatar_';
 	  $meta_boxes['avatar'] = [
 	    'title'      => __( 'Profile', 'w4os' ),
 	    'id'         => 'avatar-profile-fields',
@@ -632,6 +636,38 @@ class W4OS3_Avatar {
 	  }
 
 	  return $meta_boxes;
+	}
+
+	static function metaboxes_userprofile( $meta_boxes ) {
+		$prefix = 'opensimulator_';
+
+		$meta_boxes[] = [
+			'title'  => __( 'OpenSimulator', 'w4os' ),
+			'id'     => 'opensimulator',
+			'type'   => 'user',
+			'fields' => [
+				[
+					'name'              => __( 'Avatars', 'w4os' ),
+					'id'                => $prefix . 'avatars',
+					'type'              => 'post',
+					'post_type'         => ['avatar'],
+					'field_type'        => 'select_advanced',
+					'multiple'          => true,
+					'readonly'	=> true,
+					'disabled' => true,
+					'field_save' => false,
+					'desc' => __('Go to avatar profile to manage your avatar', 'w4os'),
+					'admin_columns'     => [
+						'position'   => 'after email',
+						'searchable' => true,
+						'sort' => true,
+					],
+					'sanitize_callback' => 'W4OS3_Avatar::validate_user_avatars',
+				],
+			],
+		];
+
+		return $meta_boxes;
 	}
 
 	function get_uuid() {
@@ -1548,7 +1584,8 @@ class W4OS3_Avatar {
 
 		$args = array(
 			'post_type'		=>	'avatar',
-			'order_by' => 'ID',
+			'orderby' => 'publish_date',
+	    'order' => 'ASC',
 			'meta_query'	=>	array(
 				array(
 					'key' => 'avatar_owner',
