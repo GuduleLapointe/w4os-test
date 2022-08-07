@@ -60,94 +60,95 @@ function w4os_helpers_page()
 	wp_enqueue_script( 'w4os-admin-helpers-form-js', plugins_url( 'js/settings.js', __FILE__ ), array(), W4OS_VERSION );
 }
 
-/**
- * Add Avatar name column
- * @param  [type] $columns columns before modification
- * @return [type]          updated columns
- */
-function w4os_register_user_columns($columns) {
-  $insert_columns = array();
-	$column_name = __('Avatar Name', 'w4os');
-	if( get_option('w4os_userlist_replace_name') && array_key_exists( 'name', $columns ) ) {
-		$keys = array_keys( $columns );
-		$keys[ array_search( 'name', $keys ) ] = 'w4os_avatarname';
-    $columns = array_combine( $keys, $columns );
-		$columns['w4os_avatarname'] = $column_name;
-    $columns['w4os_created'] = __('Born', 'w4os');
-    $columns['w4os_lastseen'] = __('Last Seen', 'w4os');
-	} else {
-		$insert_columns[array_key_first($columns)] = array_shift($columns);
-		$insert_columns[array_key_first($columns)] = array_shift($columns);
-		$insert_columns['w4os_avatarname'] = $column_name;
-    $insert_columns['w4os_created'] = __('Born', 'w4os');
-    $insert_columns['w4os_lastseen'] = __('Last Seen', 'w4os');
-	}
-  $columns = array_merge($insert_columns, $columns);
+// /**
+//  * Add Avatar name column
+//  * @param  [type] $columns columns before modification
+//  * @return [type]          updated columns
+//  */
+// function w4os_register_user_columns($columns) {
+//   $insert_columns = array();
+// 	$column_name = __('Avatar Name', 'w4os');
+// 	if( get_option('w4os_userlist_replace_name') && array_key_exists( 'name', $columns ) ) {
+// 		$keys = array_keys( $columns );
+// 		$keys[ array_search( 'name', $keys ) ] = 'w4os_avatarname';
+//     $columns = array_combine( $keys, $columns );
+// 		$columns['w4os_avatarname'] = $column_name;
+//     $columns['w4os_created'] = __('Born', 'w4os');
+//     $columns['w4os_lastseen'] = __('Last Seen', 'w4os');
+// 	} else {
+// 		$insert_columns[array_key_first($columns)] = array_shift($columns);
+// 		$insert_columns[array_key_first($columns)] = array_shift($columns);
+// 		$insert_columns['w4os_avatarname'] = $column_name;
+//     $insert_columns['w4os_created'] = __('Born', 'w4os');
+//     $insert_columns['w4os_lastseen'] = __('Last Seen', 'w4os');
+// 	}
+//   $columns = array_merge($insert_columns, $columns);
+//
+// 	return $columns;
+// }
+// add_action('manage_users_columns', 'w4os_register_user_columns');
+//
+// function w4os_user_actions_profile_view($actions, $user) {
+//   if(get_option('w4os_profile_page') != 'provide') return $actions;
+//   if(w4os_empty(get_the_author_meta('w4os_uuid', $user->ID))) return $actions;
+//
+// 	$actions['view'] = sprintf('
+//     <a class=view href="%s">%s</a>',
+//     w4os_web_profile_url($user),
+//     __( 'View profile', 'w4OS' ) . "</a>"
+//   );
+// 	return $actions;
+// }
+// add_filter('user_row_actions', 'w4os_user_actions_profile_view', 10, 2);
+//
+// /**
+//  * Avatar name column display
+//  * @param  [type] $value
+//  * @param  [type] $column_name
+//  * @param  [type] $user_id
+//  * @return [type]              updated $value
+//  */
+// function w4os_register_user_columns_views($value, $column_name, $user_id) {
+//   switch ($column_name) {
+//     case 'w4os_avatarname': return get_the_author_meta( 'w4os_avatarname', $user_id );
+//     case 'w4os_created': return w4os_age(get_the_author_meta( 'w4os_created', $user_id ));
+//     case 'w4os_lastseen': return w4os_date('', get_the_author_meta( 'w4os_lastseen', $user_id ) );
+//   }
+// 	return $value;
+// }
+// add_action('manage_users_custom_column', 'w4os_register_user_columns_views', 10, 3);
 
-	return $columns;
-}
-add_action('manage_users_columns', 'w4os_register_user_columns');
+// /**
+// * Make avatar name column sortable
+// */
+// function w4os_users_sortable_columns( $columns ) {
+//   $columns['w4os_avatarname'] = 'w4os_avatarname';
+//   $columns['w4os_created'] = 'w4os_avatarname';
+//   $columns['w4os_lastseen'] = 'w4os_lastseen';
+//   return $columns;
+// }
+// add_filter( 'manage_users_sortable_columns', 'w4os_users_sortable_columns');
 
-function w4os_user_actions_profile_view($actions, $user) {
-  if(get_option('w4os_profile_page') != 'provide') return $actions;
-  if(w4os_empty(get_the_author_meta('w4os_uuid', $user->ID))) return $actions;
+// /**
+//  * Alter avatarname sortorder to filter out users without avatar
+//  * @param  [type] $userquery
+//  */
+// function w4os_avatar_column_orderby($userquery){
+// 	if('w4os_avatarname'==$userquery->query_vars['orderby']) {//check if church is the column being sorted
+// 		global $wpdb;
+// 		$userquery->query_from .= " LEFT OUTER JOIN $wpdb->usermeta AS alias ON ($wpdb->users.ID = alias.user_id) ";//note use of alias
+// 		$userquery->query_where .= " AND alias.meta_key = 'w4os_avatarname' ";//which meta are we sorting with?
+// 		$userquery->query_orderby = " ORDER BY alias.meta_value ".($userquery->query_vars["order"] == "ASC" ? "asc " : "desc ");//set sort order
+// 	}
+// }
+// add_action('pre_user_query', 'w4os_avatar_column_orderby');
 
-	$actions['view'] = sprintf('
-    <a class=view href="%s">%s</a>',
-    w4os_web_profile_url($user),
-    __( 'View profile', 'w4OS' ) . "</a>"
-  );
-	return $actions;
-}
-add_filter('user_row_actions', 'w4os_user_actions_profile_view', 10, 2);
-
-/**
- * Avatar name column display
- * @param  [type] $value
- * @param  [type] $column_name
- * @param  [type] $user_id
- * @return [type]              updated $value
- */
-function w4os_register_user_columns_views($value, $column_name, $user_id) {
-  switch ($column_name) {
-    case 'w4os_avatarname': return get_the_author_meta( 'w4os_avatarname', $user_id );
-    case 'w4os_created': return w4os_age(get_the_author_meta( 'w4os_created', $user_id ));
-    case 'w4os_lastseen': return w4os_date('', get_the_author_meta( 'w4os_lastseen', $user_id ) );
-  }
-	return $value;
-}
-add_action('manage_users_custom_column', 'w4os_register_user_columns_views', 10, 3);
 
 function w4os_date( $format, $timestamp = null, $timezone = null ) {
   if(empty($timestamp)) return;
   if(empty($format)) $format = get_option( 'date_format');
   return wp_date($format, $timestamp, $timezone );
 }
-/**
- * Make avatar name column sortable
- */
-function w4os_users_sortable_columns( $columns ) {
-  $columns['w4os_avatarname'] = 'w4os_avatarname';
-  $columns['w4os_created'] = 'w4os_avatarname';
-  $columns['w4os_lastseen'] = 'w4os_lastseen';
-	return $columns;
-}
-add_filter( 'manage_users_sortable_columns', 'w4os_users_sortable_columns');
-
-/**
- * Alter avatarname sortorder to filter out users without avatar
- * @param  [type] $userquery
- */
-function w4os_avatar_column_orderby($userquery){
-	if('w4os_avatarname'==$userquery->query_vars['orderby']) {//check if church is the column being sorted
-		global $wpdb;
-		$userquery->query_from .= " LEFT OUTER JOIN $wpdb->usermeta AS alias ON ($wpdb->users.ID = alias.user_id) ";//note use of alias
-		$userquery->query_where .= " AND alias.meta_key = 'w4os_avatarname' ";//which meta are we sorting with?
-		$userquery->query_orderby = " ORDER BY alias.meta_value ".($userquery->query_vars["order"] == "ASC" ? "asc " : "desc ");//set sort order
-	}
-}
-add_action('pre_user_query', 'w4os_avatar_column_orderby');
-
 
 function w4os_users_filter_avatars($position)
 {
