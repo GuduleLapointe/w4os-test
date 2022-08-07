@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: w4os\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w4os-dev\n"
-"POT-Creation-Date: 2022-08-06T12:48:09-04:00\n"
+"POT-Creation-Date: 2022-08-07T13:36:45-04:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -49,200 +49,233 @@ msgstr ""
 "La base de données du simulateur contient plus d'un avatar correspondant à "
 "%s. Ceci de devrait jamais arriver et requiert une correction immédiate."
 
-#: includes/class-avatar.php:325 includes/class-avatar.php:346
-#: includes/class-avatar.php:359 tmp/class-avatar.php:130
+#: includes/class-avatar.php:313 includes/class-avatar.php:334
+#: includes/class-avatar.php:347 tmp/class-avatar.php:130
 #: tmp/class-avatar.php:151 tmp/class-avatar.php:164
 msgid "Avatars"
 msgstr "Avatars"
 
-#: includes/class-avatar.php:326 tmp/class-avatar.php:131
+#: includes/class-avatar.php:314 tmp/class-avatar.php:131
 msgid "Avatar"
 msgstr "Avatar"
 
-#: includes/class-avatar.php:327 tmp/class-avatar.php:132
+#: includes/class-avatar.php:315 tmp/class-avatar.php:132
 msgid "Add New"
 msgstr "Ajouter"
 
-#: includes/class-avatar.php:328 tmp/class-avatar.php:133
+#: includes/class-avatar.php:316 tmp/class-avatar.php:133
 msgid "Add new avatar"
 msgstr "Créer un avatar"
 
-#: includes/class-avatar.php:329 tmp/class-avatar.php:134
+#: includes/class-avatar.php:317 tmp/class-avatar.php:134
 msgid "Edit Avatar"
 msgstr "Modifier l'avatar"
 
-#: includes/class-avatar.php:330 tmp/class-avatar.php:135
+#: includes/class-avatar.php:318 tmp/class-avatar.php:135
 msgid "New Avatar"
 msgstr "Nouvel avatar"
 
-#: includes/class-avatar.php:331 tmp/class-avatar.php:136
+#: includes/class-avatar.php:319 tmp/class-avatar.php:136
 msgid "View Avatar"
 msgstr "Voir l'avatar"
 
-#: includes/class-avatar.php:332 tmp/class-avatar.php:137
+#: includes/class-avatar.php:320 tmp/class-avatar.php:137
 msgid "View Avatars"
 msgstr "Voir les avatars"
 
-#: includes/class-avatar.php:333 tmp/class-avatar.php:138
+#: includes/class-avatar.php:321 tmp/class-avatar.php:138
 msgid "Search Avatars"
 msgstr "Rechercher dans les avatars"
 
-#: includes/class-avatar.php:334 tmp/class-avatar.php:139
+#: includes/class-avatar.php:322 tmp/class-avatar.php:139
 msgid "No avatars found"
 msgstr "Aucun avatar trouvé"
 
-#: includes/class-avatar.php:335 tmp/class-avatar.php:140
+#: includes/class-avatar.php:323 tmp/class-avatar.php:140
 msgid "No avatars found in Trash"
 msgstr "Aucun avatar dans la corbeille"
 
-#: includes/class-avatar.php:336 tmp/class-avatar.php:141
+#: includes/class-avatar.php:324 tmp/class-avatar.php:141
 msgid "Parent Avatar:"
 msgstr "Avatar parent :"
 
-#: includes/class-avatar.php:337 tmp/class-avatar.php:142
+#: includes/class-avatar.php:325 tmp/class-avatar.php:142
 msgid "All Avatars"
 msgstr "Tous les avatars"
 
-#: includes/class-avatar.php:338 tmp/class-avatar.php:143
+#: includes/class-avatar.php:326 tmp/class-avatar.php:143
 msgid "Avatar Archives"
 msgstr "Archives des avatars"
 
-#: includes/class-avatar.php:339 tmp/class-avatar.php:144
+#: includes/class-avatar.php:327 tmp/class-avatar.php:144
 msgid "Avatar Attributes"
 msgstr "Attributs d'avatar"
 
-#: includes/class-avatar.php:340 tmp/class-avatar.php:145
+#: includes/class-avatar.php:328 tmp/class-avatar.php:145
 msgid "Insert into avatar"
 msgstr "Insérer dans l'avatar"
 
-#: includes/class-avatar.php:341 tmp/class-avatar.php:146
+#: includes/class-avatar.php:329 tmp/class-avatar.php:146
 msgid "Uploaded to this avatar"
 msgstr "Téléchargé dans l'avatar"
 
-#: includes/class-avatar.php:342 tmp/class-avatar.php:147
+#: includes/class-avatar.php:330 tmp/class-avatar.php:147
 msgid "Featured image"
 msgstr "Image mise en avant"
 
-#: includes/class-avatar.php:343 tmp/class-avatar.php:148
+#: includes/class-avatar.php:331 tmp/class-avatar.php:148
 msgid "Set featured image"
 msgstr "Définir l'image mise en avant"
 
-#: includes/class-avatar.php:344 tmp/class-avatar.php:149
+#: includes/class-avatar.php:332 tmp/class-avatar.php:149
 msgid "Remove featured image"
 msgstr "Supprimer l'image mise en avant"
 
-#: includes/class-avatar.php:345 tmp/class-avatar.php:150
+#: includes/class-avatar.php:333 tmp/class-avatar.php:150
 msgid "Use as featured image"
 msgstr "Utiliser comme image mise en avant"
 
-#: includes/class-avatar.php:347 tmp/class-avatar.php:152
+#: includes/class-avatar.php:335 tmp/class-avatar.php:152
 msgid "Filter avatars list"
 msgstr "Filtrer les avatars"
 
-#: includes/class-avatar.php:348 tmp/class-avatar.php:153
+#: includes/class-avatar.php:336 tmp/class-avatar.php:153
 msgid "Filter by date"
 msgstr "Filtrer par date"
 
-#: includes/class-avatar.php:349 tmp/class-avatar.php:154
+#: includes/class-avatar.php:337 tmp/class-avatar.php:154
 msgid "Avatars list navigation"
 msgstr "Navigation dans la liste d'avatars"
 
-#: includes/class-avatar.php:350 tmp/class-avatar.php:155
+#: includes/class-avatar.php:338 tmp/class-avatar.php:155
 msgid "Avatars list"
 msgstr "Liste des avatars"
 
-#: includes/class-avatar.php:351 tmp/class-avatar.php:156
+#: includes/class-avatar.php:339 tmp/class-avatar.php:156
 msgid "Avatar published"
 msgstr "Profil d'avatar"
 
-#: includes/class-avatar.php:352 tmp/class-avatar.php:157
+#: includes/class-avatar.php:340 tmp/class-avatar.php:157
 msgid "Avatar published privately"
 msgstr "Avatar publié en privé"
 
-#: includes/class-avatar.php:353 tmp/class-avatar.php:158
+#: includes/class-avatar.php:341 tmp/class-avatar.php:158
 msgid "Avatar reverted to draft"
 msgstr "Avatar rétabli comme brouillon"
 
-#: includes/class-avatar.php:354 tmp/class-avatar.php:159
+#: includes/class-avatar.php:342 tmp/class-avatar.php:159
 msgid "Avatar scheduled"
 msgstr "Avatar planifié"
 
-#: includes/class-avatar.php:355 tmp/class-avatar.php:160
+#: includes/class-avatar.php:343 tmp/class-avatar.php:160
 msgid "Avatar updated"
 msgstr "Avatar mis à jour"
 
-#: includes/class-avatar.php:392 tmp/class-avatar.php:205
+#: includes/class-avatar.php:379
+msgctxt "avatar"
+msgid "Model"
+msgstr "Modèle"
+
+#: includes/class-avatar.php:385
+msgid "Model <span class=\"count\">(%s)</span>"
+msgid_plural "Models <span class=\"count\">(%s)</span>"
+msgstr[0] "Modèle <span class=\"count\">(%s)</span>"
+msgstr[1] "Modèles <span class=\"count\">(%s)</span>"
+
+#: includes/class-avatar.php:388
+msgctxt "avatar"
+msgid "Service Account"
+msgstr "Comptes de service"
+
+#: includes/class-avatar.php:394
+msgid "Service Account <span class=\"count\">(%s)</span>"
+msgid_plural "Service Accounts <span class=\"count\">(%s)</span>"
+msgstr[0] "Compte de service  <span class=\"count\">(%s)</span>"
+msgstr[1] "Comptes de service <span class=\"count\">(%s)</span>"
+
+#: includes/class-avatar.php:397
+msgctxt "avatar"
+msgid "Banned Account"
+msgstr "Compte banni"
+
+#: includes/class-avatar.php:403
+msgid "Banned Account <span class=\"count\">(%s)</span>"
+msgid_plural "Banned Accounts <span class=\"count\">(%s)</span>"
+msgstr[0] "Banned Account <span class=\"count\">(%s)</span>"
+msgstr[1] "Comptes bannis <span class=\"count\">(%s)</span>"
+
+#: includes/class-avatar.php:434 tmp/class-avatar.php:205
 msgid "Profile"
 msgstr "Profil"
 
-#: includes/class-avatar.php:413 tmp/class-avatar.php:234
+#: includes/class-avatar.php:461 tmp/class-avatar.php:234
 msgid "WordPress User"
 msgstr "Utilisateur WordPress"
 
-#: includes/class-avatar.php:419 tmp/class-avatar.php:240
+#: includes/class-avatar.php:467 tmp/class-avatar.php:240
 msgid "Select a user"
 msgstr "Sélectionner un utilisateur"
 
-#: includes/class-avatar.php:427 tmp/class-avatar.php:248
+#: includes/class-avatar.php:476 tmp/class-avatar.php:248
 msgid "E-mail"
 msgstr "E-mail"
 
-#: includes/class-avatar.php:438 tmp/class-avatar.php:259
+#: includes/class-avatar.php:487 tmp/class-avatar.php:259
 msgid ""
 "Optional. If set, the avatar will be linked to any matching WP user account."
 msgstr "Optionel. Si défini, l'avatar sera lié au compte WP correspondant."
 
-#: includes/class-avatar.php:445 tmp/class-avatar.php:266
+#: includes/class-avatar.php:494 tmp/class-avatar.php:266
 msgid "Create WP user"
 msgstr "Créer un compte WP"
 
-#: includes/class-avatar.php:450 includes/class-avatar.php:478
+#: includes/class-avatar.php:499 includes/class-avatar.php:527
 msgid "(not implemented)"
 msgstr "(pas implémenté)"
 
-#: includes/class-avatar.php:459 legacy/admin/settings.php:76
+#: includes/class-avatar.php:508 legacy/admin/settings.php:76
 #: legacy/admin/settings.php:234 legacy/admin/settings.php:391
 #: tmp/class-avatar.php:277
 msgid "Password"
 msgstr "Mot de passe"
 
-#: includes/class-avatar.php:459 legacy/profile.php:132
+#: includes/class-avatar.php:508 legacy/profile.php:132
 #: tmp/class-avatar.php:277
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: includes/class-avatar.php:466 tmp/class-avatar.php:283
+#: includes/class-avatar.php:515 tmp/class-avatar.php:283
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
-#: includes/class-avatar.php:473 tmp/class-avatar.php:289
+#: includes/class-avatar.php:522 tmp/class-avatar.php:289
 msgid "Same password as WP user"
 msgstr "Même mot de passe que l'utilisateur WP"
 
-#: includes/class-avatar.php:495 tmp/class-avatar.php:308
+#: includes/class-avatar.php:544 tmp/class-avatar.php:308
 msgid "Model"
 msgstr "Modèle"
 
-#: includes/class-avatar.php:502 legacy/admin/admin-init.php:70
+#: includes/class-avatar.php:551 legacy/admin/admin-init.php:70
 #: legacy/profile.php:118 tmp/class-avatar.php:315
 msgid "Avatar Name"
 msgstr "Nom de l'avatar"
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:509 tmp/class-avatar.php:322
+#: includes/class-avatar.php:558 tmp/class-avatar.php:322
 msgid "Firstname"
 msgstr "Prenom"
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:509 tmp/class-avatar.php:322
+#: includes/class-avatar.php:558 tmp/class-avatar.php:322
 msgid "Lastname"
 msgstr "Nom"
 
-#: includes/class-avatar.php:513 tmp/class-avatar.php:326
+#: includes/class-avatar.php:562 tmp/class-avatar.php:326
 msgid "The avatar name is permanent, it can't be changed later."
 msgstr "Le nom de l'avatar est définitif, il ne peut pas être modifié après."
 
-#: includes/class-avatar.php:522 tmp/class-avatar.php:221
+#: includes/class-avatar.php:571 tmp/class-avatar.php:221
 msgid ""
 "Please provide first and last name, only letters and numbers, separated by a "
 "space."
@@ -250,31 +283,37 @@ msgstr ""
 "Indiquez un prénom et un nom de famille, composés uniquement de lettres et "
 "de chiffres, séparés par une espace."
 
-#: includes/class-avatar.php:527 tmp/class-avatar.php:338
+#: includes/class-avatar.php:576 tmp/class-avatar.php:338
 msgid "UUID"
 msgstr "UUID"
 
-#: includes/class-avatar.php:530 tmp/class-avatar.php:341
+#: includes/class-avatar.php:579 tmp/class-avatar.php:341
 msgid "Wil be set by the server"
 msgstr "Sera défini par le serveur"
 
-#: includes/class-avatar.php:541
+#: includes/class-avatar.php:597
 msgid "Last seen"
 msgstr "Dernière apparition"
 
-#: includes/class-avatar.php:675 legacy/profile.php:365
-msgid "This user already has an avatar."
-msgstr "Cet utilisateur a déjà un avatar."
+#: includes/class-avatar.php:615 legacy/admin/admin-init.php:76
+#: legacy/admin/admin-init.php:82 legacy/profile.php:124
+#: tmp/class-avatar.php:350
+msgid "Born"
+msgstr "Naissance"
 
-#: includes/class-avatar.php:681
-msgid "This name is not available."
-msgstr "Ce nom n'est pas disponible."
-
-#: includes/class-avatar.php:692
+#: includes/class-avatar.php:644 includes/class-avatar.php:755
 msgid "Passwords don't match."
 msgstr "Les mots de passe ne correspondent pas."
 
-#: includes/class-avatar.php:707 legacy/profile.php:409
+#: includes/class-avatar.php:738 legacy/profile.php:365
+msgid "This user already has an avatar."
+msgstr "Cet utilisateur a déjà un avatar."
+
+#: includes/class-avatar.php:744
+msgid "This name is not available."
+msgstr "Ce nom n'est pas disponible."
+
+#: includes/class-avatar.php:770 legacy/profile.php:409
 msgid ""
 "This should never happen! Generated a random UUID that already existed. "
 "Sorry. Try again."
@@ -282,61 +321,61 @@ msgstr ""
 "Ceci ne devrait jamais arriver. L'UUID généré existe déjà. Désolé. Essayez "
 "encore."
 
-#: includes/class-avatar.php:728 legacy/profile.php:431
+#: includes/class-avatar.php:798 legacy/profile.php:431
 msgid "Error while creating user"
 msgstr "Erreur lors de la création de l'utilisateur"
 
-#: includes/class-avatar.php:737 legacy/profile.php:440
+#: includes/class-avatar.php:807 legacy/profile.php:440
 msgid "Error while setting password"
 msgstr "Erreur lors de l'enregistrement du mot de passe"
 
-#: includes/class-avatar.php:747 legacy/profile.php:451
+#: includes/class-avatar.php:817 legacy/profile.php:451
 msgid "Error while setting home region"
 msgstr "Erreur lors du réglage de la région domicile"
 
-#: includes/class-avatar.php:771 legacy/profile.php:468
+#: includes/class-avatar.php:841 legacy/profile.php:468
 msgid "Error while creating user inventory"
 msgstr "Erreur lors de la création de l'inventaire"
 
-#: includes/class-avatar.php:897 legacy/profile.php:590
+#: includes/class-avatar.php:967 legacy/profile.php:590
 msgid "Error while adding inventory item"
 msgstr "Erreur lors de l'ajout d'un élément d'inventaire"
 
-#: includes/class-avatar.php:908 legacy/profile.php:601
+#: includes/class-avatar.php:978 legacy/profile.php:601
 msgid "Error while adding inventory outfit link"
 msgstr "Erreur lors de l'ajout du lien d'apparence"
 
-#: includes/class-avatar.php:920 legacy/profile.php:613
+#: includes/class-avatar.php:990 legacy/profile.php:613
 msgid "Error while adding avatar"
 msgstr "Erreur lors de la création de l'avatar"
 
-#: includes/class-avatar.php:934
+#: includes/class-avatar.php:1004
 msgid "Errors occurred while creating avatar %s"
 msgstr "Des erreurs sont survenues lors de la création de l'avatar %s"
 
-#: includes/class-avatar.php:968 tmp/class-avatar.php:420
+#: includes/class-avatar.php:1043 tmp/class-avatar.php:420
 msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
 msgstr "%s contient des caractères invalides, \"%s\" a été remplacé par \"%s\""
 
-#: includes/class-avatar.php:1306
+#: includes/class-avatar.php:1426
 msgid "%d reference updated"
 msgid_plural "%d references updated"
 msgstr[0] "%d référence mise à jour"
 msgstr[1] "%d références mises à jour"
 
-#: includes/class-avatar.php:1312
+#: includes/class-avatar.php:1432
 msgid "%d new WordPress account created"
 msgid_plural "%d new WordPress accounts created"
 msgstr[0] "%d nouveau compte WordPress créé"
 msgstr[1] "%d nouveaux comptes WordPress créés"
 
-#: includes/class-avatar.php:1318
+#: includes/class-avatar.php:1438
 msgid "%d broken reference removed"
 msgid_plural "%d broken references removed"
 msgstr[0] "%d référence obsolète supprimée"
 msgstr[1] "%d références obsolètes supprimées"
 
-#: includes/class-avatar.php:1339
+#: includes/class-avatar.php:1459
 msgid ""
 "%d grid account has no linked WP account. Syncing will create a new WP "
 "account."
@@ -350,7 +389,7 @@ msgstr[1] ""
 "%d comptes de grille ne sont liés à aucun compte WordPress. La "
 "synchronisation créera des nouveaux comptes WP."
 
-#: includes/class-avatar.php:1347
+#: includes/class-avatar.php:1467
 msgid ""
 "%d WordPress avatar has no related account in OpenSimulator database "
 "(corrupt reference or deleted). Syncing accounts will delete it from "
@@ -368,32 +407,11 @@ msgstr[1] ""
 "données d'OpenSimulator  (référence corrompue ou effacée). La "
 "synchronisation les supprimera également de la base de données de WordPress."
 
-#: includes/class-avatar.php:1355
-msgid ""
-"%d grid avatar (other than models) has no email address, it is handled as a "
-"service account and is not displayed in avatars list."
-msgid_plural ""
-"%d grid avatars (other than models) have no email address, they are handled "
-"as service accounts and are not displayed in avatars list."
-msgstr[0] ""
-"%d avatar (en dehors des modèles) n'a pas d'adresse e-mail, il est traité "
-"comme un compte de service et n'apparaît pas dans la liste des avatars."
-msgstr[1] ""
-"%d avatars (en dehors des modèles) n'ont pas d'adresse e-mail, il sont "
-"traités comme comptes de service et n'apparaissent pas dans la liste des "
-"avatars."
-
-#: includes/class-avatar.php:1363
-msgid "Users avatars need an email address for %s and %s to work properly."
-msgstr ""
-"Les avatars d'utilisateurs nécessitent une adresse e-mail unique pour qu'%s "
-"et %s fonctionnent correctement."
-
-#: includes/class-avatar.php:1373
+#: includes/class-avatar.php:1493
 msgid "Synchronize users now"
 msgstr "Synchroniser les utilisateurs maintenant"
 
-#: includes/class-avatar.php:1374
+#: includes/class-avatar.php:1494
 msgid ""
 "Synchronization is made at plugin activation and is handled automatically "
 "afterwards, but in certain circumstances it may be necessary to initiate it "
@@ -405,6 +423,10 @@ msgstr ""
 "être nécessaire de l'initier manuellement pour obtenir un résultat immédiat, "
 "notamment si des utilisateurs ont été ajoutés ou supprimés directement "
 "depuis la console d'administration de la grille."
+
+#: includes/class-avatar.php:1531
+msgid "Avatars can not be deleted from WordPress."
+msgstr "Les avatars ne peuvent pas être effacés depuis WordPress."
 
 #: includes/class-settings.php:169
 msgid "OpenSimulator Status"
@@ -433,11 +455,6 @@ msgstr "Assistants originaux"
 #: includes/class-settings.php:208 legacy/admin/settings.php:603
 msgid "Settings"
 msgstr "Réglages"
-
-#: legacy/admin/admin-init.php:76 legacy/admin/admin-init.php:82
-#: legacy/profile.php:124 tmp/class-avatar.php:350
-msgid "Born"
-msgstr "Naissance"
 
 #: legacy/admin/admin-init.php:77 legacy/admin/admin-init.php:83
 msgid "Last Seen"
@@ -1612,6 +1629,25 @@ msgid "Popular Places"
 msgstr "Lieux populaires"
 
 #~ msgid ""
+#~ "%d grid avatar (other than models) has no email address, it is handled as "
+#~ "a service account and is not displayed in avatars list."
+#~ msgid_plural ""
+#~ "%d grid avatars (other than models) have no email address, they are "
+#~ "handled as service accounts and are not displayed in avatars list."
+#~ msgstr[0] ""
+#~ "%d avatar (en dehors des modèles) n'a pas d'adresse e-mail, il est traité "
+#~ "comme un compte de service et n'apparaît pas dans la liste des avatars."
+#~ msgstr[1] ""
+#~ "%d avatars (en dehors des modèles) n'ont pas d'adresse e-mail, il sont "
+#~ "traités comme comptes de service et n'apparaissent pas dans la liste des "
+#~ "avatars."
+
+#~ msgid "Users avatars need an email address for %s and %s to work properly."
+#~ msgstr ""
+#~ "Les avatars d'utilisateurs nécessitent une adresse e-mail unique pour "
+#~ "qu'%s et %s fonctionnent correctement."
+
+#~ msgid ""
 #~ "%d WordPress account is linked to an unexisting avatar (wrong UUID). "
 #~ "Syncing accounts will keep this WP account but remove the broken "
 #~ "reference."
@@ -1649,9 +1685,6 @@ msgstr "Lieux populaires"
 
 #~ msgid "This is how we will see you in-world."
 #~ msgstr "Le nom qui apparaît en ligne."
-
-#~ msgid "WP Account"
-#~ msgstr "Compte WordPress"
 
 #~ msgid "Owner"
 #~ msgstr "Propriétaire"

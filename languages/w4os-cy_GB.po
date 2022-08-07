@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: w4os\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w4os-dev\n"
-"POT-Creation-Date: 2022-08-06T12:48:09-04:00\n"
-"PO-Revision-Date: 2022-08-06 12:48-0400\n"
+"POT-Creation-Date: 2022-08-07T13:36:45-04:00\n"
+"PO-Revision-Date: 2022-08-07 13:36-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: cy\n"
@@ -48,264 +48,313 @@ msgid ""
 "never happen and requires an immediate fix."
 msgstr ""
 
-#: includes/class-avatar.php:325 includes/class-avatar.php:346
-#: includes/class-avatar.php:359 tmp/class-avatar.php:130
+#: includes/class-avatar.php:313 includes/class-avatar.php:334
+#: includes/class-avatar.php:347 tmp/class-avatar.php:130
 #: tmp/class-avatar.php:151 tmp/class-avatar.php:164
 #, fuzzy
 msgid "Avatars"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:326 tmp/class-avatar.php:131
+#: includes/class-avatar.php:314 tmp/class-avatar.php:131
 #, fuzzy
 msgid "Avatar"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:327 tmp/class-avatar.php:132
+#: includes/class-avatar.php:315 tmp/class-avatar.php:132
 msgid "Add New"
 msgstr ""
 
-#: includes/class-avatar.php:328 tmp/class-avatar.php:133
+#: includes/class-avatar.php:316 tmp/class-avatar.php:133
 #, fuzzy
 msgid "Add new avatar"
 msgstr "Creu avatar"
 
-#: includes/class-avatar.php:329 tmp/class-avatar.php:134
+#: includes/class-avatar.php:317 tmp/class-avatar.php:134
 #, fuzzy
 msgid "Edit Avatar"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:330 tmp/class-avatar.php:135
+#: includes/class-avatar.php:318 tmp/class-avatar.php:135
 #, fuzzy
 msgid "New Avatar"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:331 tmp/class-avatar.php:136
+#: includes/class-avatar.php:319 tmp/class-avatar.php:136
 #, fuzzy
 msgid "View Avatar"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:332 tmp/class-avatar.php:137
+#: includes/class-avatar.php:320 tmp/class-avatar.php:137
 #, fuzzy
 msgid "View Avatars"
 msgstr "Gyda Avatar"
 
-#: includes/class-avatar.php:333 tmp/class-avatar.php:138
+#: includes/class-avatar.php:321 tmp/class-avatar.php:138
 #, fuzzy
 msgid "Search Avatars"
 msgstr "Chwilio cronfa ddata"
 
-#: includes/class-avatar.php:334 tmp/class-avatar.php:139
+#: includes/class-avatar.php:322 tmp/class-avatar.php:139
 #, fuzzy
 msgid "No avatars found"
 msgstr "Avatar heb ei ddarganfod"
 
-#: includes/class-avatar.php:335 tmp/class-avatar.php:140
+#: includes/class-avatar.php:323 tmp/class-avatar.php:140
 msgid "No avatars found in Trash"
 msgstr ""
 
-#: includes/class-avatar.php:336 tmp/class-avatar.php:141
+#: includes/class-avatar.php:324 tmp/class-avatar.php:141
 #, fuzzy
 msgid "Parent Avatar:"
 msgstr "Creu Fy Avatar"
 
-#: includes/class-avatar.php:337 tmp/class-avatar.php:142
+#: includes/class-avatar.php:325 tmp/class-avatar.php:142
 #, fuzzy
 msgid "All Avatars"
 msgstr "Fy Avatar"
 
-#: includes/class-avatar.php:338 tmp/class-avatar.php:143
+#: includes/class-avatar.php:326 tmp/class-avatar.php:143
 #, fuzzy
 msgid "Avatar Archives"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:339 tmp/class-avatar.php:144
+#: includes/class-avatar.php:327 tmp/class-avatar.php:144
 #, fuzzy
 msgid "Avatar Attributes"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:340 tmp/class-avatar.php:145
+#: includes/class-avatar.php:328 tmp/class-avatar.php:145
 #, fuzzy
 msgid "Insert into avatar"
 msgstr "Creu avatar"
 
-#: includes/class-avatar.php:341 tmp/class-avatar.php:146
+#: includes/class-avatar.php:329 tmp/class-avatar.php:146
 msgid "Uploaded to this avatar"
 msgstr ""
 
-#: includes/class-avatar.php:342 tmp/class-avatar.php:147
+#: includes/class-avatar.php:330 tmp/class-avatar.php:147
 msgid "Featured image"
 msgstr ""
 
-#: includes/class-avatar.php:343 tmp/class-avatar.php:148
+#: includes/class-avatar.php:331 tmp/class-avatar.php:148
 msgid "Set featured image"
 msgstr ""
 
-#: includes/class-avatar.php:344 tmp/class-avatar.php:149
+#: includes/class-avatar.php:332 tmp/class-avatar.php:149
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/class-avatar.php:345 tmp/class-avatar.php:150
+#: includes/class-avatar.php:333 tmp/class-avatar.php:150
 msgid "Use as featured image"
 msgstr ""
 
-#: includes/class-avatar.php:347 tmp/class-avatar.php:152
+#: includes/class-avatar.php:335 tmp/class-avatar.php:152
 msgid "Filter avatars list"
 msgstr ""
 
-#: includes/class-avatar.php:348 tmp/class-avatar.php:153
+#: includes/class-avatar.php:336 tmp/class-avatar.php:153
 #, fuzzy
 msgid "Filter by date"
 msgstr "Hidlo"
 
-#: includes/class-avatar.php:349 tmp/class-avatar.php:154
+#: includes/class-avatar.php:337 tmp/class-avatar.php:154
 #, fuzzy
 msgid "Avatars list navigation"
 msgstr "Enw olaf avatar"
 
-#: includes/class-avatar.php:350 tmp/class-avatar.php:155
+#: includes/class-avatar.php:338 tmp/class-avatar.php:155
 #, fuzzy
 msgid "Avatars list"
 msgstr "Modelau avatar"
 
-#: includes/class-avatar.php:351 tmp/class-avatar.php:156
+#: includes/class-avatar.php:339 tmp/class-avatar.php:156
 #, fuzzy
 msgid "Avatar published"
 msgstr "Proffil avatar"
 
-#: includes/class-avatar.php:352 tmp/class-avatar.php:157
+#: includes/class-avatar.php:340 tmp/class-avatar.php:157
 msgid "Avatar published privately"
 msgstr ""
 
-#: includes/class-avatar.php:353 tmp/class-avatar.php:158
+#: includes/class-avatar.php:341 tmp/class-avatar.php:158
 msgid "Avatar reverted to draft"
 msgstr ""
 
-#: includes/class-avatar.php:354 tmp/class-avatar.php:159
+#: includes/class-avatar.php:342 tmp/class-avatar.php:159
 #, fuzzy
 msgid "Avatar scheduled"
 msgstr "Modelau avatar"
 
-#: includes/class-avatar.php:355 tmp/class-avatar.php:160
+#: includes/class-avatar.php:343 tmp/class-avatar.php:160
 #, fuzzy
 msgid "Avatar updated"
 msgstr "Enw Avatar"
 
-#: includes/class-avatar.php:392 tmp/class-avatar.php:205
+#: includes/class-avatar.php:379
+#, fuzzy
+msgctxt "avatar"
+msgid "Model"
+msgstr "Modelau"
+
+#: includes/class-avatar.php:385
+msgid "Model <span class=\"count\">(%s)</span>"
+msgid_plural "Models <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/class-avatar.php:388
+#, fuzzy
+#| msgid "Other service accounts"
+msgctxt "avatar"
+msgid "Service Account"
+msgstr "Cyfrifon gwasanaeth eraill"
+
+#: includes/class-avatar.php:394
+msgid "Service Account <span class=\"count\">(%s)</span>"
+msgid_plural "Service Accounts <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/class-avatar.php:397
+#, fuzzy
+msgctxt "avatar"
+msgid "Banned Account"
+msgstr "Cyfrifon grid"
+
+#: includes/class-avatar.php:403
+msgid "Banned Account <span class=\"count\">(%s)</span>"
+msgid_plural "Banned Accounts <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: includes/class-avatar.php:434 tmp/class-avatar.php:205
 #, fuzzy
 msgid "Profile"
 msgstr "Fy mhroffil"
 
-#: includes/class-avatar.php:413 tmp/class-avatar.php:234
+#: includes/class-avatar.php:461 tmp/class-avatar.php:234
 #, fuzzy
 msgid "WordPress User"
 msgstr "Cyfrifon WordPress cysylltiedig"
 
-#: includes/class-avatar.php:419 tmp/class-avatar.php:240
+#: includes/class-avatar.php:467 tmp/class-avatar.php:240
 #, fuzzy
 msgid "Select a user"
 msgstr "Defnyddwyr diweddar"
 
-#: includes/class-avatar.php:427 tmp/class-avatar.php:248
+#: includes/class-avatar.php:476 tmp/class-avatar.php:248
 #, fuzzy
 msgid "E-mail"
 msgstr "Ebost"
 
-#: includes/class-avatar.php:438 tmp/class-avatar.php:259
+#: includes/class-avatar.php:487 tmp/class-avatar.php:259
 msgid ""
 "Optional. If set, the avatar will be linked to any matching WP user account."
 msgstr ""
 
-#: includes/class-avatar.php:445 tmp/class-avatar.php:266
+#: includes/class-avatar.php:494 tmp/class-avatar.php:266
 #, fuzzy
 msgid "Create WP user"
 msgstr "Creu Fy Avatar"
 
-#: includes/class-avatar.php:450 includes/class-avatar.php:478
+#: includes/class-avatar.php:499 includes/class-avatar.php:527
 msgid "(not implemented)"
 msgstr ""
 
-#: includes/class-avatar.php:459 legacy/admin/settings.php:76
+#: includes/class-avatar.php:508 legacy/admin/settings.php:76
 #: legacy/admin/settings.php:234 legacy/admin/settings.php:391
 #: tmp/class-avatar.php:277
 msgid "Password"
 msgstr "Cyfrinair"
 
-#: includes/class-avatar.php:459 legacy/profile.php:132
+#: includes/class-avatar.php:508 legacy/profile.php:132
 #: tmp/class-avatar.php:277
 #, fuzzy
 msgid "Change password"
 msgstr "Ailosod cyfrinair"
 
-#: includes/class-avatar.php:466 tmp/class-avatar.php:283
+#: includes/class-avatar.php:515 tmp/class-avatar.php:283
 #, fuzzy
 msgid "Confirm password"
 msgstr "Cadarnhewch eich cyfrinair"
 
-#: includes/class-avatar.php:473 tmp/class-avatar.php:289
+#: includes/class-avatar.php:522 tmp/class-avatar.php:289
 msgid "Same password as WP user"
 msgstr ""
 
-#: includes/class-avatar.php:495 tmp/class-avatar.php:308
+#: includes/class-avatar.php:544 tmp/class-avatar.php:308
 #, fuzzy
 msgid "Model"
 msgstr "Modelau"
 
-#: includes/class-avatar.php:502 legacy/admin/admin-init.php:70
+#: includes/class-avatar.php:551 legacy/admin/admin-init.php:70
 #: legacy/profile.php:118 tmp/class-avatar.php:315
 msgid "Avatar Name"
 msgstr "Enw Avatar"
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:509 tmp/class-avatar.php:322
+#: includes/class-avatar.php:558 tmp/class-avatar.php:322
 #, fuzzy
 msgid "Firstname"
 msgstr "Enw Cyntaf = "
 
 #. Translators: Avatar name placeholder, only latin, unaccended characters, first letter uppercase, no spaces
-#: includes/class-avatar.php:509 tmp/class-avatar.php:322
+#: includes/class-avatar.php:558 tmp/class-avatar.php:322
 #, fuzzy
 msgid "Lastname"
 msgstr "NEU Cyfenw = "
 
-#: includes/class-avatar.php:513 tmp/class-avatar.php:326
+#: includes/class-avatar.php:562 tmp/class-avatar.php:326
 msgid "The avatar name is permanent, it can't be changed later."
 msgstr ""
 
-#: includes/class-avatar.php:522 tmp/class-avatar.php:221
+#: includes/class-avatar.php:571 tmp/class-avatar.php:221
 msgid ""
 "Please provide first and last name, only letters and numbers, separated by a "
 "space."
 msgstr ""
 
-#: includes/class-avatar.php:527 tmp/class-avatar.php:338
+#: includes/class-avatar.php:576 tmp/class-avatar.php:338
 msgid "UUID"
 msgstr ""
 
-#: includes/class-avatar.php:530 tmp/class-avatar.php:341
+#: includes/class-avatar.php:579 tmp/class-avatar.php:341
 #, fuzzy
 msgid "Wil be set by the server"
 msgstr "Gweinydd asedau gwe"
 
-#: includes/class-avatar.php:541
+#: includes/class-avatar.php:597
 #, fuzzy
 msgid "Last seen"
 msgstr "Gwelwyd Diwethaf"
 
-#: includes/class-avatar.php:675 legacy/profile.php:365
-msgid "This user already has an avatar."
-msgstr "Mae gan y defnyddiwr hwn avatar yn barod."
+#: includes/class-avatar.php:615 legacy/admin/admin-init.php:76
+#: legacy/admin/admin-init.php:82 legacy/profile.php:124
+#: tmp/class-avatar.php:350
+msgid "Born"
+msgstr "Eni"
 
-#: includes/class-avatar.php:681
-#, fuzzy
-msgid "This name is not available."
-msgstr "Ni chaniateir yr enw %s"
-
-#: includes/class-avatar.php:692
+#: includes/class-avatar.php:644 includes/class-avatar.php:755
 #, fuzzy
 msgid "Passwords don't match."
 msgstr "Nid yw'r cyfrinair yn cyfateb."
 
-#: includes/class-avatar.php:707 legacy/profile.php:409
+#: includes/class-avatar.php:738 legacy/profile.php:365
+msgid "This user already has an avatar."
+msgstr "Mae gan y defnyddiwr hwn avatar yn barod."
+
+#: includes/class-avatar.php:744
+#, fuzzy
+msgid "This name is not available."
+msgstr "Ni chaniateir yr enw %s"
+
+#: includes/class-avatar.php:770 legacy/profile.php:409
 msgid ""
 "This should never happen! Generated a random UUID that already existed. "
 "Sorry. Try again."
@@ -313,44 +362,44 @@ msgstr ""
 "Ni ddylai hyn byth ddigwydd! Wedi creu UUID ar hap sy'n bodoli eisoes. Mae'n "
 "ddrwg gennyf. Ceisio eto."
 
-#: includes/class-avatar.php:728 legacy/profile.php:431
+#: includes/class-avatar.php:798 legacy/profile.php:431
 msgid "Error while creating user"
 msgstr "Gwall wrth greu defnyddiwr"
 
-#: includes/class-avatar.php:737 legacy/profile.php:440
+#: includes/class-avatar.php:807 legacy/profile.php:440
 msgid "Error while setting password"
 msgstr "Gwall wrth osod cyfrinair"
 
-#: includes/class-avatar.php:747 legacy/profile.php:451
+#: includes/class-avatar.php:817 legacy/profile.php:451
 msgid "Error while setting home region"
 msgstr "Gwall wrth osod y rhanbarth cartref"
 
-#: includes/class-avatar.php:771 legacy/profile.php:468
+#: includes/class-avatar.php:841 legacy/profile.php:468
 msgid "Error while creating user inventory"
 msgstr "Gwall wrth greu rhestr eiddo defnyddwyr"
 
-#: includes/class-avatar.php:897 legacy/profile.php:590
+#: includes/class-avatar.php:967 legacy/profile.php:590
 msgid "Error while adding inventory item"
 msgstr "Gwall wrth ychwanegu eitem rhestr eiddo"
 
-#: includes/class-avatar.php:908 legacy/profile.php:601
+#: includes/class-avatar.php:978 legacy/profile.php:601
 msgid "Error while adding inventory outfit link"
 msgstr "Gwall wrth ychwanegu dolen gwisg rhestr eiddo"
 
-#: includes/class-avatar.php:920 legacy/profile.php:613
+#: includes/class-avatar.php:990 legacy/profile.php:613
 msgid "Error while adding avatar"
 msgstr "Gwall wrth ychwanegu avatar"
 
-#: includes/class-avatar.php:934
+#: includes/class-avatar.php:1004
 #, fuzzy
 msgid "Errors occurred while creating avatar %s"
 msgstr "Digwyddodd gwallau wrth greu'r defnyddiwr"
 
-#: includes/class-avatar.php:968 tmp/class-avatar.php:420
+#: includes/class-avatar.php:1043 tmp/class-avatar.php:420
 msgid "%s contains invalid characters, replaced \"%s\" by \"%s\""
 msgstr ""
 
-#: includes/class-avatar.php:1306
+#: includes/class-avatar.php:1426
 msgid "%d reference updated"
 msgid_plural "%d references updated"
 msgstr[0] "%d cyfeirnod wedi'i ddiweddaru"
@@ -358,7 +407,7 @@ msgstr[1] "%d cyfeirnod wedi'i ddiweddaru"
 msgstr[2] "%d cyfeirnod wedi'i ddiweddaru"
 msgstr[3] "%d cyfeirnod wedi'i ddiweddaru"
 
-#: includes/class-avatar.php:1312
+#: includes/class-avatar.php:1432
 msgid "%d new WordPress account created"
 msgid_plural "%d new WordPress accounts created"
 msgstr[0] "%d cyfrif WordPress newydd wedi'i greu"
@@ -366,7 +415,7 @@ msgstr[1] "%d cyfrif WordPress newydd wedi'i greu"
 msgstr[2] "%d cyfrif WordPress newydd wedi'i greu"
 msgstr[3] "%d cyfrif WordPress newydd wedi'i greu"
 
-#: includes/class-avatar.php:1318
+#: includes/class-avatar.php:1438
 msgid "%d broken reference removed"
 msgid_plural "%d broken references removed"
 msgstr[0] "%d cyfeirnod toredig wedi'i dynnu"
@@ -374,7 +423,7 @@ msgstr[1] "%d cyfeirnod toredig wedi'i dynnu"
 msgstr[2] "%d cyfeirnod toredig wedi'i dynnu"
 msgstr[3] "%d cyfeirnod toredig wedi'i dynnu"
 
-#: includes/class-avatar.php:1339
+#: includes/class-avatar.php:1459
 msgid ""
 "%d grid account has no linked WP account. Syncing will create a new WP "
 "account."
@@ -394,7 +443,7 @@ msgstr[3] ""
 "Does gan %d cyfrif grid ddim cyfrif WP cysylltiedig. Bydd cysoni yn creu "
 "cyfrif WP newydd."
 
-#: includes/class-avatar.php:1347
+#: includes/class-avatar.php:1467
 msgid ""
 "%d WordPress avatar has no related account in OpenSimulator database "
 "(corrupt reference or deleted). Syncing accounts will delete it from "
@@ -408,43 +457,11 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/class-avatar.php:1355
-#, fuzzy
-msgid ""
-"%d grid avatar (other than models) has no email address, it is handled as a "
-"service account and is not displayed in avatars list."
-msgid_plural ""
-"%d grid avatars (other than models) have no email address, they are handled "
-"as service accounts and are not displayed in avatars list."
-msgstr[0] ""
-"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
-"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
-"wasanaeth yn unig."
-msgstr[1] ""
-"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
-"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
-"wasanaeth yn unig."
-msgstr[2] ""
-"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
-"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
-"wasanaeth yn unig."
-msgstr[3] ""
-"Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n iawn "
-"cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a chadw neu "
-"wasanaeth yn unig."
-
-#: includes/class-avatar.php:1363
-#, fuzzy
-msgid "Users avatars need an email address for %s and %s to work properly."
-msgstr ""
-"Mae cyfrifon go iawn angen cyfeiriad e-bost unigryw er mwyn i W4OS "
-"weithredu'n iawn."
-
-#: includes/class-avatar.php:1373
+#: includes/class-avatar.php:1493
 msgid "Synchronize users now"
 msgstr "Cydamseru defnyddwyr nawr"
 
-#: includes/class-avatar.php:1374
+#: includes/class-avatar.php:1494
 msgid ""
 "Synchronization is made at plugin activation and is handled automatically "
 "afterwards, but in certain circumstances it may be necessary to initiate it "
@@ -455,6 +472,10 @@ msgstr ""
 "ond mewn rhai amgylchiadau efallai y bydd angen ei gychwyn â llaw i gael "
 "canlyniad ar unwaith, yn enwedig os yw defnyddwyr wedi'u hychwanegu neu eu "
 "dileu yn uniongyrchol o'r consol gweinyddu grid."
+
+#: includes/class-avatar.php:1531
+msgid "Avatars can not be deleted from WordPress."
+msgstr ""
 
 #: includes/class-settings.php:169
 msgid "OpenSimulator Status"
@@ -485,11 +506,6 @@ msgstr "Cynorthwywyr"
 #: includes/class-settings.php:208 legacy/admin/settings.php:603
 msgid "Settings"
 msgstr "Gosodiadau"
-
-#: legacy/admin/admin-init.php:76 legacy/admin/admin-init.php:82
-#: legacy/profile.php:124 tmp/class-avatar.php:350
-msgid "Born"
-msgstr "Eni"
 
 #: legacy/admin/admin-init.php:77 legacy/admin/admin-init.php:83
 msgid "Last Seen"
@@ -1654,6 +1670,36 @@ msgstr ""
 msgid "Popular Places"
 msgstr "Lleoedd poblogaidd"
 
+#, fuzzy
+#~ msgid ""
+#~ "%d grid avatar (other than models) has no email address, it is handled as "
+#~ "a service account and is not displayed in avatars list."
+#~ msgid_plural ""
+#~ "%d grid avatars (other than models) have no email address, they are "
+#~ "handled as service accounts and are not displayed in avatars list."
+#~ msgstr[0] ""
+#~ "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n "
+#~ "iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a "
+#~ "chadw neu wasanaeth yn unig."
+#~ msgstr[1] ""
+#~ "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n "
+#~ "iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a "
+#~ "chadw neu wasanaeth yn unig."
+#~ msgstr[2] ""
+#~ "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n "
+#~ "iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a "
+#~ "chadw neu wasanaeth yn unig."
+#~ msgstr[3] ""
+#~ "Nid oes gan %d cyfrif grid (ac eithrio modelau) gyfeiriad e-bost, sy'n "
+#~ "iawn cyn belled ei fod yn cael ei ddefnyddio ar gyfer tasgau cynnal a "
+#~ "chadw neu wasanaeth yn unig."
+
+#, fuzzy
+#~ msgid "Users avatars need an email address for %s and %s to work properly."
+#~ msgstr ""
+#~ "Mae cyfrifon go iawn angen cyfeiriad e-bost unigryw er mwyn i W4OS "
+#~ "weithredu'n iawn."
+
 #~ msgid ""
 #~ "%d WordPress account is linked to an unexisting avatar (wrong UUID). "
 #~ "Syncing accounts will keep this WP account but remove the broken "
@@ -1698,10 +1744,6 @@ msgstr "Lleoedd poblogaidd"
 #, fuzzy
 #~ msgid "W4OS - OpenSimulator Web Interface"
 #~ msgstr "w4os - Rhyngwyneb Gwe OpenSimulator"
-
-#, fuzzy
-#~ msgid "WP Account"
-#~ msgstr "Cyfrifon grid"
 
 #~ msgid ""
 #~ "You already installed the official release of <strong>W4OS - "

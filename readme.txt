@@ -167,7 +167,7 @@ This is an OpenSimulator design limitation. Regions rely on cached data to displ
 * allow multiple avatars sharing the same email address
 * avatar creation from admin area
 * dedicated avatar admin list, including
-  - name, WP owner, mail, last seen and (avatar) born date
+  - name, WP owner, mail, uuid, last seen and (avatar) born date
   - filter per account type (regular, models, service accounts)
 * avatar post type contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task
 * default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
