@@ -222,16 +222,8 @@ class W4OS3_Avatar {
 			),
 
 			array (
-				'hook' => 'init',
-				'callback' => 'remove_avatar_delete_cap',
-			),
-			array (
-				'hook' => 'save_post',
-				'callback' => 'save_avatar_slug',
-			),
-			array (
 				'hook' => 'save_post_avatar',
-				'callback' => 'save_post',
+				'callback' => 'save_post_action',
 				'accepted_args' => 3,
 			),
 			array(
@@ -241,10 +233,6 @@ class W4OS3_Avatar {
 			array(
 				'hook' => 'admin_head',
 				'callback' => 'remove_avatar_edit_delete_action',
-			),
-			array(
-				'hook' => 'init',
-				'callback' => 'register_avatar_post_status',
 			),
 		);
 
@@ -379,6 +367,60 @@ class W4OS3_Avatar {
 	  ];
 
 	  register_post_type( 'avatar', $args );
+
+		/**
+		 * Add avatar-specific publish statuses
+		 */
+		register_post_status('model', array(
+			'label'                     => _x( 'Model', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false, // actuelly means "count in section 'all' of status list"
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Model <span class="count">(%s)</span>', 'Models <span class="count">(%s)</span>' ),
+		) );
+		register_post_status('service', array(
+			'label'                     => _x( 'Service Account', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false,
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
+		) );
+		register_post_status('banned', array(
+			'label'                     => _x( 'Banned Account', 'avatar' ),
+			'public'                    => false,
+			'post_type'									=> 'avatar',
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => false,
+			'show_in_admin_status_list' => true,
+			'label_count'               => _n_noop( 'Banned Account <span class="count">(%s)</span>', 'Banned Accounts <span class="count">(%s)</span>' ),
+		) );
+
+		/**
+		 * Remove avatar delete capabilities for very add_role
+		 * (this has to be done on OpenSimulator side, or the avatars will be created again)
+		 */
+
+		global $wp_roles;
+		$remove_caps = array(
+			'delete_avatar',
+			'delete_avatars',
+		);
+
+		$roles = $wp_roles->roles;
+		$editable_roles = apply_filters('editable_roles', $roles);
+
+		foreach($roles as $role_slug => $role_array) {
+			$role = get_role( $role_slug );
+
+			foreach ( $remove_caps as $cap ) {
+				$role->remove_cap( $cap );
+			}
+		}
+
 	}
 
 	static function add_fields( $meta_boxes ) {
@@ -622,19 +664,7 @@ class W4OS3_Avatar {
 		}
 	}
 
-	static function save_avatar_slug( $post_id ) {
-		// if ( wp_is_post_revision( $post_id ) ) return;
-		// $post = get_post($post_id);
-		// if('avatar' !== $post->post_type) return;
-		//
-		// remove_action( 'save_post', __CLASS__ . '::' . __FUNCTION__ );
-		//
-		// $slug = sanitize_title($post->post_title);
-		// wp_update_post( array( 'ID' => $post_id, 'post_name' => $slug ));
-		//
-	}
-
- 	static function save_post($post_ID, $post, $update ) {
+ 	static function save_post_action($post_ID, $post, $update ) {
 		if(!$update) return;
 		if(W4OS::is_new_post())  return; // triggered when opened new post page, empty
 		if( $post->post_type != 'avatar' ) return;
@@ -1489,32 +1519,6 @@ class W4OS3_Avatar {
 		return 'publish';
 	}
 
-	/**
-	 * Remove avatar delete capabilities for very add_role
-	 * (this has to be done on OpenSimulator side, or the avatars will be created again)
-	 *
-	 * Call the function when your plugin/theme is activated.
-	 */
-	static function remove_avatar_delete_cap() {
-		global $wp_roles;
-
-		$remove_caps = array(
-			'delete_avatar',
-			'delete_avatars',
-		);
-
-		$roles = $wp_roles->roles;
-		$editable_roles = apply_filters('editable_roles', $roles);
-
-		foreach($roles as $role_slug => $role_array) {
-			$role = get_role( $role_slug );
-
-			foreach ( $remove_caps as $cap ) {
-				$role->remove_cap( $cap );
-			}
-		}
-	}
-
 	static function remove_avatar_delete_row_actions( $actions, $post ) {
 	    if( $post->post_type === 'avatar' ) {
 	        unset( $actions['clone'] );
@@ -1542,33 +1546,4 @@ class W4OS3_Avatar {
 	    endif;
 	}
 
-	static function register_avatar_post_status(){
-		register_post_status('model', array(
-			'label'                     => _x( 'Model', 'avatar' ),
-			'public'                    => false,
-			'post_type'									=> 'avatar',
-			'exclude_from_search'       => true,
-			'show_in_admin_all_list'    => false, // actuelly means "count in section 'all' of status list"
-			'show_in_admin_status_list' => true,
-			'label_count'               => _n_noop( 'Model <span class="count">(%s)</span>', 'Models <span class="count">(%s)</span>' ),
-		) );
-		register_post_status('service', array(
-			'label'                     => _x( 'Service Account', 'avatar' ),
-			'public'                    => false,
-			'post_type'									=> 'avatar',
-			'exclude_from_search'       => true,
-			'show_in_admin_all_list'    => false,
-			'show_in_admin_status_list' => true,
-			'label_count'               => _n_noop( 'Service Account <span class="count">(%s)</span>', 'Service Accounts <span class="count">(%s)</span>' ),
-		) );
-		register_post_status('banned', array(
-			'label'                     => _x( 'Banned Account', 'avatar' ),
-			'public'                    => false,
-			'post_type'									=> 'avatar',
-			'exclude_from_search'       => true,
-			'show_in_admin_all_list'    => false,
-			'show_in_admin_status_list' => true,
-			'label_count'               => _n_noop( 'Banned Account <span class="count">(%s)</span>', 'Banned Accounts <span class="count">(%s)</span>' ),
-		) );
-	}
 }
