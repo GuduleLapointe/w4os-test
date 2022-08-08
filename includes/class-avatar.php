@@ -1668,8 +1668,12 @@ class W4OS3_Avatar {
 		if(!isset($this->owner)) $this->owner = get_post($this->ID)->post_author;
 		$owner = $this->owner;
 
+		// Avoid duplicates in the same session
+		$cache_key = sanitize_title(__CLASS__ . '-' . __FUNCTION__ . " $owner $this->ID $image_uuid");
+		if(wp_cache_get($cache_key)) return;
+
 		// First try profile folder structure, fallback to wp standard folders
-		$upload_dir = w4os_upload_dir("profiles/" . $owner . '/' . $this->ID);
+		$upload_dir = w4os_upload_dir("profiles/" . $this->ID);
 		if( ! wp_mkdir_p( $upload_dir ) ) $upload_dir = wp_upload_dir()['path'];
 
 		$asset_url = w4os_get_asset_url($image_uuid);
@@ -1686,7 +1690,6 @@ class W4OS3_Avatar {
 
 		if(!$attachment_id) {
 			$image_data = file_get_contents($asset_url); // Get image data
-			// Check folder permission and define file location
 
 			// Create the image  file on the server
 			file_put_contents( $file, $image_data );
@@ -1718,8 +1721,9 @@ class W4OS3_Avatar {
 		wp_update_attachment_metadata( $attachment_id, $attach_data );
 
 		// And finally assign featured image to post
-		set_post_thumbnail( $this->ID, $attachment_id );
+		$success = set_post_thumbnail( $this->ID, $attachment_id );
 
+		wp_cache_set($cache_key, $success);
 		return;
 	}
 }
