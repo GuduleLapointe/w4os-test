@@ -142,7 +142,7 @@ add_filter( 'login_errors', function( $error ) {
 //
 //   if ( empty($query_firstname) || empty($query_lastname) ) {
 //     if(is_user_logged_in()) {
-//       $uuid = W4OS_Avatar::sync_single_avatar(wp_get_current_user());
+//       $uuid = W4OS3_Avatar::sync_single_avatar(wp_get_current_user());
 //       if($uuid) {
 //         $page_title = __('My Profile', 'w4os');
 //       } else {

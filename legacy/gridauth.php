@@ -54,10 +54,10 @@ function w4os_gridauth ( $user, $username, $password ) {
         $user = get_user_by('ID', $newid);
         reset_password($user, $password);
         if (is_wp_error( $user )) return $user;
-        W4OS_Avatar::sync_single_avatar($newid, $avatar_row->PrincipalID);
+        W4OS3_Avatar::sync_single_avatar($newid, $avatar_row->PrincipalID);
       } else {
         // user exists, just sync update password
-        W4OS_Avatar::sync_single_avatar($user);
+        W4OS3_Avatar::sync_single_avatar($user);
         reset_password($user, $password);
       }
     }
@@ -79,12 +79,12 @@ function w4os_is_email(string $address): bool {
 
   [$address, $localPart, $domain] = $matches;
 
-  $variant = INTL_IDNA_VARIANT_2003;
-  if (\defined('INTL_IDNA_VARIANT_UTS46') ) {
-    $variant = INTL_IDNA_VARIANT_UTS46;
-  }
-
-  $domain = \rtrim(\idn_to_ascii($domain, IDNA_DEFAULT, $variant), '.') . '.';
+  // $variant = INTL_IDNA_VARIANT_2003;
+  // if (\defined('INTL_IDNA_VARIANT_UTS46') ) {
+  //   $variant = INTL_IDNA_VARIANT_UTS46;
+  // }
+  //
+  // $domain = \rtrim(\idn_to_ascii($domain, IDNA_DEFAULT, $variant), '.') . '.';
 
   if (!\checkdnsrr($domain, 'MX')) {
     return \checkdnsrr($domain, 'A') || \checkdnsrr($domain, 'AAAA');

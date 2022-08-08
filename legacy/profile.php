@@ -189,7 +189,7 @@ function w4os_profile_sync_all() {
   foreach($UserAccounts as $UserAccount) {
     $user = get_user_by( 'email', $UserAccount->Email );
     if(!$user) continue;
-    $uuid = W4OS_Avatar::sync_single_avatar($user);
+    $uuid = W4OS3_Avatar::sync_single_avatar($user);
     $updated[$UserAccount->Email] = $user->ID . ' ' . $uuid;
   }
   w4os_admin_notice(sprintf(__('%s local users updated with avatar data', 'w4os'), count($updated)), 'success');
@@ -205,7 +205,7 @@ function w4os_profile_sync_all() {
 //   // echo "checkpoint"; die();
 //   if($user->ID != wp_get_current_user()->ID) return;
 //   global $w4osdb;
-//   $uuid = W4OS_Avatar::sync_single_avatar($user);
+//   $uuid = W4OS3_Avatar::sync_single_avatar($user);
 //   echo "    <h3>" . __("OpenSimulator", "w4os") ."</h3>";
 //   echo "<div class=avatar_profile>";
 //   // if(!$uuid) {
@@ -234,7 +234,7 @@ function w4os_set_avatar_password( $user_id, $new_pass ) {
   ) {
 		$user = get_userdata( $user_id );
 		if (! $user ) return;
-		$uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+		$uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
 		$password=stripcslashes($new_pass);
 		$salt = md5(w4os_gen_uuid());
 		$hash = md5(md5($password) . ":" . $salt);
@@ -261,7 +261,7 @@ add_action( 'password_reset', 'w4os_set_avatar_password', 10, 2 );
 function w4os_save_account_details ( $args ) {
   if(!W4OS_DB_CONNECTED) return;
   $avatar = new W4OS_Avatar($user_id);
-  $uuid = W4OS_Avatar::sync_single_avatar($avatar); // refresh opensim data for this user
+  $uuid = W4OS3_Avatar::sync_single_avatar($avatar); // refresh opensim data for this user
 
 	// not verified
 	if($_REQUEST['password_1'] == $_REQUEST['confirm_password'])
@@ -299,7 +299,7 @@ function w4os_user_register( $user_id = 0 ) {
   if ( isset($_REQUEST['email']) &! empty($_REQUEST['email']) ) {
     global $wpdb;
     $user = $wpdb->get_row($wpdb->prepare("select * from ".$wpdb->prefix."users where user_email = %s", $_REQUEST['email']));
-    $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+    $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
     if( $uuid ) {
       $password=stripcslashes($_REQUEST['password']);
       $salt = md5(w4os_gen_uuid());
@@ -309,7 +309,7 @@ function w4os_user_register( $user_id = 0 ) {
     }
   } else {
     $user = get_user_by('ID', $user_id);
-    $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+    $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
   }
 }
 add_action( 'user_register', 'w4os_user_register', 10, 1);
@@ -324,11 +324,11 @@ add_action( 'user_register', 'w4os_user_register', 10, 1);
 //   global $w4osdb;
 //   switch ($params['action'] ) {
 //     case "update_avatar":
-//     $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+//     $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
 //     if($uuid) break;
 //
 //     case "w4os_create_avatar":
-//     // $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+//     // $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
 //     $uuid = w4os_create_avatar($user, $params);
 //     break;
 //   }
@@ -360,7 +360,7 @@ add_action( 'user_register', 'w4os_user_register', 10, 1);
 //
 //   $errors = false;
 //   // w4os_notice(print_r($_REQUEST, true), "code");
-//   $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+//   $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
 //   if ( $uuid ) {
 //     if($params['action'] == 'w4os_create_avatar') w4os_notice(__("This user already has an avatar.", 'w4os'), 'fail') . '<pre>' . print_r($params, true) . '</pre>';
 //     return $uuid;
@@ -623,7 +623,7 @@ add_action( 'user_register', 'w4os_user_register', 10, 1);
 //
 //   w4os_notice(sprintf( __( 'Avatar %s created successfully.', 'w4os' ), "$firstname $lastname"), 'success');
 //
-//   $check_uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+//   $check_uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
 //   return $newavatar_uuid;
 // }
 

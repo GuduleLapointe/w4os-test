@@ -154,7 +154,7 @@ function w4os_verify_user() {
       if(isset($_GET['user_login']) && isset($_GET['key'])) {
         global $wpdb;
         $user = $wpdb->get_row($wpdb->prepare("select * from ".$wpdb->prefix."users where user_login = %s and user_activation_key = %s", $_GET['user_login'], $_GET['key']));
-        $uuid = W4OS_Avatar::sync_single_avatar($user); // refresh opensim data for this user
+        $uuid = W4OS3_Avatar::sync_single_avatar($user); // refresh opensim data for this user
         if($uuid) {
           $salt = get_user_meta( $user->ID, 'w4os_tmp_salt', true );
           $hash = get_user_meta( $user->ID, 'w4os_tmp_hash', true );
