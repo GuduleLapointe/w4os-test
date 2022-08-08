@@ -260,12 +260,12 @@ class W4OS3_Avatar {
 				'avatar_image' => $this->image,
 			),
 		));
-		error_log("wp_insert_post " . $this->image);
 		// $this->get_simulator_data();
 		// error_log("get_simulator_data " . $this->image);
 		// $this->sync_single_avatar();
 		// error_log("sync_single_avatar " . $this->image);
-		// $this->set_thumbnail();
+		if(!empty($this->image))
+		$this->set_thumbnail();
 		// error_log("set_thumbnail " . $this->image);
 
 		return $post_id;
@@ -317,6 +317,8 @@ class W4OS3_Avatar {
 			error_log( "$this->name update failed " . $result->get_error_message() );
 			return false;
 		}
+
+		$this->set_thumbnail();
 	}
 
 	// static function add_in_admin_footer() {
@@ -1412,9 +1414,8 @@ class W4OS3_Avatar {
 			if ( $account['PrincipalID'] == $account['w4os_uuid'] ) {
 
 				/**
-				* Already linked, silently resync
-				*/
-
+				 * Already linked, silently resync
+				 */
 				$avatar->get_simulator_data();
 				$avatar->sync_single_avatar();
 
@@ -1643,46 +1644,48 @@ class W4OS3_Avatar {
 	    endif;
 	}
 
-	static function wp_get_attachment_id_by_post_name( $post_name ) {
-		$args           = array(
+	static function get_post_by_name( $post_name, $args = [] ) {
+		$args = array_merge(array(
 			'posts_per_page' => 1,
-			'post_type'      => 'attachment',
+
 			'name'           => trim( $post_name ),
-			'orderby'	=> 'ID',
-			'order' => 'ASC',
-		);
+			'orderby'				 => 'ID',
+			'order'          => 'ASC',
+		), $args);
 
-		$attach = new WP_Query( $args );
+		$query = new WP_Query( $args );
+		if($query->have_posts())
+		return $query->post->ID;
 
-		if ( ! $attach || ! isset( $attach->posts, $attach->posts[0] ) )
 		return false;
-
-		return $attach->posts[0]->ID;
 	}
 
 	function set_thumbnail($image_uuid = W4OS_NULL_KEY) {
+
 		if(w4os_empty($image_uuid)) $image_uuid = $this->image;
 		if(w4os_empty($image_uuid)) return;
 
-		$image_url = w4os_get_asset_url($image_uuid);
-		$image_name       = basename($image_url);
-		$default_upload_dir       = wp_upload_dir(); // Set upload folder
-		$upload_dir = w4os_upload_dir("profiles");
-		$image_data       = file_get_contents($image_url); // Get image data
+		if(!isset($this->owner)) $this->owner = get_post($this->ID)->post_author;
+		$owner = $this->owner;
+
+		// First try profile folder structure, fallback to wp standard folders
+		$upload_dir = w4os_upload_dir("profiles/" . $owner . '/' . $this->ID);
+		if( ! wp_mkdir_p( $upload_dir ) ) $upload_dir = wp_upload_dir()['path'];
+
+		$asset_url = w4os_get_asset_url($image_uuid);
+		$image_name = basename($asset_url);
+
 		// $unique_file_name = wp_unique_filename( $upload_dir, $image_name ); // Generate unique name
 		// $filename         = basename( $unique_file_name ); // Create image file name
 		$unique_file_name = $image_name;
 		$filename = $image_name;
 		$post_name = $image_uuid;
-		$attach_id = self::wp_get_attachment_id_by_post_name($post_name);
+		$file = $upload_dir . '/' . $filename;
 
-		if( wp_mkdir_p( $upload_dir ) ) {
-			$file = $upload_dir . '/' . $filename;
-		} else {
-			$file = $default_upload_dir['basedir'] . '/' . $filename;
-		}
+		$attachment_id = self::get_post_by_name($image_uuid, ['post_type'=>'attachment']);
 
-		if(!$attach_id) {
+		if(!$attachment_id) {
+			$image_data = file_get_contents($asset_url); // Get image data
 			// Check folder permission and define file location
 
 			// Create the image  file on the server
@@ -1693,29 +1696,29 @@ class W4OS3_Avatar {
 
 			// Set attachment data
 			$attachment = array(
-				'post_author' => $this->owner,
+				'post_author' => $owner,
 				'post_mime_type' => $wp_filetype['type'],
 				'post_title'     => sanitize_text_field( $this->name ),
-				'post_name' => $post_name,
+				'post_name'			 => $post_name,
 				'post_content'   => '',
 				'post_status'    => 'inherit'
 			);
 
 			// Create the attachment
-			$attach_id = wp_insert_attachment( $attachment, $file, $this->ID );
+			$attachment_id = wp_insert_attachment( $attachment, $file, $this->ID );
 		}
 
 		// Include image.php
 		require_once(ABSPATH . 'wp-admin/includes/image.php');
 
 		// Define attachment metadata
-		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+		$attach_data = wp_generate_attachment_metadata( $attachment_id, $file );
 
 		// Assign metadata to attachment
-		wp_update_attachment_metadata( $attach_id, $attach_data );
+		wp_update_attachment_metadata( $attachment_id, $attach_data );
 
 		// And finally assign featured image to post
-		set_post_thumbnail( $this->ID, $attach_id );
+		set_post_thumbnail( $this->ID, $attachment_id );
 
 		return;
 	}
