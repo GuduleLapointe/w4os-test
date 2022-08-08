@@ -232,11 +232,14 @@ class W4OS3_Avatar {
 				$this->email = $grid_data->Email;
 				$this->lastseen = $grid_data->Login;
 				$this->born = $grid_data->Created;
+				$this->image = (w4os_empty($grid_data->profileImage)) ? NULL : $grid_data->profileImage;
+				$this->about= strip_tags($grid_data->profileAboutText);
 			}
 		}
 	}
 
 	function create_post() {
+		// error_log("$this->name - initial " . $this->image);
 		$post_id = wp_insert_post(array(
 			'ID' => (isset($this->ID)) ? $this->ID : 0,
 			'post_type' => 'avatar',
@@ -244,6 +247,7 @@ class W4OS3_Avatar {
 			'post_author' => (empty($this->user_id)) ? 0 : $this->user_id,
 			'post_title' => $this->name,
 			'post_date_gmt' => date( 'Y-m-d H:i:s', ((!empty($this->born) && $this->born > 0) ? $this->born : current_time('timestamp', true)) ),
+			'post_content' => $this->about,
 			'meta_input' => array(
 				'avatar_email' => $this->email,
 				'avatar_owner' => (empty($this->user_id)) ? NULL : $this->user_id,
@@ -253,8 +257,16 @@ class W4OS3_Avatar {
 				'avatar_name' => $this->name,
 				'avatar_firstname' => $this->FirstName,
 				'avatar_lastname' => $this->LastName,
+				'avatar_image' => $this->image,
 			),
 		));
+		error_log("wp_insert_post " . $this->image);
+		// $this->get_simulator_data();
+		// error_log("get_simulator_data " . $this->image);
+		// $this->sync_single_avatar();
+		// error_log("sync_single_avatar " . $this->image);
+		// $this->set_thumbnail();
+		// error_log("set_thumbnail " . $this->image);
 
 		return $post_id;
 	}
@@ -286,12 +298,17 @@ class W4OS3_Avatar {
 			'post_author' => ($user_id) ? $user_id : 0,
 			'post_status' => $this->avatar_status(),
 			'post_name' => sanitize_title($this->name),
+			'post_content' => $this->about,
 			'meta_input' => array(
-				'avatar_name' => $this->name,
-				'avatar_uuid' => $this->uuid,
-				'avatar_lastseen' => $this->lastseen,
 				'avatar_email' => $this->email,
 				'avatar_owner' => $user_id,
+				'avatar_uuid' => $this->uuid,
+				'avatar_born' => $this->born,
+				'avatar_name' => $this->name,
+				'avatar_firstname' => $this->FirstName,
+				'avatar_lastname' => $this->LastName,
+				'avatar_lastseen' => $this->lastseen,
+				'avatar_image' => $this->image,
 			),
 		);
 
@@ -300,7 +317,6 @@ class W4OS3_Avatar {
 			error_log( "$this->name update failed " . $result->get_error_message() );
 			return false;
 		}
-
 	}
 
 	// static function add_in_admin_footer() {
@@ -367,7 +383,7 @@ class W4OS3_Avatar {
 	    'show_in_menu'        => 'w4os',
 	    'menu_icon'           => 'dashicons-universal-access',
 	    'capability_type'     => 'post',
-	    'supports'            => false,
+	    'supports'            => false, // ['author','thumbnail'],
 	    'taxonomies'          => [],
 	    'rewrite'             => [
 	      'with_front' => false,
@@ -757,6 +773,7 @@ class W4OS3_Avatar {
 		$avatar->get_simulator_data();
 		$avatar->sync_single_avatar();
 
+		$avatar->set_thumbnail();
 		return;
 	}
 
@@ -1425,7 +1442,10 @@ class W4OS3_Avatar {
 				*/
 
 				$avatar->get_simulator_data();
-				if(!$avatar->create_post()) {
+
+				if($avatar->create_post()) {
+					// Succeed
+				} else {
 					error_log("could not create avatar post for $avatar->name");
 				}
 			}
@@ -1623,4 +1643,80 @@ class W4OS3_Avatar {
 	    endif;
 	}
 
+	static function wp_get_attachment_id_by_post_name( $post_name ) {
+		$args           = array(
+			'posts_per_page' => 1,
+			'post_type'      => 'attachment',
+			'name'           => trim( $post_name ),
+			'orderby'	=> 'ID',
+			'order' => 'ASC',
+		);
+
+		$attach = new WP_Query( $args );
+
+		if ( ! $attach || ! isset( $attach->posts, $attach->posts[0] ) )
+		return false;
+
+		return $attach->posts[0]->ID;
+	}
+
+	function set_thumbnail($image_uuid = W4OS_NULL_KEY) {
+		if(w4os_empty($image_uuid)) $image_uuid = $this->image;
+		if(w4os_empty($image_uuid)) return;
+
+		$image_url = w4os_get_asset_url($image_uuid);
+		$image_name       = basename($image_url);
+		$default_upload_dir       = wp_upload_dir(); // Set upload folder
+		$upload_dir = w4os_upload_dir("profiles");
+		$image_data       = file_get_contents($image_url); // Get image data
+		// $unique_file_name = wp_unique_filename( $upload_dir, $image_name ); // Generate unique name
+		// $filename         = basename( $unique_file_name ); // Create image file name
+		$unique_file_name = $image_name;
+		$filename = $image_name;
+		$post_name = $image_uuid;
+		$attach_id = self::wp_get_attachment_id_by_post_name($post_name);
+
+		if( wp_mkdir_p( $upload_dir ) ) {
+			$file = $upload_dir . '/' . $filename;
+		} else {
+			$file = $default_upload_dir['basedir'] . '/' . $filename;
+		}
+
+		if(!$attach_id) {
+			// Check folder permission and define file location
+
+			// Create the image  file on the server
+			file_put_contents( $file, $image_data );
+
+			// Check image file type
+			$wp_filetype = wp_check_filetype( $filename, null );
+
+			// Set attachment data
+			$attachment = array(
+				'post_author' => $this->owner,
+				'post_mime_type' => $wp_filetype['type'],
+				'post_title'     => sanitize_text_field( $this->name ),
+				'post_name' => $post_name,
+				'post_content'   => '',
+				'post_status'    => 'inherit'
+			);
+
+			// Create the attachment
+			$attach_id = wp_insert_attachment( $attachment, $file, $this->ID );
+		}
+
+		// Include image.php
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+		// Define attachment metadata
+		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+
+		// Assign metadata to attachment
+		wp_update_attachment_metadata( $attach_id, $attach_data );
+
+		// And finally assign featured image to post
+		set_post_thumbnail( $this->ID, $attach_id );
+
+		return;
+	}
 }
