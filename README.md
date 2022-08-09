@@ -14,22 +14,40 @@ WordPress interface for OpenSimulator (w4os)
 
 ## Description
 
-Important: this is a **highly experimental developement branch**. It contains **unfinished code** and is probably **not really operational**, and most likely **not secure**.
+==**DO NOT USE THIS DEV BRANCH ON A LIVE GRID**. If your grid is live, if you have other users, if you can't afford losing data or functionalties, only use **the latest stable release** [from WordPress directory](https://wordpress.org/plugins/w4os-opensimulator-web-interface/), or [git master branch](https://github.com/GuduleLapointe/w4os/tree/master).==
 
-**DO NOT USE ON A LIVE GRID**. For a stable release, use **only the master branch** or download from WordPress directory.
+This is a **highly experimental developement branch**. It contains **unfinished code** and is **not really operational** and most likely **not secure**.
 
-Ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). Provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
+That being said...
 
-See Features and Roadmap sections for current and upcoming functionalties.
+**w4os** is a ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). It provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
+
+See **Features** and **Roadmap** sections for current and upcoming functionalties.
 
 ### Features
 
-Experimental, under developement: transition from user-linked avatars to independant post types
+#### Experimental (v3 dev)
 
-- to avoid conflicts if multiple avatar were created with the same email address from console
-- will allow multiple avatars for a single account (the option will eventually be switchable in w4os settings)
+- [x] transition from current user-linked avatars (1 wp account = 1 avatar) to dedicated post types (1 or no wp account = 1 or any number of avatars)
 
-Standard features
+  - [x] fix conflicts if multiple avatar were created with the same email address in the database (e.g. if they were create from console)
+  - [x] allow such shared accounts to be created by the administrator
+  - [ ] allow end user to create several avatars
+  - [ ] allow user to create avatars without registering a WP account
+  - [x] dedicated avatars list (an avatars column remains in user list)
+  - [x] better management of special accounts (default avatars, service accounts, bots...)
+
+- [ ] complete rewrite with better use of classes
+
+  - [ ] will allow creation of other post types (e.g. regions, parcels, events, classifieds, ...)
+  - [ ] will allow better helpers integration
+  - [ ] clearer settings pages
+
+This is a huge job. The initial user-based integration has repercussions in all other features (avatar registration, profile page, registration page, synchronization, blocks, ...). As long as the transition is not finished, the developement version will not be fully operational and some features could (and probably will) be buggy or even broken.
+
+#### Stable release
+
+During the 3.x developement, the stable release (2.x) will still receive fixes and minor updates
 
 - **Grid info**: `[gridinfo]` shortcode and admin dashboard widgets
 - **Grid status**: `[gridstatus]` shortcode and admin dashboard widgets
@@ -40,10 +58,15 @@ Standard features
   - Avatar tab in account dashboard on WooCommerce websites
 
 - Choose avatar look from default models
+
 - Avatar and website passwords are synchronized
+
 - **Web profiles**: excerpt of the avatar's profile
+
 - **Reserved names**: avatar whose first name or last name is "Default", "Test", "Admin" or the pattern used for appearance models are disallowed for public (such avatars must be created by admins from Robust console)
+
 - **Web assets server**: the needed bridge to display in-world images on a website
+
 - **Helpers**: currency, search, offline messages
 - **OpenSimulator settings page**:
 
@@ -52,9 +75,13 @@ Standard features
   - exclude models from grid stats
 
 - Web asset server
+
 - Login page / Widget
+
 - Manual and cron Grid/WP users sync
+
 - Public avatar profile
+
 - Auth with avatar credentials (if no matching wp account, create one)
 
 ### Paid version
@@ -70,7 +97,7 @@ See (<https://github.com/GuduleLapointe/w4os/>) for complete status and changelo
 - [x] get grid info from <http://login.uri:8002/get_grid_info>
 - [x] Web Assets server
 - [x] Helpers (search, currency, map...)
-- Improve avatar profile
+- [ ] Improve avatar profile
 
   - Switch to allow web profile
   - Switch set in-world prefs for public profiles
@@ -78,12 +105,14 @@ See (<https://github.com/GuduleLapointe/w4os/>) for complete status and changelo
   - Web edit profile
 
 - Admin Start / Stop regions
+
 - Admin Create region
+
 - Admin Use sim/grid configuration file to fetch settings if on the same host
 
 ### Long term
 
-- Admin create users
+- [x] Admin create users
 - Admin create models (from current appearance)
 - Deactivate (recommended) or delete (experimental) grid user when deleting wp account
 - Choice between Robust console or database connection
@@ -103,9 +132,9 @@ No, if your web server has access to your OpenSimulator database.
 
 Yes, it works too. Use OpenSim database credentials when requested for Robust credentials.
 
-### Why can't I change my avatar name?
+### Can I change an avatar name or delete an avatar?
 
-This is an OpenSimulator design limitation. Regions rely on cached data to display avatar information, and once fetched, these are never updated. As a result, if an avatar's name (or grid URI btw) is changed, the change will not be reflected on regions already visited by this avatar (which will still show the old name), but new visited region will display the new one. This could be somewhat handled for a small standalone grid, but never in hypergrid context. There is no process to force a foreign grid to update its cache, and probably never will.
+No. This is an OpenSimulator design limitation. Regions rely on cached data to display avatar information, and once fetched, these are often never updated. As a result, if an avatar's name (or grid URI btw) is changed, the change will not be reflected on regions already visited by this avatar (which will still show the old name), but new visited region will display the new one. This could be somewhat handled for a small standalone grid, but never in hypergrid context. There is no process to force a foreign grid to update its cache, and probably never will.
 
 ## Screenshots
 

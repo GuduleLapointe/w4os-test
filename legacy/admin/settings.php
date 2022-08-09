@@ -45,7 +45,7 @@ function w4os_register_settings() {
 					'fields' => array(
 						'w4os_login_uri' => array(
 							'name' => 'Login URI',
-							'placeholder' => 'example.org:8002',
+							'placeholder' => 'yourgrid.org:8002',
 							'default' => $default_loginuri,
 							// 'type' => 'string',
 							// 'sanitize_callback' => 'w4os_settings_field',
@@ -238,14 +238,14 @@ function w4os_register_settings() {
 						),
 						'w4os_search_url' => array(
 							'name' => __('Search engine URL', 'w4os'),
-							'placeholder' => 'https://example.org/helpers/query.php',
+							'placeholder' => 'https://yourgrid.org/helpers/query.php',
 							'description' =>
 							__('URL of the search engine used internally by the viewer (without arguments).', 'w4os')
 							. w4os_format_ini(array(
 								'OpenSim.ini' => array(
 									'[Search]' => array(
 										'Module' => 'OpenSimSearch',
-										'SearchURL' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://example.org/helpers/query.php',
+										'SearchURL' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://yourgrid.org/helpers/query.php',
 									),
 								),
 							))
@@ -253,17 +253,17 @@ function w4os_register_settings() {
 								. w4os_format_ini(array(
 									'Robust.HG.ini' => array(
 										'[LoginService]' => array(
-											'SearchURL' => (!empty(get_option('w4os_websearch_url'))) ? get_option('w4os_websearch_url') : 'https://example.org/search/',
+											'SearchURL' => (!empty(get_option('w4os_websearch_url'))) ? get_option('w4os_websearch_url') : 'https://yourgrid.org/search/',
 										),
 										'[GridInfoService]' => array(
-											'search' =>  (!empty(get_option('w4os_websearch_url'))) ? get_option('w4os_websearch_url') : 'https://example.org/search/',
+											'search' =>  (!empty(get_option('w4os_websearch_url'))) ? get_option('w4os_websearch_url') : 'https://yourgrid.org/search/',
 										),
 									),
 								)),
 						),
 						'w4os_search_register' => array(
 							'name' => __('Search register', 'w4os'),
-							'placeholder' => 'https://example.org/helpers/register.php',
+							'placeholder' => 'https://yourgrid.org/helpers/register.php',
 							'description' =>
 							__('Data service, used to register regions, objects or land for sale.', 'w4os')
 							. w4os_format_ini(array(
@@ -271,8 +271,8 @@ function w4os_register_settings() {
 									'[DataSnapshot]' => array(
 										'index_sims' => 'true',
 										'gridname' => '"' . get_option('w4os_grid_name') . '"',
-										// 'data_services' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://example.org/helpers/register.php',
-										'DATA_SRV_MISearch' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://example.org/helpers/register.php',
+										// 'data_services' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://yourgrid.org/helpers/register.php',
+										'DATA_SRV_MISearch' => (!empty(get_option('w4os_search_url'))) ? get_option('w4os_search_url') : 'https://yourgrid.org/helpers/register.php',
 									),
 								),
 							)),
