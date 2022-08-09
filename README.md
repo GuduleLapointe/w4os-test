@@ -14,7 +14,7 @@ WordPress interface for OpenSimulator (w4os)
 
 ## Description
 
-==**DO NOT USE THIS DEV BRANCH ON A LIVE GRID**==. If your grid is live, if you have other users, if you can't afford losing data or functionalties, only use **the latest stable release** [from WordPress directory](https://wordpress.org/plugins/w4os-opensimulator-web-interface/), or [git master branch](https://github.com/GuduleLapointe/w4os/tree/master).==
+==**DO NOT USE THIS DEV BRANCH ON A LIVE GRID**==. If your grid is live, if you have other users, if you can't afford losing data or functionalties, only use **the latest stable release** [from WordPress directory](https://wordpress.org/plugins/w4os-opensimulator-web-interface/), or [git master branch](https://github.com/GuduleLapointe/w4os/tree/master).
 
 This is a **highly experimental developement branch**. It contains **unfinished code** and is **not really operational** and most likely **not secure**.
 
