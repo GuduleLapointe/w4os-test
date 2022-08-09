@@ -1,4 +1,4 @@
-# w4os - OpenSimulator Web Interface
+# w4os - OpenSimulator Web Interface (dev branch)
 
 - Contributors: magicoli69,gudulelapointe
 - Donate link: <https://w4os.org/donate/>
@@ -68,6 +68,7 @@ During the 3.x developement, the stable release (2.x) will still receive fixes a
 - **Web assets server**: the needed bridge to display in-world images on a website
 
 - **Helpers**: currency, search, offline messages
+
 - **OpenSimulator settings page**:
 
   - grid name, login uri and database connection settings
