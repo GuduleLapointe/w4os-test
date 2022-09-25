@@ -353,4 +353,55 @@ class W4OS3_Settings {
 
 		return $html;
 	}
+
+	public static function sanitize_local_path($path, $field = null, $oldvalue = null) {
+		if(empty($path)) return;
+		$path = esc_attr($path);
+		if( ! is_readable($path) ) {
+			if ( empty($field['silent']) ) {
+				w4os_admin_notice( sprintf( __('Could not access %s.', 'w4os'), "<code>$path</code>.", ), 'error');
+			}
+			return $oldvalue;
+		}
+
+		return $path;
+	}
+
+	public static function sanitize_local_file($path, $field = null, $oldvalue = null) {
+		$path = self::sanitize_local_path($path, $field, $oldvalue);
+		if(empty($path)) return;
+		if( !is_file($path) ) {
+			if ( empty($field['silent']) )
+			w4os_admin_notice( sprintf( __('%s is not a valid file.', 'w4os'), "<code>$path</code>", ), 'error');
+			return $oldvalue;
+		}
+
+		return $path;
+	}
+
+	public static function sanitize_local_dir($path, $field = null, $oldvalue = null) {
+		$path = self::sanitize_local_path($path, $field, $oldvalue);
+		if(empty($path)) return;
+		if(!is_dir($path) ) {
+			if ( empty($field['silent']) )
+			w4os_admin_notice( sprintf( __('%s is not a valid directory.', 'w4os'), "<code>$path</code>", ), 'error');
+			return $oldvalue;
+		}
+
+		return preg_replace(':/*$:', '', $path);
+	}
+
+	public static function sanitize_binaries_dir($path, $field = null, $oldvalue = null) {
+		$path = self::sanitize_local_dir($path, null, $oldvalue);
+		if(empty($path)) return;
+
+		if( ! is_file( "$path/OpenSim.exe" ) ) $missing[]  = "OpenSim.exe";
+		if( ! is_file( "$path/Robust.exe" ) ) $missing[]  = "Robust.exe";
+		if( ! empty($missing) ) {
+			w4os_admin_notice( sprintf( __('%s does not appear to be an OpenSim drectory (missing %s).', 'w4os'), '<code>' . $path . '</code>', join(', ', $missing), ), 'error');
+			return $oldvalue;
+		}
+		return $path;
+	}
+
 }
