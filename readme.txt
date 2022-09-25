@@ -127,8 +127,9 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 == Changelog ==
 
 = Unreleased =
+* added Robust INI file option to settings page
 
-= 3.x-dev Experimental =
+= 3.x-dev =
 
 - new **allow multiple avatars** sharing the same email address or wp account
 - new **avatar creation from admin area**
