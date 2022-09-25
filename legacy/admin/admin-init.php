@@ -212,7 +212,7 @@ function w4os_date( $format, $timestamp = null, $timezone = null ) {
  * Now we can launch the actual admin sections
  */
 require_once __DIR__ . '/settings.php';
-if($pagenow == "index.php") require_once __DIR__ .'/dashboard.php';
+if((isset($pagenow)) && $pagenow == "index.php") require_once __DIR__ .'/dashboard.php';
 
 /**
  * Add post state to special pages in pages list

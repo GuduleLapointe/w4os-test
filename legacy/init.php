@@ -85,6 +85,7 @@ require_once __DIR__ . '/shortcodes.php';
 // require_once __DIR__ . '/widgets.php';
 require_once __DIR__ . '/users.php';
 require_once __DIR__ . '/gridauth.php';
+if(w4os_check_db_tables('userprofile'))
 require_once __DIR__ . '/profile.php';
 require_once __DIR__ . '/cron.php';
 if(function_exists('xmlrpc_encode_request')) {
@@ -129,6 +130,7 @@ if(get_option('w4os_rewrite_rules') || get_option('w4os_rewrite_version') != W4O
 
 add_filter( 'body_class','w4os_css_classes_body' );
 function w4os_css_classes_body( $classes ) {
+  if(!is_array(W4OS_GRID_INFO)) return;
   $post=get_post();
   if(!$post) return array();
   $helper = array_search($post->guid, W4OS_GRID_INFO);
