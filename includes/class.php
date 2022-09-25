@@ -229,9 +229,9 @@ class W4OS {
 		return $this->version;
 	}
 
-	static function sanitize_login_uri($value, $field, $old_value, $object_id) {
+	static function sanitize_login_uri($value, $field, $oldvalue, $object_id) {
 		// TODO: actual sanitization
-	  if($value != $old_value) {
+	  if($value != $oldvalue) {
 			// TODO: fetch grid info again
 		}
 	  return $value;

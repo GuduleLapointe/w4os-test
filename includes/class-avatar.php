@@ -1086,7 +1086,7 @@ class W4OS3_Avatar {
 	//   return $actions;
 	// }
 
-	static function sanitize_name($value, $field = [], $old_value = NULL, $object_id = NULL) {
+	static function sanitize_name($value, $field = [], $oldvalue = NULL, $object_id = NULL) {
 	  // return $value;
 	  $return = sanitize_text_field($value);
 	  // $return = strtr(utf8_decode($return), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
@@ -1625,7 +1625,7 @@ class W4OS3_Avatar {
 		return $avatars;
 	}
 
-	static function validate_user_avatars($value, $field = [], $old_value = NULL, $user_id = NULL) {
+	static function validate_user_avatars($value, $field = [], $oldvalue = NULL, $user_id = NULL) {
 		if($field['id'] != 'opensimulator_avatars') return $value;
 		if(empty($user_id)) return [];
 
