@@ -404,4 +404,70 @@ class W4OS3_Settings {
 		return $path;
 	}
 
+	public static function sanitize_config_files($fieldgroup, $field = null, $oldvalue = null) {
+		if(!is_array($fieldgroup)) return [];
+
+		foreach($fieldgroup as $option => $path) {
+			if(!empty($path)) {
+				$fallback = (isset($oldvalue[$option])) ? $oldvalue[$option] : null;
+				switch($option) {
+					case 'custom_config':
+					break;
+
+					case 'binaries':
+					$fieldgroup[$option] = self::sanitize_binaries_dir($path, '', $fallback);
+					break;
+
+					case 'opensim_d':
+					$fieldgroup[$option] = self::sanitize_local_dir($path, '', $fallback);
+					break;
+
+					default:
+					$fieldgroup[$option] = self::sanitize_local_file($path, '', $fallback);
+				}
+			}
+		}
+
+		if(empty($fieldgroup['opensimdefaults_ini']) &! empty($fieldgroup['opensim_ini'])) {
+			$fallback = (isset($oldvalue['opensimdefaults_ini'])) ? $oldvalue['opensimdefaults_ini'] : null;
+			$fieldgroup['opensimdefaults_ini'] = self::sanitize_local_dir(dirname($fieldgroup['opensim_ini']), '', $fallback);
+		}
+
+		if( ! empty($fieldgroup['binaries']) ) {
+			$bin = $fieldgroup['binaries'];
+			$robust_ini = self::sanitize_local_file("$bin/Robust.HG.ini", [ 'silent' => true ]);
+			$robust_ini = (empty($robust_ini)) ? self::sanitize_local_file("$bin/Robust.ini", [ 'silent' => true ]) : $robust_ini;
+			$fieldgroup = array_merge( $fieldgroup, array(
+				'core_robust_ini' => $robust_ini,
+				'core_opensim_ini' => self::sanitize_local_file("$bin/OpenSim.ini"),
+				'core_opensimdefaults_ini' => self::sanitize_local_file("$bin/OpenSimDefaults.ini"),
+			));
+			// $bindir = sanitize_local_dir($option['binaries']);
+			// $options = array(
+			// 	'robust_'
+			// )
+		}
+
+		return $fieldgroup;
+	}
+
+	public static function sanitize_login_uri($uri, $field = null, $oldvalue = null) {
+		if(empty($uri)) return;
+		$submitted = $uri;
+		$uri = preg_replace('+.*://([^[/\?]]*)+', '$1', $uri);
+		$uri = preg_replace('+[/\?].*+', '', $uri);
+		if(empty('http://' . sanitize_url($uri))) {
+			w4os_admin_notice( sprintf( __('%s is not a valid login URI.', 'w4os'), '<code>' . $uri . '</code>'), 'error');
+			return $oldvalue;
+		}
+		return $uri;
+	}
+
+	public static function sanitize_grid_name($value, $field = null, $oldvalue = null) {
+		$submitted = $value;
+		$grid_info = w4os_get_grid_info();
+		$value = (isset($grid_info['gridname'])) ? $grid_info['gridname'] : null;
+		error_log(__FUNCTION__ . "\n$submitted\n$value\n" . print_r($grid_info, true));
+		return $value;
+	}
 }
