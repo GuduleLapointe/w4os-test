@@ -343,6 +343,7 @@ class W4OS3_Settings {
 		if($config_file) {
 			$config = self::parse_config_file($config_file);
 			$values = self::parse_values($config, $config);
+			$values = self::parse_values($values, $values);
 			$html .= '<pre>' . print_r($values, true) . '</pre>';
 		}
 
