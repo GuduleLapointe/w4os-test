@@ -6,7 +6,7 @@
 - Requires at least: 5.3.0
 - Requires PHP: 7.4
 - Tested up to: 6.0.1
-- Stable tag: 2.3.7
+- Stable tag: 2.3.9
 - License: AGPLv3
 - License URI: <https://www.gnu.org/licenses/agpl-3.0.txt>
 
