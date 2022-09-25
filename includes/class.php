@@ -75,8 +75,8 @@ class W4OS {
 		}
 		$this->plugin_name = 'w4os';
 
-		define('W4OS_PATTERN_NAME', '[A-Za-z][A-Za-z0-9]* [A-Za-z][A-Za-z0-9]*');
-		define('OPENSIM_GRID_NAME', W4OS::get_option('grid_name'));
+		define( 'W4OS_PATTERN_NAME', '[A-Za-z][A-Za-z0-9]* [A-Za-z][A-Za-z0-9]*' );
+		define( 'OPENSIM_GRID_NAME', self::get_option( 'grid_name' ) );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -115,7 +115,6 @@ class W4OS {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-i18n.php';
 
-
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
@@ -131,7 +130,7 @@ class W4OS {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-avatar.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
 
-		$this->loader = new W4OS_Loader();
+		$this->loader    = new W4OS_Loader();
 		$this->loaders[] = new W4OS3_Settings();
 		$this->loaders[] = new W4OS3_Avatar();
 	}
@@ -192,9 +191,9 @@ class W4OS {
 	 */
 	public function run() {
 		$this->loader->run();
-		if(!empty($this->loaders) && is_array($this->loaders)) {
-			foreach($this->loaders as $key => $loader) {
-				$this->loaders[$key]->run();
+		if ( ! empty( $this->loaders ) && is_array( $this->loaders ) ) {
+			foreach ( $this->loaders as $key => $loader ) {
+				$this->loaders[ $key ]->run();
 			}
 		}
 	}
@@ -230,20 +229,22 @@ class W4OS {
 		return $this->version;
 	}
 
-	static function sanitize_login_uri($value, $field, $oldvalue, $object_id) {
+	static function sanitize_login_uri( $value, $field, $oldvalue, $object_id ) {
 		// TODO: actual sanitization
-	  if($value != $oldvalue) {
+		if ( $value != $oldvalue ) {
 			// TODO: fetch grid info again
 		}
-	  return $value;
+		return $value;
 	}
 
-	static function is_new_post($args = null){
-	    global $pagenow;
-	    //make sure we are on the backend
-	    if (!is_admin()) return false;
-	    return in_array( $pagenow, array( 'post-new.php' ) );
-	    //   return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
+	static function is_new_post( $args = null ) {
+		global $pagenow;
+		// make sure we are on the backend
+		if ( ! is_admin() ) {
+			return false;
+		}
+		return in_array( $pagenow, array( 'post-new.php' ) );
+		// return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
 	}
 
 	static function get_option( $option, $default = false ) {

@@ -44,12 +44,12 @@ class W4OS_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $w4os       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $w4os       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $w4os, $version ) {
 
-		$this->w4os = $w4os;
+		$this->w4os    = $w4os;
 		$this->version = $version;
 
 	}
