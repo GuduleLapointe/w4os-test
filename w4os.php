@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 if(!defined('W4OS_VERSION')) {
-	define( 'W4OS_VERSION', '3.x-dev');
+	define( 'W4OS_VERSION', '3.x-dev' . time() );
 
 	/**
 	 * The code that runs during plugin activation.
