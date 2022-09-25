@@ -213,7 +213,7 @@ class W4OS3_Settings {
 			'parent'     => 'w4os',
 			'capability' => 'manage_options',
 			'style'      => 'no-boxes',
-			'icon_url'   => 'dashicons-admin-generic',
+			// 'icon_url'   => 'dashicons-admin-generic',
 		];
 
 		return $settings_pages;
@@ -244,10 +244,109 @@ class W4OS3_Settings {
 					'style'             => 'rounded',
 					'std'               => true,
 				],
+				[
+					'name'              => __( 'Robust INI file', 'w4os' ),
+					'id'                => $prefix . 'robust_ini',
+					'type'              => 'text',
+				],
+				[
+						'name'     => __( 'Debug', 'w4os' ),
+						'id'       => $prefix . 'debug_html',
+						'type'     => 'custom_html',
+						'callback' => 'W4OS3_Settings::debug_callback',
+				],
 			],
 		];
 
 		return $meta_boxes;
 	}
 
+	public static function get_constant_value($config, $value) {
+		if(preg_match('/\${.*}/', $value)) {
+			$array = preg_split('/[\$}]/', $value);
+			foreach ($array as $index => $string) {
+				if(preg_match('/{.*\|/', $string)) {
+					$section = preg_replace( '/{(.*)\|.*/', '$1', $string );
+					$param = preg_replace( '/^{.*\|(.*)/', '$1', $string );
+					if(isset($config[$section]) && is_array($config[$section])) {
+						$array[$index] = $config[$section][$param];
+					} else {
+						error_log("Could not parse \$$string}");
+						$array[$index] = "\$$string}";
+						break;
+					}
+				}
+			}
+			$value = join('', $array);
+		}
+
+		return $value;
+	}
+
+	public static function parse_values($config, $values) {
+		foreach($values as $key => $value) {
+			switch (gettype($value)) {
+				case 'array':
+				$values[$key] = self::parse_values($config, $value);
+				break;
+
+				case 'string':
+				$values[$key] = self::get_constant_value($config, $value);
+				break;
+			}
+		}
+		return $values;
+	}
+
+	public static function parse_config_file($config_file, $config = []) {
+		$cleanup = self::cleanup_ini($config_file);
+		// // $cleanup = preg_replace('/\n[[:blank:]]*;.*/', '', $cleanup);
+		// // $cleanup = preg_replace('/\n[[:blank:]]*\n+/', "\n", $cleanup);
+		// $cleanup = preg_replace('/[[:blank:]]*=[[:blank:]]*([^"]*\$[^"]*)\n/', ' = "$1"', $cleanup);
+		// $cleanup = preg_replace('/\$/', '\\\$', $cleanup);
+		// $tempfile = '/home/magic/domains/w4os.org/tmp/www/www/robust-config-clean.ini';
+		$tempfile = wp_tempnam('w4os-config-clean');
+		file_put_contents($tempfile, $cleanup);
+		$parse = parse_ini_file($tempfile, true);
+		$config = array_merge($config, $parse);
+		unlink($tempfile);
+
+		// foreach($parse as $section => $options) {
+		// 	foreach($options as $option => $value) {
+		// 		if(preg_match('/^Include-/', $option) ) {
+		// 			$include = self::get_constant_value($config, $value);
+		// 			error_log(__FUNCTION__ . " merging $include");
+		// 			$config = array_merge($config, self::parse_config_file($include, $config));
+		// 		}
+		// 	}
+		// }
+
+		return $config;
+	}
+
+	public static function cleanup_ini($ini_file) {
+		$cleanup = file($ini_file);
+		if(! $cleanup) return [];
+		if(!is_array($cleanup)) error_log("$cleanup $ini_file is not an array");
+		$cleanup = preg_replace('/^[[:blank:]]*([^=]*)[[:blank:]]*=[[:blank:]]*([^"]*\${.*)$/', '$1 = "$2"', $cleanup);
+		$cleanup = preg_replace("/\n/", '', $cleanup);
+		// $cleanup = preg_replace('/^/', 'begin', $cleanup);
+		$cleanup = preg_replace('/\$/', '\\\$', $cleanup);
+		// return '<pre>' . print_r($cleanup, true) . '</pre>';
+		return join("\n", $cleanup);
+	}
+
+	public static function debug_callback() {
+		$html = '';
+		$config_file = W4OS::get_option('robust_ini', false);
+		// return '<pre>' . print_r(self::cleanup_ini($config_file), true) . '</pre>';
+
+		if($config_file) {
+			$config = self::parse_config_file($config_file);
+			$values = self::parse_values($config, $config);
+			$html .= '<pre>' . print_r($values, true) . '</pre>';
+		}
+
+		return $html;
+	}
 }
