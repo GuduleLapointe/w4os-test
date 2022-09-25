@@ -13,7 +13,7 @@
 /**
  * Grid info
  */
-define('OPENSIM_GRID_NAME', get_option('w4os_grid_name', 'OpenSimulator'));
+if ( ! defined('OPENSIM_GRID_NAME') ) define('OPENSIM_GRID_NAME', get_option('w4os_grid_name', 'OpenSimulator'));
 define('OPENSIM_LOGIN_URI', W4OS_GRID_LOGIN_URI);
 define("OPENSIM_MAIL_SENDER", get_option('w4os_offline_sender', 'no-reply@' . $_SERVER['SERVER_NAME']));
 // define('OPENSIM_GRID_LOGO_URL', (get_theme_mod( 'custom_logo' )) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) , 'full' )[0] : '');

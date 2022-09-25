@@ -208,6 +208,10 @@ class W4OS3_Settings {
 
 		$settings_pages[] = [
 			'menu_title' => __( 'Settings', 'w4os' ),
+			'page_title' => sprintf(
+				__( '%s Settings', 'w4os' ),
+				OPENSIM_GRID_NAME,
+			),
 			'id'         => 'w4os_settings',
 			// 'position'   => 2,
 			'parent'     => 'w4os',

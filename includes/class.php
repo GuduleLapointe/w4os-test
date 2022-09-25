@@ -76,6 +76,7 @@ class W4OS {
 		$this->plugin_name = 'w4os';
 
 		define('W4OS_PATTERN_NAME', '[A-Za-z][A-Za-z0-9]* [A-Za-z][A-Za-z0-9]*');
+		define('OPENSIM_GRID_NAME', W4OS::get_option('grid_name'));
 
 		$this->load_dependencies();
 		$this->set_locale();
