@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24293f3437aab3ea7152f847a2539614",
+    "content-hash": "23bb00554f60a8bb12024a814b56add1",
     "packages": [
         {
             "name": "composer/installers",
@@ -206,6 +206,18 @@
             "type": "wordpress-plugin"
         },
         {
+            "name": "meta-box/meta-box-group",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://metabox.io/?action=download&product=meta-box-group&api_key=42ecdf32b0e76fe7766bc340ad82046b"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
             "name": "node83/name-generator",
             "version": "1.0",
             "source": {
@@ -247,16 +259,16 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.4.2",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "7d8e830b6387410ccf11708194d3836f01cb2942"
+                "reference": "519cfa20db89eb85511cad08301d3fa33522ed8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/7d8e830b6387410ccf11708194d3836f01cb2942",
-                "reference": "7d8e830b6387410ccf11708194d3836f01cb2942",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/519cfa20db89eb85511cad08301d3fa33522ed8b",
+                "reference": "519cfa20db89eb85511cad08301d3fa33522ed8b",
                 "shasum": ""
             },
             "require-dev": {
@@ -281,22 +293,22 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.4.2"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.5.2"
             },
-            "time": "2022-06-08T15:46:07+00:00"
+            "time": "2022-09-16T15:31:00+00:00"
         },
         {
             "name": "wpmetabox/meta-box",
-            "version": "5.6.6",
+            "version": "5.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f"
+                "reference": "80d328c89d4a899b2210e8b9ecd14ba9c8fbe689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
-                "reference": "2c49a50ca1e1b3a3aef57c1c81d6be5d659d0b5f",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/80d328c89d4a899b2210e8b9ecd14ba9c8fbe689",
+                "reference": "80d328c89d4a899b2210e8b9ecd14ba9c8fbe689",
                 "shasum": ""
             },
             "type": "wordpress-plugin",
@@ -325,9 +337,9 @@
             ],
             "support": {
                 "issues": "https://github.com/wpmetabox/meta-box/issues",
-                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.6"
+                "source": "https://github.com/wpmetabox/meta-box/tree/5.6.7"
             },
-            "time": "2022-08-05T04:16:39+00:00"
+            "time": "2022-09-16T08:53:18+00:00"
         }
     ],
     "packages-dev": [],
@@ -337,7 +349,8 @@
         "meta-box/mb-settings-page": 20,
         "meta-box/meta-box-conditional-logic": 20,
         "meta-box/meta-box-columns": 20,
-        "meta-box/mb-admin-columns": 20
+        "meta-box/mb-admin-columns": 20,
+        "meta-box/meta-box-group": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

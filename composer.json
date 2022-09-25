@@ -9,7 +9,8 @@
         "meta-box/meta-box-conditional-logic": "dev-master",
         "meta-box/meta-box-columns": "dev-master",
         "node83/name-generator": "^1.0",
-        "meta-box/mb-admin-columns": "dev-master"
+        "meta-box/mb-admin-columns": "dev-master",
+        "meta-box/meta-box-group": "dev-master"
     },
     "autoload": {
       "files": [
@@ -18,6 +19,7 @@
         "vendor/meta-box/mb-settings-page/mb-settings-page.php",
         "vendor/meta-box/meta-box-conditional-logic/meta-box-conditional-logic.php",
         "vendor/meta-box/meta-box-columns/meta-box-columns.php",
+        "vendor/meta-box/meta-box-group/meta-box-group.php",
         "vendor/woocommerce/action-scheduler/action-scheduler.php",
         "vendor/meta-box/mb-admin-columns/mb-admin-columns.php"
       ]

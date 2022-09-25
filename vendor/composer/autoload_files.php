@@ -11,6 +11,7 @@ return array(
     '687e88d103d3c7b7e29ca5e836cb2272' => $vendorDir . '/meta-box/mb-settings-page/mb-settings-page.php',
     'd625401fcd6c5ef99e9ddf76eb29ba78' => $vendorDir . '/meta-box/meta-box-conditional-logic/meta-box-conditional-logic.php',
     'd46e9eb4d08a138d32890bfd33c08c32' => $vendorDir . '/meta-box/meta-box-columns/meta-box-columns.php',
+    'e689b9619e9752623f82a67f0b829350' => $vendorDir . '/meta-box/meta-box-group/meta-box-group.php',
     '3cdaf8a7feac7dab25a504ea4957b65a' => $vendorDir . '/woocommerce/action-scheduler/action-scheduler.php',
     'be497f88b773aa5c9974da46821effab' => $vendorDir . '/meta-box/mb-admin-columns/mb-admin-columns.php',
 );
