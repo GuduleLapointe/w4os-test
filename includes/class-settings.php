@@ -300,26 +300,25 @@ class W4OS3_Settings {
 
 	public static function parse_config_file($config_file, $config = []) {
 		$cleanup = self::cleanup_ini($config_file);
-		// // $cleanup = preg_replace('/\n[[:blank:]]*;.*/', '', $cleanup);
-		// // $cleanup = preg_replace('/\n[[:blank:]]*\n+/', "\n", $cleanup);
-		// $cleanup = preg_replace('/[[:blank:]]*=[[:blank:]]*([^"]*\$[^"]*)\n/', ' = "$1"', $cleanup);
-		// $cleanup = preg_replace('/\$/', '\\\$', $cleanup);
-		// $tempfile = '/home/magic/domains/w4os.org/tmp/www/www/robust-config-clean.ini';
+		if(empty($cleanup)) {
+			error_log("$config_file is empty or unreadable");
+			return $config;
+		}
+
 		$tempfile = wp_tempnam('w4os-config-clean');
 		file_put_contents($tempfile, $cleanup);
 		$parse = parse_ini_file($tempfile, true);
 		$config = array_merge($config, $parse);
 		unlink($tempfile);
 
-		// foreach($parse as $section => $options) {
-		// 	foreach($options as $option => $value) {
-		// 		if(preg_match('/^Include-/', $option) ) {
-		// 			$include = self::get_constant_value($config, $value);
-		// 			error_log(__FUNCTION__ . " merging $include");
-		// 			$config = array_merge($config, self::parse_config_file($include, $config));
-		// 		}
-		// 	}
-		// }
+		foreach($parse as $section => $options) {
+			foreach($options as $option => $value) {
+				if(preg_match('/^Include-/', $option) ) {
+					$include = self::get_constant_value($config, $value);
+					$config = array_merge($config, self::parse_config_file($include, $config));
+				}
+			}
+		}
 
 		return $config;
 	}
