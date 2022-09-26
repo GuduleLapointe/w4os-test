@@ -238,14 +238,14 @@ class W4OS3_Settings {
 					'placeholder'       => __( 'yourgrid.org:8002', 'w4os' ),
 					'sanitize_callback' => 'W4OS3_Settings::sanitize_login_uri',
 				),
-				array(
-					'name'              => __( 'Grid Name', 'w4os' ),
-					'id'                => $prefix . 'grid_name',
-					'type'              => 'text',
-					'placeholder'       => __( 'Your Grid', 'w4os' ),
-					'readonly'          => true,
-					'sanitize_callback' => 'W4OS3_Settings::sanitize_grid_name',
-				),
+				// array(
+				// 'name'              => __( 'Grid Name', 'w4os' ),
+				// 'id'                => $prefix . 'grid_name',
+				// 'type'              => 'text',
+				// 'placeholder'       => __( 'Your Grid', 'w4os' ),
+				// 'readonly'          => true,
+				// 'sanitize_callback' => 'W4OS3_Settings::sanitize_grid_name',
+				// ),
 				array(
 					'id'                => $prefix . 'simulator_config',
 					'type'              => 'group',
@@ -416,14 +416,14 @@ class W4OS3_Settings {
 		$tempfile = wp_tempnam( 'w4os-config-clean' );
 		file_put_contents( $tempfile, $cleanup );
 		$parse  = parse_ini_file( $tempfile, true );
-		$config = array_merge( $config, $parse );
+		$config = array_replace_recursive( $config, $parse );
 		unlink( $tempfile );
 
 		foreach ( $parse as $section => $options ) {
 			foreach ( $options as $option => $value ) {
 				if ( preg_match( '/^Include-/', $option ) ) {
 					$include = self::get_constant_value( $config, $value );
-					$config  = array_merge( $config, self::parse_config_file( $include, $config ) );
+					$config  = array_replace_recursive( $config, self::parse_config_file( $include, $config ) );
 				}
 			}
 		}
@@ -448,12 +448,36 @@ class W4OS3_Settings {
 	}
 
 	public static function debug_callback() {
-		$html        = '';
-		$config_file = W4OS::get_option( 'robust_ini', false );
-		// return '<pre>' . print_r(self::cleanup_ini($config_file), true) . '</pre>';
+		$html             = '';
+		$simulator_config = W4OS::get_option( 'simulator_config', false );
 
-		if ( $config_file ) {
-			$config = self::parse_config_file( $config_file );
+		$simulator_config = array_merge(
+			array(
+				'robust_ini'               => null,
+				'opensim_ini'              => null,
+				'opensimdefaults_ini'      => null,
+				'opensim_d'                => null,
+				'core_robust_ini'          => null,
+				'core_opensim_ini'         => null,
+				'core_opensimdefaults_ini' => null,
+			),
+			$simulator_config
+		);
+
+		if ( isset( $simulator_config['custom_config'] ) ) {
+			$inis = $simulator_config;
+		} else {
+			$inis = array(
+				'robust_ini'          => $simulator_config['core_robust_ini'],
+				'opensim_ini'         => $simulator_config['core_opensim_ini'],
+				'opensimdefaults_ini' => $simulator_config['core_opensimdefaults_ini'],
+			);
+		}
+
+		$config = [];
+		if ( ! empty( $inis['opensim_ini'] ) ) {
+			$config = self::parse_config_file( $inis['opensimdefaults_ini'] );
+			$config = self::parse_config_file( $inis['opensim_ini'], $config );
 			$values = self::parse_values( $config, $config );
 			$values = self::parse_values( $values, $values );
 			$html  .= '<pre>' . print_r( $values, true ) . '</pre>';
@@ -554,7 +578,7 @@ class W4OS3_Settings {
 
 		if ( empty( $fieldgroup['opensimdefaults_ini'] ) & ! empty( $fieldgroup['opensim_ini'] ) ) {
 			$fallback                          = ( isset( $oldvalue['opensimdefaults_ini'] ) ) ? $oldvalue['opensimdefaults_ini'] : null;
-			$fieldgroup['opensimdefaults_ini'] = self::sanitize_local_dir( dirname( $fieldgroup['opensim_ini'] ), '', $fallback );
+			$fieldgroup['opensimdefaults_ini'] = self::sanitize_local_file( dirname( $fieldgroup['opensim_ini'] ) . '/OpenSimDefaults.ini', '', $fallback );
 		}
 
 		if ( ! empty( $fieldgroup['binaries'] ) ) {
