@@ -126,7 +126,7 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 
 == Changelog ==
 
-= Unreleased =
+= Unreleased (3.0.1-dev.984) =
 * added Robust INI file option to settings page
 
 = 3.x-dev =
