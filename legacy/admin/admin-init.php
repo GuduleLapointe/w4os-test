@@ -161,7 +161,7 @@ function w4os_date( $format, $timestamp = null, $timezone = null ) {
 //       '<option value="%1$s" %3$s>%2$s</option>',
 //       esc_attr($value),
 //       esc_attr($label),
-//       esc_html(( $_GET['filter_avatar_'. $position ] == $value ) ? 'selected' : ''),
+//       esc_html( ( isset( $_GET[$param] ) && $_GET[$param] === $value ) ? 'selected' : '' ),
 //     );
 //   }
 //
@@ -185,8 +185,8 @@ function w4os_date( $format, $timestamp = null, $timezone = null ) {
 // {
 //   global $pagenow;
 //   if (is_admin() && 'users.php' == $pagenow) {
-//     if( $_GET['filter_avatar_top'] ) $value = $_GET['filter_avatar_top'];
-//     else $value = $_GET['filter_avatar_bottom'] ? $_GET['filter_avatar_bottom'] : null;
+//     if( isset ( $_GET['filter_avatar_top'] ) ) $value = $_GET['filter_avatar_top'];
+//     else $value = isset ( $_GET['filter_avatar_bottom'] ) ? $_GET['filter_avatar_bottom'] : null;
 //
 //     if ( !empty($value) )
 //     {
