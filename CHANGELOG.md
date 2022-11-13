@@ -1,7 +1,10 @@
 ## Changelog
 
-### Unreleased (3.0.1-dev.985)
-- added Robust INI file option to settings page
+### Unreleased (3.0.1-dev.997)
+- fix w4os_profile_sync() fatal error when profiles are disabled
+- fix minor PHP8 warnings
+- fix fatal error when wp object is passed as user_id
+- tested up to WP 6.1, minimum php 7.3
 
 ### 3.x-dev
 
@@ -13,6 +16,15 @@
 - new **avatar post type** (contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task)
 - default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
 - splash page improvement (remove headers, footer and sidebars)
+
+### 2.3.11-dev
+- fix w4os_profile_sync() fatal error when profiles are disabled
+- fix minor PHP8 warnings
+- fix fatal error when wp object is passed as user_id
+
+### 2.3.10
+- minor fixes (profile page title, profile image, profile text display)
+- tested up to WP 6.1, minimum php 7.3
 
 ### 2.3.9
 - tested up to wp 6.0.2
