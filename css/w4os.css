@@ -150,6 +150,7 @@ img.model-picture {
   font-weight: bold;
   margin-right: 20px;
 }
+.single-avatar main .wp-post-image,
 .profileImage > img,
 .profile-pic > img,
 img.avatar {
