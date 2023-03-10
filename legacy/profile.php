@@ -627,105 +627,105 @@ add_action( 'user_register', 'w4os_user_register', 10, 1);
 //   return $newavatar_uuid;
 // }
 
-// function w4os_avatar_creation_form ($user) {
-//   if(!W4OS_DB_CONNECTED) return;
-//   if($user != wp_get_current_user()) return;
-//
-//   global $w4osdb;
-//
-//   $content = "<p class='description'>"
-//   . __("You need an avatar to explore our virtual world.", 'w4os')
-//   . ' ' . __('Choose a name below. This is how people will see you in-world. Once set, your avatar name cannot be changed.', 'w4os') . "</p>";
-//
-//   $content .= "<form class='edit-account wrap' action='' method='post'>";
-//   $action = 'w4os_create_avatar';
-//
-//   if(isset($_REQUEST['w4os_firstname']) && isset($_REQUEST['w4os_lastname'])) {
-//     $firstname = sanitize_text_field($_REQUEST['w4os_firstname']);
-//     $lastname = sanitize_text_field($_REQUEST['w4os_lastname']);
-//   } else if (!empty(get_user_meta( $user->ID, 'first_name', true )) &! !empty(get_user_meta( $user->ID, 'last_name', true )) ) {
-//     $firstname = get_user_meta( $user->ID, 'first_name', true );
-//     $lastname = get_user_meta( $user->ID, 'last_name', true );
-//   } else {
-//     $namearray = preg_split('/[ \._-]/', $user->user_login);
-//     $firstname = (isset($namearray[0])) ? ucfirst($namearray[0]) : '';
-//     $lastname = (isset($namearray[1])) ? ucfirst($namearray[1]) : '';
-//   }
-//
-//   $firstname = sanitize_text_field(preg_replace("/[^[:alnum:]]/", "", $firstname ));
-//   $lastname  = sanitize_text_field(preg_replace("/[^[:alnum:]]/", "", $lastname ));
-//
-//   $content .= "
-//   <div class='clear'></div>
-//   <p class='form-row form-row-first'>
-//     <label for='w4os_firstname'>" . __("Avatar first name", "w4os") . "&nbsp;<span class='required'>*</span></label>
-//     <input type='text' class='input-text' name='w4os_firstname' id='w4os_firstname' autocomplete='given-name' value='" . esc_attr($firstname) . "' required>
-//   </p>
-//   <p class='form-row form-row-last'>
-//     <label for='w4os_lastname'>" . __("Avatar last name", "w4os") . "&nbsp;<span class='required'>*</span></label>
-//     <input type='text' class='input-text' name='w4os_lastname' id='w4os_lastname' autocomplete='family-name' value='" . esc_attr($lastname) . "' required>
-//   </p>
-//   <div class='clear'></div>
-//   <p class='form-row form-row-wide'>
-//     <label for='w4os_password_1'>" . __('Confirm your password', 'w4os') . "</label>
-//     <span class='password-input'><input type='password' class='input-text' name='w4os_password_1' id='w4os_password_1' autocomplete='off' required><span class='show-password-input'></span></span>
-//     <p class=description>" . __('Your in-world Avatar password is the same as your password on this website.', 'w4os') . "</p>
-//   </p>
-//   ";
-//
-//   $models=$w4osdb->get_results("SELECT FirstName, LastName, profileImage, profileAboutText
-//     FROM UserAccounts LEFT JOIN userprofile ON PrincipalID = userUUID
-//     WHERE active = true
-//     AND (FirstName = '" . get_option('w4os_model_firstname') . "'
-//     OR LastName = '" . get_option('w4os_model_lastname') . "')
-//     ORDER BY FirstName, LastName"
-//   );
-//   if($models) {
-//     $content.= "<div class='clear'></div>
-//     <p class=form-row>
-//       <label>" . __('Your initial appearance', 'w4os') . "</label>
-//       <p class=description>" . __('You can change it as often as you want in the virtual world.', 'w4os') . "</p>
-//       <p class='field-model'>";
-//     $random_model = rand(1, count($models));
-//     $m = 0;
-//     foreach($models as $model) {
-//       $m++;
-//       // if($model_name == W4OS_DEFAULT_AVATAR) $checked = " checked"; else $checked="";
-//       $checked = ($m == $random_model) ? 'checked' : '';
-//       $model_name = $model->FirstName . " " . $model->LastName;
-//       $model_display_name = $model_name;
-//       if(get_option('w4os_model_firstname') != "")
-//       $model_display_name = preg_replace('/ *' . get_option('w4os_model_firstname'). ' */', '', $model_display_name);
-//       if(get_option('w4os_model_lastname') != "")
-//       $model_display_name = preg_replace('/ *' . get_option('w4os_model_lastname'). ' */', '', $model_display_name);
-//       $model_display_name = preg_replace('/(.*) *Ruth2 *(.*)/', '\1 \2 <span class="r2">Ruth 2.0</span>', $model_display_name);
-//       $model_display_name = preg_replace('/(.*) *Roth2 *(.*)/', '\1 \2 <span class="r2">Roth 2.0</span>', $model_display_name);
-//
-//       $model_imgid = (w4os_empty($model->profileImage)) ? W4OS_NOTFOUND_PROFILEPIC : $model->profileImage;
-//       $model_img =  "<img class='model-picture' src='" . w4os_get_asset_url($model_imgid) ."'>";
-//       if(empty($model_img)) $modelclass="no-picture";
-//       else $modelclass = "with-picture";
-//
-//       $content .= "
-//       <label class='model $modelclass'>
-//       <input type='radio' name='w4os_model' value='$model_name' $checked>
-//       <span class=model-name>$model_display_name</span>
-//       $model_img
-//       </label>";
-//     }
-//   }
-//   $content.= "</p>";
-//
-//   $content .= "
-//   <p>
-//     <input type='hidden' name='user_id' value='$user->ID'>
-//     <input type='hidden' name='action' value='$action'>
-//     <button type='submit' class='woocommerce-Button button' name='w4os_update_avatar' value='$action'>" . __("Save") . "</button>
-//   </p>";
-//
-//   $content .= "  </form>";
-//   return $content;
-// }
+function w4os_avatar_creation_form ($user) {
+  if(!W4OS_DB_CONNECTED) return;
+  if($user != wp_get_current_user()) return;
+
+  global $w4osdb;
+
+  $content = "<p class='description'>"
+  . __("You need an avatar to explore our virtual world.", 'w4os')
+  . ' ' . __('Choose a name below. This is how people will see you in-world. Once set, your avatar name cannot be changed.', 'w4os') . "</p>";
+
+  $content .= "<form class='edit-account wrap' action='' method='post'>";
+  $action = 'w4os_create_avatar';
+
+  if(isset($_REQUEST['w4os_firstname']) && isset($_REQUEST['w4os_lastname'])) {
+    $firstname = sanitize_text_field($_REQUEST['w4os_firstname']);
+    $lastname = sanitize_text_field($_REQUEST['w4os_lastname']);
+  } else if (!empty(get_user_meta( $user->ID, 'first_name', true )) &! !empty(get_user_meta( $user->ID, 'last_name', true )) ) {
+    $firstname = get_user_meta( $user->ID, 'first_name', true );
+    $lastname = get_user_meta( $user->ID, 'last_name', true );
+  } else {
+    $namearray = preg_split('/[ \._-]/', $user->user_login);
+    $firstname = (isset($namearray[0])) ? ucfirst($namearray[0]) : '';
+    $lastname = (isset($namearray[1])) ? ucfirst($namearray[1]) : '';
+  }
+
+  $firstname = sanitize_text_field(preg_replace("/[^[:alnum:]]/", "", $firstname ));
+  $lastname  = sanitize_text_field(preg_replace("/[^[:alnum:]]/", "", $lastname ));
+
+  $content .= "
+  <div class='clear'></div>
+  <p class='form-row form-row-first'>
+    <label for='w4os_firstname'>" . __("Avatar first name", "w4os") . "&nbsp;<span class='required'>*</span></label>
+    <input type='text' class='input-text' name='w4os_firstname' id='w4os_firstname' autocomplete='given-name' value='" . esc_attr($firstname) . "' required>
+  </p>
+  <p class='form-row form-row-last'>
+    <label for='w4os_lastname'>" . __("Avatar last name", "w4os") . "&nbsp;<span class='required'>*</span></label>
+    <input type='text' class='input-text' name='w4os_lastname' id='w4os_lastname' autocomplete='family-name' value='" . esc_attr($lastname) . "' required>
+  </p>
+  <div class='clear'></div>
+  <p class='form-row form-row-wide'>
+    <label for='w4os_password_1'>" . __('Confirm your password', 'w4os') . "</label>
+    <span class='password-input'><input type='password' class='input-text' name='w4os_password_1' id='w4os_password_1' autocomplete='off' required><span class='show-password-input'></span></span>
+    <p class=description>" . __('Your in-world Avatar password is the same as your password on this website.', 'w4os') . "</p>
+  </p>
+  ";
+
+  $models=$w4osdb->get_results("SELECT FirstName, LastName, profileImage, profileAboutText
+    FROM UserAccounts LEFT JOIN userprofile ON PrincipalID = userUUID
+    WHERE active = true
+    AND (FirstName = '" . get_option('w4os_model_firstname') . "'
+    OR LastName = '" . get_option('w4os_model_lastname') . "')
+    ORDER BY FirstName, LastName"
+  );
+  if($models) {
+    $content.= "<div class='clear'></div>
+    <p class=form-row>
+      <label>" . __('Your initial appearance', 'w4os') . "</label>
+      <p class=description>" . __('You can change it as often as you want in the virtual world.', 'w4os') . "</p>
+      <p class='field-model'>";
+    $random_model = rand(1, count($models));
+    $m = 0;
+    foreach($models as $model) {
+      $m++;
+      // if($model_name == W4OS_DEFAULT_AVATAR) $checked = " checked"; else $checked="";
+      $checked = ($m == $random_model) ? 'checked' : '';
+      $model_name = $model->FirstName . " " . $model->LastName;
+      $model_display_name = $model_name;
+      if(get_option('w4os_model_firstname') != "")
+      $model_display_name = preg_replace('/ *' . get_option('w4os_model_firstname'). ' */', '', $model_display_name);
+      if(get_option('w4os_model_lastname') != "")
+      $model_display_name = preg_replace('/ *' . get_option('w4os_model_lastname'). ' */', '', $model_display_name);
+      $model_display_name = preg_replace('/(.*) *Ruth2 *(.*)/', '\1 \2 <span class="r2">Ruth 2.0</span>', $model_display_name);
+      $model_display_name = preg_replace('/(.*) *Roth2 *(.*)/', '\1 \2 <span class="r2">Roth 2.0</span>', $model_display_name);
+
+      $model_imgid = (w4os_empty($model->profileImage)) ? W4OS_NOTFOUND_PROFILEPIC : $model->profileImage;
+      $model_img =  "<img class='model-picture' src='" . w4os_get_asset_url($model_imgid) ."'>";
+      if(empty($model_img)) $modelclass="no-picture";
+      else $modelclass = "with-picture";
+
+      $content .= "
+      <label class='model $modelclass'>
+      <input type='radio' name='w4os_model' value='$model_name' $checked>
+      <span class=model-name>$model_display_name</span>
+      $model_img
+      </label>";
+    }
+  }
+  $content.= "</p>";
+
+  $content .= "
+  <p>
+    <input type='hidden' name='user_id' value='$user->ID'>
+    <input type='hidden' name='action' value='$action'>
+    <button type='submit' class='woocommerce-Button button' name='w4os_update_avatar' value='$action'>" . __("Save") . "</button>
+  </p>";
+
+  $content .= "  </form>";
+  return $content;
+}
 
 function w4os_gridprofile_html($atts=[], $args=[] ) {
   if(!W4OS_DB_CONNECTED) return;
