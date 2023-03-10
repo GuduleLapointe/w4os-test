@@ -165,7 +165,7 @@ class W4OS3_Settings {
 			'', // callable function
 			// plugin_dir_path(__FILE__) . 'options.php', // slug
 			// null,	// callable function
-			plugin_dir_url( __DIR__ ) . 'images/opensimulator-logo-24x14.png', // icon url,
+			plugin_dir_url( __DIR__ ) . 'images/w4os-logo-16x16.png', // icon url,
 			2 // position
 		);
 
@@ -203,7 +203,7 @@ class W4OS3_Settings {
 		// 'capability'    => 'manage_options',
 		// 'style'         => 'no-boxes',
 		// 'columns'       => 1,
-		// 'icon_url'      => plugin_dir_url(__DIR__) . 'images/opensimulator-logo-24x14.png', // icon url,
+		// 'icon_url'      => plugin_dir_url(__DIR__) . 'images/w4os-logo-16x16.png', // icon url,
 		// ];
 
 		$settings_pages[] = array(
