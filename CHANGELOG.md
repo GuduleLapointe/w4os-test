@@ -1,6 +1,6 @@
 ## Changelog
 
-### Unreleased (3.0.1-dev.997)
+### Unreleased (3.0.1-dev.1001)
 - fix w4os_profile_sync() fatal error when profiles are disabled
 - fix minor PHP8 warnings
 - fix fatal error when wp object is passed as user_id
