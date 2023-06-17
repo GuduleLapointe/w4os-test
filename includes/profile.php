@@ -520,7 +520,7 @@ function w4os_create_avatar( $user, $params ) {
           $item = $uuids[0];
           $asset = $uuids[1];
           $destinventoryid = $w4osdb->get_var("SELECT inventoryID FROM inventoryitems WHERE assetID='$asset' AND avatarID='$newavatar_uuid'");
-          if(!$destitem) {
+          if(empty($destitem)) {
             $newitem = $w4osdb->get_row("SELECT * FROM inventoryitems WHERE assetID='$asset' AND avatarID='$model_uuid'", ARRAY_A);
             $destinventoryid = w4os_gen_uuid();
             $newitem['inventoryID'] = $destinventoryid;
@@ -532,7 +532,7 @@ function w4os_create_avatar( $user, $params ) {
           foreach($items as $item) {
             $asset = $w4osdb->get_var("SELECT assetID FROM inventoryitems WHERE inventoryID='$item'");
             $destinventoryid = $w4osdb->get_var("SELECT inventoryID FROM inventoryitems WHERE assetID='$asset' AND avatarID='$newavatar_uuid'");
-            if(!$destitem) {
+            if(empty($destitem)) {
               $newitem = $w4osdb->get_row("SELECT * FROM inventoryitems WHERE assetID='$asset' AND avatarID='$model_uuid'", ARRAY_A);
               $destinventoryid = w4os_gen_uuid();
               $newitem['inventoryID'] = $destinventoryid;
@@ -717,11 +717,12 @@ function w4os_profile_display( $user, $args=[] ) {
   if ($avatar->UUID) {
     $action = 'w4os_update_avatar';
     $leaveblank= " (" . __('leave blank to leave unchanged', "w4os") . ")";
-    $content.= sprintf(
-      '<div class=profile><div class=profile-pic>%1$s</div><div class=profile-details>%2$s</div></div>',
-      $avatar->profile_picture(),
-      $avatar->AvatarName,
-    );
+    $content.= $avatar->profile_page();
+    // $content.= sprintf(
+    //   '<div class=profile><div class=profile-pic>%1$s</div><div class=profile-details>%2$s</div></div>',
+    //   $avatar->profile_picture(),
+    //   $avatar->AvatarName,
+    // );
     // return $content;
   } else {
     $content .= sprintf( '<a href="%1$s">%2$s</a>', W4OS_PROFILE_URL, __("Create an avatar", 'w4os') );

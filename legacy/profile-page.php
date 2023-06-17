@@ -117,10 +117,10 @@ add_filter( 'login_errors', function( $error ) {
         $error = '<strong>ERROR</strong>: The password you entered is incorrect.';
         $class='fail';
       }
-
-      if($error) w4os_notice($error, $class);
-      else w4os_notice(join(', ', $err_codes));
     }
+
+    if($error) w4os_notice($error, $class);
+    else w4os_notice(join(', ', $err_codes));
 
     return $error;
 } );

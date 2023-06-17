@@ -1,32 +1,37 @@
-## Changelog
+# Changelog
 
-### Unreleased (3.0.1-dev.1001)
+## Unreleased (3.0.1-dev.1001)
+
 - fix w4os_profile_sync() fatal error when profiles are disabled
 - fix minor PHP8 warnings
 - fix fatal error when wp object is passed as user_id
-- tested up to WP 6.1, minimum php 7.3
 
-### 3.x-dev
+## 3.x-dev
 
 - new **allow multiple avatars** sharing the same email address or wp account
 - new **avatar creation from admin area**
 - new dedicated **avatar admin list**, including
+
   - name, WP owner, mail, uuid, last seen and (avatar) born date
   - filter per account type (regular, models, service accounts)
+
 - new **avatar post type** (contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task)
 - default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
 - splash page improvement (remove headers, footer and sidebars)
 
-### 2.3.11-dev
+## 2.3.11-dev
+
 - fix w4os_profile_sync() fatal error when profiles are disabled
 - fix minor PHP8 warnings
 - fix fatal error when wp object is passed as user_id
 
-### 2.3.10
+## 2.3.10
+
 - minor fixes (profile page title, profile image, profile text display)
 - tested up to WP 6.1, minimum php 7.3
 
-### 2.3.9
+## 2.3.9
+
 - tested up to wp 6.0.2
 - added password reset link to profile page
 - fix userprofile table queried even if not present when User Profiles are not enabled on robust
@@ -40,7 +45,7 @@
 - fix fatal error and warnings with popular-places shortcode
 - fix fatal error if php xml-rpc is not installed, show error notice instead
 
-### 2.3
+## 2.3
 
 - new search helper
 - new offline messages helper. Messages are stored in OfflineMessageModule V2 format, so one can switch between core and external service (fix #47)
@@ -53,7 +58,7 @@
 - separate helpers settings page
 - helpers migrated from old mysqli db connection method to PDO
 
-### 2.2.10
+## 2.2.10
 
 - tested up to wp 5.8.3
 - new web assets server
@@ -128,7 +133,7 @@
 
 - fix slow assets, store cached images in upload folder to serve them directly by the web server
 
-### 2.1
+## 2.1
 
 - added login form to gridprofile shortcode when not connected instead of login message
 - added w4os-shortcode classes
@@ -137,7 +142,7 @@
 - fix localisation not loading
 - shorter "Avatar" label, removed uuid in gridprofile shortcode
 
-### 2.0.8
+## 2.0.8
 
 - renamed plugin as w4os - OpenSimulator Web Interface
 - Now distributed via WordPress plugins directory
@@ -147,7 +152,7 @@
 - fix localizations not loading
 - fix regression, automatic updates restored. Users with version 2.0 to 2.0.3 will need to reinstall the plugin from source. Sorry.
 
-### 1.2.12
+## 1.2.12
 
 - added login page link to message displayed when trying to see profile while not connected
 - better css loading
@@ -159,7 +164,7 @@
 - fix wrong letter cases in auth table name
 - fix only show profile form for current user
 
-### 1.1.4
+## 1.1.4
 
 - added changelog, banners and icons to view details
 - fix "Yes" and "No" translations
@@ -167,6 +172,6 @@
 - fixed conflict with other extensions settings pages
 - changed update server library to [frogerme's WP Plugin Update Server](https://github.com/froger-me/wp-plugin-update-server)
 
-### Full log
+## Full log
 
 For full change history see [GitHub repository](https://github.com/GuduleLapointe/w4os/commits/master).

@@ -1,14 +1,13 @@
-=== w4os - OpenSimulator Web Interface (dev) ===
-
-- Contributors: magicoli69,gudulelapointe
-- Donate link: <https://w4os.org/donate/>
-- Tags: OpenSimulator, Second Life, metaverse, avatar, web interface, grids, standalone, hypergrid, 3D
-- Requires at least: 5.3.0
-- Requires PHP: 7.4
-- Tested up to: 6.0.1
-- Stable tag: 2.3.9
-- License: AGPLv3
-- License URI: <https://www.gnu.org/licenses/agpl-3.0.txt>
+=== w4os - OpenSimulator Web Interface ===
+Contributors: gudulelapointe,magicoli69
+Donate link: https://w4os.org/donate/
+Tags: OpenSimulator, Second Life, metaverse, avatar, web interface, grids, standalone, hypergrid, 3D
+Requires at least: 5.3.0
+Requires PHP: 7.3
+Tested up to: 6.1.1
+Stable tag: 2.3.13
+License: AGPLv3
+License URI: https://www.gnu.org/licenses/agpl-3.0.txt
 
 WordPress interface for OpenSimulator (w4os)
 
@@ -126,12 +125,6 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 
 == Changelog ==
 
-= Unreleased (3.0.1-dev.1001) =
-* fix w4os_profile_sync() fatal error when profiles are disabled
-* fix minor PHP8 warnings
-* fix fatal error when wp object is passed as user_id
-* tested up to WP 6.1, minimum php 7.3
-
 = 3.x-dev =
 
 - new **allow multiple avatars** sharing the same email address or wp account
@@ -142,6 +135,15 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 - new **avatar post type** (contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task)
 - default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
 - splash page improvement (remove headers, footer and sidebars)
+
+= 2.3.13 =
+* restored WooCommerce Account Dashboar avatar section
+* minor fixes (undefined constants and variables)
+
+= 2.3.12 =
+* fix w4os_profile_sync() fatal error when profiles are disabled
+* fix minor PHP8 warnings
+* fix fatal error when wp object is passed as user_id
 
 = 2.3.11-dev =
 * fix w4os_profile_sync() fatal error when profiles are disabled

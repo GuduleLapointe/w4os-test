@@ -1,21 +1,18 @@
-# w4os - OpenSimulator Web Interface (dev)
+# w4os - OpenSimulator Web Interface
 
-![Stable 2.3.9](https://badgen.net/badge/Stable/2.3.9/00aa00)
-![WordPress 5.3.0 - 6.1.1](https://badgen.net/badge/WordPress/5.3.0%20-%206.1.1/3858e9)
-![Requires PHP 7.4](https://badgen.net/badge/PHP/7.4/7884bf)
-![License AGPLv3](https://badgen.net/badge/License/AGPLv3/552b55)
+![Stable 2.3.9](https://badgen.net/badge/Stable/2.3.9/00aa00) ![WordPress 5.3.0 - 6.1.1](https://badgen.net/badge/WordPress/5.3.0%20-%206.1.1/3858e9) ![Requires PHP 7.4](https://badgen.net/badge/PHP/7.4/7884bf) ![License AGPLv3](https://badgen.net/badge/License/AGPLv3/552b55)
 
 WordPress interface for OpenSimulator (w4os).
 
 ## Description
 
-- *DO NOT USE THIS DEV BRANCH ON A LIVE GRID**. If your grid is live, if you have other users, if you can't afford losing data or functionalties, only use **the latest stable release** [from WordPress directory](https://wordpress.org/plugins/w4os-opensimulator-web-interface/), or [git master branch](https://github.com/GuduleLapointe/w4os/tree/master).
+- _DO NOT USE THIS DEV BRANCH ON A LIVE GRID**. If your grid is live, if you have other users, if you can't afford losing data or functionalties, only use** the latest stable release*_ [from WordPress directory](https://wordpress.org/plugins/w4os-opensimulator-web-interface/), or [git master branch](https://github.com/GuduleLapointe/w4os/tree/master).
 
 This is a **highly experimental developement branch**. It contains **unfinished code** and is **not really operational** and most likely **not secure**.
 
 That being said...
 
-- *w4os** is a ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). It provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
+- _w4os*_ is a ready to use WordPress interface for [OpenSimulator](http://opensimulator.org/). It provides user registration, default avatar model choice, login info, statistics and a web assets server for grids or standalone simulators.
 
 See **Features** and **Roadmap** sections for current and upcoming functionalties.
 
@@ -45,9 +42,11 @@ During the 3.x developement, the stable release (2.x) will still receive fixes a
 - **Grid info**: `[gridinfo]` shortcode and admin dashboard widgets
 - **Grid status**: `[gridstatus]` shortcode and admin dashboard widgets
 - **Avatar creation**:
+
   - Opensimulator section in standard wp account page
   - `[gridprofile]` shortcode can be inserted in any custom page
   - Avatar tab in account dashboard on WooCommerce websites
+
 - Choose avatar look from default models
 - Avatar and website passwords are synchronized
 - **Web profiles**: excerpt of the avatar's profile
@@ -55,9 +54,11 @@ During the 3.x developement, the stable release (2.x) will still receive fixes a
 - **Web assets server**: the needed bridge to display in-world images on a website
 - **Helpers**: currency, search, offline messages
 - **OpenSimulator settings page**:
+
   - grid name, login uri and database connection settings
   - naming scheme of default models
   - exclude models from grid stats
+
 - Web asset server
 - Login page / Widget
 - Manual and cron Grid/WP users sync
@@ -78,10 +79,12 @@ See (<https://github.com/GuduleLapointe/w4os/>) for complete status and changelo
 - [x] Web Assets server
 - [x] Helpers (search, currency, map...)
 - [ ] Improve avatar profile
+
   - Switch to allow web profile
   - Switch set in-world prefs for public profiles
   - Better basic layout
   - Web edit profile
+
 - Admin Start / Stop regions
 - Admin Create region
 - Admin Use sim/grid configuration file to fetch settings if on the same host
@@ -118,4 +121,3 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 2. Avatar registration form in WooCommerce My Account dashboard.
 3. Settings page
 4. Web assets server settings
-

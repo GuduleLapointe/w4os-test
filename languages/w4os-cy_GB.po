@@ -1583,16 +1583,24 @@ msgstr "Teclyn gwybodaeth grid"
 msgid "Title:"
 msgstr "Teitl:"
 
+#: includes/woocommerce.php:46 tmp/class-avatar.php:131
+msgid "Avatar"
+msgstr ""
+
+#: includes/woocommerce.php:88
+msgid "Your avatar: "
+msgstr ""
+
 #: templates/content-configuration.php:2
 msgid "this grid"
 msgstr "y grid hwn"
 
-#: templates/content-configuration.php:18
-msgid "Configuration"
+#: templates/content-configuration.php:20
+msgid "Viewer configuration"
 msgstr "Cyfluniad"
 
-#: templates/content-configuration.php:21
-msgid "Install the viewer"
+#: templates/content-configuration.php:23
+msgid "Install the viewer and open it."
 msgstr "Gosodwch y gwyliwr"
 
 #: templates/content-configuration.php:24
@@ -1603,32 +1611,32 @@ msgstr ""
 "Gallwch ddefnyddio <a href=\"%1$s\" target=_blank>unrhyw wyliwr cydnaws</a> "
 "i gael mynediad i %2$s."
 
-#: templates/content-configuration.php:30
+#: templates/content-configuration.php:32
 msgid "Add %1$s to your viewer"
 msgstr "Ychwanegu %1$s at eich syllwr"
 
-#: templates/content-configuration.php:31
+#: templates/content-configuration.php:33
 msgid "Instructions may vary depending on the viewer"
 msgstr "Gall cyfarwyddiadau amrywio yn dibynnu ar y gwyliwr"
 
-#: templates/content-configuration.php:33
+#: templates/content-configuration.php:35
 msgid "Select \"Preferences\" under the \"Viewer\" menu (or type Ctrl-P)"
 msgstr ""
 "Dewiswch \"Preferences\" o dan y ddewislen \"Viewer\" (neu teipiwch Ctrl-P)"
 
-#: templates/content-configuration.php:34
+#: templates/content-configuration.php:36
 msgid "Select \"OpenSim\", then \"Grid Manager\" tab"
 msgstr "Dewiswch \"OpenSim\", yna tab \"Rheolwr Grid\""
 
-#: templates/content-configuration.php:35
+#: templates/content-configuration.php:37
 msgid "Under \"Add new grid\", enter"
 msgstr "O dan \"Ychwanegu grid newydd\", nodwch"
 
-#: templates/content-configuration.php:37
+#: templates/content-configuration.php:39
 msgid "Click the \"Apply\" button"
 msgstr "Cliciwch ar y botwm \"Gwneud Cais\""
 
-#: templates/content-configuration.php:42
+#: templates/content-configuration.php:44
 msgid "Make sure %1$s is selected in the Grid menu"
 msgstr "Sicrhewch fod %1$s wedi ei ddewis yn newislen Grid"
 
@@ -1640,7 +1648,7 @@ msgstr ""
 "Rhowch enw cyntaf ac olaf eich avatar yn y blwch \"Enw Defnyddiwr\" a'ch "
 "cyfrinair yn y blwch \"Cyfrinair\""
 
-#: templates/content-configuration.php:44
+#: templates/content-configuration.php:46
 msgid "Click \"Log In\""
 msgstr "Cliciwch \"Mewngofnodi\""
 
@@ -1665,6 +1673,24 @@ msgstr "w4os - Rhyngwyneb Gwe OpenSimulator"
 #: w4os.php:126
 msgid "A stable release of %s is active. You should use %s and uninstall %s."
 msgstr ""
+
+#: w4os.php:44
+msgid ""
+"You already installed the official release of <strong>W4OS - OpenSimulator "
+"Web Interface</strong> from WordPress plugins directory. The developer "
+"version has been deactivated and should be uninstalled."
+msgstr ""
+"Rydych chi eisoes wedi gosod datganiad swyddogol <strong>W4OS - "
+"OpenSimulator Web Interface</strong> o gyfeiriadur ategion WordPress. Mae "
+"fersiwn y datblygwr wedi'i dadactifadu a dylid ei ddadosod."
+
+#: w4os.php:53
+msgid ""
+"Another version of <strong>W4OS - OpenSimulator Web Interface</strong> is "
+"installed and active. Duplicate disabled."
+msgstr ""
+"Mae fersiwn arall o <strong>W4OS - OpenSimulator Web Interface</strong> "
+"wedi'i osod ac yn weithredol. Analluogwyd dyblyg."
 
 #: blocks/popular-places/index.js:27 blocks/popular-places/index.js:79
 msgid "Popular Places"
