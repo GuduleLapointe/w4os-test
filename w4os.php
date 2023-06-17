@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-if(!defined('W4OS_VERSION')) {
+if ( ! defined( 'W4OS_VERSION' ) ) {
 	define( 'W4OS_VERSION', '3.0.1-dev.1001' . time() );
 
 	/**
@@ -86,50 +86,56 @@ if(!defined('W4OS_VERSION')) {
 	 * Load legacy structure untill it's rewritten
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'legacy/init.php';
-	if(file_exists(plugin_dir_path( __FILE__ ) . 'lib/package-updater.php'))
-	include_once plugin_dir_path( __FILE__ ) . 'lib/package-updater.php';
-
-	if(is_admin()) {
-		require_once (plugin_dir_path(__FILE__) . 'legacy/admin/admin-init.php');
+	if ( file_exists( plugin_dir_path( __FILE__ ) . 'lib/package-updater.php' ) ) {
+		include_once plugin_dir_path( __FILE__ ) . 'lib/package-updater.php';
 	}
 
+	if ( is_admin() ) {
+		require_once plugin_dir_path( __FILE__ ) . 'legacy/admin/admin-init.php';
+	}
 } else {
 	/**
 	 * Another version of the plugin is active and already loaded, so we just
 	 * behave and deactivate ourself
 	 */
-	add_action( 'admin_notices', function() {
-		printf (
-			"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
-			sprintf(
-				__("%s %s is installed and active. Deactivate it before activating another version.", 'w4os'),
-				'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('w4os - OpenSimulator Web Interface', 'w4os') )) . '<strong>',
-				W4OS_VERSION,
-			),
-		);
-	} );
-	deactivate_plugins(plugin_basename( __FILE__ ));
+	add_action(
+		'admin_notices',
+		function() {
+			printf(
+				"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
+				sprintf(
+					__( '%1$s %2$s is installed and active. Deactivate it before activating another version.', 'w4os' ),
+					'<strong>' . ( ( defined( 'W4OS_PLUGIN_NAME' ) ? W4OS_PLUGIN_NAME : __( 'w4os - OpenSimulator Web Interface', 'w4os' ) ) ) . '<strong>',
+					W4OS_VERSION,
+				),
+			);
+		}
+	);
+	deactivate_plugins( plugin_basename( __FILE__ ) );
 }
 
 /**
  * Just a last check to give stable release priority if it is about to load
  */
-$w4os_release = "w4os-opensimulator-web-interface/w4os.php";
+$w4os_release = 'w4os-opensimulator-web-interface/w4os.php';
 $w4os_current = plugin_basename( __FILE__ );
 if ( $w4os_current != $w4os_release ) {
 	$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
-	if (in_array($w4os_release, apply_filters( 'active_plugins', get_option( 'active_plugins' )))) {
-		add_action( 'admin_notices', function() use ($w4os_release, $w4os_current) {
-			printf (
-				"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
-				sprintf(
-					__("A stable release of %s is active. You should use %s and uninstall %s.", 'w4os'),
-					'<strong>' . ((defined('W4OS_PLUGIN_NAME') ? W4OS_PLUGIN_NAME : __('w4os - OpenSimulator Web Interface', 'w4os') )) . '</strong>',
-					(empty($w4os_release)) ? 'it' : '<code>' . $w4os_release . '</code>',
-					(empty($w4os_current)) ? 'any other versions' : '<code>' . $w4os_current . '</code>',
-				),
-			);
-		} );
+	if ( in_array( $w4os_release, apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		add_action(
+			'admin_notices',
+			function() use ( $w4os_release, $w4os_current ) {
+				printf(
+					"<div class='notice notice-error'><p><strong>W4OS:</strong> %s</p></div>",
+					sprintf(
+						__( 'A stable release of %1$s is active. You should use %2$s and uninstall %3$s.', 'w4os' ),
+						'<strong>' . ( ( defined( 'W4OS_PLUGIN_NAME' ) ? W4OS_PLUGIN_NAME : __( 'w4os - OpenSimulator Web Interface', 'w4os' ) ) ) . '</strong>',
+						( empty( $w4os_release ) ) ? 'it' : '<code>' . $w4os_release . '</code>',
+						( empty( $w4os_current ) ) ? 'any other versions' : '<code>' . $w4os_current . '</code>',
+					),
+				);
+			}
+		);
 		// deactivate_plugins($w4os_current);
 	}
 }

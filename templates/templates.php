@@ -3,62 +3,77 @@
 
 add_action( 'template_include', 'w4os_template_include' );
 function w4os_template_include( $template ) {
-  global $wp_query, $wp;
-  $plugindir = dirname( __DIR__ );
-  $post_name = (isset($wp_query->queried_object->post_name)) ? $wp_query->queried_object->post_name : '';
-  $template_slug=str_replace('/^index$/', 'archive', str_replace('.php', '', basename($template)));
-  $post_id = get_the_ID();
-  $post_type_slug=get_post_type();
+	global $wp_query, $wp;
+	$plugindir      = dirname( __DIR__ );
+	$post_name      = ( isset( $wp_query->queried_object->post_name ) ) ? $wp_query->queried_object->post_name : '';
+	$template_slug  = str_replace( '/^index$/', 'archive', str_replace( '.php', '', basename( $template ) ) );
+	$post_id        = get_the_ID();
+	$post_type_slug = get_post_type();
 
-  $attempts = array(
-    (w4os_is_splash()) ? "$plugindir/templates/$template_slug-splash.php" : NULL,
-    "$plugindir/templates/$template_slug-$post_type_slug.php",
-    // "$plugindir/templates/$template_slug.php", // We should probably not override generic templates
-  );
-  foreach($attempts as $attempt) if(file_exists($attempt)) return $attempt;
+	$attempts = array(
+		( w4os_is_splash() ) ? "$plugindir/templates/$template_slug-splash.php" : null,
+		"$plugindir/templates/$template_slug-$post_type_slug.php",
+	// "$plugindir/templates/$template_slug.php", // We should probably not override generic templates
+	);
+	foreach ( $attempts as $attempt ) {
+		if ( file_exists( $attempt ) ) {
+			return $attempt;
+		}
+	}
 
-  return $template;
+	return $template;
 }
 
-function w4os_is_splash($post_id = NULL) {
-  if(!$post_id) $post_id = get_the_ID();
-  if(!$post_id) return false;
+function w4os_is_splash( $post_id = null ) {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+	if ( ! $post_id ) {
+		return false;
+	}
 
-  if ( !empty(W4OS_GRID_INFO['welcome']) && get_permalink( $post_id ) === W4OS_GRID_INFO['welcome'] ) return true;
-  $original_post_id = w4os_original_language_post($post_id);
-  if ( !empty(W4OS_GRID_INFO['welcome']) && wp_get_canonical_url( $original_post_id ) === W4OS_GRID_INFO['welcome'] ) return true;
+	if ( ! empty( W4OS_GRID_INFO['welcome'] ) && get_permalink( $post_id ) === W4OS_GRID_INFO['welcome'] ) {
+		return true;
+	}
+	$original_post_id = w4os_original_language_post( $post_id );
+	if ( ! empty( W4OS_GRID_INFO['welcome'] ) && wp_get_canonical_url( $original_post_id ) === W4OS_GRID_INFO['welcome'] ) {
+		return true;
+	}
 
-  return false;
+	return false;
 }
 
 function w4os_original_language_post( $object_id, $type = 'post' ) {
 
-  if($original_post_id = apply_filters( 'wpml_element_trid', NULL, $object_id, 'post_page' ))
-  return $original_post_id;
+	if ( $original_post_id = apply_filters( 'wpml_element_trid', null, $object_id, 'post_page' ) ) {
+		return $original_post_id;
+	}
 
-  return false;
+	return false;
 }
 
-add_filter( 'the_content', 'w4os_the_content');
-function w4os_the_content ( $content ) {
-  global $wp_query;
-  global $template;
-  if(function_exists('wc_print_notices')) wc_print_notices();
-  $plugindir = dirname( __DIR__ );
-  $post_type_slug=get_post_type();
-  $post_name = (isset($wp_query->queried_object->post_name)) ? $wp_query->queried_object->post_name : '';
-  $template_slug=str_replace('.php', '', basename($template));
-  $custom_slug = "content-$post_type_slug-$post_name";
-  $custom = "$plugindir/templates/$custom_slug.php";
-  if(file_exists($custom)) {
-    ob_start();
-    include $custom;
-    $custom_content = ob_get_clean();
-    $content = "<div class='" . W4OS_SLUG . " content $template_slug $post_type_slug'>$custom_content</div>";
-  }
-  $content = wp_cache_get('w4os_notices') . $content;
-  wp_cache_delete('w4os_notices');
-  return $content;
+add_filter( 'the_content', 'w4os_the_content' );
+function w4os_the_content( $content ) {
+	global $wp_query;
+	global $template;
+	if ( function_exists( 'wc_print_notices' ) ) {
+		wc_print_notices();
+	}
+	$plugindir      = dirname( __DIR__ );
+	$post_type_slug = get_post_type();
+	$post_name      = ( isset( $wp_query->queried_object->post_name ) ) ? $wp_query->queried_object->post_name : '';
+	$template_slug  = str_replace( '.php', '', basename( $template ) );
+	$custom_slug    = "content-$post_type_slug-$post_name";
+	$custom         = "$plugindir/templates/$custom_slug.php";
+	if ( file_exists( $custom ) ) {
+		ob_start();
+		include $custom;
+		$custom_content = ob_get_clean();
+		$content        = "<div class='" . W4OS_SLUG . " content $template_slug $post_type_slug'>$custom_content</div>";
+	}
+	$content = wp_cache_get( 'w4os_notices' ) . $content;
+	wp_cache_delete( 'w4os_notices' );
+	return $content;
 }
 
 // ### Interesting 1

@@ -1,8 +1,11 @@
 <?php
-add_filter( 'body_class', function  ( array $classes ) {
-	$classes[] = 'w4os-splash w4os-welcome';
-	return $classes;
-} );
+add_filter(
+	'body_class',
+	function ( array $classes ) {
+		$classes[] = 'w4os-splash w4os-welcome';
+		return $classes;
+	}
+);
 
 ?><!doctype html>
 <html <?php language_attributes(); ?>

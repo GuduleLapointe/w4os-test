@@ -474,7 +474,7 @@ class W4OS3_Settings {
 			);
 		}
 
-		$config = [];
+		$config = array();
 		if ( ! empty( $inis['opensim_ini'] ) ) {
 			$config = self::parse_config_file( $inis['opensimdefaults_ini'] );
 			$config = self::parse_config_file( $inis['opensim_ini'], $config );
