@@ -1,8 +1,28 @@
 # Changelog
 
-## Unreleased (3.0.1-dev.1001)
+## Unreleased (2.3.16-dev.915)
+
+- added troubleshooting guide
+- fix a couple of deprecated code warnings
+- normalized code
+
+## 2.3.15
+
+- fix array_unique(): Argument #1 ($array) must be of type array, null given on plugin first activation
+- fix Undefined constant "W4OS_PROFILE_URL" fatal error
+- prepare 3.x transision
+
+## 2.3.14
+
+- fix wrong event time in in-world search (UTC shown instead of grid time)
+
+## 2.3.13
+
+- restored WooCommerce Account Dashboar avatar section
+- minor fixes (undefined constants and variables)
 
 - fix w4os_profile_sync() fatal error when profiles are disabled
+
 - fix minor PHP8 warnings
 - fix fatal error when wp object is passed as user_id
 
@@ -16,6 +36,7 @@
   - filter per account type (regular, models, service accounts)
 
 - new **avatar post type** (contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task)
+
 - default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
 - splash page improvement (remove headers, footer and sidebars)
 

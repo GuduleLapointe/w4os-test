@@ -1,11 +1,11 @@
-=== w4os - OpenSimulator Web Interface ===
+=== w4os - OpenSimulator Web Interface (dev) ===
 Contributors: gudulelapointe,magicoli69
 Donate link: https://w4os.org/donate/
 Tags: OpenSimulator, Second Life, metaverse, avatar, web interface, grids, standalone, hypergrid, 3D
 Requires at least: 5.3.0
 Requires PHP: 7.3
-Tested up to: 6.1.1
-Stable tag: 2.3.13
+Tested up to: 6.2.2
+Stable tag: 2.3.15
 License: AGPLv3
 License URI: https://www.gnu.org/licenses/agpl-3.0.txt
 
@@ -63,7 +63,7 @@ During the 3.x developement, the stable release (2.x) will still receive fixes a
   - naming scheme of default models
   - exclude models from grid stats
 - Web asset server
-- Login page / Widget
+- Login Page / Widget
 - Manual and cron Grid/WP users sync
 - Public avatar profile
 - Auth with avatar credentials (if no matching wp account, create one)
@@ -71,6 +71,69 @@ During the 3.x developement, the stable release (2.x) will still receive fixes a
 = Paid version =
 
 The free version from WordPress plugins directory and the [paid version](https://magiiic.com/wordpress/plugins/w4os/) are technically the same. The only difference is the way you support this plugin developement: with the free version, you join the community experience (please rate and comment), while the paid version helps us to dedicate resources to this project.
+
+== Installation ==
+
+- Robust server must be installed before setting up W4OS.
+- To allow users to choose an avatar on registration, you must enable user
+  profiles in Robust.HG.ini (update [UserProfilesService], [ServiceList] and
+  [UserProfiles] sections)
+- You should have a working assets server (see Dependencies section below)
+
+= WordPress configuration =
+
+Before installing this plugin, make sure your WordPress installation is complete and permalinks are enabled.
+
+If upgrading from a different distribution (e.a. switching from github to WordPress Plugin Directory), make sure you disable the installed verssion before activating the new one.
+
+1. Download and activate the latest stable release
+2. Visit OpenSim settings (admin menu > "Opensim" > "Settings")
+  - Enter your grid name and grid URI (like example.org:8002 without http://)
+  - Enter your robust database connection details and submit. If you get a
+    database connection error, it might come from a case-sensitivity issue (see
+    https://github.com/GuduleLapointe/w4os/issues/2#issuecomment-923299674)
+  - insert `[gridinfo]` and `[gridstatus]` shortcodes in a page or in a sidebar widget
+3. Set permalinks and profile page
+  - Visit Settings > Permalinks, confirm W4OS slugs (profile and assets) and save.
+  - Create a page with the same slug as Profile permalink.
+    (This will be handled in a more convenient way in the future)
+
+= Create avatar models =
+
+Avatar models are displayed on new avatar registration and allow new users to start with another appearance than Ruth.
+
+* Check (or change) their naming convention in Admin > OpenSimulator > Settings > Avatar models
+* From robust console, create a user named accordingly (for example, "Female Default", Default John", ...).
+    ```
+    R.O.B.U.S.T. # create user Default John
+    Password: ************************
+    Email []: (leave empty)
+    User ID (enter for random) []:  (leave empty)
+    Model name []: (leave empty)
+    15:27:58 - [USER ACCOUNT SERVICE]: Account Default John xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx created successfully
+    ```
+  - A password is needed as you need connect in-world to configure it.
+    Choose a strong password, any hack could affect all new users.
+  - FirstName or LastName has to match your W4OS Avatar models settings
+  - The rest of the name will be displayed in the form, so make it relevant
+  - You can leave "Email" and "User ID" blank
+  - Leave "Model Name" blank, you are creating a model, not using an existing model to create a user
+* Connect in-world as this avatar and change outfit. Any worn clothing or attachment will be passed to the new avatars. Be sure to wear only transfer/copy items.
+* Make a snapshot and attach it to this account profile
+
+The model will now appear in new avatar registration form, with its profile picture.
+
+These accounts will be excluded from grid statistics.
+
+= Dependencies =
+
+* **Web Asset Server**: the project requires a web asset server to convert simulator assets (profile pictures, model avatars...) and display them on the website. W4OS provides a web assets service, or you can specify an external web assets service URL instead.
+* **PHP** 7.4 to 8.1
+* **PHP Modules**: w4os requires php imagemagick module. Also, while they are not required, WordPress recommends activating PHP **curl** and **xml** modules. They are also recommended by W4OS for full functionalties.
+
+= Troubleshooting =
+
+See [TROUBLESHOOTING.md](https://w4os.org/troobleshooting/) for more information.
 
 == Roadmap ==
 
@@ -116,6 +179,12 @@ Yes, it works too. Use OpenSim database credentials when requested for Robust cr
 
 No. This is an OpenSimulator design limitation. Regions rely on cached data to display avatar information, and once fetched, these are often never updated. As a result, if an avatar's name (or grid URI btw) is changed, the change will not be reflected on regions already visited by this avatar (which will still show the old name), but new visited region will display the new one. This could be somewhat handled for a small standalone grid, but never in hypergrid context. There is no process to force a foreign grid to update its cache, and probably never will.
 
+= Shouldn't I copy the helpers/ directory in the root of my webiste ? =
+
+No, you don't need to and you shouldn't. The /helpers/ is virtual, it is served as any other page of your website. Like there the /about/ URL website doesn't match a /about/ folder your webste directory.
+Even if there is a helpers/ directory in w4os plugin, it has the same name for convenience, but he could have been named anything. It's content is not accessed directly, it is used by the plugin to generate the answers.
+On the opposite, if there was an actual helpers/ folder in your website root, it would interfer with w4os.
+
 == Screenshots ==
 
 1. Grid info and grid status examples
@@ -124,6 +193,11 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 4. Web assets server settings
 
 == Changelog ==
+
+= Unreleased (2.3.16-dev.915) =
+* added troubleshooting guide
+* fix a couple of deprecated code warnings
+* normalized code
 
 = 3.x-dev =
 
@@ -135,6 +209,14 @@ No. This is an OpenSimulator design limitation. Regions rely on cached data to d
 - new **avatar post type** (contains only data gathered from OpenSimulator, if lost or deleted, they will be automatically generated on next cron task)
 - default avatar name as wp user name, fallback to randomly generated named (if chosen name is not available)
 - splash page improvement (remove headers, footer and sidebars)
+
+= 2.3.15 =
+* fix array_unique(): Argument #1 ($array) must be of type array, null given on plugin first activation
+* fix Undefined constant "W4OS_PROFILE_URL" fatal error
+* prepare 3.x transision
+
+= 2.3.14 =
+* fix wrong event time in in-world search (UTC shown instead of grid time)
 
 = 2.3.13 =
 * restored WooCommerce Account Dashboar avatar section
