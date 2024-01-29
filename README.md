@@ -7,7 +7,9 @@
 
 WordPress interface for OpenSimulator (w4os).
 
-[Installation](INSTALLATION.md) [Troubleshooting](TROUBLESHOOTING.md) [Changelog](CHANGELOG.md)
+- [Installation](INSTALLATION.md)
+- [Troubleshooting](TROUBLESHOOTING.md)
+- [Changelog](CHANGELOG.md)
 
 ## Description
 
